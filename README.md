@@ -1,4 +1,4 @@
-# Porject POS Toko Bahagia
+# Software Point Of Sale (POS) Toko Bahagia
 
 #### Have fun to learn this project.
 
