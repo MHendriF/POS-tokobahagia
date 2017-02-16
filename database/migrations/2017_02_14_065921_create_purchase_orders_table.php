@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreatePurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,29 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('purchase_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('customer_id')->nullable();
+            $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
-            $table->unsignedInteger('order_detail_id')->nullable();
-            $table->string('order_no');
+            $table->unsignedInteger('po_detail_id')->nullable();
+            $table->integer('po_number');
+            $table->string('po_description');
             $table->date('order_date');
-            $table->string('po_number');
+            $table->date('order_required');
+            $table->date('order_promised');
+            $table->date('ship_date');
             $table->integer('freight_charge');
-            $table->integer('sales_tax_rate_po');
             $table->timestamps();
-            
         });
 
-        Schema::table('orders', function($table) {
-            $table->foreign('customer_id')->references('id')->on('customers')
+        Schema::table('purchase_orders', function($table) {
+            $table->foreign('supplier_id')->references('id')->on('suppliers')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('shipping_id')->references('id')->on('shippings')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');    
-            $table->foreign('order_detail_id')->references('id')
-                    ->on('order_details')
+            $table->foreign('po_detail_id')->references('id')->on('purchase_order_details')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
@@ -48,7 +48,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        //Schema::dropForeign('orders_customer_id_foreign');
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('purchase_orders');
     }
 }

@@ -47,6 +47,10 @@ class DatabaseSeeder extends Seeder
         
         factory(App\Product::class, 20)->create();
         $this->command->info("Product table seeded is completed :)");
+
+        $this->call('SuppliersSeeder');
+        //this message shown in your terminal after running db:seed command
+        $this->command->info("Supplier table seeded is completed :)");
       
     }
 }

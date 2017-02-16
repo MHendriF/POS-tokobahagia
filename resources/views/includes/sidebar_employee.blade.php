@@ -40,6 +40,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a><i class="fa fa-table"></i> Purchase Order <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="{{ url('purchase_order') }}">Purchase</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('') }}">Purchase List</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('') }}">Purchase Detail List</a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

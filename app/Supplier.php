@@ -8,9 +8,9 @@ class Supplier extends Model
 {
 	protected $tabel = 'suppliers';
 
-    // public function order(){
-    // 	return $this->hasMany('App\Order');
-    // }
+    public function purchaseorder(){
+    	return $this->hasMany('App\Purchase_Order');
+    }
 
     protected $fillable = [
     	'supplier_name',

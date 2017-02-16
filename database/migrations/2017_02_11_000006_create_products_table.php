@@ -36,8 +36,12 @@ class CreateProductsTable extends Migration
         });
 
         Schema::table('products', function($table) {
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
         });
     }
 

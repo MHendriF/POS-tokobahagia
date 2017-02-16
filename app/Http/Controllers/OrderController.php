@@ -39,13 +39,13 @@ class OrderController extends Controller
     {
         // Add Order Detail Table First
         $orders_detail = new Order_Detail(array(
-            'product_id' => $request->get('product_id'),
-            'quantity_in' => $request->get('quantity_in'),
+            'product_id'   => $request->get('product_id'),
+            'quantity_in'  => $request->get('quantity_in'),
             'quantity_out' => $request->get('quantity_out'),
-            'line_total' => $request->get('line_total'),
-            'discount' => $request->get('discount'),
-            'grand_total' => $request->get('grand_total'),
-            'price_ref' => $request->get('price_ref')
+            'line_total'   => $request->get('line_total'),
+            'discount'     => $request->get('discount'),
+            'grand_total'  => $request->get('grand_total'),
+            'price_ref'    => $request->get('price_ref')
         ));
         
         if($orders_detail->save())
@@ -60,14 +60,14 @@ class OrderController extends Controller
         $newformat = date('Y-m-d',$time);
 
         $orders = new Order(array(
-            'customer_id' => $request->get('customer_id'),
-            'shipping_id' => $request->get('shipping_id'),
-            'order_detail_id' => $lastOrder,
+            'customer_id'       => $request->get('customer_id'),
+            'shipping_id'       => $request->get('shipping_id'),
+            'order_detail_id'   => $lastOrder,
             //'order_detail_id' => intval(Order_Detail::where())
-            'order_no' => $request->get('order_no'),
-            'order_date' => $newformat,
-            'po_number' => $request->get('po_number'),
-            'freight_charge' => $request->get('freight_charge'),
+            'order_no'          => $request->get('order_no'),
+            'order_date'        => $newformat,
+            'po_number'         => $request->get('po_number'),
+            'freight_charge'    => $request->get('freight_charge'),
             'sales_tax_rate_po' => $request->get('sales_tax_rate_po')
         ));
 
@@ -122,7 +122,6 @@ class OrderController extends Controller
         return redirect()->to('order_list');
 
     }
-
 
     public function orderList()
     {

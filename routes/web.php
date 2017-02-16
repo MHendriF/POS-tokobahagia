@@ -33,7 +33,17 @@ Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/gaji', 'AdminController@gaji');
 	Route::get('/transfer_barang', 'AdminController@transfer_barang');
 	Route::get('/expense', 'AdminController@expense');
-	Route::get('/pengeluaran', 'AdminController@pengeluaran');	
+	Route::get('/pengeluaran', 'AdminController@pengeluaran');
+
+	Route::resource('product', 'ProductController');
+	Route::get('productv2', 'ProductController@productv2');
+	Route::post('product/{id}', 'ProductController@update');
+
+	Route::resource('shipping', 'ShippingController');
+	Route::post('shipping/{id}', 'ShippingController@update');
+
+	Route::resource('supplier', 'SupplierController');
+	Route::post('supplier/{id}', 'SupplierController@update');
 });
 
 Route:: group(['middleware' => 'employee'], function() {
@@ -56,5 +66,10 @@ Route:: group(['middleware' => 'employee'], function() {
 	Route::post('/order_list/{id}', 'OrderController@postOrderDetail');
 	
 	//Route::get('/order_detail', 'OrderController@orderDetail');
+
+	//Purchase Order
+	Route::resource('purchase_order', 'PurchaseOrderController');
+	Route::post('purchase_order', 'PurchaseOrderController@postPurchaseOrder');
+	Route::get('po_list', 'PurchaseOrderController@poList');
 
 });

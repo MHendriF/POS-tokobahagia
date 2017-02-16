@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Pemesanan
+    Toko Bahagia | Purchase Order
 @endsection
 
 @push('stylesheets')
@@ -11,9 +11,8 @@
     <!-- Optional SmartWizard theme -->
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
 
-
-      <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <!-- Custom Theme Style -->
+    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -30,8 +29,8 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
-                          </span>
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -63,33 +62,34 @@
                   </div>
                   <div class="x_content">
 
-                     <form action="{{ url('/orderv2') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                     <form action="{{ url('/purchase_order') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
                         <div id="smartwizard">
                             <ul>
-                                <li><a href="#step-1"><small>Order Entry</small></a></li>
-                                <li><a href="#step-2"><small>Order Detail</small></a></li>
+                                <li><a href="#step-1"><small>Purchase Order</small></a></li>
+                                <li><a href="#step-2"><small>Purchase Order Detail</small></a></li>
                                 <li><a href="#step-3"><small>Terms and Conditions</small></a></li>
                             </ul>
                             
                             <div>
                                 <div id="step-1">
-                                    <h2>Order Entry</h2>
+                                    <h2>Purchase Order</h2>
                                     <div id="form-step-0" role="form" data-toggle="validator">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Select Customer <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supplier_id">Select Supplier <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                               <select id="customer_id" required="required" name="customer_id" class="select2_single form-control" tabindex="-1">
+                                               <select id="supplier_id" required="required" name="supplier_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
-                                                @foreach($data as $customer)
-                                                    <option value='{{ $customer->id}}'> {{ $customer->contact_name }}</option>
+                                                @foreach($data as $supplier)
+                                                    <option value='{{ $supplier->id}}'> {{ $supplier->supplier_name }}</option>
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
+
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Shipping Method <span class="required">*</span>
                                             </label>
@@ -101,13 +101,23 @@
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
+                                        
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order No <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_number">Po Number <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="order_no" name="order_no" required="required" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" id="po_number" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_description">Po Description <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="text" id="po_description" name="po_description" required="required" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -116,17 +126,38 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date" aria-describedby="inputSuccess2Status3">
+                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal1" placeholder="Date" aria-describedby="inputSuccess2Status3">
                                                 <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_number">Po No <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Required <span class="required">*</span>
                                             </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="po_number" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                                <input type="text" required="required" name="order_required" class="form-control" id="single_cal2" placeholder="Date" aria-describedby="inputSuccess2Status3">
+                                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Promised <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                                <input type="text" required="required" name="order_promised" class="form-control" id="single_cal3" placeholder="Date" aria-describedby="inputSuccess2Status3">
+                                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Ship Date <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                                <input type="text" required="required" name="ship_date" class="form-control" id="single_cal4" placeholder="Date" aria-describedby="inputSuccess2Status3">
+                                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -139,21 +170,14 @@
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sales_tax_rate_po">Sales Tax Rate <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="sales_tax_rate_po" name="sales_tax_rate_po" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
+                                       
                                     </div>  
                                 </div>
 
                                 <div id="step-2">
-                                    <h2>Order Detail</h2>
+                                    <h2>Purchase Order Detail</h2>
                                     <div id="form-step-1" role="form" data-toggle="validator">
+                                        
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_id">Select Product <span class="required">*</span>
                                             </label>
@@ -165,9 +189,18 @@
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_item_number">Po Item Number <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" id="po_item_number" name="po_item_number" required="required"  class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity_in">Quantity In <span class="required">*</span>
                                             </label>
@@ -176,12 +209,21 @@
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity_out">Quantity Out <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                               <input type="number" id="quantity_out" name="quantity_out" required="required" placeholder="Pieces" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_cost">Unit Cost <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" id="unit_cost" name="unit_cost" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -203,22 +245,7 @@
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="grand_total">Grand Total <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="grand_total" name="grand_total" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price_ref">Price Reference <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="price_ref" name="price_ref" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                                 
@@ -237,12 +264,8 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </form>
-
-
                   </div>
-
                 </div>
               </div>
             </div>
@@ -318,22 +341,6 @@
       });
     </script>
     <!-- /Datepicker -->
-
-    {{-- <!-- jQuery Smart Wizard -->
-    <script>
-      $(document).ready(function() {
-        $('#wizard').smartWizard();
-
-        $('#wizard_verticle').smartWizard({
-          transitionEffect: 'slide'
-        });
-
-        $('.buttonNext').addClass('btn btn-success');
-        $('.buttonPrevious').addClass('btn btn-primary');
-        $('.buttonFinish').addClass('btn btn-default');
-      });
-    </script>
-    <!-- /jQuery Smart Wizard --> --}}
 
      <script type="text/javascript">
         $(document).ready(function(){

@@ -12,7 +12,7 @@ class Product extends Model
     	return $this->belongsTo('App\Category', 'category_id');
     }
 
-    public function pilihlocatation(){
+    public function pilihlocation(){
         return $this->belongsTo('App\Location', 'location_id');
     }
 
@@ -20,7 +20,7 @@ class Product extends Model
     	return $this->hasMany('App\Order_Detail');
     }
 
-     protected $fillable = [
+    protected $fillable = [
      	'category_id',
 		'location_id',
 		'product_name',

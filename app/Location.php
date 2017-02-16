@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    protected $table = 'location';
+    protected $table = 'locations';
 
     public function order(){
     	return $this->hasMany('App\Order');
