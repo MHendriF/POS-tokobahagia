@@ -5,15 +5,17 @@
 @endsection
 
 @push('stylesheets')
+    <!-- Select2 -->
+    <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    
     <!-- Include SmartWizard CSS -->
     <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
     
     <!-- Optional SmartWizard theme -->
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
 
-
-      <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <!-- Custom Theme Style -->
+    <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -257,10 +259,10 @@
     @push('scripts')
 
     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
+    <script src="{{ asset("js/select2/select2.full.min.js")}}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
+    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
+    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
 
     <!-- Include jQuery Validator plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
@@ -268,7 +270,7 @@
     <script type="text/javascript" src="{{ asset("js/smartWizard/jquery.smartWizard.min.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("js/custom.min.js") }}"></script>
 
 
     <!-- Select2 -->

@@ -1,17 +1,20 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Shipping
+    Toko Bahagia | Supplier
 @endsection
 
 @push('stylesheets')
 
       <!-- Datatables -->
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/buttons.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
 
       <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 
 @endpush
@@ -22,7 +25,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Shipping <small>List</small></h3>
+                <h3>Supplier <small>List</small></h3>
               </div>
 
               <div class="title_right">
@@ -37,9 +40,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Shipping List <small>
+                    <h2>Supplier List <small>
                       <a href="{{ url('supplier/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Shipping
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Supplier
                       </a></small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -63,19 +66,18 @@
                     <p class="text-muted font-13 m-b-30">
                       The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Supplier name</th>
-                          <th>Contact title</th>
-                          <th>Contact name</th>
+                          <th>Contact</th>
                           <th>Fax</th>
                           <th>Address</th>
                           <th>Postal code</th>
                           <th>City</th>
-                          <th>Province</th>
-                          <th>Country</th>
+                          {{-- <th>Province</th> --}}
+                          {{-- <th>Country</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -84,23 +86,30 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $supplier->supplier_name }}</td>
-                          <td>{{ $supplier->contact_title }}</td>
-                          <td>{{ $supplier->contact_name }}</td>
+                          <td>{{ $supplier->contact_title }} {{ $supplier->contact_name }}</td>
+                          {{-- <td>{{ $supplier->contact_name }}</td> --}}
                           <td>{{ $supplier->fax }}</td>
                           <td>{{ $supplier->address }}</td>
                           <td>{{ $supplier->postal_code }}</td>
                           <td>{{ $supplier->city }}</td>
-                          <td>{{ $supplier->province }}</td>
-                          <td>{{ $supplier->country }}</td>
+                          {{-- <td>{{ $supplier->province }}</td> --}}
+                          {{-- <td>{{ $supplier->country }}</td> --}}
                           <td>
                           <center>
-                            <a href="{{ url('supplier/'.$supplier->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                            <a href="{{ url('supplier/'.$supplier->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                            <form action="{{ url('supplier/'.$supplier->id) }}" method="post">
-                              {{ csrf_field() }}
-                              <input type="hidden" name="_method" value="DELETE">
-                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </form>
+                            <div class="floating-box">
+                              <a href="{{ url('supplier/'.$supplier->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="floating-box">
+                              <a href="{{ url('supplier/'.$supplier->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="floating-box">
+                              <form action="{{ url('supplier/'.$supplier->id) }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                              </form>
+                            </div>
+                           
                           </center>
                           </td>
                         </tr>
@@ -127,9 +136,15 @@
     <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
     <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.flash.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/pdfmake.min.js") }}"></script>
     <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
 
     <!-- Custom Theme Scripts -->

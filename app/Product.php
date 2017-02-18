@@ -20,6 +20,10 @@ class Product extends Model
     	return $this->hasMany('App\Order_Detail');
     }
 
+    public function maintransaction(){
+    	return $this->hasMany('App\Main_Transaction');
+    }
+
     protected $fillable = [
      	'category_id',
 		'location_id',

@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Add Product
+    Gentellela Alela! | Edit Supplier
 @endsection
 
 @push('stylesheets')
@@ -15,7 +15,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add Product</h3>
+                    <h3>Edit Supplier</h3>
                 </div>
 
                 <div class="title_right">
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Product <small>sub title</small></h2>
+                      <h2>Form Edit Supplier <small>sub title</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li class="dropdown">
@@ -51,10 +51,82 @@
                             {!! csrf_field() !!}
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">Images <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="method">Supplier name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="method" value="{{$data->method}}" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="supplier_name" value="{{$data->supplier_name}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Contact title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="contact_title" value="{{$data->contact_title}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Contact name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="contact_name" value="{{$data->contact_name}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Phone <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="phone" value="{{$data->phone}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Fax <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="fax" value="{{$data->fax}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Address <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="address" value="{{$data->address}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Postal code <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="postal_code" value="{{$data->postal_code}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >City <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="city" value="{{$data->city}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Province/State <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="province" value="{{$data->province}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Country <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="country" value="{{$data->country}}" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
 

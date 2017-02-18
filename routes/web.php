@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('tesorder', 'TesController');
+
 Route:: group(['middleware'  => 'visitors'], function() {
 	Route::get('/register', 'RegisterController@register');
 	Route::post('/register', 'RegisterController@postRegister');
@@ -28,6 +30,11 @@ Route:: group(['middleware' => 'authenticate'], function() {
 });
 
 
+	Route::resource('product', 'ProductController');
+	Route::get('productv2', 'ProductController@productv2');
+	Route::post('product/{id}', 'ProductController@update');
+
+
 Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/account', 'AdminController@index');
 	Route::get('/gaji', 'AdminController@gaji');
@@ -35,15 +42,26 @@ Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/expense', 'AdminController@expense');
 	Route::get('/pengeluaran', 'AdminController@pengeluaran');
 
-	Route::resource('product', 'ProductController');
-	Route::get('productv2', 'ProductController@productv2');
-	Route::post('product/{id}', 'ProductController@update');
+	
 
 	Route::resource('shipping', 'ShippingController');
 	Route::post('shipping/{id}', 'ShippingController@update');
 
 	Route::resource('supplier', 'SupplierController');
 	Route::post('supplier/{id}', 'SupplierController@update');
+
+	Route::resource('user', 'UserController');
+	Route::post('user/{id}', 'UserController@update');
+
+	Route::resource('location', 'LocationController');
+	Route::post('location/{id}', 'LocationController@update');
+
+	Route::resource('category', 'CategoryController');
+	Route::post('category/{id}', 'CategoryController@update');
+
+	Route::resource('technician', 'TechnicianController');
+	Route::post('technician/{id}', 'TechnicianController@update');	
+
 });
 
 Route:: group(['middleware' => 'employee'], function() {

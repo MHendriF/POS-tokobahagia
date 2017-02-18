@@ -27,7 +27,8 @@ class ProductController extends Controller
     {
         $data = Category::all();
         $data2 = Location::all();
-        return view('admins.product.add_product', compact('data','data2'));
+        //return view('admins.product.add_product', compact('data','data2'));
+        return view('testing.tes-product', compact('data','data2'));
     }
 
     public function store(Request $request)

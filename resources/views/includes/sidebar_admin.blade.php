@@ -28,14 +28,15 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Data <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ url('account') }}">Account</a></li>
+                            <li><a href="{{ url('user') }}">User acoount</a></li>
                             <li><a href="{{ url('product') }}">Product</a></li>
-                            <li><a href="{{ url('order') }}">Order</a></li>
+                            <li><a href="{{ url('location') }}">Location</a></li>
                             <li><a href="{{ url('shipping') }}">Shipping</a></li>
-                            <li><a href="{{ url('purchase') }}">Purchace Order</a></li>
+                            <li><a href="{{ url('category') }}">Category</a></li>
                             <li><a href="{{ url('supplier') }}">Supplier</a></li>
                             <li><a href="{{ url('service') }}">Services</a></li>
                             <li><a href="{{ url('technician') }}">Technician</a></li>
+                            <li><a href="{{ url('purchase') }}">Purchace Order</a></li>
 
                         </ul>
                     </li>

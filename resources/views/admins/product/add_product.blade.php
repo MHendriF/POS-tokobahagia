@@ -5,6 +5,8 @@
 @endsection
 
 @push('stylesheets')
+      <!-- Select2 -->
+      <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush

@@ -14,6 +14,7 @@
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
 
       <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 
 @endpush
@@ -110,13 +111,19 @@
                           <td>{{ $product->unit_of_measure }}</td> --}}
                           <td>
                           <center>
-                            <a href="{{ url('product/'.$product->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                            <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                            <form action="{{ url('product/'.$product->id) }}" method="post">
-                              {{ csrf_field() }}
-                              <input type="hidden" name="_method" value="DELETE">
-                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </form>
+                            <div class="floating-box">
+                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="floating-box">
+                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="floating-box">
+                              <form action="{{ url('product/'.$product->id) }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                              </form>
+                            </div>
                           </center>
                           </td>
                         </tr>

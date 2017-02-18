@@ -7,7 +7,7 @@ use App\Supplier;
 
 class SupplierController extends Controller
 {
-     public function index()
+    public function index()
     {
         $data = Supplier::all();
         return view('admins.supplier.supplier', compact('data'));
@@ -16,9 +16,7 @@ class SupplierController extends Controller
  
     public function create()
     {
-        $data = Category::all();
-        $data2 = Location::all();
-        return view('admins.supplier.add_supplier', compact('data','data2'));
+        return view('admins.supplier.add_supplier');
     }
 
     public function store(Request $request)

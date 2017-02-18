@@ -25,9 +25,9 @@ class LoginController extends Controller
             if(Sentinel::authenticate($request->all())){
                 $slug = Sentinel::getUser()->roles()->first()->slug;
                 if($slug == 'admin')
-                    return redirect('/account');
+                    return redirect('/home');
                 elseif($slug == 'employee')
-                    return redirect('/permission');    
+                    return redirect('/home');    
                 }
             else {
                 return redirect()->back()->with(['error' => 'Username or password is wrong']);

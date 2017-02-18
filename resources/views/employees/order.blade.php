@@ -157,7 +157,7 @@
     <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
+    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
     <!-- validator -->
     <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
     <!-- Custom Theme Scripts -->
