@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->string('reorder_lvl');
             $table->string('discontinueted');
             $table->string('lead_time');
-            $table->string('images');
+            $table->string('images')->nullable();
             $table->string('pri_vendor');
             $table->string('sec_vendor');
             $table->integer('unit_of_hand');

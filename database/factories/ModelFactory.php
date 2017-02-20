@@ -57,7 +57,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'reorder_lvl'     => $faker->numberBetween($min = 1, $max = 3),
         'discontinueted'  => $faker->randomElement($array = array ('Yes','No','No')),
         'lead_time'       => $faker->word,
-        'images'          => $faker->word,
+        'images'          => 'default.png',
         'pri_vendor'      => $faker->word,
         'sec_vendor'      => $faker->word,
         'unit_of_hand'    => $faker->numberBetween($min = 0, $max = 3),

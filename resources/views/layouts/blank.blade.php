@@ -13,7 +13,7 @@
 
 
         <!-- Bootstrap -->
-        <link href="{{ asset("vendors/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("vendors/bootstrap/dist/css/bootstrap.min2.css") }}" rel="stylesheet">
         <!-- Font Awesome -->
         <link href="{{ asset("vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
         {{-- <!-- bootstrap-wysiwyg -->
@@ -43,7 +43,7 @@
         </div>
 
         <!-- jQuery -->
-        <script src="{{ asset("js/jquery/jquery.min.js") }}"></script>
+        <script src="{{ asset("js/jquery/jquery.min2.js") }}"></script>
         <!-- Bootstrap -->
         <script src="{{ asset("js/bootstrap/bootstrap.min.js") }}"></script>
         <!-- FastClick -->

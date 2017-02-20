@@ -30,11 +30,6 @@ Route:: group(['middleware' => 'authenticate'], function() {
 });
 
 
-	Route::resource('product', 'ProductController');
-	Route::get('productv2', 'ProductController@productv2');
-	Route::post('product/{id}', 'ProductController@update');
-
-
 Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/account', 'AdminController@index');
 	Route::get('/gaji', 'AdminController@gaji');
@@ -42,7 +37,10 @@ Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/expense', 'AdminController@expense');
 	Route::get('/pengeluaran', 'AdminController@pengeluaran');
 
-	
+	Route::resource('product', 'ProductController');
+	Route::get('productv2', 'ProductController@productv2');
+	Route::post('product/{id}', 'ProductController@update');
+
 
 	Route::resource('shipping', 'ShippingController');
 	Route::post('shipping/{id}', 'ShippingController@update');

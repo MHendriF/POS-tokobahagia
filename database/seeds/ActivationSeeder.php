@@ -14,6 +14,7 @@ class ActivationSeeder extends Seeder
         DB::table('activations')->delete();
         //insert some dummy records
         DB::table('activations')->insert(array(
+            array('user_id'=>'1', 'code'=>'VexDeZWnjmq26eFykuVnwbdsdsdsdsds', 'completed'=>'1'),
 			array('user_id'=>'2', 'code'=>'VexDeZWnjmq26eFykuVnwbcyqPipk9JH', 'completed'=>'1'),
         ));
     }
