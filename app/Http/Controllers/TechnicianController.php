@@ -52,9 +52,12 @@ class TechnicianController extends Controller
 
     public function update(Request $request, $id)
     {
-        Technician::find($id)->update($request->all());
-        Session::flash('update', 'Technician was successfully updated!');
-        return redirect('technician');
+        if(Technician::find($id)->update($request->all()))
+        {
+            Session::flash('update', 'Technician was successfully updated!');
+            return redirect('technician');
+        }
+        
     }
 
     public function destroy($id)

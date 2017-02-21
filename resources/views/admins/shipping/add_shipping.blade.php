@@ -5,6 +5,10 @@
 @endsection
 
 @push('stylesheets')
+      <!-- PNotify -->
+      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -78,95 +82,19 @@
 
     @push('scripts')
 
-     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
     <!-- validator -->
     <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
-    </script>
-    <!-- /validator -->
-
-    <!-- Select2 -->
-    <script>
-      $(document).ready(function() {
-        $(".select2_single").select2({
-          placeholder: "Select a state",
-          allowClear: true
-        });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-          maximumSelectionLength: 4,
-          placeholder: "With Max Selection limit 4",
-          allowClear: true
-        });
-      });
-    </script>
-    <!-- /Select2 -->
-
-    <!-- /Datepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /Datepicker -->
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
+    @include('javascript.validator')
+    
 
     @endpush
 @endsection

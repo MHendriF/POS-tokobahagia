@@ -1,10 +1,14 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Add Product
+    Gentellela Alela! | Edit Shipping
 @endsection
 
 @push('stylesheets')
+      <!-- PNotify -->
+      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -15,7 +19,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add Product</h3>
+                    <h3>Edit Shipping</h3>
                 </div>
 
                 <div class="title_right">
@@ -28,7 +32,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Product <small>sub title</small></h2>
+                      <h2>Form Edit Shipping <small>sub title</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li class="dropdown">
@@ -51,7 +55,7 @@
                             {!! csrf_field() !!}
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">Images <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">Shipping method <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="text" name="method" value="{{$data->method}}" required="required" class="form-control col-md-7 col-xs-12">
@@ -79,95 +83,18 @@
 
     @push('scripts')
 
-     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
     <!-- validator -->
     <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
-    </script>
-    <!-- /validator -->
-
-    <!-- Select2 -->
-    <script>
-      $(document).ready(function() {
-        $(".select2_single").select2({
-          placeholder: "Select a state",
-          allowClear: true
-        });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-          maximumSelectionLength: 4,
-          placeholder: "With Max Selection limit 4",
-          allowClear: true
-        });
-      });
-    </script>
-    <!-- /Select2 -->
-
-    <!-- /Datepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /Datepicker -->
-
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
+    @include('javascript.validator')
+    
     @endpush
 @endsection

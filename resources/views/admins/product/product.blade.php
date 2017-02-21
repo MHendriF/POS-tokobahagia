@@ -14,6 +14,12 @@
       <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
+      <!-- NProgress -->
+      <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+      <!-- PNotify -->
+      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
 
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
@@ -160,153 +166,22 @@
     <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
     <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.flash.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.html5.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.print.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/pdfmake.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
-
+     <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-     <!-- Datatables -->
-    <script>
-      $(document).ready(function() {
-        var handleDataTableButtons = function() {
-          if ($("#datatable-buttons").length) {
-            $("#datatable-buttons").DataTable({
-              dom: "Bfrtip",
-              buttons: [
-                {
-                  extend: "copy",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "csv",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "excel",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "pdfHtml5",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "print",
-                  className: "btn-sm"
-                },
-              ],
-              responsive: true
-            });
-          }
-        };
-
-        TableManageButtons = function() {
-          "use strict";
-          return {
-            init: function() {
-              handleDataTableButtons();
-            }
-          };
-        }();
-
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({
-          keys: true
-        });
-
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-          ajax: "js/datatables/json/scroller-demo.json",
-          deferRender: true,
-          scrollY: 380,
-          scrollCollapse: true,
-          scroller: true
-        });
-
-        var table = $('#datatable-fixed-header').DataTable({
-          fixedHeader: true
-        });
-
-        TableManageButtons.init();
-      });
-    </script>
-    <!-- /Datatables -->
-
-    <!-- bootstrap-wysiwyg -->
-    <script>
-      $(document).ready(function() {
-        function initToolbarBootstrapBindings() {
-          var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-              'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-              'Times New Roman', 'Verdana'
-            ],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-          $.each(fonts, function(idx, fontName) {
-            fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
-          });
-          $('a[title]').tooltip({
-            container: 'body'
-          });
-          $('.dropdown-menu input').click(function() {
-              return false;
-            })
-            .change(function() {
-              $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-            })
-            .keydown('esc', function() {
-              this.value = '';
-              $(this).change();
-            });
-
-          $('[data-role=magic-overlay]').each(function() {
-            var overlay = $(this),
-              target = $(overlay.data('target'));
-            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-          });
-
-          if ("onwebkitspeechchange" in document.createElement("input")) {
-            var editorOffset = $('#editor').offset();
-
-            $('.voiceBtn').css('position', 'absolute').offset({
-              top: editorOffset.top,
-              left: editorOffset.left + $('#editor').innerWidth() - 35
-            });
-          } else {
-            $('.voiceBtn').hide();
-          }
-        }
-
-        function showErrorAlert(reason, detail) {
-          var msg = '';
-          if (reason === 'unsupported-file-type') {
-            msg = "Unsupported format " + detail;
-          } else {
-            console.log("error uploading file", reason, detail);
-          }
-          $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-            '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-        }
-
-        initToolbarBootstrapBindings();
-
-        $('#editor').wysiwyg({
-          fileUploadError: showErrorAlert
-        });
-
-        window.prettyPrint;
-        prettyPrint();
-      });
-    </script>
-    <!-- /bootstrap-wysiwyg -->
+    <!-- Include Scripts -->
+    @include('javascript.bootstrap-wysiwyg')
+    @include('javascript.datatables')
+    @include('javascript.pnotify')
 
     @endpush
 @endsection

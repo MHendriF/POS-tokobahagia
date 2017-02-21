@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shipping;
+use Session;
 
 class ShippingController extends Controller
 {
@@ -21,8 +22,19 @@ class ShippingController extends Controller
 
     public function store(Request $request)
     {
-        Shipping::create($request->all());
-        return redirect('shipping');
+        try{
+            $this->validate($request, array(
+                'method'   => 'required'
+            ));
+            
+            if(Shipping::create($request->all())){
+                Session::flash('new', 'Shipping was successfully added!');
+                return redirect('shipping');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function show($id)
@@ -38,13 +50,27 @@ class ShippingController extends Controller
 
     public function update(Request $request, $id)
     {
-        Shipping::find($id)->update($request->all());
-        return redirect('shipping');
+        try{
+            $this->validate($request, array(
+                'method'   => 'required'
+            ));
+            
+            if(Shipping::find($id)->update($request->all())){
+                Session::flash('new', 'Shipping was successfully updated!');
+                return redirect('shipping');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function destroy($id)
     {
-        Shipping::find($id)->delete();
-        return redirect('shipping');
+        if(Shipping::find($id)->delete())
+        {
+            Session::flash('delete', 'Shipping method was successfully deleted!');
+            return redirect('shipping');
+        }  
     }
 }

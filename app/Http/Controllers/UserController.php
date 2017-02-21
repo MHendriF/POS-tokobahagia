@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -37,13 +38,32 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::find($id)->update($request->all());
-        return redirect('user');
+        try{
+            $this->validate($request, array(
+                'username'   => 'required',
+                'last_name'  => 'required',
+                'first_name' => 'required',
+                'phone'      => 'required',
+                'address'    => 'required'
+            ));
+
+            if(User::find($id)->update($request->all())){
+                Session::flash('update', 'User data was successfully updated!');
+                return redirect('user');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect('user');
+        if(User::find($id)->delete())
+        {
+            Session::flash('delete', 'User was successfully deleted!');
+            return redirect('user');
+        }
+        
     }
 }

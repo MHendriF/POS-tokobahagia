@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use Session;
 
 class LocationController extends Controller
 {
@@ -20,8 +21,19 @@ class LocationController extends Controller
 
     public function store(Request $request)
     {
-        Location::create($request->all());
-        return redirect('location');
+        try{
+            $this->validate($request, array(
+                'location'   => 'required'
+            ));
+            
+            if(Location::create($request->all())){
+                Session::flash('new', 'Location was successfully added!');
+                return redirect('location');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function show($id)
@@ -37,13 +49,27 @@ class LocationController extends Controller
 
     public function update(Request $request, $id)
     {
-        Location::find($id)->update($request->all());
-        return redirect('location');
+        try{
+            $this->validate($request, array(
+                'location'   => 'required'
+            ));
+
+            if(Location::find($id)->update($request->all())){
+                Session::flash('update', 'Location data was successfully updated!');
+                return redirect('location');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function destroy($id)
     {
-        Location::find($id)->delete();
-        return redirect('location');
+        if(Location::find($id)->delete())
+        {
+            Session::flash('delete', 'Location was successfully deleted!');
+            return redirect('location');
+        }   
     }
 }

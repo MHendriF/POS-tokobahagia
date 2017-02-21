@@ -10,6 +10,8 @@
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
+      <!-- NProgress -->
+      <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
 
       <!-- PNotify -->
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
@@ -86,17 +88,18 @@
                           <td>{{ $technician->technician_name }}</td>
                           <td>
                           <center>
-                            <div class="floating-box">
-                              <a href="{{ url('technician/'.$technician->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                            
+                            <div class="btn-group">
+                              <a href="{{ url('technician/'.$technician->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                             </div>
-                            <div class="floating-box">
-                              <a href="{{ url('technician/'.$technician->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                            <div class="btn-group">
+                              <a href="{{ url('technician/'.$technician->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
-                            <div class="floating-box">
+                            <div class="btn-group">
                               <form action="{{ url('technician/'.$technician->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
                               </form>
                             </div>
                           </center>
@@ -138,64 +141,9 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- PNotify -->
-    <script>
-      $(document).ready(function() {
-          @if(Session::has('new'))
-            new PNotify({
-              title: "Create",
-              type: "success",
-              text: "{{ Session::get('new') }}",
-              delay: "2500",
-              nonblock: {
-                  nonblock: true
-              },
-              styling: 'bootstrap3',
-              hide: true,
-            });
-          @elseif(Session::has('update'))
-            new PNotify({
-              title: "Update",
-              type: "success",
-              text: "{{ Session::get('update') }}",
-              delay: "2500",
-              nonblock: {
-                  nonblock: true
-              },
-              styling: 'bootstrap3',
-              hide: true,
-              shadow: true,
-            });
-          @elseif(Session::has('delete'))
-            new PNotify({
-              title: "Delete",
-              type: "success",
-              text: "{{ Session::get('delete') }}",
-              delay: "2500",
-              nonblock: {
-                  nonblock: true
-              },
-              styling: 'bootstrap3',
-              hide: true,
-              shadow: true,
-            });
-          @elseif(Session::has('error'))
-            new PNotify({
-              title: "Error",
-              type: "error",
-              text: "{{ Session::get('error') }}",
-              delay: "2500",
-              nonblock: {
-                  nonblock: true
-              },
-              styling: 'bootstrap3',
-              hide: true,
-              shadow: true,
-            });
-          @endif
-        });
-    </script>
-    <!-- /PNotify -->
+    <!-- Include Scripts -->
+    @include('javascript.datatables')
+    @include('javascript.pnotify')
 
     @endpush
 @endsection

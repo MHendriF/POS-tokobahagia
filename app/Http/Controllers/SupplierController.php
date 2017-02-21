@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Supplier;
+use Session;
 
 class SupplierController extends Controller
 {
@@ -21,9 +22,28 @@ class SupplierController extends Controller
 
     public function store(Request $request)
     {
-        Supplier::create($request->all());
-        return redirect('supplier');
-        //dd($request->all());
+        try{
+            $this->validate($request, array(
+                'supplier_name' => 'required',
+                'contact_title' => 'required',
+                'contact_name'  => 'required',
+                'phone'         => 'required',
+                'fax'           => 'required',
+                'address'       => 'required',
+                'postal_code'   => 'required',
+                'city'          => 'required',
+                'province'      => 'required',
+                'country'       => 'required'
+            ));
+            
+            if(Supplier::create($request->all())){
+                Session::flash('new', 'New supplier was successfully added!');
+                return redirect('supplier');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function show($id)
@@ -39,13 +59,36 @@ class SupplierController extends Controller
 
     public function update(Request $request, $id)
     {
-        Supplier::find($id)->update($request->all());
-        return redirect('supplier');
+        try{
+            $this->validate($request, array(
+                'supplier_name' => 'required',
+                'contact_title' => 'required',
+                'contact_name'  => 'required',
+                'phone'         => 'required',
+                'fax'           => 'required',
+                'address'       => 'required',
+                'postal_code'   => 'required',
+                'city'          => 'required',
+                'province'      => 'required',
+                'country'       => 'required'
+            ));
+            
+            if(Supplier::find($id)->update($request->all())){
+                Session::flash('new', 'Supplier was successfully updated!');
+                return redirect('supplier');
+            }
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function destroy($id)
     {
-        Supplier::find($id)->delete();
-        return redirect('supplier');
+        if(Supplier::find($id)->delete())
+        {
+            Session::flash('delete', 'Supplier method was successfully deleted!');
+            return redirect('supplier');
+        }  
     }
 }

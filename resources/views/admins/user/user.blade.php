@@ -11,7 +11,13 @@
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
 
+      <!-- PNotify -->
+      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+
       <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 
 @endpush
@@ -89,15 +95,19 @@
                           <td>{{ $user->phone }}</td>
                           <td>
                           <center>
-                            <ul class="">
-                              <li><a href="{{ url('user/'.$user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></li>
-                              <li><a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a></li>
-                              <li><form action="{{ url('user/'.$user->id) }}" method="post">
-                              {{ csrf_field() }}
-                              <input type="hidden" name="_method" value="DELETE">
-                              <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </form></li>
-                            </ul>
+                            <div class="btn-group">
+                              <a href="{{ url('user/'.$user->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="btn-group">
+                              <a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="btn-group">
+                              <form action="{{ url('user/'.$user->id) }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                              </form>
+                            </div>
                           </center>
                           </td>
                         </tr>
@@ -129,75 +139,17 @@
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
     <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
 
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-     <!-- Datatables -->
-    <script>
-      $(document).ready(function() {
-        var handleDataTableButtons = function() {
-          if ($("#datatable-buttons").length) {
-            $("#datatable-buttons").DataTable({
-              dom: "Bfrtip",
-              buttons: [
-                {
-                  extend: "copy",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "csv",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "excel",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "pdfHtml5",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "print",
-                  className: "btn-sm"
-                },
-              ],
-              responsive: true
-            });
-          }
-        };
-
-        TableManageButtons = function() {
-          "use strict";
-          return {
-            init: function() {
-              handleDataTableButtons();
-            }
-          };
-        }();
-
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({
-          keys: true
-        });
-
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-          ajax: "js/datatables/json/scroller-demo.json",
-          deferRender: true,
-          scrollY: 380,
-          scrollCollapse: true,
-          scroller: true
-        });
-
-        var table = $('#datatable-fixed-header').DataTable({
-          fixedHeader: true
-        });
-
-        TableManageButtons.init();
-      });
-    </script>
-    <!-- /Datatables -->
-
+    <!-- Include Scripts -->
+    @include('javascript.datatables')
+    @include('javascript.pnotify')
+   
     @endpush
 @endsection

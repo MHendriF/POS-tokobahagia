@@ -10,21 +10,20 @@
     <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{{ asset("vendors/iCheck/skins/flat/green.css")}}" rel="stylesheet">
-
     <!-- bootstrap-wysiwyg -->
     <link href="{{ asset("vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
     <!-- Select2 -->
     <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-       
-    
     <!-- Switchery -->
     <link href="{{ asset("css/switchery/switchery.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset("css/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
 
-    <!-- Dropzone.js -->
-    <link href="{{ asset("vendors/dropzone/dist/min/dropzone.min.css") }}" rel="stylesheet">
-     
+    <!-- PNotify -->
+    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
@@ -35,7 +34,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Elements</h3>
+                <h3>Form Add Product</h3>
               </div>
 
               <div class="title_right">
@@ -57,7 +56,7 @@
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Registration Form <small>Click to validate</small></h2>
+                      <h2>Add Product Form <small>Click to validate</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -118,9 +117,6 @@
                         <label for="avg_cost">Average Cost * :</label>
                         <input type="number" id="avg_cost" class="form-control" name="avg_cost" required />
 
-                        <label for="reorder_lvl">Reorder Level * :</label>
-                        <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" required />
-
                         <label>Discontinueted *:</label>
                         <p>
                           Yes:
@@ -129,27 +125,7 @@
                           <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="No" />
                         </p>
 
-                        <label for="lead_time">Lead Time * :</label>
-                        <input type="text" id="single_cal3" class="form-control" name="lead_time" required />
-
-                        <label for="pri_vendor">Primary Vendor * :</label>
-                        <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" required />
-
-                        <label for="sec_vendor">Secondary Vendor * :</label>
-                        <input type="text" id="sec_vendor" class="form-control" name="sec_vendor" required />
-
-                        <label for="unit_of_hand">Unit of Hand * :</label>
-                        <input type="number" id="unit_of_hand" class="form-control" name="unit_of_hand" required />
-
-                        <label for="unit_of_measure">Manufacturer * :</label>
-                        <input type="text" id="unit_of_measure" class="form-control" name="unit_of_measure" required />
-
-                            <br/>
-                            <div class="ln_solid"></div>
-
-                                <button class="btn btn-primary" type="button">Cancel</button>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                           
                             
                       {{-- </form> --}}
                       <!-- end form for validations -->
@@ -179,19 +155,45 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                      <p>Drag multiple files to the box below for multi upload or click to select files. This is for demonstration purposes only, the files are not uploaded to any server.</p>
+                     
                       <label for="images">Images * :</label>
-                        <input type="file" id="images" class="form-control" name="images" required />
+                      <center>
+                        <div class="anyName">
+                          <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
+                        </div>  
+                      </center>
 
-                      {{-- <form action="#" class="dropzone"></form>
-                      <br />
-                      <br />
-                      <br />
-                      <br /> --}}
+                      <label for="reorder_lvl">Reorder Level * :</label>
+                      <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" required />
+
+                      <label for="lead_time">Lead Time * :</label>
+                      <input type="text" id="birthday" class="form-control" name="lead_time" required />
+
+                      <label for="pri_vendor">Primary Vendor * :</label>
+                      <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" required />
+
+                      <label for="sec_vendor">Secondary Vendor * :</label>
+                      <input type="text" id="sec_vendor" class="form-control" name="sec_vendor" required />
+
+                      <label for="unit_of_hand">Unit of Hand * :</label>
+                      <input type="number" id="unit_of_hand" class="form-control" name="unit_of_hand" required />
+
+                      <label for="unit_of_measure">Manufacturer * :</label>
+                      <input type="text" id="unit_of_measure" class="form-control" name="unit_of_measure" required />
+
+                      <div class="ln_solid"></div>
+                      <center>
+                        <button class="btn btn-primary" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </center>
                     </div>
                   </div>
                 </div>
               </form>
+
+            </div>
+
             </div>
 
           </div>
@@ -204,16 +206,22 @@
 
     @push('scripts')
 
-    <!-- Dropzone.js -->
-    <script src="{{ asset("vendors/dropzone/dist/min/dropzone.min.js") }}"></script>
+    <!-- jquery-filer -->
+{{--     <script src="{{ asset("build/jQuery-filer/js/jquery.filer.min.js") }}"></script> --}}
 
     <!-- bootstrap-progressbar -->
-    <script src="{{ asset("vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") }}"></script>
+{{--     <script src="{{ asset("vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") }}"></script> --}}
     <!-- iCheck -->
     <script src="{{ asset("vendors/iCheck/icheck.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
+{{--     <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
     <script src="{{ asset("vendors/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+ --}}
+     <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
+    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
+
+
     <!-- bootstrap-wysiwyg -->
     <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
     <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
@@ -224,57 +232,46 @@
     <script src="{{ asset("vendors/select2/dist/js/select2.full.min2.js") }}"></script>
     <!-- Parsley -->
     <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-    <!-- jQuery autocomplete -->
+  {{--   <!-- jQuery autocomplete -->
     <script src="{{ asset("vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js") }}"></script>
-   
+   --}} 
+    <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
-
+    <script src="{{ asset("build/js/custom.min.js") }}"></script>
     
-  
+    <!-- Include Scripts -->{{-- 
+    @include('javascript.bootstrap-wysiwyg') --}}
+    @include('javascript.pnotify')
+    @include('javascript.select2')
 
-    <!-- /Datepicker -->
+    <script type="text/javascript">
+        $('.anyName').uploadPreview({
+            width: '200px',
+            height: '200px',
+            backgroundSize: 'cover',
+            fontSize: '16px',
+            borderRadius: '20px',
+            border: '2px solid #dedede',
+            lang: 'en', //language
+        });
+    </script>
+
+    <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
+        $('#birthday').daterangepicker({
           singleDatePicker: true,
           calender_style: "picker_3"
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
         });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
       });
     </script>
-    <!-- /Datepicker -->
-
- <!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-23581568-13', 'auto');
-ga('send', 'pageview');
-
-</script>
+    <!-- /bootstrap-daterangepicker -->
 
     @endpush
 @endsection

@@ -5,6 +5,12 @@
 @endsection
 
 @push('stylesheets')
+      <!-- NProgress -->
+      <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+      <!-- PNotify -->
+      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -111,13 +117,12 @@
 
     @push('scripts')
 
-     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
     <!-- validator -->
     <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
@@ -153,53 +158,27 @@
     </script>
     <!-- /validator -->
 
-    <!-- Select2 -->
+    <!-- PNotify -->
     <script>
       $(document).ready(function() {
-        $(".select2_single").select2({
-          placeholder: "Select a state",
-          allowClear: true
+          @if(session('error'))
+            new PNotify({
+              title: "Error",
+              type: "error",
+              text: "{{ session('error') }}",
+              delay: "2500",
+              nonblock: {
+                  nonblock: true
+              },
+              styling: 'bootstrap3',
+              hide: true,
+              shadow: true,
+            });
+          @endif
         });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-          maximumSelectionLength: 4,
-          placeholder: "With Max Selection limit 4",
-          allowClear: true
-        });
-      });
     </script>
-    <!-- /Select2 -->
+    <!-- /PNotify -->
 
-    <!-- /Datepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /Datepicker -->
 
     @endpush
 @endsection

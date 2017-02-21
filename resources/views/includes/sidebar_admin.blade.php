@@ -34,10 +34,9 @@
                             <li><a href="{{ url('shipping') }}">Shipping</a></li>
                             <li><a href="{{ url('category') }}">Category</a></li>
                             <li><a href="{{ url('supplier') }}">Supplier</a></li>
-                            <li><a href="{{ url('service') }}">Services</a></li>
                             <li><a href="{{ url('technician') }}">Technician</a></li>
+                            <li><a href="{{ url('service') }}">Service</a></li>
                             <li><a href="{{ url('purchase') }}">Purchace Order</a></li>
-
                         </ul>
                     </li>
                 </ul>
