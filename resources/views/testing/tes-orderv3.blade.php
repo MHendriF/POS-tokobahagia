@@ -17,6 +17,8 @@
     <link href="{{ asset("css/switchery/switchery.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset("css/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+     <!-- Include SmartWizard CSS -->
+    <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -127,12 +129,13 @@
                           </div>
 
                           <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="cost_price" required="required" class="form-control col-md-7 col-xs-12" placeholder="Rp">
-                                </div>
-                            </div>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order No <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" id="order_no" name="order_no" required="required" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
 
 
                       </div>
@@ -220,10 +223,16 @@
     <!-- Include jQuery Validator plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
 
-    <!-- jQuery Smart Wizard -->
+     <!-- Include jQuery Validator plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+    <!-- Include SmartWizard JavaScript source -->
+    <script type="text/javascript" src="{{ asset("js/smartWizard/jquery.smartWizard.min.js") }}"></script>
+
+
+{{--     <!-- jQuery Smart Wizard -->
     <script src="{{ asset("js/jQuery-Smart-Wizard/jquery.smartWizard.js") }}"></script>
 
-    <!-- Custom Theme Scripts -->
+ --}}    <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->
@@ -381,6 +390,7 @@
           $('.buttonFinish').addClass('btn btn-default');
       });
     </script>
+
 
     @endpush
 @endsection

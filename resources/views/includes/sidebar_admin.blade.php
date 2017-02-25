@@ -35,8 +35,22 @@
                             <li><a href="{{ url('category') }}">Category</a></li>
                             <li><a href="{{ url('supplier') }}">Supplier</a></li>
                             <li><a href="{{ url('technician') }}">Technician</a></li>
-                            <li><a href="{{ url('service') }}">Service</a></li>
+                            <li><a href="{{ url('transaction') }}">Transaction</a></li>
                             <li><a href="{{ url('purchase') }}">Purchace Order</a></li>
+                            <li>
+                                <a>Services<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu">
+                                        <a href="{{ url('service') }}">Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('service_item') }}">Service Item</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('service_status') }}">Service Status</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>

@@ -15,6 +15,7 @@ class CreatePurchaseOrdersTable extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
             $table->unsignedInteger('po_detail_id')->nullable();
@@ -29,6 +30,9 @@ class CreatePurchaseOrdersTable extends Migration
         });
 
         Schema::table('purchase_orders', function($table) {
+             $table->foreign('user_id')->references('id')->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->foreign('supplier_id')->references('id')->on('suppliers')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');

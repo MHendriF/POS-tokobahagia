@@ -18,19 +18,18 @@ class ProductController extends Controller
         return view('admins.product.product', compact('data'));
     }
 
-    public function productv2()
-    {
-        $data = Category::all();
-        $data2 = Location::all();
-        return view('admins.product.add_productV2', compact('data','data2'));
-    }
+    // public function productv2()
+    // {
+    //     $data = Category::all();
+    //     $data2 = Location::all();
+    //     return view('admins.product.add_productV2', compact('data','data2'));
+    // }
 
     public function create()
     {
         $data = Category::all();
         $data2 = Location::all();
-        //return view('admins.product.add_product', compact('data','data2'));
-        return view('testing.tes-product', compact('data','data2'));
+        return view('admins.product.add_product', compact('data','data2'));
     }
 
     public function store(Request $request)

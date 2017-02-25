@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service_Item extends Model
+class Service_item extends Model
 {
     protected $tabel = 'service_items';
 

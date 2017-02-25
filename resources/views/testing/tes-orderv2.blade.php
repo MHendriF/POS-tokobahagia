@@ -12,7 +12,7 @@
     <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
     
    {{--  Optional SmartWizard theme --}}
-    <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" /> --}}
 
     <!-- Custom Theme Style -->
     <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
@@ -68,12 +68,37 @@
                      <form action="{{ url('/orderv2') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
-                        <div id="smartwizard">
-                            <ul>
-                                <li><a href="#step-1"><small>Order Entry</small></a></li>
-                                <li><a href="#step-2"><small>Order Detail</small></a></li>
-                                <li><a href="#step-3"><small>Terms and Conditions</small></a></li>
-                            </ul>
+                        <div id="smartwizard" class="form_wizard wizard_horizontal">
+                            <ul class="wizard_steps anchor">
+                        <li>
+                          <a href="#step-1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                              Step 1<br />
+                                              <small>Step 1 description</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-2">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                              Step 2<br />
+                                              <small>Step 2 description</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-3">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Step 3<br />
+                                              <small>Step 3 description</small>
+                                          </span>
+                          </a>
+                        </li>
+                       
+                      </ul>
                             
                             <div>
                                 <div id="step-1">
@@ -114,25 +139,15 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
 
-                                        {{-- <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order Date <span class="required">*</span>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date">
+                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date" aria-describedby="inputSuccess2Status3">
                                                 <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                                             </div>
                                             <div class="help-block with-errors"></div>
-                                        </div> --}}
-
-                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order Date <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                              <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
                                         </div>
-
 
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_number">Po No <span class="required">*</span>

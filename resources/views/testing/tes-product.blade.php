@@ -167,7 +167,7 @@
                       <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" required />
 
                       <label for="lead_time">Lead Time * :</label>
-                      <input type="text" id="birthday" class="form-control" name="lead_time" required />
+                      <input type="text"  id="single_cal3" placeholder="Date" class="form-control" name="lead_time" required />
 
                       <label for="pri_vendor">Primary Vendor * :</label>
                       <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" required />
@@ -206,21 +206,12 @@
 
     @push('scripts')
 
-    <!-- jquery-filer -->
-{{--     <script src="{{ asset("build/jQuery-filer/js/jquery.filer.min.js") }}"></script> --}}
-
-    <!-- bootstrap-progressbar -->
-{{--     <script src="{{ asset("vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") }}"></script> --}}
     <!-- iCheck -->
     <script src="{{ asset("vendors/iCheck/icheck.min.js") }}"></script>
-    <!-- bootstrap-daterangepicker -->
-{{--     <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("vendors/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
- --}}
+ 
      <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("js/moment/moment.min.js") }}"></script>
     <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
-
 
     <!-- bootstrap-wysiwyg -->
     <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
@@ -232,9 +223,7 @@
     <script src="{{ asset("vendors/select2/dist/js/select2.full.min2.js") }}"></script>
     <!-- Parsley -->
     <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-  {{--   <!-- jQuery autocomplete -->
-    <script src="{{ asset("vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js") }}"></script>
-   --}} 
+ 
     <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
     <!-- PNotify -->
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
@@ -243,10 +232,10 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
     
-    <!-- Include Scripts -->{{-- 
-    @include('javascript.bootstrap-wysiwyg') --}}
+    <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.select2')
+    @include('javascript.datepicker')
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({

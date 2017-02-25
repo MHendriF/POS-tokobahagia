@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/transaksi') }}">
+                        <a href="{{ url('/transaction') }}">
                             <i class="fa fa-credit-card"></i>Transaksi
                         </a>
                     </li>

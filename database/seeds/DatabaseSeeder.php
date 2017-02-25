@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         //this message shown in your terminal after running db:seed command
         $this->command->info("Role table seeded is completed :)");
 
+        $this->call('UserSeeder');
         factory(App\User::class, 20)->create();
         $this->command->info("User table seeded is completed :)");
 
@@ -51,6 +52,10 @@ class DatabaseSeeder extends Seeder
         $this->call('SuppliersSeeder');
         //this message shown in your terminal after running db:seed command
         $this->command->info("Supplier table seeded is completed :)");
+
+        $this->call('TransDescriptionSeeder');
+        //this message shown in your terminal after running db:seed command
+        $this->command->info("TransDescription table seeded is completed :)");
       
     }
 }

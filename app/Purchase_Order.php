@@ -8,6 +8,10 @@ class Purchase_Order extends Model
 {
     protected $table = 'purchase_orders';
 
+    // public function pilihuser(){
+    // 	return $this->belongsTo('App\User', 'supplier_id');
+    // }
+
 	public function pilihsupplier(){
     	return $this->belongsTo('App\Supplier', 'supplier_id');
     }

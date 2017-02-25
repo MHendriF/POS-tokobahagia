@@ -11,11 +11,14 @@ class User extends EloquentUser
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public function purchaseorder(){
+        return $this->hasMany('App\Purchase_Order');
+    }
+
+    public function maintransaction(){
+        return $this->hasMany('App\Main_Transaction');
+    }
+
     protected $fillable = [
         'username',
         'last_name',
@@ -27,11 +30,7 @@ class User extends EloquentUser
         'permissions',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
     protected $hidden = [
         'password', 'remember_token',
     ];

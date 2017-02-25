@@ -1,10 +1,11 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Location
+    Toko Bahagia | Service Item
 @endsection
 
 @push('stylesheets')
+
       <!-- Datatables -->
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
@@ -15,10 +16,11 @@
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
-      
+
 @endpush
 
 @section('main_container')
@@ -27,7 +29,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Category <small>List</small></h3>
+                <h3>Transaction <small>List</small></h3>
               </div>
 
               <div class="title_right">
@@ -42,9 +44,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Category List <small>
-                      <a href="{{ url('category/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Category
+                    <h2>Transaction <small>
+                      <a href="{{ url('transaction/create') }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Transaction
                       </a>
                       </small>
                     </h2>
@@ -73,25 +75,39 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Category Name</th>
+                          {{-- <th>Employee</th> --}}
+                          <th>Product</th>
+                          <th>Description</th>
+                          <th>Date</th>
+                          <th>Unit Order</th>
+                          <th>Quantity Out</th>
+                          <th>Note</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $category)
+                        @foreach($data as $index => $transaction)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $category->category_name }}</td>
+                          {{-- <td>{{ $transaction->pilihuser->first_name }}</td> --}}
+                          <td>{{ $transaction->pilihproduct->product_name }}</td>
+                          <td>{{ $transaction->description }}</td>
+                          <td>{{ $transaction->transaction_date }}</td>
+                          <td>{{ $transaction->unit_order }}</td>
+                          <td>{{ $transaction->quantity_out }}</td>
+                          <td>{{ $transaction->note }}</td>
+                          <td>Rp {{ $transaction->cost_price }}</td>
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('category/'.$category->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              <a href="{{ url('transaction/'.$transaction->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                             </div>
                             <div class="btn-group">
-                              <a href="{{ url('category/'.$category->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('transaction/'.$transaction->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form action="{{ url('category/'.$category->id) }}" method="post">
+                              <form action="{{ url('transaction/'.$transaction->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
@@ -127,7 +143,7 @@
     <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
     <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
-
+    
     <!-- PNotify -->
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>

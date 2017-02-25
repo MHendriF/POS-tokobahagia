@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('tesorder', 'TesController');
+Route::get('tes2', 'TesController@tes');
+Route::get('tes3', 'TesController@tes3');
 
 Route:: group(['middleware'  => 'visitors'], function() {
 	Route::get('/register', 'RegisterController@register');
@@ -67,21 +69,24 @@ Route:: group(['middleware' => 'employee'], function() {
 	Route::get('/transaksi', 'EmployeeController@transaksi');	
 	Route::get('/barang', 'EmployeeController@barang');
 	
-	Route::resource('/order', 'OrderController');
-	Route::get('orderv2', 'OrderController@orderV2');
-	Route::get('orderv3', 'OrderController@orderV3');
+	//Route::resource('/order', 'OrderController');
+	//Route::get('orderv2', 'OrderController@orderV2');
+	//Route::get('orderv3', 'OrderController@orderV3');
 	//Route::get('/order/{id}', 'OrderController');
 	
-	Route::post('orderv2', 'OrderController@postOrderAndDetail');
-	
-	Route::post('/order', 'OrderController@postOrder');
-
-	Route::get('/order_list', 'OrderController@orderList');
-	Route::get('/order_detail_list', 'OrderController@orderDetailList');
-	
-	Route::post('/order_list/{id}', 'OrderController@postOrderDetail');
+	//Route::post('orderv2', 'OrderController@postOrderAndDetail');
+	// Route::post('/order', 'OrderController@postOrder');
+	// Route::get('/order_list', 'OrderController@orderList');
+	// Route::get('/order_detail_list', 'OrderController@orderDetailList');
+	// Route::post('/order_list/{id}', 'OrderController@postOrderDetail');
 	
 	//Route::get('/order_detail', 'OrderController@orderDetail');
+
+	//Order
+	Route::resource('order', 'OrderController');
+	Route::post('order/{id}', 'OrderController@update');
+	//Route::get('/tesorder/{id}', 'OrderController@tesorder');
+
 
 	//Purchase Order
 	Route::resource('purchase_order', 'PurchaseOrderController');
@@ -89,3 +94,12 @@ Route:: group(['middleware' => 'employee'], function() {
 	Route::get('po_list', 'PurchaseOrderController@poList');
 
 });
+
+	Route::resource('service_item', 'ServiceItemController');
+	Route::post('service_item/{id}', 'ServiceItemController@update');
+
+	Route::resource('service_status', 'ServiceStatusController');
+	Route::post('service_status/{id}', 'ServiceStatusController@update');
+
+	Route::resource('transaction', 'MainTransactionController');
+	Route::post('transaction/{id}', 'MainTransactionController@update');			

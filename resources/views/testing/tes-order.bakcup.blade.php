@@ -5,20 +5,8 @@
 @endsection
 
 @push('stylesheets')
-     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
-    <!-- bootstrap-wysiwyg -->
-    <link href="{{ asset("vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
-     <!-- Select2 -->
-    <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-    <!-- Switchery -->
-    <link href="{{ asset("css/switchery/switchery.min.css") }}" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset("css/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+      <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -31,7 +19,14 @@
               </div>
 
               <div class="title_right">
-            
+               {{--  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                  </div>
+                </div> --}}
               </div>
             </div>
             <div class="clearfix"></div>
@@ -61,8 +56,7 @@
                   </div>
                   <div class="x_content">
 
-                  <form method="post" action="{{ url('#') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                      {!! csrf_field() !!}
+                   <form class="form-horizontal form-label-left">
 
                     <!-- Smart Wizard -->
                     <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
@@ -99,6 +93,7 @@
                       </ul>
                       <div id="step-1">
                        
+
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Username <span class="required">*</span>
                             </label>
@@ -126,14 +121,13 @@
                             <td align="left"><span id="msg_cpassword"></span>&nbsp;</td>
                           </div>
 
-                          <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="cost_price" required="required" class="form-control col-md-7 col-xs-12" placeholder="Rp">
-                                </div>
+                         {{--  <div class="form-group">
+                            <label for="cpassword" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="file" id="cpassword" class="form-control col-md-7 col-xs-12" name="cpassword">
                             </div>
-
+                            <td align="left"><span id="msg_cpassword"></span>&nbsp;</td>
+                          </div> --}}
 
                       </div>
                       <div id="step-2">
@@ -197,25 +191,13 @@
 
     @push('scripts')
 
-     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
+    {{-- <!-- Select2 -->
+    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
     <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
-
-    <!-- bootstrap-wysiwyg -->
-    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
-    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
-    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script>
-    <!-- Switchery -->
-    <script src="{{ asset("vendors/switchery/dist/switchery.min.js") }}"></script>
-    <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min2.js") }}"></script>
-    <!-- Parsley -->
-    <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-
-     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <!-- validator -->
+    <script src="{{ asset("/vendors/validator/validator.js") }}"></script> --}}
 
     <!-- Include jQuery Validator plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
@@ -226,161 +208,204 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- Include Scripts -->
-    @include('javascript.select2')
-    @include('javascript.pnotify')
-    @include('javascript.validator')
 
-    <!-- Include SmartWizard JavaScript source -->
     <script type="text/javascript">
-      $(document).ready(function(){
-          // Smart Wizard         
-          $('#wizard').smartWizard({
-              onLeaveStep:leaveAStepCallback,
-              onFinish:onFinishCallback
-          });
+    $(document).ready(function(){
+        // Smart Wizard         
+        $('#wizard').smartWizard({
+            onLeaveStep:leaveAStepCallback,
+            onFinish:onFinishCallback
+        });
 
-          function leaveAStepCallback(obj, context){
-              //alert("Leaving step " + context.fromStep + " to go to step " + context.toStep);
-              return validateSteps(context.fromStep); // return false to stay on step and true to continue navigation 
-          }
+        function leaveAStepCallback(obj, context){
+            //alert("Leaving step " + context.fromStep + " to go to step " + context.toStep);
+            return validateSteps(context.fromStep); // return false to stay on step and true to continue navigation 
+        }
 
-          function onFinishCallback(objs, context){
-              if(validateAllSteps()){
-                  $('form').submit();
-              }
-          }
+        function onFinishCallback(objs, context){
+            if(validateAllSteps()){
+                $('form').submit();
+            }
+        }
 
-          // Your Step validation logic
-          function validateSteps(step){
-              var isStepValid = true;
-              // validate step 1
-              if(step == 1){
-                  // Your step validation logic
-                  // set isStepValid = false if has errors
+        // Your Step validation logic
+        function validateSteps(step){
+            var isStepValid = true;
+            // validate step 1
+            if(step == 1){
+                // Your step validation logic
+                // set isStepValid = false if has errors
 
-                  if(validateStep1() == false ){
-                    isStepValid = false; 
-                    $('#wizard').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
-                    $('#wizard').smartWizard('setError',{stepnum:step,iserror:true});         
-                  }else{
-                    $('#wizard').smartWizard('setError',{stepnum:step,iserror:false});
-                  }
-              }
-
-              //validate step3
-              if(step == 3){
-                if(validateStep3() == false ){
+                if(validateStep1() == false ){
                   isStepValid = false; 
                   $('#wizard').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
                   $('#wizard').smartWizard('setError',{stepnum:step,iserror:true});         
                 }else{
                   $('#wizard').smartWizard('setError',{stepnum:step,iserror:false});
                 }
-              }
-              
-              return isStepValid;     
-          }
+            }
 
-          function validateStep1()
-          {
-           var isValid = true; 
-           // Validate Username
-           var un = $('#username').val();
-           if(!un && un.length <= 0){
+            //validate step3
+            if(step == 3){
+              if(validateStep3() == false ){
+                isStepValid = false; 
+                $('#wizard').smartWizard('showMessage','Please correct the errors in step'+step+ ' and click next.');
+                $('#wizard').smartWizard('setError',{stepnum:step,iserror:true});         
+              }else{
+                $('#wizard').smartWizard('setError',{stepnum:step,iserror:false});
+              }
+            }
+            
+            return isStepValid;     
+        }
+
+        function validateStep1()
+        {
+         var isValid = true; 
+         // Validate Username
+         var un = $('#username').val();
+         if(!un && un.length <= 0){
+           isValid = false;
+           $('#msg_username').html('Please fill username').show();
+         }else{
+           $('#msg_username').html('').hide();
+         }
+         
+         // validate password
+         var pw = $('#password').val();
+         if(!pw && pw.length <= 0){
+           isValid = false;
+           $('#msg_password').html('Please fill password').show();         
+         }else{
+           $('#msg_password').html('').hide();
+         }
+         
+         // validate confirm password
+         var cpw = $('#cpassword').val();
+         if(!cpw && cpw.length <= 0){
+           isValid = false;
+           $('#msg_cpassword').html('Please fill confirm password').show();         
+         }else{
+           $('#msg_cpassword').html('').hide();
+         }  
+         
+         // validate password match
+         if(pw && pw.length > 0 && cpw && cpw.length > 0){
+           if(pw != cpw){
              isValid = false;
-             $('#msg_username').html('Please fill username').show();
-           }else{
-             $('#msg_username').html('').hide();
-           }
-           
-           // validate password
-           var pw = $('#password').val();
-           if(!pw && pw.length <= 0){
-             isValid = false;
-             $('#msg_password').html('Please fill password').show();         
-           }else{
-             $('#msg_password').html('').hide();
-           }
-           
-           // validate confirm password
-           var cpw = $('#cpassword').val();
-           if(!cpw && cpw.length <= 0){
-             isValid = false;
-             $('#msg_cpassword').html('Please fill confirm password').show();         
+             $('#msg_cpassword').html('Password mismatch').show();            
            }else{
              $('#msg_cpassword').html('').hide();
-           }  
-           
-           // validate password match
-           if(pw && pw.length > 0 && cpw && cpw.length > 0){
-             if(pw != cpw){
-               isValid = false;
-               $('#msg_cpassword').html('Password mismatch').show();            
-             }else{
-               $('#msg_cpassword').html('').hide();
-             }
            }
-           return isValid;
-        }
-        
-        function validateStep3(){
-          var isValid = true;    
-          //validate email  email
-          var email = $('#email').val();
-           if(email && email.length > 0){
-             if(!isValidEmailAddress(email)){
-               isValid = false;
-               $('#msg_email').html('Email is invalid').show();           
-             }else{
-              $('#msg_email').html('').hide();
-             }
-           }else{
+         }
+         return isValid;
+      }
+      
+      function validateStep3(){
+        var isValid = true;    
+        //validate email  email
+        var email = $('#email').val();
+         if(email && email.length > 0){
+           if(!isValidEmailAddress(email)){
              isValid = false;
-             $('#msg_email').html('Please enter email').show();
-           }       
-          return isValid;
+             $('#msg_email').html('Email is invalid').show();           
+           }else{
+            $('#msg_email').html('').hide();
+           }
+         }else{
+           isValid = false;
+           $('#msg_email').html('Please enter email').show();
+         }       
+        return isValid;
+      }
+      
+      // Email Validation
+      function isValidEmailAddress(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+      } 
+
+        function validateAllSteps(){
+            var isStepValid = true;
+            // all step validation logic     
+            if(validateStep1() == false){
+               isStepValid = false;
+               $('#wizard').smartWizard('setError',{stepnum:1,iserror:true});         
+             }else{
+               $('#wizard').smartWizard('setError',{stepnum:1,iserror:false});
+             }
+             
+             if(validateStep3() == false){
+               isStepValid = false;
+               $('#wizard').smartWizard('setError',{stepnum:3,iserror:true});         
+             }else{
+               $('#wizard').smartWizard('setError',{stepnum:3,iserror:false});
+             }
+             
+             if(!isStepValid){
+                $('#wizard').smartWizard('showMessage','Please correct the errors in the steps and continue');
+             }
+                    
+             return isStepValid;
         }
-        
-        // Email Validation
-        function isValidEmailAddress(emailAddress) {
-          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-          return pattern.test(emailAddress);
-        } 
 
-          function validateAllSteps(){
-              var isStepValid = true;
-              // all step validation logic     
-              if(validateStep1() == false){
-                 isStepValid = false;
-                 $('#wizard').smartWizard('setError',{stepnum:1,iserror:true});         
-               }else{
-                 $('#wizard').smartWizard('setError',{stepnum:1,iserror:false});
-               }
-               
-               if(validateStep3() == false){
-                 isStepValid = false;
-                 $('#wizard').smartWizard('setError',{stepnum:3,iserror:true});         
-               }else{
-                 $('#wizard').smartWizard('setError',{stepnum:3,iserror:false});
-               }
-               
-               if(!isStepValid){
-                  $('#wizard').smartWizard('showMessage','Please correct the errors in the steps and continue');
-               }
-                      
-               return isStepValid;
-          }
+        $('#wizard_verticle').smartWizard({
+          transitionEffect: 'slide'
+        });
 
-          $('#wizard_verticle').smartWizard({
-            transitionEffect: 'slide'
-          });
+        $('.buttonNext').addClass('btn btn-success');
+        $('.buttonPrevious').addClass('btn btn-primary');
+        $('.buttonFinish').addClass('btn btn-default');
+    });
+    </script>
 
-          $('.buttonNext').addClass('btn btn-success');
-          $('.buttonPrevious').addClass('btn btn-primary');
-          $('.buttonFinish').addClass('btn btn-default');
+    {{-- <!-- Select2 -->
+    <script>
+      $(document).ready(function() {
+        $(".select2_single").select2({
+          placeholder: "Select a state",
+          allowClear: true
+        });
+        $(".select2_group").select2({});
+        $(".select2_multiple").select2({
+          maximumSelectionLength: 4,
+          placeholder: "With Max Selection limit 4",
+          allowClear: true
+        });
       });
     </script>
+    <!-- /Select2 -->
+
+    <!-- /Datepicker -->
+    <script>
+      $(document).ready(function() {
+        $('#single_cal1').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_1"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal2').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_2"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_3"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal4').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_4"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+      });
+    </script>
+    <!-- /Datepicker --> --}}
 
     @endpush
 @endsection

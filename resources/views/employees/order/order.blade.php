@@ -1,15 +1,18 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Location
+    Toko Bahagia | Pemesanan
 @endsection
 
 @push('stylesheets')
+
       <!-- Datatables -->
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/buttons.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
-      <!-- NProgress -->
+       <!-- NProgress -->
       <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
       <!-- PNotify -->
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
@@ -17,8 +20,9 @@
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
+      <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
-      
+
 @endpush
 
 @section('main_container')
@@ -27,11 +31,18 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Category <small>List</small></h3>
+                <h3>Order <small>List</small></h3>
               </div>
 
               <div class="title_right">
-              
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -42,9 +53,10 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Category List <small>
-                      <a href="{{ url('category/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Category
+                    {{-- <h2>Order List <small>Users</small></h2> --}}
+                    <h2>Order List <small>
+                      <a href="{{ url('order/create') }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Order
                       </a>
                       </small>
                     </h2>
@@ -69,36 +81,52 @@
                     <p class="text-muted font-13 m-b-30">
                       The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Category Name</th>
+                          <th>Customer</th>
+                          <th>Shipping method</th>
+                          <th>Order detail</th>
+                          <th>Order no</th>
+                          <th>Order date</th>
+                          <th>Po no</th>
+                          <th>Freight charge</th>
+                          <th>Sales tax</th>
                           <th>Action</th>
                         </tr>
                       </thead>
+
                       <tbody>
-                        @foreach($data as $index => $category)
+                        @foreach($data as $index => $order)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $category->category_name }}</td>
+                          <td>{{ $order->pilihcustomer->contact_name }}</td>
+                          <td>{{ $order->pilihshipping->method }}</td>
+                          <td>{{ $order->order_detail_id }}</td>
+                          <td>{{ $order->order_no }}</td>
+                          <td>{{ $order->order_date }}</td>
+                          <td>{{ $order->po_number }}</td>
+                          <td>Rp. {{ $order->freight_charge }}</td>
+                          <td>Rp. {{ $order->sales_tax_rate_po }}</td>
                           <td>
-                          <center>
-                            <div class="btn-group">
-                              <a href="{{ url('category/'.$category->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <a href="{{ url('category/'.$category->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <form action="{{ url('category/'.$category->id) }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                              </form>
-                            </div>
-                          </center>
+                            <center>
+                              <div class="btn-group">
+                                <a href="{{ url('order/'.$order->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <a href="{{ url('order/'.$order->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <form action="{{ url('order/'.$order->id) }}" method="post">
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                </form>
+                              </div>
+                            </center>
                           </td>
+                            
                         </tr>
                         @endforeach
                       </tbody>
@@ -123,9 +151,15 @@
     <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
     <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.flash.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/pdfmake.min.js") }}"></script>
     <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
 
     <!-- PNotify -->

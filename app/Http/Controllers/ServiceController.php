@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Service_Item;
+use Session;
 
 class ServiceController extends Controller
 {
-     public function index()
+    public function index()
     {
         $data = Shipping::all();
         return view('admins.shipping.shipping', compact('data'));

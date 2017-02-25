@@ -3,13 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
+use App\Order;
+use App\Shipping;
+use App\Product;
 
 class TesController extends Controller
 {
     
     public function index()
     {
+        $data = Customer::all();
+        $data2 = Shipping::all();
+        $data3 = Product::all();
+        return view('testing.tes-orderv2', compact('data', 'data2','data3'));
+        //return view('testing.tes-orderv2');
+    }
+
+    public function tes()
+    {
         return view('testing.tes-order');
+    }
+
+    public function tes3()
+    {
+        return view('testing.tes-orderv3');
     }
 
     /**

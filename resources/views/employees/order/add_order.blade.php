@@ -1,19 +1,22 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Pemesanan
+    Toko Bahagia | Order
 @endsection
 
 @push('stylesheets')
+    <!-- PNotify -->
+    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
     <!-- Select2 -->
     <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-    
     <!-- Include SmartWizard CSS -->
     <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
-    
-   {{--  Optional SmartWizard theme --}}
+    <!-- Optional SmartWizard theme -->
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
-
     <!-- Custom Theme Style -->
     <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -24,7 +27,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Wizards</h3>
+                <h3>Form Order</h3>
               </div>
 
               <div class="title_right">
@@ -45,7 +48,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Wizards <small>Sessions</small></h2>
+                    <h2>Form Order <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -65,7 +68,7 @@
                   </div>
                   <div class="x_content">
 
-                     <form action="{{ url('/orderv2') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                     <form action="{{ url('/order') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
                         <div id="smartwizard">
@@ -113,16 +116,6 @@
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-
-                                        {{-- <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order Date <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date">
-                                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div> --}}
 
                                          <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order Date <span class="required">*</span>
@@ -278,149 +271,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
     <!-- Include SmartWizard JavaScript source -->
     <script type="text/javascript" src="{{ asset("js/smartWizard/jquery.smartWizard.min.js") }}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("js/custom.min.js") }}"></script>
 
-
-    <!-- Select2 -->
-    <script>
-      $(document).ready(function() {
-        $(".select2_single").select2({
-          placeholder: "Select a state",
-          allowClear: true
-        });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-          maximumSelectionLength: 4,
-          placeholder: "With Max Selection limit 4",
-          allowClear: true
-        });
-      });
-    </script>
-    <!-- /Select2 -->
-
-    <!-- /Datepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /Datepicker -->
-
-    {{-- <!-- jQuery Smart Wizard -->
-    <script>
-      $(document).ready(function() {
-        $('#wizard').smartWizard();
-
-        $('#wizard_verticle').smartWizard({
-          transitionEffect: 'slide'
-        });
-
-        $('.buttonNext').addClass('btn btn-success');
-        $('.buttonPrevious').addClass('btn btn-primary');
-        $('.buttonFinish').addClass('btn btn-default');
-      });
-    </script>
-    <!-- /jQuery Smart Wizard --> --}}
-
-     <script type="text/javascript">
-        $(document).ready(function(){
-            
-            // Toolbar extra buttons
-            var btnFinish = $('<button></button>').text('Finish')
-                                             .addClass('btn btn-info')
-                                             .on('click', function(){ 
-                                                    if( !$(this).hasClass('disabled')){ 
-                                                        var elmForm = $("#myForm");
-                                                        if(elmForm){
-                                                            elmForm.validator('validate'); 
-                                                            var elmErr = elmForm.find('.has-error');
-                                                            if(elmErr && elmErr.length > 0){
-                                                                alert('Oops we still have error in the form');
-                                                                return false;    
-                                                            }else{
-                                                                alert('Great! we are ready to submit form');
-                                                                elmForm.submit();
-                                                                return false;
-                                                            }
-                                                        }
-                                                    }
-                                                });
-            var btnCancel = $('<button></button>').text('Cancel')
-                                             .addClass('btn btn-danger')
-                                             .on('click', function(){ 
-                                                    $('#smartwizard').smartWizard("reset"); 
-                                                    $('#myForm').find("input, textarea").val(""); 
-                                                });                         
-            
-            
-            
-            // Smart Wizard
-            $('#smartwizard').smartWizard({ 
-                    selected: 0, 
-                    theme: 'dots',
-                    transitionEffect:'fade',
-                    toolbarSettings: {toolbarPosition: 'bottom',
-                                      toolbarExtraButtons: [btnFinish, btnCancel]
-                                    },
-                    anchorSettings: {
-                                markDoneStep: true, // add done css
-                                markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
-                                removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
-                                enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
-                            }
-                 });
-            
-            $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
-                var elmForm = $("#form-step-" + stepNumber);
-                // stepDirection === 'forward' :- this condition allows to do the form validation 
-                // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
-                if(stepDirection === 'forward' && elmForm){
-                    elmForm.validator('validate'); 
-                    var elmErr = elmForm.children('.has-error');
-                    if(elmErr && elmErr.length > 0){
-                        // Form validation failed
-                        return false;    
-                    }
-                }
-                return true;
-            });
-            
-            $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
-                // Enable finish button only on last step
-                if(stepNumber == 3){ 
-                    $('.btn-finish').removeClass('disabled');  
-                }else{
-                    $('.btn-finish').addClass('disabled');
-                }
-            });                               
-            
-        });   
-    </script>  
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
+    @include('javascript.select2')
+    @include('javascript.datepicker')
+    @include('javascript.smartwizard')
 
 
     @endpush

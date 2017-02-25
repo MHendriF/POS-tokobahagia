@@ -17,6 +17,7 @@ class CreateMainTransactionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('product_id');
+            $table->unsignedInteger('trans_desc_id');
             $table->string('description');
             $table->date('transaction_date');
             $table->integer('unit_order');
@@ -31,6 +32,9 @@ class CreateMainTransactionsTable extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('trans_desc_id')->references('id')->on('transaction_descriptions')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
