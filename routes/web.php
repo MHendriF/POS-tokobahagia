@@ -39,9 +39,11 @@ Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/expense', 'AdminController@expense');
 	Route::get('/pengeluaran', 'AdminController@pengeluaran');
 
+	//Product
 	Route::resource('product', 'ProductController');
 	Route::get('productv2', 'ProductController@productv2');
 	Route::post('product/{id}', 'ProductController@update');
+	Route::post ( '/deleteItem', 'ProductController@deleteItem' );
 
 
 	Route::resource('shipping', 'ShippingController');
@@ -52,6 +54,8 @@ Route:: group(['middleware' => 'admin'], function() {
 
 	Route::resource('user', 'UserController');
 	Route::post('user/{id}', 'UserController@update');
+	//Route::post ('/deleteItem', 'UserController@deleteItem' );
+
 
 	Route::resource('location', 'LocationController');
 	Route::post('location/{id}', 'LocationController@update');
@@ -90,8 +94,8 @@ Route:: group(['middleware' => 'employee'], function() {
 
 	//Purchase Order
 	Route::resource('purchase_order', 'PurchaseOrderController');
-	Route::post('purchase_order', 'PurchaseOrderController@postPurchaseOrder');
-	Route::get('po_list', 'PurchaseOrderController@poList');
+	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+	//Route::get('po_list', 'PurchaseOrderController@poList');
 
 });
 

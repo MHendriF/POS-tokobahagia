@@ -1,7 +1,16 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Service Item
+    Toko Bahagia | Transaction
+@endsection
+@section('contentheader_title')
+  Transaction
+@endsection
+@section('contentheader_description')
+  List
+@endsection
+@section('contentheader_sub')
+  Transaction
 @endsection
 
 @push('stylesheets')
@@ -27,15 +36,8 @@
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Transaction <small>List</small></h3>
-              </div>
-
-              <div class="title_right">
-              
-              </div>
-            </div>
+           
+            @include('includes.contentheader')
 
             <div class="clearfix"></div>
 

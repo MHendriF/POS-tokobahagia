@@ -11,20 +11,11 @@
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img src="{{asset('/img/picture.jpg')}}" {{-- src="{{ Gravatar::src(Auth::user()->email) }}" --}} alt="Avatar of {{ $getuser->first_name }}">
                         {{ $getuser->first_name }} 
-                        <span class=" fa fa-angle-down"></span>
+                        <span class=" fa fa-angle-down" style="margin-left: 1px;"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="javascript:;"><center>{{ $time }}</center></a></li>
-                        <li><a href="{{ url('/profile') }}"> Profile</a></li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="badge bg-red pull-right">50%</span>
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li><a href="javascript:;">Help</a></li>
-                        {{-- <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li> --}}
-
+                        
                         <li role="presentation">
                             <a href="{{ url('/logout') }}"
                                 onclick="event.preventDefault();

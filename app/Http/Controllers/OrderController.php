@@ -15,7 +15,7 @@ use DB;
 
 class OrderController extends Controller
 {
-	 public function index()
+	public function index()
     {
         $data = Order::all();
         return view('employees.order.order', compact('data'));

@@ -4,13 +4,13 @@
     Toko Bahagia | Pemesanan
 @endsection
 @section('contentheader_title')
-  Order
+  Purchase Order
 @endsection
 @section('contentheader_description')
   List
 @endsection
 @section('contentheader_sub')
-  Order
+  Purchase Order
 @endsection
 
 @push('stylesheets')
@@ -21,24 +21,22 @@
       <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
-       <!-- NProgress -->
+      <!-- NProgress -->
       <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
       <!-- PNotify -->
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-      <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
-
 @endpush
 
 @section('main_container')
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            
+           
             @include('includes.contentheader')
 
             <div class="clearfix"></div>
@@ -48,9 +46,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Order List <small>
-                      <a href="{{ url('order/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Order
+                     <h2>Purchase Order List <small>
+                      <a href="{{ url('purchase_order/create') }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Purchase Order
                       </a>
                       </small>
                     </h2>
@@ -79,47 +77,39 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Customer</th>
+                          <th>Suppier</th>
                           <th>Shipping method</th>
-                          <th>Order detail</th>
-                          <th>Order no</th>
+                          <th>PO detail</th>
+                          <th>PO no</th>
+                          <th>PO description</th>
                           <th>Order date</th>
-                          <th>Po no</th>
+                          <th>Order required</th>
+                          <th>Order promised</th>
+                          <th>Ship date</th>
                           <th>Freight charge</th>
-                          <th>Sales tax</th>
-                          <th>Action</th>
+                          <th>Details</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        @foreach($data as $index => $order)
+                        @foreach($data as $index => $po)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $order->pilihcustomer->contact_name }}</td>
-                          <td>{{ $order->pilihshipping->method }}</td>
-                          <td>{{ $order->order_detail_id }}</td>
-                          <td>{{ $order->order_no }}</td>
-                          <td>{{ $order->order_date }}</td>
-                          <td>{{ $order->po_number }}</td>
-                          <td>Rp. {{ $order->freight_charge }}</td>
-                          <td>Rp. {{ $order->sales_tax_rate_po }}</td>
-                          <td>
-                            <center>
-                              <div class="btn-group">
-                                <a href="{{ url('order/'.$order->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                              </div>
-                              <div class="btn-group">
-                                <a href="{{ url('order/'.$order->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                              </div>
-                              <div class="btn-group">
-                                <form action="{{ url('order/'.$order->id) }}" method="post">
-                                  {{ csrf_field() }}
-                                  <input type="hidden" name="_method" value="DELETE">
-                                  <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                                </form>
-                              </div>
-                            </center>
-                          </td>
+                          <td>{{ $po->pilihsupplier->supplier_name }}</td>
+                          <td>{{ $po->pilihshipping->method }}</td>
+                          <td>{{ $po->po_detail_id }}</td>
+                          <td>{{ $po->po_number }}</td>
+                          <td>{{ $po->po_description }}</td>
+                          <td>{{ $po->order_date }}</td>
+                          <td>{{ $po->order_required }}</td>
+                          <td>{{ $po->order_promised }}</td>
+                          <td>{{ $po->ship_date }}</td>
+                          <td>Rp. {{ $po->freight_charge }}</td>
+                          @if($po->po_detail_id == '')
+                            <td><center><a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></a></center></td>
+                          @else
+                            <td><center><a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></center></td>
+                          @endif
                             
                         </tr>
                         @endforeach

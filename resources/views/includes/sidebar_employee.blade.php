@@ -17,6 +17,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('purchase_order') }}">
+                            <i class="fa fa-table"></i>Purchase Order
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('/transaction') }}">
                             <i class="fa fa-credit-card"></i>Transaksi
                         </a>

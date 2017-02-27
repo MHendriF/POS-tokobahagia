@@ -3,6 +3,15 @@
 @section('title')
     Toko Bahagia | Shipping
 @endsection
+@section('contentheader_title')
+  Shipping
+@endsection
+@section('contentheader_description')
+  List
+@endsection
+@section('contentheader_sub')
+  Shipping
+@endsection
 
 @push('stylesheets')
 
@@ -27,15 +36,8 @@
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Shipping <small>List</small></h3>
-              </div>
-
-              <div class="title_right">
-              
-              </div>
-            </div>
+            
+            @include('includes.contentheader')
 
             <div class="clearfix"></div>
 

@@ -25,6 +25,7 @@ class Purchase_Order extends Model
     }
 
     protected $fillable = [
+        'user_id',
 		'supplier_id',
 		'shipping_id',
 		'po_detail_id',

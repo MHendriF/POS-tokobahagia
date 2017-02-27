@@ -3,6 +3,15 @@
 @section('title')
     Toko Bahagia | Location
 @endsection
+@section('contentheader_title')
+  Category
+@endsection
+@section('contentheader_description')
+  List
+@endsection
+@section('contentheader_sub')
+  Category
+@endsection
 
 @push('stylesheets')
       <!-- Datatables -->
@@ -25,15 +34,8 @@
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Category <small>List</small></h3>
-              </div>
-
-              <div class="title_right">
-              
-              </div>
-            </div>
+            
+            @include('includes.contentheader')
 
             <div class="clearfix"></div>
 

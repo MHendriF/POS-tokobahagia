@@ -150,4 +150,10 @@ class ProductController extends Controller
             return redirect('product');
         }
     }
+
+    public function deleteItem(Request $req) {
+      dd($req->all());
+      // Product::find($req->id)->delete();
+      return redirect('home');
+    }
 }

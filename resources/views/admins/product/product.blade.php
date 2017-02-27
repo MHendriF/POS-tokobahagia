@@ -3,9 +3,17 @@
 @section('title')
     Toko Bahagia | Product
 @endsection
+@section('contentheader_title')
+  Product
+@endsection
+@section('contentheader_description')
+  List
+@endsection
+@section('contentheader_sub')
+  Product
+@endsection
 
 @push('stylesheets')
-
       <!-- bootstrap-wysiwyg -->
       <link href="{{ asset("vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
       <!-- Datatables -->
@@ -31,15 +39,8 @@
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Product <small>List</small></h3>
-              </div>
-
-              <div class="title_right">
-              
-              </div>
-            </div>
+            
+            @include('includes.contentheader')
 
             <div class="clearfix"></div>
 
@@ -48,7 +49,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Products List <small>
+                    <h2>Product List <small>
                       <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Product
                       </a></small>
@@ -128,12 +129,14 @@
                               <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
+                              {{-- <form action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                {{-- <a title="Delete"><button type="submit"></button ><i class="fa fa-trash"></i></a> --}}
                                 <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                              </form>
+                              </form> --}}
+
+                               <button class="delete-modal btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete" data-id="{{$product->id}}" data-title="{{$product->product_name}}"><i class="fa fa-trash"></i></button>
+
                             </div>
                           </center>
                           </td>
@@ -149,6 +152,33 @@
           </div>
         </div>
         <!-- /page content -->
+
+
+        <!-- Delete modal -->
+          <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+              <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Delete Data</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id-delete" id="id-delete">
+                        <p>Are you sure to delete product <span class="title"></span> ?</p>
+                      </div>
+                      <div class="form-group" align="right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="delete" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+
+
+ 
 
     <!-- footer content -->
     @include('includes.footer')
@@ -182,6 +212,45 @@
     @include('javascript.bootstrap-wysiwyg')
     @include('javascript.datatables')
     @include('javascript.pnotify')
+
+    <script>
+      $(document).on('click', '.delete-modal', function() {
+        $('#id-delete').val($(this).data('id'));
+        $('.title').html($(this).data('title'));
+        $('.bs-example-modal-sm').modal('show');
+      });
+
+        // $("#delete").click(function() {
+        //     $.ajax({
+        //         type: 'post',
+        //         url: '/deleteItem',
+        //         data: {
+        //             '_token': $('input[name=_token]').val(),
+        //             'id' : $('input[name=id-delete]').val()
+        //         },
+        //         // success: function(data) {
+        //         //     $('.item' + data.id).remove();
+        //         //     toastr.success("Data Berhasil Dihapus.");
+        //         // }
+        //     });
+        // });
+
+       
+        $('.modal-footer').on('click', '.delete', function() {
+          $.ajax({
+            type: 'post',
+            url: '/deleteItem',
+            data: {
+              '_token': $('input[name=_token]').val(),
+              'id': $('.id').text()
+            },
+            success: function(data) {
+              $('.item' + $('.id').text()).remove();
+            }
+          });
+        });
+
+    </script>
 
     @endpush
 @endsection
