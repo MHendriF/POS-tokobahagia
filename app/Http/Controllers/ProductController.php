@@ -144,16 +144,11 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        if(Product::find($id)->delete())
+        if(Product::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Product was successfully deleted!');
             return redirect('product');
         }
     }
 
-    public function deleteItem(Request $req) {
-      dd($req->all());
-      // Product::find($req->id)->delete();
-      return redirect('home');
-    }
 }

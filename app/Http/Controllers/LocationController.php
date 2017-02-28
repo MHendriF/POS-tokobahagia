@@ -66,7 +66,7 @@ class LocationController extends Controller
 
     public function destroy($id)
     {
-        if(Location::find($id)->delete())
+        if(Location::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Location was successfully deleted!');
             return redirect('location');

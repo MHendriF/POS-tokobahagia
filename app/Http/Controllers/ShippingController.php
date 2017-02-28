@@ -67,7 +67,7 @@ class ShippingController extends Controller
 
     public function destroy($id)
     {
-        if(Shipping::find($id)->delete())
+        if(Shipping::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Shipping method was successfully deleted!');
             return redirect('shipping');

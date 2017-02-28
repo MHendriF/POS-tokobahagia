@@ -62,7 +62,7 @@ class TechnicianController extends Controller
 
     public function destroy($id)
     {
-        Technician::find($id)->delete();
+        Technician::findOrFail($id)->delete();
         Session::flash('delete', 'Technician was successfully deleted!');
         return redirect('technician');
     }

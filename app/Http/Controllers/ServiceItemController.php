@@ -74,7 +74,7 @@ class ServiceItemController extends Controller
 
     public function destroy($id)
     {
-        if(Service_Item::find($id)->delete())
+        if(Service_Item::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Service item was successfully deleted!');
             return redirect('service_item');

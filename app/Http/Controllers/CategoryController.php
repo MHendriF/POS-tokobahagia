@@ -66,7 +66,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        if(Category::find($id)->delete())
+        if(Category::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Category method was successfully deleted!');
             return redirect('category');

@@ -10,12 +10,12 @@
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
-
       <!-- PNotify -->
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
-
+      <!-- Sweetalert -->
+      <link href="{{ asset("css/sweetalert/sweetalert.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
@@ -105,7 +105,7 @@
                               <form action="{{ url('user/'.$user->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
                               </form>
                             </div>
                           </center>
@@ -143,13 +143,15 @@
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
-
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert/sweetalert.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.datatables')
     @include('javascript.pnotify')
+    @include('javascript.sweetalert')
    
     @endpush
 @endsection

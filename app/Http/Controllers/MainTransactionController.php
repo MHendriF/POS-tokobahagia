@@ -78,19 +78,23 @@ class MainTransactionController extends Controller
 
     public function edit($id)
     {
-        $data = Technician::find($id);
+        $data = Main_Transaction::find($id);
         return view('employees.transaction.edit_transaction', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-        Technician::find($id)->update($request->all());
+        Main_Transaction::find($id)->update($request->all());
         return redirect('transaction');
     }
 
     public function destroy($id)
     {
-        Technician::find($id)->delete();
-        return redirect('transaction');
+
+        if(Main_Transaction::findOrFail($id)->delete())
+        {
+            Session::flash('delete', 'Transaction was successfully deleted!');
+            return redirect('transaction');
+        }
     }
 }

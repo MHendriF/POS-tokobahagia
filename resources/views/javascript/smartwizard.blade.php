@@ -1,34 +1,45 @@
 <!-- Smartwizard -->
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function(e){
             
             // Toolbar extra buttons
             var btnFinish = $('<button></button>').text('Finish')
-                                             .addClass('btn btn-info')
-                                             .on('click', function(){ 
-                                                    if( !$(this).hasClass('disabled')){ 
-                                                        var elmForm = $("#myForm");
-                                                        if(elmForm){
-                                                            elmForm.validator('validate'); 
-                                                            var elmErr = elmForm.find('.has-error');
-                                                            if(elmErr && elmErr.length > 0){
-                                                                alert('Oops we still have error in the form');
-                                                                return false;    
-                                                            }else{
-                                                                alert('Great! we are ready to submit form');
-                                                                elmForm.submit();
-                                                                return false;
-                                                            }
-                                                        }
-                                                    }
-                                                });
+                .addClass('btn btn-info')
+                .on('click', function(){ 
+                    if( !$(this).hasClass('disabled')){ 
+                        var elmForm = $("#myForm");
+                        if(elmForm){
+                            elmForm.validator('validate'); 
+                            var elmErr = elmForm.find('.has-error');
+                            if(elmErr && elmErr.length > 0){
+                                // alert('Oops we still have error in the form');
+                                swal({
+                                  title: 'Error!',
+                                  text: 'Please fill out the form',
+                                  type: 'error',
+                                  confirmButtonText: 'OK'
+                                })
+                                return false;    
+                            }else{
+                                swal({title: 'Are you sure?', type: 'question', showCancelButton: true}).then(
+                                  function(result) {
+                                    elmForm.submit();
+                                  }
+                                );
+                                // //alert('Great! we are ready to submit form');
+                                // elmForm.submit();
+                                return false;
+                            }
+                        }
+                    }
+                });
+
             var btnCancel = $('<button></button>').text('Cancel')
-                                             .addClass('btn btn-danger')
-                                             .on('click', function(){ 
-                                                    $('#smartwizard').smartWizard("reset"); 
-                                                    $('#myForm').find("input, textarea").val(""); 
-                                                });                         
-            
+                .addClass('btn btn-danger')
+                .on('click', function(){ 
+                    $('#smartwizard').smartWizard("reset"); 
+                    $('#myForm').find("input, textarea").val(""); 
+                });                         
             
             
             // Smart Wizard

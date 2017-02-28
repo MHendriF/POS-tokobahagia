@@ -66,7 +66,7 @@ class ServiceStatusController extends Controller
 
     public function destroy($id)
     {
-        if(ServiceStatus::find($id)->delete())
+        if(ServiceStatus::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Service status was successfully deleted!');
             return redirect('service_status');

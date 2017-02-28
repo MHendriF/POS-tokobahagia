@@ -13,6 +13,8 @@
     <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
     <!-- Select2 -->
     <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <!-- Sweetalert -->
+    <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
     <!-- Include SmartWizard CSS -->
     <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
     <!-- Optional SmartWizard theme -->
@@ -245,7 +247,6 @@
                         
                     </form>
 
-
                   </div>
 
                 </div>
@@ -275,6 +276,8 @@
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("js/custom.min.js") }}"></script>

@@ -85,7 +85,7 @@ class SupplierController extends Controller
 
     public function destroy($id)
     {
-        if(Supplier::find($id)->delete())
+        if(Supplier::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Supplier method was successfully deleted!');
             return redirect('supplier');

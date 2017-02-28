@@ -28,7 +28,7 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Data <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ url('user') }}">User acoount</a></li>
+                            <li><a href="{{ url('user') }}">User account</a></li>
                             <li><a href="{{ url('product') }}">Product</a></li>
                             <li><a href="{{ url('location') }}">Location</a></li>
                             <li><a href="{{ url('shipping') }}">Shipping</a></li>
@@ -36,7 +36,7 @@
                             <li><a href="{{ url('supplier') }}">Supplier</a></li>
                             <li><a href="{{ url('technician') }}">Technician</a></li>
                             <li><a href="{{ url('transaction') }}">Transaction</a></li>
-                            <li><a href="{{ url('purchase') }}">Purchace Order</a></li>
+                            <li><a href="{{ url('purchase') }}">Purchase Order</a></li>
                             <li>
                                 <a>Services<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">

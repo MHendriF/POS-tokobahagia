@@ -150,13 +150,15 @@
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
-
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert/sweetalert.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.datatables')
     @include('javascript.pnotify')
+    @include('javascript.sweetalert')
 
     @endpush
 @endsection

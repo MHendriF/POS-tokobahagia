@@ -28,6 +28,8 @@
       <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+      <!-- Sweetalert -->
+      <link href="{{ asset("css/sweetalert/sweetalert.css") }}" rel="stylesheet">
 
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
@@ -83,18 +85,8 @@
                           <th>Location</th>
                           <th>Name</th>
                           <th>Manufacturer</th>
-                          {{-- <th>Item</th>
-                          <th>Price</th>
-                          <th>Price 2</th>
-                          <th>Avg cost</th>
-                          <th>Level</th>
-                          <th>Discontinueted</th> --}}
                           <th>Lead time</th>
-                          <th>Images</th>{{-- 
-                          <th>pri_vendor</th>
-                          <th>sec_vendor</th>
-                          <th>unit_of_hand</th>
-                          <th>unit_of_measure</th> --}}
+                          <th>Images</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -106,20 +98,9 @@
                           <td>{{ $product->pilihlocation->location }}</td>
                           <td>{{ $product->product_name }}</td>
                           <td>{{ $product->manufacturer }}</td>
-                          {{-- <td>{{ $product->item_use }}</td>
-                          <td>{{ $product->unit_price }}</td>
-                          <td>{{ $product->unit_price2 }}</td>
-                          <td>{{ $product->avg_cost }}</td>
-                          <td>{{ $product->reorder_lvl }}</td>
-                          <td>{{ $product->discontinueted }}</td> --}}
                           <td>{{ $product->lead_time }}</td>
-                          {{-- <td>{{ $product->images }}</td> --}}
-                          {{-- <td><img src="/products/{{ $product->images}}" class="imageResize"></td> --}}
-                          <td><img src="{{ asset('/products/' . $product->images) }}" class="imageResize"></td>
-                          {{-- <td>{{ $product->pri_vendor }}</td>
-                          <td>{{ $product->sec_vendor }}</td>
-                          <td>{{ $product->unit_of_hand }}</td>
-                          <td>{{ $product->unit_of_measure }}</td> --}}
+                          <td><img src="{{ asset('/products/'.$product->images) }}" class="imageResize"></td>
+                   
                           <td>
                           <center>
                             <div class="btn-group">
@@ -129,14 +110,11 @@
                               <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              {{-- <form action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
+                              <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                              </form> --}}
-
-                               <button class="delete-modal btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete" data-id="{{$product->id}}" data-title="{{$product->product_name}}"><i class="fa fa-trash"></i></button>
-
+                                <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                              </form>
                             </div>
                           </center>
                           </td>
@@ -152,33 +130,6 @@
           </div>
         </div>
         <!-- /page content -->
-
-
-        <!-- Delete modal -->
-          <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-              <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Delete Data</h4>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="id-delete" id="id-delete">
-                        <p>Are you sure to delete product <span class="title"></span> ?</p>
-                      </div>
-                      <div class="form-group" align="right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" id="delete" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                      </div>
-                    </div>
-                </div>
-              </div>
-          </div>
-
-
- 
 
     <!-- footer content -->
     @include('includes.footer')
@@ -205,6 +156,8 @@
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert/sweetalert.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
@@ -212,45 +165,7 @@
     @include('javascript.bootstrap-wysiwyg')
     @include('javascript.datatables')
     @include('javascript.pnotify')
-
-    <script>
-      $(document).on('click', '.delete-modal', function() {
-        $('#id-delete').val($(this).data('id'));
-        $('.title').html($(this).data('title'));
-        $('.bs-example-modal-sm').modal('show');
-      });
-
-        // $("#delete").click(function() {
-        //     $.ajax({
-        //         type: 'post',
-        //         url: '/deleteItem',
-        //         data: {
-        //             '_token': $('input[name=_token]').val(),
-        //             'id' : $('input[name=id-delete]').val()
-        //         },
-        //         // success: function(data) {
-        //         //     $('.item' + data.id).remove();
-        //         //     toastr.success("Data Berhasil Dihapus.");
-        //         // }
-        //     });
-        // });
-
-       
-        $('.modal-footer').on('click', '.delete', function() {
-          $.ajax({
-            type: 'post',
-            url: '/deleteItem',
-            data: {
-              '_token': $('input[name=_token]').val(),
-              'id': $('.id').text()
-            },
-            success: function(data) {
-              $('.item' + $('.id').text()).remove();
-            }
-          });
-        });
-
-    </script>
+    @include('javascript.sweetalert')
 
     @endpush
 @endsection

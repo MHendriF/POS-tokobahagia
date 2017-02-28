@@ -57,29 +57,14 @@ class UserController extends Controller
         } 
     }
 
-    // public function destroy($id)
-    // {
-    //     if(User::find($id)->delete())
-    //     {
-    //         Session::flash('delete', 'User was successfully deleted!');
-    //         return redirect('user');
-    //     } 
-    // }
-
     public function destroy($id)
     {
-        $data = User::find($id);
-        dd($data);
-        // $cruds = User::find($request->id);
-        // $cruds->delete();
-        // Session::flash('delete', 'User was successfully deleted!');
-        // return redirect('user');
-        //return response ()->json ( $cruds );
+        if(User::findOrFail($id)->delete())
+        {
+            Session::flash('delete', 'User was successfully deleted!');
+            return redirect('user');
+        } 
     }
 
-    public function deleteItem(Request $req) {
-      User::find($req->id)->delete();
-      return response()->json();
-    }
 
 }

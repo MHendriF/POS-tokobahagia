@@ -1,22 +1,25 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Shipping
+    Toko Bahagia | Product
 @endsection
 @section('contentheader_title')
-  Shipping
+  Product
 @endsection
 @section('contentheader_description')
   List
 @endsection
 @section('contentheader_sub')
-  Shipping
+  Product
 @endsection
 
 @push('stylesheets')
-
+      <!-- bootstrap-wysiwyg -->
+      <link href="{{ asset("vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
       <!-- Datatables -->
       <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/buttons.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
       <!-- NProgress -->
@@ -29,7 +32,7 @@
       <link href="{{ asset("css/sweetalert/sweetalert.css") }}" rel="stylesheet">
 
       <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">  
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 
 @endpush
@@ -48,9 +51,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Shipping List <small>
-                      <a href="{{ url('shipping/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Shipping
+                    <h2>Product List <small>
+                      <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Product
                       </a></small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -78,28 +81,39 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Shipping method</th>
+                          <th>Category</th>
+                          <th>Location</th>
+                          <th>Name</th>
+                          <th>Manufacturer</th>
+                          <th>Lead time</th>
+                          <th>Images</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $shipping)
+                        @foreach($data as $index => $product)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $shipping->method }}</td>
+                          <td>{{ $product->pilihcategory->category_name }}</td>
+                          <td>{{ $product->pilihlocation->location }}</td>
+                          <td>{{ $product->product_name }}</td>
+                          <td>{{ $product->manufacturer }}</td>
+                          <td>{{ $product->lead_time }}</td>
+                          <td><img src="{{ asset('/products/'.$product->images) }}" class="imageResize"></td>
+                   
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('shipping/'.$shipping->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                             </div>
                             <div class="btn-group">
-                              <a href="{{ url('shipping/'.$shipping->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form id="delete-currency" action="{{ url('shipping/'.$shipping->id) }}" method="post">
+                              <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
                               </form>
                             </div>
                           </center>
@@ -117,23 +131,30 @@
         </div>
         <!-- /page content -->
 
+
+
     <!-- footer content -->
     @include('includes.footer')
     <!-- /footer content -->
 
     @push('scripts')
 
+    <!-- bootstrap-wysiwyg -->
+    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
+    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
+    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script>
+
     <!-- Datatables -->
     <script src="{{ asset("js/datatables/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
     <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
     <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
-
-    <!-- PNotify -->
+     <!-- PNotify -->
     <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
@@ -143,6 +164,7 @@
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->
+    @include('javascript.bootstrap-wysiwyg')
     @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')

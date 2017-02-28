@@ -157,7 +157,7 @@ class OrderController extends Controller
 
     public function destroy($id)
     {
-        if(Order::find($id)->delete())
+        if(Order::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Order was successfully deleted!');
             return redirect('order');
