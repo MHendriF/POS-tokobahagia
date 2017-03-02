@@ -61,25 +61,10 @@
                     <li>
                         <a><i class="fa fa-table"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li>
-                                <a href="#">Harian</a>
-                                <li>
-                                    <a>Level One<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li class="sub_menu">
-                                            <a href="#">Harian</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Bulanan</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Tahunan</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            <li>
-                                <a href="#">Tahunan</a>
-                            </li>
+                            <li><a href="{{ url('') }}">Gaji Pegawai</a></li>
+                            <li><a href="{{ url('') }}">Pemasukan</a></li>
+                            <li><a href="{{ url('') }}">Pengeluaran</a></li>
+                            <li><a href="{{ url('') }}">Biaya Expense</a></li>
                         </ul>
                     </li>
 

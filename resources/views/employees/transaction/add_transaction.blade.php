@@ -79,7 +79,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Product <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="product_id" required="required" name="product_id" class="select2_single form-control" tabindex="-1">
+                                  <select id="product_id" required="required" name="product_id" class="priceproduct select2_single form-control" tabindex="-1">
                                       <option></option>
                                       @foreach($data as $product)
                                           <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
@@ -131,7 +131,15 @@
                                   <input type="number" name="cost_price" required="required" class="form-control col-md-7 col-xs-12" placeholder="Rp">
                                 </div>
                             </div>
-                              
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price Reference <span class="required">*</span>
+                                </label>
+                                <div class="prod_price col-md-6 col-sm-6 col-xs-12">
+                                  <input id="tes_price" type="text" readonly="readonly" class="form-control col-md-7 col-xs-12" placeholder="Read only input">
+                                </div>
+                            </div>
+
+                 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -180,6 +188,34 @@
     @include('javascript.pnotify')
     @include('javascript.datepicker')
 
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('change','.priceproduct',function () {
+                var prod_id=$(this).val();
+
+                var a=$(this).parent();
+                console.log(prod_id);
+                var op="";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findPrice')!!}',
+                    data:{'id':prod_id},
+                    dataType:'json',//return data will be json
+                    success:function(data){
+                        console.log("unit_price");
+                        console.log(data.unit_price);
+                        $("#tes_price").val(data.unit_price); //parsing price to view
+
+                    },
+                    error:function(){
+
+                    }
+                });
+            });
+
+        });
+    </script>
     
     @endpush
 @endsection

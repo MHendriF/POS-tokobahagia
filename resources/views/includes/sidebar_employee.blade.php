@@ -8,7 +8,7 @@
                     </li>
                     <li>
                         <a href="{{ url('/barang') }}">
-                            <i class="fa fa-shopping-cart"></i>Barang
+                            <i class="fa fa-shopping-cart"></i>Inventory
                         </a>
                     </li>
                     <li>

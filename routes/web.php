@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.authenticate');
 });
 
 Route::resource('tesorder', 'TesController');
@@ -39,6 +39,8 @@ Route:: group(['middleware' => 'admin'], function() {
 	Route::get('/expense', 'AdminController@expense');
 	Route::get('/pengeluaran', 'AdminController@pengeluaran');
 
+	Route::post('findGaji', 'AdminController@FindGaji');	
+
 	//Product
 	Route::resource('product', 'ProductController');
 	Route::get('productv2', 'ProductController@productv2');
@@ -54,8 +56,6 @@ Route:: group(['middleware' => 'admin'], function() {
 
 	Route::resource('user', 'UserController');
 	Route::post('user/{id}', 'UserController@update');
-	//Route::post ('/deleteItem', 'UserController@deleteItem' );
-
 
 	Route::resource('location', 'LocationController');
 	Route::post('location/{id}', 'LocationController@update');
@@ -92,12 +92,8 @@ Route:: group(['middleware' => 'employee'], function() {
 	//Route::get('/tesorder/{id}', 'OrderController@tesorder');
 
 
-	//Purchase Order
-	Route::resource('purchase_order', 'PurchaseOrderController');
-	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+	
 	//Route::get('po_list', 'PurchaseOrderController@poList');
-
-});
 
 	Route::resource('service_item', 'ServiceItemController');
 	Route::post('service_item/{id}', 'ServiceItemController@update');
@@ -105,5 +101,14 @@ Route:: group(['middleware' => 'employee'], function() {
 	Route::resource('service_status', 'ServiceStatusController');
 	Route::post('service_status/{id}', 'ServiceStatusController@update');
 
-	Route::resource('transaction', 'MainTransactionController');
-	Route::post('transaction/{id}', 'MainTransactionController@update');			
+	
+	
+});
+
+Route::resource('transaction', 'MainTransactionController');
+	Route::post('transaction/{id}', 'MainTransactionController@update');	
+	Route::get('/findPrice','MainTransactionController@findPrice');	
+
+//Purchase Order
+	Route::resource('purchase_order', 'PurchaseOrderController');
+	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');

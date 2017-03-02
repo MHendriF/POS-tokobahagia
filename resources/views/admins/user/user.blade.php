@@ -15,7 +15,7 @@
       <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Sweetalert -->
-      <link href="{{ asset("css/sweetalert/sweetalert.css") }}" rel="stylesheet">
+      <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
@@ -144,7 +144,7 @@
     <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
-    <script src="{{ asset("js/sweetalert/sweetalert.min.js") }}"></script>
+    <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 

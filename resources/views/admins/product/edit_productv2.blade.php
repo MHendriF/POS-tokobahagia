@@ -153,6 +153,7 @@
                       <center>
                         <div class="anyName">
                           <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
+                          <img src="{{ asset('/products/'.$data->images) }}">
                         </div>  
                       </center>
 

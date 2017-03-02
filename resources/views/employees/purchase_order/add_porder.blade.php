@@ -76,7 +76,6 @@
                             <ul>
                                 <li><a href="#step-1"><small>Purchase Order</small></a></li>
                                 <li><a href="#step-2"><small>Purchase Order Detail</small></a></li>
-                                <li><a href="#step-3"><small>Terms and Conditions</small></a></li>
                             </ul>
                             
                             <div>
@@ -255,20 +254,7 @@
                                        
                                     </div>
                                 </div>
-                                
-                                <div id="step-3" class="">
-                                    <h2>Terms and Conditions</h2>
-                                    <p>
-                                        Terms and conditions: Keep your smile :) 
-                                    </p>
-                                    <div id="form-step-3" role="form" data-toggle="validator">
-                                        <div class="form-group">
-                                            <label for="terms">I agree with the T&C</label>
-                                            <input type="checkbox" id="terms" data-error="Please accept the Terms and Conditions" required>  
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </form>

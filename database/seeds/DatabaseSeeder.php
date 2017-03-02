@@ -56,6 +56,10 @@ class DatabaseSeeder extends Seeder
         $this->call('TransDescriptionSeeder');
         //this message shown in your terminal after running db:seed command
         $this->command->info("TransDescription table seeded is completed :)");
+
+        $this->call('TransactionSeeder');
+        //this message shown in your terminal after running db:seed command
+        $this->command->info("Transaction table seeded is completed :)");
       
     }
 }

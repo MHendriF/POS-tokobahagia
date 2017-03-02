@@ -97,4 +97,11 @@ class MainTransactionController extends Controller
             return redirect('transaction');
         }
     }
+
+    public function findPrice(Request $request){
+
+        //it will get price if its id match with product id
+        $p=Product::select('unit_price')->where('id',$request->id)->first();
+        return response()->json($p);
+    }
 }
