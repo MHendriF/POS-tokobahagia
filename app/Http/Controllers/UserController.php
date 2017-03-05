@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Sentinel;
 use Session;
 
 class UserController extends Controller
@@ -21,8 +22,54 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->all());
-        return redirect('user');
+        //User::create($request->all());
+        //return redirect('user');
+
+        try{
+            $this->validate($request, array(
+                'username'   => 'required',
+                'last_name'  => 'required',
+                'first_name' => 'required',
+                'phone'      => 'required',
+                'jabatan'    => 'required',
+                'address'    => 'required'
+            ));
+            
+            // $users = new User(array(
+            //     'username'   => $request->get('username'),
+            //     'last_name'  => $request->get('last_name'),
+            //     'first_name' => $request->get('first_name'),
+            //     'phone'      => $request->get('phone'),
+            //     'jabatan'    => $request->get('jabatan'),
+            //     'address'    => $request->get('address'),
+            //     'password'   => 'secret'
+            // ));
+
+            $users = [
+                'username'   => $request->get('username'),
+                'last_name'  => $request->get('last_name'),
+                'first_name' => $request->get('first_name'),
+                'phone'      => $request->get('phone'),
+                'jabatan'    => $request->get('jabatan'),
+                'address'    => $request->get('address'),
+                'password'   => 'secret'
+            ];
+            
+            $user = Sentinel::registerAndActivate($users);
+
+            $role = Sentinel::findRoleBySlug('employee');
+        
+            $role->users()->attach($user);
+
+            //if($users->save())
+            //{
+                Session::flash('new', 'New User was successfully added!');
+                return redirect('user');
+            //}
+        } 
+        catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        } 
     }
 
     public function show($id)
@@ -44,6 +91,7 @@ class UserController extends Controller
                 'last_name'  => 'required',
                 'first_name' => 'required',
                 'phone'      => 'required',
+                'jabatan'    => 'required',
                 'address'    => 'required'
             ));
 

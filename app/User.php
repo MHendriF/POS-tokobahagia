@@ -27,11 +27,12 @@ class User extends EloquentUser
         'address',
         //'email',
         'password',
+        'jabatan',
         'permissions',
     ];
-
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 }

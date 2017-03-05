@@ -11,10 +11,12 @@
         <title>@yield('title')</title>
 
         <!-- Bootstrap -->
-        <link href="{{ asset("vendors/bootstrap/dist/css/bootstrap.min2.css") }}" rel="stylesheet">
+        <link href="{{ asset("assets/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="{{ asset("vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
-        
+        <link href="{{ asset("assets/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset("assets/nprogress/nprogress.css") }}" rel="stylesheet">
+    
         @stack('stylesheets')
     </head>
 
@@ -30,15 +32,15 @@
 
             </div>
         </div>
-
+        
         <!-- jQuery -->
-        <script src="{{ asset("js/jquery/jquery.min2.js") }}"></script>
+        <script src="{{ asset("assets/jquery/dist/jquery.min.js") }}"></script>
         <!-- Bootstrap -->
-        <script src="{{ asset("js/bootstrap/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("assets/bootstrap/dist/js/bootstrap.min.js") }}"></script>
         <!-- FastClick -->
-        <script src="{{ asset("js/fastclick/fastclick.js") }}"></script>
+        <script src="{{ asset("assets/fastclick/lib/fastclick.js") }}"></script>
         <!-- NProgress -->
-        <script src="{{ asset("js/nprogress/nprogress.js") }}"></script>
+        <script src="{{ asset("assets/nprogress/nprogress.js") }}"></script>
         
         @stack('scripts')
 

@@ -12,27 +12,24 @@
 
 
 @push('stylesheets')
-        <!-- Custom Theme Style -->
-        {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> --}}
-        {{-- <link href="{{ asset("js/newdaterangepicker/daterangepicker.css") }}" rel="stylesheet"> --}}
+     <!-- Datatables -->
+      <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")}}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+      <!-- PNotify -->
+      <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+      <!-- Sweetalert -->
+      <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
 
-        <!-- Datatables -->
-        <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/datatables/buttons.bootstrap.min.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
-        <!-- PNotify -->
-        <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-        <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+      <link href="{{ asset("build/datetimepicker/css/bootstrap-datetimepicker.min.css") }}" rel="stylesheet"/>
 
-        <link href="{{ asset("build/datetimepicker/css/bootstrap-datetimepicker.min.css") }}" rel="stylesheet"/>
+      <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
+      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 
-        <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-        <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet">
 @endpush
 
 @section('main_container')
@@ -157,43 +154,35 @@
 
     @push('scripts')
 
-    <!-- Datatables -->
-    <script src="{{ asset("js/datatables/jquery.dataTables.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.flash.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.html5.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.print.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
-    <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/pdfmake.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
-    
+    <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/dataTables.buttons.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.flash.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-keytable/js/dataTables.keyTable.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-scroller/js/dataTables.scroller.min.js") }}"></script>
+    <script src="{{ asset("assets/jszip/dist/jszip.min.js") }}"></script>
+    <script src="{{ asset("assets/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("assets/pdfmake/build/vfs_fonts.js") }}"></script>
     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <script src="{{ asset("js/newdaterangepicker/moment.min.js") }}"></script>
     <script src=" {{ asset("build/datetimepicker/js/bootstrap-datetimepicker.min.js") }}"></script>
-        <!-- bootstrap-daterangepicker -->
-       {{--  <script src="{{ asset("js/newdaterangepicker/moment.min.js") }}"></script>
-        <script src="{{ asset("js/newdaterangepicker/daterangepicker.js") }}"></script> --}}
-        
-        {{-- <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script> --}}
-   
-        <!-- Custom Theme Scripts -->
-        <script src="{{ asset("build/js/custom.min.js") }}"></script>
-
-        {{-- @include('javascript.daterangepicker') --}}
+      
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
      <!-- Include Scripts -->
-    @include('javascript.datatables')
     @include('javascript.pnotify')
 
     <script type="text/javascript">

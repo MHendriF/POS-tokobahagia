@@ -5,8 +5,12 @@
 @endsection
 
 @push('stylesheets')
-      <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <!-- PNotify -->
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -46,7 +50,7 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('technician/'.$data->id) }}" class="form-horizontal form-label-left" novalidate>
+                        <form method="post" action="{{ url('technician/'.$data->id) }}" class="form-horizontal form-label-left" data-parsley-validate>
                             <input type="hidden" name="_methode" value="PUT">
                             {!! csrf_field() !!}
 
@@ -79,42 +83,17 @@
 
     @push('scripts')
 
-    <!-- validator -->
-    <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
-    </script>
-    <!-- /validator -->
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
 
     @endpush
 @endsection

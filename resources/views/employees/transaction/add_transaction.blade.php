@@ -5,18 +5,16 @@
 @endsection
 
 @push('stylesheets')
-    <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
-  
     <!-- Select2 -->
-    <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-    
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset("css/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet">  
 @endpush
 
 @section('main_container')
@@ -162,25 +160,22 @@
 
     @push('scripts')
 
-     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
-
-    {{-- <!-- bootstrap-wysiwyg -->
-    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
-    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
-    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script> --}}
-   
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+    <!-- Switchery -->
+    <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min2.js") }}"></script>
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- Parsley -->
-    <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-
-    <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js") }}"></script>
+    <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
+     <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->

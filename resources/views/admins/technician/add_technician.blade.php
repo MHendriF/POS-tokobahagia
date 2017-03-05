@@ -6,10 +6,9 @@
 
 @push('stylesheets')
     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
-
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -51,7 +50,7 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('technician') }}" class="form-horizontal form-label-left" novalidate>
+                        <form method="post" action="{{ url('technician') }}" class="form-horizontal form-label-left" data-parsley-validate>
                             {!! csrf_field() !!}
 
                             <div class="item form-group">
@@ -61,14 +60,7 @@
                                   <input type="text" name="technician_name" required="required" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
-                            {{-- <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Test date <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                                </div>
-                            </div> --}}
-
+                         
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
@@ -89,37 +81,18 @@
     <!-- /footer content -->
 
     @push('scripts')
-     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
 
-    <!-- validator -->
-    <script src="{{ asset("js/validator/validator.js") }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
-
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("js/custom.min.js") }}"></script>
-
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#birthday').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /bootstrap-daterangepicker -->
-
+    <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')
-    @include('javascript.validator')
     
     @endpush
 @endsection

@@ -6,26 +6,19 @@
 
 @push('stylesheets')
 
-    <!-- NProgress -->
-    <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
     <!-- iCheck -->
-    <link href="{{ asset("vendors/iCheck/skins/flat/green.css")}}" rel="stylesheet">
-    <!-- bootstrap-wysiwyg -->
-    <link href="{{ asset("vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/iCheck/skins/flat/green.css")}}" rel="stylesheet">
     <!-- Select2 -->
-    <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-    <!-- Switchery -->
-    <link href="{{ asset("css/switchery/switchery.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset("css/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
-
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -51,7 +44,7 @@
             <div class="clearfix"></div>
 
             <div class="row">
-              <form id="demo-form" method="post" action="{{ url('product') }}" enctype="multipart/form-data" data-parsley-validate>
+              <form id="demo-form" method="post" action="{{ url('product') }}" enctype="multipart/form-data" id="demo-form2" data-parsley-validate>
                 {!! csrf_field() !!}
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">
@@ -76,9 +69,6 @@
                     </div>
                     <div class="x_content">
 
-                      <!-- start form for validation -->
-                      {{-- <form id="demo-form" data-parsley-validate> --}}
-                       
                         <label for="category_id">Select Category * :</label>
                         <select id="category_id" required="required" name="category_id" class="select2_single form-control" tabindex="-1">
                           <option></option>
@@ -89,11 +79,11 @@
 
                         <label for="location_id">Select Location * :</label>
                         <select id="location_id" required="required" name="location_id" class="select2_single form-control" tabindex="-1">
-                                      <option></option>
-                                      @foreach($data2 as $location)
-                                          <option value='{{ $location->id}}'> {{ $location->location }}</option>
-                                      @endforeach
-                                    </select>
+                          <option></option>
+                          @foreach($data2 as $location)
+                              <option value='{{ $location->id}}'> {{ $location->location }}</option>
+                          @endforeach
+                        </select>
 
                         <label for="product_name">Product Name * :</label>
                         <input type="text" id="product_name" class="form-control" name="product_name" required />
@@ -109,7 +99,7 @@
                         <input type="text" id="item_use" class="form-control" name="item_use" required />
 
                         <label for="unit_price">Unit Price * :</label>
-                        <input type="number" id="unit_price" class="form-control" name="unit_price" required />
+                        <input type="number" id="unit_price" class="form-control" name="unit_price" required="required" />
 
                         <label for="unit_price2">Unit Price 2 * :</label>
                         <input type="number" id="unit_price2" class="form-control" name="unit_price2" required />
@@ -124,11 +114,7 @@
                           No:
                           <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="No" />
                         </p>
-
-                           
-                            
-                      {{-- </form> --}}
-                      <!-- end form for validations -->
+             
                     </div>
                   </div>
                 </div>
@@ -167,7 +153,7 @@
                       <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" required />
 
                       <label for="lead_time">Lead Time * :</label>
-                      <input type="text"  id="single_cal3" placeholder="Date" class="form-control" name="lead_time" required />
+                      <input type="text" id="single_cal3" placeholder="Date" class="form-control" name="lead_time" required />
 
                       <label for="pri_vendor">Primary Vendor * :</label>
                       <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" required />
@@ -207,28 +193,21 @@
     @push('scripts')
 
     <!-- iCheck -->
-    <script src="{{ asset("vendors/iCheck/icheck.min.js") }}"></script>
- 
-     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
-
-    <!-- bootstrap-wysiwyg -->
-    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
-    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
-    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script>
+    <script src="{{ asset("assets/iCheck/icheck.min.js") }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
     <!-- Switchery -->
-    <script src="{{ asset("vendors/switchery/dist/switchery.min.js") }}"></script>
+    <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min2.js") }}"></script>
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- Parsley -->
-    <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
- 
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js") }}"></script>
     <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
-    <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+     <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
     
@@ -249,18 +228,6 @@
         });
     </script>
 
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#birthday').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /bootstrap-daterangepicker -->
 
     @endpush
 @endsection

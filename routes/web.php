@@ -105,7 +105,7 @@ Route:: group(['middleware' => 'employee'], function() {
 	
 });
 
-Route::resource('transaction', 'MainTransactionController');
+	Route::resource('transaction', 'MainTransactionController');
 	Route::post('transaction/{id}', 'MainTransactionController@update');	
 	Route::get('/findPrice','MainTransactionController@findPrice');	
 

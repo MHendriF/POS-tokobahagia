@@ -17,7 +17,6 @@ class Role_usersSeeder extends Seeder
             array('user_id'=>'4', 'role_id'=>'2'),
             array('user_id'=>'5', 'role_id'=>'2'),
             array('user_id'=>'6', 'role_id'=>'2'),
-            array('user_id'=>'7', 'role_id'=>'2'),
           ));
 
     }

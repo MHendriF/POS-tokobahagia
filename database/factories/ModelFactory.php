@@ -56,7 +56,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'avg_cost'        => $faker->numberBetween($min = 5000, $max = 20000),
         'reorder_lvl'     => $faker->numberBetween($min = 1, $max = 3),
         'discontinueted'  => $faker->randomElement($array = array ('Yes','No','No')),
-        'lead_time'       => $faker->word,
+        'lead_time'       => $faker->date($format = 'Y-m-d', $max = 'now'),
         'images'          => 'default.png',
         'pri_vendor'      => $faker->word,
         'sec_vendor'      => $faker->word,

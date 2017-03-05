@@ -18,13 +18,6 @@ class ProductController extends Controller
         return view('admins.product.product', compact('data'));
     }
 
-    // public function productv2()
-    // {
-    //     $data = Category::all();
-    //     $data2 = Location::all();
-    //     return view('admins.product.add_productV2', compact('data','data2'));
-    // }
-
     public function create()
     {
         $data = Category::all();
@@ -104,8 +97,7 @@ class ProductController extends Controller
         $data = Product::find($id);
         $data2 = Category::all();
         $data3 = Location::all();
-        // return view('admins.product.edit_product', compact('data','data2','data3'));
-        return view('admins.product.edit_productv2', compact('data','data2','data3'));
+        return view('admins.product.edit_product', compact('data','data2','data3'));
     }
 
     public function update(Request $request, $id)
@@ -137,7 +129,7 @@ class ProductController extends Controller
             }
         } 
         catch(\Exception $e){
-            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+            return redirect()->back()->with('error', ' Sorry something went wrong. Please try again.');
         } 
 
     }

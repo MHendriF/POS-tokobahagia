@@ -5,21 +5,21 @@
 @endsection
 
 @push('stylesheets')
-     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Select2 -->
-    <link href="{{ asset("vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <!-- Sweetalert -->
+    <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
     <!-- Include SmartWizard CSS -->
     <link href="{{ asset("css/smartWizard/smart_wizard.css")}}" rel="stylesheet" type="text/css" />
-    
     <!-- Optional SmartWizard theme -->
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -272,20 +272,22 @@
 
     @push('scripts')
 
-   <!-- Select2 -->
-    <script src="{{ asset("js/select2/select2.full.min.js")}}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("js/moment/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker/daterangepicker.js") }}"></script>
-    
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+
     <!-- Include jQuery Validator plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
     <!-- Include SmartWizard JavaScript source -->
     <script type="text/javascript" src="{{ asset("js/smartWizard/jquery.smartWizard.min.js") }}"></script>
     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+   <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
+    <!-- Sweetalert -->
+    <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("js/custom.min.js") }}"></script>

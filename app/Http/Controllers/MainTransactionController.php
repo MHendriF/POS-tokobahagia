@@ -79,7 +79,9 @@ class MainTransactionController extends Controller
     public function edit($id)
     {
         $data = Main_Transaction::find($id);
-        return view('employees.transaction.edit_transaction', compact('data'));
+        $data2 = Product::all();
+        $data3 = Transaction_description::all();
+        return view('employees.transaction.edit_transaction', compact('data','data2','data3'));
     }
 
     public function update(Request $request, $id)

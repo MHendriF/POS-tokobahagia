@@ -6,6 +6,11 @@
 Email me at [hendrifebriansyah28](Mailto:hendrifebriansyah28@gmail.com)
 ---
 
+# Petunjuk
+1. Download project
+2. Jalankan perintah: php artisan migration
+3. Jalankan perintah: php artisan db:seed
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

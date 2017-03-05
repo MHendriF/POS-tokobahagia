@@ -5,12 +5,10 @@
 @endsection
 
 @push('stylesheets')
-      <!-- NProgress -->
-      <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
-      <!-- PNotify -->
-      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+     <!-- PNotify -->
+      <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
@@ -52,7 +50,7 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('user/'.$data->id) }}" class="form-horizontal form-label-left" novalidate>
+                        <form method="post" action="{{ url('user/'.$data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             <input type="hidden" name="_methode" value="PUT">
                             {!! csrf_field() !!}
 
@@ -88,6 +86,14 @@
                                 </div>
                             </div>
 
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Jabatan <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="jabatan" value="{{$data->jabatan}}" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
                              <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Address <span class="required">*</span>
                                 </label>
@@ -117,68 +123,17 @@
 
     @push('scripts')
 
-    <!-- validator -->
-    <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
-    <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+     <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
+     <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
-    </script>
-    <!-- /validator -->
-
-    <!-- PNotify -->
-    <script>
-      $(document).ready(function() {
-          @if(session('error'))
-            new PNotify({
-              title: "Error",
-              type: "error",
-              text: "{{ session('error') }}",
-              delay: "2500",
-              nonblock: {
-                  nonblock: true
-              },
-              styling: 'bootstrap3',
-              hide: true,
-              shadow: true,
-            });
-          @endif
-        });
-    </script>
-    <!-- /PNotify -->
-
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
 
     @endpush
 @endsection

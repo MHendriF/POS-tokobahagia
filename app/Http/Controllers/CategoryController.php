@@ -55,7 +55,7 @@ class CategoryController extends Controller
             ));
             
             if(Category::find($id)->update($request->all())){
-                Session::flash('new', 'Category was successfully updated!');
+                Session::flash('update', 'Category was successfully updated!');
                 return redirect('category');
             }
         } 

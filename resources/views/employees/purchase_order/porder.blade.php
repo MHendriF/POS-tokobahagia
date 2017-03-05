@@ -16,19 +16,18 @@
 @push('stylesheets')
 
       <!-- Datatables -->
-      <link href="{{ asset("css/datatables/dataTables.bootstrap.min.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/datatables/buttons.bootstrap.min.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/datatables/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/datatables/responsive.bootstrap.min.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/datatables/scroller.bootstrap.min.css") }}" rel="stylesheet">
-      <!-- NProgress -->
-      <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")}}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
       <!-- PNotify -->
-      <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-      <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+      <!-- Sweetalert -->
+      <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
@@ -105,12 +104,20 @@
                           <td>{{ $po->order_promised }}</td>
                           <td>{{ $po->ship_date }}</td>
                           <td>Rp. {{ $po->freight_charge }}</td>
-                          @if($po->po_detail_id == '')
-                            <td><center><a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></a></center></td>
-                          @else
-                            <td><center><a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></center></td>
-                          @endif
-                            
+                          <td>
+                            <center>
+                              <div class="btn-group">
+                                <a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <form action="{{ url('purchase_order/'.$po->id) }}" method="post">
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                </form>
+                              </div>
+                            </center>
+                          </td>
                         </tr>
                         @endforeach
                       </tbody>
@@ -130,33 +137,31 @@
 
     @push('scripts')
 
-    <!-- Datatables -->
-    <script src="{{ asset("js/datatables/jquery.dataTables.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.buttons.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.flash.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.html5.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/buttons.print.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.fixedHeader.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.keyTable.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/dataTables.responsive.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/responsive.bootstrap.js") }}"></script>
-    <script src="{{ asset("js/datatables/datatables.scroller.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/pdfmake.min.js") }}"></script>
-    <script src="{{ asset("js/datatables/vfs_fonts.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/dataTables.buttons.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons-bs/js/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.flash.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-buttons/js/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-keytable/js/dataTables.keyTable.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
+    <script src="{{ asset("assets/datatables.net-scroller/js/dataTables.scroller.min.js") }}"></script>
+    <script src="{{ asset("assets/jszip/dist/jszip.min.js") }}"></script>
+    <script src="{{ asset("assets/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("assets/pdfmake/build/vfs_fonts.js") }}"></script>
 
     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
-    <script src="{{ asset("js/sweetalert/sweetalert.min.js") }}"></script>
+    <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
-
     <!-- Include Scripts -->
-    @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 

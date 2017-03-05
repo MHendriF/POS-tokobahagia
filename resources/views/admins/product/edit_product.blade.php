@@ -5,215 +5,186 @@
 @endsection
 
 @push('stylesheets')
-      <!-- Custom Theme Style -->
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+
+    <!-- iCheck -->
+    <link href="{{ asset("assets/iCheck/skins/flat/green.css")}}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
-    <!-- page content -->
-    <div class="right_col" role="main">
-        <div class="">
+      <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
             <div class="page-title">
-                <div class="title_left">
-                    <h3>Edit Product</h3>
-                </div>
+              <div class="title_left">
+                <h3>Form Edit Product</h3>
+              </div>
 
-                <div class="title_right">
-                   
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div class="clearfix">
+            <div class="clearfix"></div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+            <div class="row">
+              <form id="demo-form" method="post" action="{{ url('product/'.$data->id) }}" enctype="multipart/form-data" data-parsley-validate>
+                <input type="hidden" name="_methode" value="PUT">
+                {!! csrf_field() !!}
+                <div class="col-md-6 col-xs-12">
+                  <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Edit Product <small>sub title</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
+                      <h2>Edit Product Form <small>Click to validate</small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
                             </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            <li><a href="#">Settings 2</a>
                             </li>
-                        </ul>
+                          </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                      </ul>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('product/'.$data->id) }}" class="form-horizontal form-label-left" novalidate>
-                            <input type="hidden" name="_methode" value="PUT">
-                            {!! csrf_field() !!}
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category_id">Select Category<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="category_id" required="required" name="category_id" class="select2_single form-control" tabindex="-1">
-                                    <option></option>
-                                    @foreach($data2 as $category)
-                                        <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
-                                    @endforeach
-                                  </select>
-                                </div>
-                            </div>
+                       
+                        <label for="category_id">Select Category * :</label>
+                        <select id="category_id" required="required" name="category_id" class="select2_single form-control" tabindex="-1">
+                          <option></option>
+                          @foreach($data2 as $category)
+                              <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
+                          @endforeach
+                        </select>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location_id">Select Location<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="location_id" required="required" name="location_id" class="select2_single form-control" tabindex="-1">
-                                    <option></option>
-                                    @foreach($data3 as $location)
-                                        <option value='{{ $location->id}}'> {{ $location->location }}</option>
-                                    @endforeach
-                                  </select>
-                                </div>
-                            </div>
+                        <label for="location_id">Select Location * :</label>
+                        <select id="location_id" required="required" name="location_id" class="select2_single form-control" tabindex="-1">
+                          <option></option>
+                          @foreach($data3 as $location)
+                              <option value='{{ $location->id}}'> {{ $location->location }}</option>
+                          @endforeach
+                        </select>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name">Product name <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="product_name" value="{{$data->product_name}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="product_name">Product Name * :</label>
+                        <input type="text" id="product_name" class="form-control" name="product_name" value="{{$data->product_name}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_desc">Product description <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="product_desc" value="{{$data->product_desc}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="product_desc">Product Description (20 chars min, 100 max) :</label>
+                            <textarea id="product_desc" required="required" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                              data-parsley-validation-threshold="10" value="{{$data->product_desc}}"></textarea>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="manufacturer">Manufacturer <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="manufacturer" value="{{$data->manufacturer}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="manufacturer">Manufacturer * :</label>
+                        <input type="text" id="manufacturer" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="item_use">Item use <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="item_use" value="{{$data->item_use}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="item_use">Item Use * :</label>
+                        <input type="text" id="item_use" class="form-control" name="item_use" value="{{$data->item_use}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_price">Unit price <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="unit_price" value="{{$data->unit_price}}" required="required" data-validate-minmax="1,100000" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="unit_price">Unit Price * :</label>
+                        <input type="number" id="unit_price" class="form-control" name="unit_price" value="{{$data->unit_price}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_price2">Unit price 2 <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="unit_price2" value="{{$data->unit_price2}}" required="required" data-validate-minmax="1,100000" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="unit_price2">Unit Price 2 * :</label>
+                        <input type="number" id="unit_price2" class="form-control" name="unit_price2" value="{{$data->unit_price2}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avg_cost">Average cost <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="avg_cost" value="{{$data->avg_cost}}" required="required" data-validate-minmax="1,100000" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label for="avg_cost">Average Cost * :</label>
+                        <input type="number" id="avg_cost" class="form-control" name="avg_cost" value="{{$data->avg_cost}}" required />
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reorder_lvl">Reorder level <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="reorder_lvl" value="{{$data->reorder_lvl}}" required="required" data-validate-minmax="1,100000" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
+                        <label>Discontinueted *:</label>
+                        <p>
+                          Yes:
+                          <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="Yes" checked="" required /> 
+                          No:
+                          <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="No" />
+                        </p>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="discontinueted">Discontinueted <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select required="required" name="discontinueted" value="{{$data->discontinueted}}" class="select2_single form-control" tabindex="-1">
-                                    <option></option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                  </select>
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lead_time">Lead time <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                    <input type="text" required="required" name="lead_time" class="form-control" id="single_cal3" placeholder="Date" aria-describedby="inputSuccess2Status3">
-                                    <span id="inputSuccess2Status3" class="sr-only">(success)</span>
-                                  </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pri_vendor">Primary vendor <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="pri_vendor" value="{{$data->pri_vendor}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sec_vendor">Secondary vendor <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="sec_vendor" value="{{$data->sec_vendor}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_of_hand">Unit of hand <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="unit_of_hand" value="{{$data->unit_of_hand}}" required="required" data-validate-minmax="1,100000" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit_of_measure">Unit of measure <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="unit_of_measure" value="{{$data->unit_of_measure}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">Images <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="images" value="{{$data->images}}" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                  <button type="reset" class="btn btn-primary">Cancel</button>
-                                  <button id="send" type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
+                  </div>
                 </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                    <div class="x_title">
+                      <h2>Upload Image <small>Product</small></h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                     
+                      <label for="images">Images * :</label>
+                      <center>
+                        <div class="anyName">
+                          <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
+                          <img src="{{ asset('/products/'.$data->images) }}">
+                        </div>  
+                      </center>
+
+                      <label for="reorder_lvl">Reorder Level * :</label>
+                      <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" value="{{$data->reorder_lvl}}" required />
+
+                      <label for="lead_time">Lead Time * :</label>
+                      <input type="text" id="single_cal3" class="form-control" name="lead_time" value="{{$data->lead_time}}" required />
+
+                      <label for="pri_vendor">Primary Vendor * :</label>
+                      <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" value="{{$data->pri_vendor}}" required />
+
+                      <label for="sec_vendor">Secondary Vendor * :</label>
+                      <input type="text" id="sec_vendor" class="form-control" name="sec_vendor" value="{{$data->sec_vendor}}" required />
+
+                      <label for="unit_of_hand">Unit of Hand * :</label>
+                      <input type="number" id="unit_of_hand" class="form-control" name="unit_of_hand" value="{{$data->unit_of_hand}}" required />
+
+                      <label for="unit_of_measure">Manufacturer * :</label>
+                      <input type="text" id="unit_of_measure" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" required />
+
+                      <div class="ln_solid"></div>
+                      <center>
+                        <button class="btn btn-primary" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
             </div>
+
+            </div>
+          </div>
         </div>
-    </div>
-    <!-- /page content -->
+      <!-- /page content -->
 
     <!-- footer content -->
     @include('includes.footer')
@@ -221,95 +192,55 @@
 
     @push('scripts')
 
-     <!-- Select2 -->
-    <script src="{{ asset("vendors/select2/dist/js/select2.full.min.js")}}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset("assets/iCheck/icheck.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("vendors/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("js/daterangepicker.js") }}"></script>
-    <!-- validator -->
-    <script src="{{ asset("/vendors/validator/validator.js") }}"></script>
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+    <!-- Switchery -->
+    <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js") }}"></script>
+    <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
+     <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    
+    
+    <!-- Include Scripts -->
+    @include('javascript.pnotify')
+    @include('javascript.select2')
+    @include('javascript.datepicker')
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
+    <script type="text/javascript">
+        $('.anyName').uploadPreview({
+            width: '200px',
+            height: '200px',
+            backgroundSize: 'cover',
+            fontSize: '16px',
+            borderRadius: '20px',
+            border: '2px solid #dedede',
+            lang: 'en', //language
+        });
     </script>
-    <!-- /validator -->
 
-    <!-- Select2 -->
+    <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
-        $(".select2_single").select2({
-          placeholder: "Select a state",
-          allowClear: true
-        });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-          maximumSelectionLength: 4,
-          placeholder: "With Max Selection limit 4",
-          allowClear: true
-        });
-      });
-    </script>
-    <!-- /Select2 -->
-
-    <!-- /Datepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
+        $('#birthday').daterangepicker({
           singleDatePicker: true,
           calender_style: "picker_3"
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
         });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
       });
     </script>
-    <!-- /Datepicker -->
+    <!-- /bootstrap-daterangepicker -->
 
     @endpush
 @endsection

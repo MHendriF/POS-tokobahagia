@@ -5,6 +5,9 @@
 @endsection
 
 @push('stylesheets')
+    <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
+      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -35,4 +38,10 @@
     <!-- footer content -->
     @include('includes.footer')
     <!-- /footer content -->
+
+    @push('scripts')
+        <!-- Custom Theme Scripts -->
+        <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    @endpush
+    
 @endsection

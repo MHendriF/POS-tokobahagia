@@ -61,7 +61,7 @@
                         
                         <div>
                             <h1><i class="fa fa-paw"></i> Toko Bahagia</h1>
-                            <p>©2016 All Rights Reserved. Toko Bahagia is a Bootstrap 3 template. Privacy and Terms</p>
+                            <p>©2017 All Rights Reserved. Toko Bahagia is a Bootstrap 3 template. Privacy and Terms</p>
                         </div>
                     </div>
                 </form>
@@ -167,7 +167,7 @@
                     
                     <div>
                         <h1><i class="fa fa-paw"></i> Toko Bahagia</h1>
-                        <p>©2016 All Rights Reserved. Toko Bahagia is a Bootstrap 3 template. Privacy and Terms</p>
+                        <p>©2017 All Rights Reserved. Toko Bahagia is a Bootstrap 3 template. Privacy and Terms</p>
                     </div>
                 </div>
             </form>

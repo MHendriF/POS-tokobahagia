@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info("Role table seeded is completed :)");
 
         $this->call('UserSeeder');
-        factory(App\User::class, 20)->create();
+        //factory(App\User::class, 20)->create();
         $this->command->info("User table seeded is completed :)");
 
         $this->call('RoleusersSeeder');
@@ -60,6 +60,14 @@ class DatabaseSeeder extends Seeder
         $this->call('TransactionSeeder');
         //this message shown in your terminal after running db:seed command
         $this->command->info("Transaction table seeded is completed :)");
+
+        $this->call('TechnicianSeeder');
+        //this message shown in your terminal after running db:seed command
+        $this->command->info("Technician table seeded is completed :)");
+
+        $this->call('ServiceStatusSeeder');
+        //this message shown in your terminal after running db:seed command
+        $this->command->info("Service Status table seeded is completed :)");
       
     }
 }

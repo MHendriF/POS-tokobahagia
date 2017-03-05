@@ -43,10 +43,10 @@ class TransactionSeeder extends Seeder
 			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-07', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
 			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-17', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
 			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-17', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
-			array('user_id'=>'7', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-27', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
-			array('user_id'=>'7', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-28', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
-			array('user_id'=>'7', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-29', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
-			array('user_id'=>'7', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-30', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
+			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-27', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
+			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-28', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
+			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-29', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
+			array('user_id'=>'6', 'product_id'=>'3', 'trans_desc_id'=>'1', 'description'=>'', 'transaction_date'=>'2017-04-30', 'unit_order'=>'3', 'quantity_out'=>'1', 'note'=>'', 'cost_price'=>'85000'),
 
 	    ));
     }
