@@ -1,10 +1,21 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Order
+    Toko Bahagia | New Order
+@endsection
+@section('contentheader_title')
+    New
+@endsection
+@section('contentheader_description')
+    Order
+@endsection
+@section('contentheader_sub')
+    Order
 @endsection
 
 @push('stylesheets')
+    <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- PNotify -->
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -19,29 +30,16 @@
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-    <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
     <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Form Order</h3>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
-                          </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            @include('includes.contentheader')
+            
             <div class="clearfix"></div>
 
             <div class="row">
@@ -265,7 +263,7 @@
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')

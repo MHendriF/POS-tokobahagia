@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'visitors' => \App\Http\Middleware\VisitorsMiddleware::class,
         'employee' => \App\Http\Middleware\EmployeeMiddleware::class,
         'authenticate' => \App\Http\Middleware\AuthenticateMiddleware::class,
+        'checklogin' => \App\Http\Middleware\CheckLoginMiddleware::class,
     ];
 }

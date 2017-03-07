@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Pemesanan
+    Toko Bahagia | Purchase Order
 @endsection
 @section('contentheader_title')
   Purchase Order
@@ -20,6 +20,8 @@
       <link href="{{ asset("assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")}}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+       <!-- Animate -->
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
       <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -28,7 +30,7 @@
       <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -152,7 +154,6 @@
     <script src="{{ asset("assets/jszip/dist/jszip.min.js") }}"></script>
     <script src="{{ asset("assets/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("assets/pdfmake/build/vfs_fonts.js") }}"></script>
-
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
@@ -160,8 +161,9 @@
     <!-- Sweetalert -->
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
     <!-- Include Scripts -->
+    @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 

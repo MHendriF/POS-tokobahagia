@@ -1,35 +1,42 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Add Transaction
+    Toko Bahagia | Add Transaction
+@endsection
+@section('contentheader_title')
+    Add
+@endsection
+@section('contentheader_description')
+    Transaction
+@endsection
+@section('contentheader_sub')
+    Transaction
 @endsection
 
 @push('stylesheets')
-    <!-- Select2 -->
-    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+     <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- PNotify -->
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    {{-- <link href="{{ asset("js/newdaterangepicker/daterangepicker.css") }}" rel="stylesheet"> --}}
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet">  
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">  
 @endpush
 
 @section('main_container')
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Add Transaction</h3>
-                </div>
-
-                <div class="title_right">
-                   
-                </div>
-            </div>
+        
+        @include('includes.contentheader')
+        
         </div class="clearfix">
 
         <div class="row">
@@ -89,7 +96,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <textarea required="required" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                   <textarea required="required" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
                                     data-parsley-validation-threshold="10"></textarea>
                                 </div>
                             </div>
@@ -118,7 +125,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Note <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea id="product_desc" required="required" class="form-control" name="note" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                  <textarea id="product_desc" required="required" class="form-control" name="note" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
                                     data-parsley-validation-threshold="10"></textarea>
                                 </div>
                             </div>
@@ -163,6 +170,7 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
     <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+    {{-- <script src="{{ asset("js/newdaterangepicker/daterangepicker.js") }}"></script> --}}
     <!-- Switchery -->
     <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
     <!-- Select2 -->
@@ -175,8 +183,7 @@
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.select2')

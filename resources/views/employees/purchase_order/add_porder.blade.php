@@ -1,10 +1,21 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Purchase Order
+    Toko Bahagia | Add Purchase Order
+@endsection
+@section('contentheader_title')
+    Add
+@endsection
+@section('contentheader_description')
+    Purchase Order
+@endsection
+@section('contentheader_sub')
+    Purchase Order
 @endsection
 
 @push('stylesheets')
+    <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- PNotify -->
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -19,7 +30,7 @@
     <link href="{{ asset("css/smartWizard/smart_wizard_theme_dots.css")}}" rel="stylesheet" type="text/css" />
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-    <link href="{{ asset("css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -290,7 +301,7 @@
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')

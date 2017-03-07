@@ -8,7 +8,13 @@
               text: "{{ Session::get('new') }}",
               delay: "2500",
               nonblock: {
-                  nonblock: true
+                  nonblock: true,
+                  nonblock_opacity: .2
+              },
+              animate: {
+                animate: true,
+                in_class: 'bounceIn',
+                out_class: 'bounceOut'
               },
               styling: 'bootstrap3',
               hide: true,
@@ -20,7 +26,13 @@
               text: "{{ Session::get('update') }}",
               delay: "2500",
               nonblock: {
-                  nonblock: true
+                  nonblock: true,
+                  nonblock_opacity: .2
+              },
+              animate: {
+                animate: true,
+                in_class: 'bounceIn',
+                out_class: 'bounceOut'
               },
               styling: 'bootstrap3',
               hide: true,
@@ -33,7 +45,13 @@
               text: "{{ Session::get('delete') }}",
               delay: "2500",
               nonblock: {
-                  nonblock: true
+                  nonblock: true,
+                  nonblock_opacity: .2
+              },
+              animate: {
+                animate: true,
+                in_class: 'bounceIn',
+                out_class: 'bounceOut'
               },
               styling: 'bootstrap3',
               hide: true,
@@ -46,7 +64,13 @@
               text: "{{ Session::get('error') }}",
               delay: "2500",
               nonblock: {
-                  nonblock: true
+                  nonblock: true,
+                  nonblock_opacity: .2
+              },
+              animate: {
+                animate: true,
+                in_class: 'bounceIn',
+                out_class: 'bounceOut'
               },
               styling: 'bootstrap3',
               hide: true,

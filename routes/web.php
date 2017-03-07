@@ -11,12 +11,16 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('auth.authenticate');
-});
+})->middleware('checklogin');
 
 Route::resource('tesorder', 'TesController');
-Route::get('tes2', 'TesController@tes');
+Route::get('tes', 'TesController@tes');
+Route::post('find', 'TesController@Find');
+
+Route::get('tes2', 'TesController@tes2');
 Route::get('tes3', 'TesController@tes3');
 
 Route:: group(['middleware'  => 'visitors'], function() {
@@ -29,6 +33,15 @@ Route:: group(['middleware'  => 'visitors'], function() {
 Route:: group(['middleware' => 'authenticate'], function() {
 	Route::get('/home', 'VisitorsController@index');
 	Route::post('/logout', 'LoginController@logout');
+
+	Route::resource('transaction', 'MainTransactionController');
+	Route::post('transaction/{id}', 'MainTransactionController@update');	
+	Route::get('/findPrice','MainTransactionController@findPrice');	
+
+	//Purchase Order
+	Route::resource('purchase_order', 'PurchaseOrderController');
+	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+
 });
 
 
@@ -90,8 +103,6 @@ Route:: group(['middleware' => 'employee'], function() {
 	Route::resource('order', 'OrderController');
 	Route::post('order/{id}', 'OrderController@update');
 	//Route::get('/tesorder/{id}', 'OrderController@tesorder');
-
-
 	
 	//Route::get('po_list', 'PurchaseOrderController@poList');
 
@@ -100,15 +111,6 @@ Route:: group(['middleware' => 'employee'], function() {
 
 	Route::resource('service_status', 'ServiceStatusController');
 	Route::post('service_status/{id}', 'ServiceStatusController@update');
-
-	
-	
 });
 
-	Route::resource('transaction', 'MainTransactionController');
-	Route::post('transaction/{id}', 'MainTransactionController@update');	
-	Route::get('/findPrice','MainTransactionController@findPrice');	
-
-//Purchase Order
-	Route::resource('purchase_order', 'PurchaseOrderController');
-	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+	

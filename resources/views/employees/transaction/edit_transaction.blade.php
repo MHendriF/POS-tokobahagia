@@ -1,21 +1,36 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Edit User
+    Toko Bahagia | Edit Transaction
+@endsection
+@section('contentheader_title')
+    Edit
+@endsection
+@section('contentheader_description')
+    Transaction
+@endsection
+@section('contentheader_sub')
+    Transaction
 @endsection
 
 @push('stylesheets')
-    <!-- iCheck -->
-    <link href="{{ asset("assets/iCheck/skins/flat/green.css")}}" rel="stylesheet">
+     <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
+    <!-- PNotify -->
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Select2 -->
     <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+{{--     <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+ --}}    <link href="{{ asset("js/newdaterangepicker/daterangepicker.css") }}" rel="stylesheet">
     <!-- PNotify -->
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
     <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
@@ -23,15 +38,9 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Edit Transaction</h3>
-                </div>
-
-                <div class="title_right">
-                   
-                </div>
-            </div>
+        
+        @include('includes.contentheader')
+        
         </div class="clearfix">
 
          <div class="row">
@@ -162,30 +171,56 @@
 
     @push('scripts')
 
-    <!-- iCheck -->
-    <script src="{{ asset("assets/iCheck/icheck.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
-    <!-- Switchery -->
-    <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
+{{--     <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+ --}}    <script src="{{ asset("js/newdaterangepicker/daterangepicker.js") }}"></script>
+
     <!-- Select2 -->
     <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- Parsley -->
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js") }}"></script>
-    <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
      <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
 
     <!-- Include Scripts -->
     @include('javascript.select2')
     @include('javascript.pnotify')
     @include('javascript.datepicker')
+
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('change','.priceproduct',function () {
+                var prod_id=$(this).val();
+
+                var a=$(this).parent();
+                console.log(prod_id);
+                var op="";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findPrice')!!}',
+                    data:{'id':prod_id},
+                    dataType:'json',//return data will be json
+                    success:function(data){
+                        console.log("unit_price");
+                        console.log(data.unit_price);
+                        $("#tes_price").val(data.unit_price); //parsing price to view
+
+                    },
+                    error:function(){
+
+                    }
+                });
+            });
+
+        });
+    </script>
 
     @endpush
 @endsection

@@ -19,6 +19,8 @@
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+      <!-- Animate -->
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
       <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -27,7 +29,7 @@
       <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-      <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet">
+      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">
 
 @endpush
 
@@ -137,18 +139,18 @@
     <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-scroller/js/datatables.scroller.min.js") }}"></script>
-
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
-
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
+    @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 

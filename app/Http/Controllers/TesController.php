@@ -7,6 +7,7 @@ use App\Customer;
 use App\Order;
 use App\Shipping;
 use App\Product;
+use DB;
 
 class TesController extends Controller
 {
@@ -21,6 +22,26 @@ class TesController extends Controller
     }
 
     public function tes()
+    {
+        return view('testing.tes-page');
+    }
+
+     public function Find(Request $request)
+    {
+        $date = $request->reportdate;
+        //split date;
+        $arr = explode('-', $date);
+        //concate string
+        //$date = $arr[1] ."/". $arr[0] ."/%";
+        $date = "%/" . $arr[0] ."/". $arr[1];
+        //search query
+        $model = DB::select("SELECT *
+            FROM products
+            WHERE lead_time LIKE '$date'");
+        dd($model);        
+    }
+
+    public function tes2()
     {
         return view('testing.tes-order');
     }

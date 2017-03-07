@@ -145,7 +145,7 @@
             </div>
           </div>
         </div>
-        <!-- /page content -->
+    <!-- /page content -->
 
 
     <!-- footer content -->

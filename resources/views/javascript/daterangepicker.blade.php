@@ -184,8 +184,8 @@
         });
       });
     </script>
-<!-- /bootstrap-daterangepicker --> --}}
-
+<!-- /bootstrap-daterangepicker -->
+ --}}
 
 <script type="text/javascript">
 $(function() {

@@ -47,6 +47,8 @@ class MainTransactionController extends Controller
             $time             = strtotime($transaction_date);
             $newformat        = date('Y-m-d',$time);
             
+            //'transaction_date' => $request->get('transaction_date'),
+
             $transaction = new Main_Transaction(array(
                 'user_id'          => $request->get('user_id'),
                 'trans_desc_id'    => $request->get('trans_desc_id'),

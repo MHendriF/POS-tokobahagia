@@ -1,31 +1,37 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Add Product
+    Toko Bahagia | Add Shipping
+@endsection
+@section('contentheader_title')
+    Add
+@endsection
+@section('contentheader_description')
+    Shipping
+@endsection
+@section('contentheader_sub')
+    Shipping
 @endsection
 
 @push('stylesheets')
+        <!-- Animate -->
+        <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
         <!-- PNotify -->
         <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
         <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
         <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+        <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
+        <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Add Product</h3>
-                </div>
+        
+        @include('includes.contentheader')
 
-                <div class="title_right">
-                   
-                </div>
-            </div>
         </div class="clearfix">
 
         <div class="row">
@@ -86,10 +92,11 @@
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')

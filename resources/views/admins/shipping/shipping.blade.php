@@ -129,14 +129,16 @@
 
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
+    @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 
