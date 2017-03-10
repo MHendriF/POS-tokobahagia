@@ -4,10 +4,7 @@
     Toko Bahagia | Add Supplier
 @endsection
 @section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Supplier
+    Add Supplier
 @endsection
 @section('contentheader_sub')
     Supplier
@@ -38,20 +35,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Supplier <small>sub title</small></h2>
+                      <h2>Form Add Supplier</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                         </ul>
                       <div class="clearfix"></div>
                     </div>
@@ -59,83 +46,84 @@
                         <form method="post" action="{{ url('supplier') }}" class="form-horizontal form-label-left" data-parsley-validate>
                             {!! csrf_field() !!}
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="method">Supplier name <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Supplier name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="supplier_name" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="supplier_name" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Contact title <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact title <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="contact_title" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="contact_title" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Contact name <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="contact_name" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="contact_name" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Phone <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="phone" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="phone" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Fax <span class="required">*</span>
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Fax <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="fax" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="fax" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Address <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="address" required="required" class="form-control col-md-7 col-xs-12">
+                                   <textarea class="form-control" name="address" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                                    data-parsley-validation-threshold="10" required></textarea>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Postal code <span class="required">*</span>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Postal code <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="postal_code" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="postal_code" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >City <span class="required">*</span>
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">City <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="city" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="city" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Province/State <span class="required">*</span>
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Province/State <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="province" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="province" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
-                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Country <span class="required">*</span>
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Country <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="country" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="country" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 

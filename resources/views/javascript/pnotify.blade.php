@@ -7,10 +7,10 @@
               type: "success",
               text: "{{ Session::get('new') }}",
               delay: "2500",
-              nonblock: {
-                  nonblock: true,
-                  nonblock_opacity: .2
-              },
+              // nonblock: {
+              //     nonblock: true,
+              //     nonblock_opacity: .2
+              // },
               animate: {
                 animate: true,
                 in_class: 'bounceIn',
@@ -25,10 +25,10 @@
               type: "success",
               text: "{{ Session::get('update') }}",
               delay: "2500",
-              nonblock: {
-                  nonblock: true,
-                  nonblock_opacity: .2
-              },
+              // nonblock: {
+              //     nonblock: true,
+              //     nonblock_opacity: .2
+              // },
               animate: {
                 animate: true,
                 in_class: 'bounceIn',
@@ -44,10 +44,10 @@
               type: "success",
               text: "{{ Session::get('delete') }}",
               delay: "2500",
-              nonblock: {
-                  nonblock: true,
-                  nonblock_opacity: .2
-              },
+              // nonblock: {
+              //     nonblock: true,
+              //     nonblock_opacity: .2
+              // },
               animate: {
                 animate: true,
                 in_class: 'bounceIn',
@@ -63,10 +63,10 @@
               type: "error",
               text: "{{ Session::get('error') }}",
               delay: "2500",
-              nonblock: {
-                  nonblock: true,
-                  nonblock_opacity: .2
-              },
+              // nonblock: {
+              //     nonblock: true,
+              //     nonblock_opacity: .2
+              // },
               animate: {
                 animate: true,
                 in_class: 'bounceIn',

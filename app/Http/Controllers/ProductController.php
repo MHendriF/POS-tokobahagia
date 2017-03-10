@@ -49,22 +49,22 @@ class ProductController extends Controller
             ));
 
             $product = new Product(array(
-            'category_id'     => $request->get('category_id'),
-            'location_id'     => $request->get('location_id'),
-            'product_name'    => $request->get('product_name'),
-            'product_desc'    => $request->get('product_desc'),
-            'manufacturer'    => $request->get('manufacturer'),
-            'item_use'        => $request->get('item_use'),
-            'unit_price'      => $request->get('unit_price'),
-            'unit_price2'     => $request->get('unit_price2'),
-            'avg_cost'        => $request->get('avg_cost'),
-            'reorder_lvl'     => $request->get('reorder_lvl'),
-            'discontinueted'  => $request->get('discontinueted'),
-            'lead_time'       => $request->get('lead_time'),
-            'pri_vendor'      => $request->get('pri_vendor'),
-            'sec_vendor'      => $request->get('sec_vendor'),
-            'unit_of_hand'    => $request->get('unit_of_hand'),
-            'unit_of_measure' => $request->get('unit_of_measure')
+                'category_id'     => $request->get('category_id'),
+                'location_id'     => $request->get('location_id'),
+                'product_name'    => $request->get('product_name'),
+                'product_desc'    => $request->get('product_desc'),
+                'manufacturer'    => $request->get('manufacturer'),
+                'item_use'        => $request->get('item_use'),
+                'unit_price'      => $request->get('unit_price'),
+                'unit_price2'     => $request->get('unit_price2'),
+                'avg_cost'        => $request->get('avg_cost'),
+                'reorder_lvl'     => $request->get('reorder_lvl'),
+                'discontinueted'  => $request->get('discontinueted'),
+                'lead_time'       => $request->get('lead_time'),
+                'pri_vendor'      => $request->get('pri_vendor'),
+                'sec_vendor'      => $request->get('sec_vendor'),
+                'unit_of_hand'    => $request->get('unit_of_hand'),
+                'unit_of_measure' => $request->get('unit_of_measure')
             ));
 
             //cara 2
@@ -72,14 +72,18 @@ class ProductController extends Controller
             {
                 $image = $request->file('images');
                 $fileName = time() . '.' . $image->getClientOriginalExtension();
-                $location = public_path('/products/' . $fileName);
-                Image::make($image)->resize(100, 100)->save($location);
+                $location = public_path('/images/products/' . $fileName);
+                Image::make($image)->resize(200, 200)->save($location);
 
                 $product->images = $fileName;
-                $product->save();
+                //$product->save();
             }
-            Session::flash('new', 'New product was successfully added!');
-            return redirect('product');
+            if($product->save())
+            {
+                Session::flash('new', 'New product was successfully added!');
+                return redirect('product');
+            }   
+            
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
@@ -116,7 +120,7 @@ class ProductController extends Controller
                 'reorder_lvl'     => 'required',
                 'discontinueted'  => 'required',
                 'lead_time'       => 'required',
-                'images'          => 'required',
+                // 'images'          => 'required',
                 'pri_vendor'      => 'required',
                 'sec_vendor'      => 'required',
                 'unit_of_hand'    => 'required',

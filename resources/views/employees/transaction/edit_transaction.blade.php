@@ -4,10 +4,7 @@
     Toko Bahagia | Edit Transaction
 @endsection
 @section('contentheader_title')
-    Edit
-@endsection
-@section('contentheader_description')
-    Transaction
+    Edit Transaction
 @endsection
 @section('contentheader_sub')
     Transaction
@@ -23,8 +20,8 @@
     <!-- Select2 -->
     <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-{{--     <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
- --}}    <link href="{{ asset("js/newdaterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+ {{--    <link href="{{ asset("js/newdaterangepicker/daterangepicker.css") }}" rel="stylesheet"> --}}
     <!-- PNotify -->
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -47,40 +44,25 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Edit Transaction <small>sub title</small></h2>
+                      <h2>Form Edit Transaction</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                         </ul>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form method="post" action="{{ url('transaction/'.$data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="post" action="{{ url('transaction/'.$data->id) }}" data-parsley-validate class="form-horizontal form-label-left">
                             {!! csrf_field() !!}
 
                             <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Transaction Code <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Transaction Code <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="product_id" required="required" name="trans_desc_id" class="select2_single form-control" tabindex="-1">
-                                      <option></option>
-                                      @foreach($data3 as $code)
-                                          <option value='{{ $code->id}}'> {{ $code->code }}</option>
-                                      @endforeach
-                                </select>
+                                  <input type="text" value="{{$data->pilihtransaksi->code}}" class="form-control col-md-7 col-xs-12" readonly="readonly">
                                 </div>
                             </div>
 
@@ -88,7 +70,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Product <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="product_id" required="required" name="product_id" class="priceproduct select2_single form-control" tabindex="-1">
+                                  <select id="product_id" name="product_id" class="priceproduct select2_single form-control" tabindex="-1" required/>
                                       <option></option>
                                       @foreach($data2 as $product)
                                           <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
@@ -100,44 +82,44 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <textarea required="required" class="form-control" value="{{$data->description}}" name="description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                                    data-parsley-validation-threshold="10"></textarea>
+                                   <textarea class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                                    data-parsley-validation-threshold="10" required>{{$data->description}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Date <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="single_cal3" class="form-control" name="transaction_date" value="{{$data->transaction_date}}" required />
+                                    <input type="text" id="single_cal3" class="form-control" name="transaction_date" value="{{$data->transaction_date}}" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Unit Order <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="unit_order" value="{{$data->unit_order}}" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="number" name="unit_order" value="{{$data->unit_order}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Quantity Out <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="quantity_out" value="{{$data->quantity_out}}" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="number" name="quantity_out" value="{{$data->quantity_out}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Note <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea id="product_desc" required="required" class="form-control" value="{{$data->note}}" name="note" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                                    data-parsley-validation-threshold="10"></textarea>
+                                  <textarea id="product_desc" class="form-control" name="note" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                                    data-parsley-validation-threshold="10" required>{{$data->note}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="cost_price" value="{{$data->cost_price}}" required="required" class="form-control col-md-7 col-xs-12" placeholder="Rp">
+                                  <input type="number" name="cost_price" value="{{$data->cost_price}}" class="form-control col-md-7 col-xs-12" placeholder="Rp" required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -173,15 +155,18 @@
 
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
-{{--     <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
- --}}    <script src="{{ asset("js/newdaterangepicker/daterangepicker.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+    {{-- <script src="{{ asset("js/newdaterangepicker/daterangepicker.js") }}"></script> --}}
 
     <!-- Select2 -->
     <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- Parsley -->
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js") }}"></script>
-     <!-- PNotify -->
+    <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
+    <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
@@ -190,8 +175,8 @@
 
     <!-- Include Scripts -->
     @include('javascript.select2')
-    @include('javascript.pnotify')
-    @include('javascript.datepicker')
+    @include('javascript.pnotify'){{-- 
+    @include('javascript.datepicker') --}}
 
     <script>
         $(document).ready(function(){
@@ -220,6 +205,17 @@
             });
 
         });
+    </script>
+
+     <script type="text/javascript">
+     $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
     </script>
 
     @endpush

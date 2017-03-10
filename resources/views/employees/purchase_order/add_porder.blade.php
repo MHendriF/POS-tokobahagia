@@ -22,6 +22,8 @@
     <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Select2 -->
     <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
     <!-- Sweetalert -->
     <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
     <!-- Include SmartWizard CSS -->
@@ -62,19 +64,7 @@
                   <div class="x_title">
                     <h2>Form Purchase Order <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                      <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -294,7 +284,8 @@
     <!-- Include SmartWizard JavaScript source -->
     <script type="text/javascript" src="{{ asset("js/smartWizard/jquery.smartWizard.min.js") }}"></script>
     <!-- PNotify -->
-   <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
@@ -306,8 +297,43 @@
     <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.select2')
-    @include('javascript.datepicker')
+    {{-- @include('javascript.datepicker') --}}
     @include('javascript.smartwizard')
+
+     <script type="text/javascript">
+     $('#single_cal1').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
+     $('#single_cal2').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
+     $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
+     $('#single_cal4').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
+    </script>
 
     @endpush
 @endsection

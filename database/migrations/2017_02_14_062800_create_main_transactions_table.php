@@ -19,7 +19,7 @@ class CreateMainTransactionsTable extends Migration
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('trans_desc_id');
             $table->string('description');
-            $table->date('transaction_date');
+            $table->string('transaction_date');
             $table->integer('unit_order');
             $table->integer('quantity_out');
             $table->string('note');

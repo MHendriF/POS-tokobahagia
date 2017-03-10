@@ -19,6 +19,10 @@ class User extends EloquentUser
         return $this->hasMany('App\Main_Transaction');
     }
 
+    // public function salary(){
+    //     return $this->hasOne('App\Salary');
+    // }
+
     protected $fillable = [
         'username',
         'last_name',

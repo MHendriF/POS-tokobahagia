@@ -18,6 +18,8 @@
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+       <!-- Animate -->
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
       <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -51,19 +53,8 @@
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -75,12 +66,12 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          {{-- <th>Employee</th> --}}
+                          <th>Code</th>
                           <th>Product</th>
                           <th>Description</th>
                           <th>Date</th>
                           <th>Unit Order</th>
-                          <th>Quantity Out</th>
+                          {{-- <th>Quantity Out</th> --}}
                           <th>Note</th>
                           <th>Price</th>
                           <th>Action</th>
@@ -90,12 +81,12 @@
                         @foreach($data as $index => $transaction)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          {{-- <td>{{ $transaction->pilihuser->first_name }}</td> --}}
+                          <td>{{ $transaction->pilihtransaksi->code }}</td>
                           <td>{{ $transaction->pilihproduct->product_name }}</td>
                           <td>{{ $transaction->description }}</td>
                           <td>{{ $transaction->transaction_date }}</td>
                           <td>{{ $transaction->unit_order }}</td>
-                          <td>{{ $transaction->quantity_out }}</td>
+                          {{-- <td>{{ $transaction->quantity_out }}</td> --}}
                           <td>{{ $transaction->note }}</td>
                           <td>Rp {{ $transaction->cost_price }}</td>
                           <td>
@@ -140,14 +131,13 @@
     <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-scroller/js/datatables.scroller.min.js") }}"></script>
-
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 

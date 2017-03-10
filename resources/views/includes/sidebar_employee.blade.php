@@ -26,12 +26,26 @@
                             <i class="fa fa-credit-card"></i>Transaksi
                         </a>
                     </li>
+                    <li>
+                        <a><i class="fa fa-table"></i> Services <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="{{ url('/service') }}">Service</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/service_item') }}">Service Item</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/service_status') }}">Service Status</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="menu_section">
                 <h3>Report</h3>
                 <ul class="nav side-menu">
-                    <li>
+                    {{-- <li>
                         <a><i class="fa fa-table"></i> Order <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li>
@@ -58,7 +72,6 @@
                                 <a href="{{ url('') }}">Purchase Detail List</a>
                             </li>
                         </ul>
-                    </li>
-
+                    </li> --}}
                 </ul>
             </div>

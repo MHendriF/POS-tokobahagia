@@ -4,10 +4,7 @@
     Toko Bahagia | Edit Product
 @endsection
 @section('contentheader_title')
-  Edit
-@endsection
-@section('contentheader_description')
-  Product
+  Edit Product
 @endsection
 @section('contentheader_sub')
   Product
@@ -47,21 +44,10 @@
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Edit Product Form <small>Click to validate</small></h2>
+                      <h2>Form Edit Product</h2>
                       <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                       </ul>
                       <div class="clearfix"></div>
                     </div>
@@ -86,9 +72,10 @@
                         <label for="product_name">Product Name * :</label>
                         <input type="text" id="product_name" class="form-control" name="product_name" value="{{$data->product_name}}" required />
 
-                        <label for="product_desc">Product Description (20 chars min, 100 max) :</label>
-                            <textarea id="product_desc" required="required" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                              data-parsley-validation-threshold="10" value="{{$data->product_desc}}"></textarea>
+                         <label for="product_desc">Product Description (10 chars min, 100 max) :</label>
+                            <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                              data-parsley-validation-threshold="10" required>{{$data->product_desc}}</textarea>
+
 
                         <label for="manufacturer">Manufacturer * :</label>
                         <input type="text" id="manufacturer" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" required />
@@ -120,31 +107,20 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Upload Image <small>Product</small></h2>
+                      <h2>Upload Image</h2>
                       <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                       </ul>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                     
-                      <label for="images">Images * :</label>
+                      <p>This image cannot to update</p>
                       <center>
                         <div class="anyName">
-                          <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
-                          <img src="{{ asset('/products/'.$data->images) }}">
+                          <input type="file" accept="image/gif, image/jpeg, image/png" name="item_images" disabled="disabled" name="images">
+                          {{-- <img src="{{ asset('/products/'.$data->images) }}"> --}}
+                          <img src="{{ asset('/images/products/'.$data->images) }}">
                         </div>  
                       </center>
 
@@ -210,11 +186,9 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min2.js") }}"></script>
     
-    
     <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.select2')
-    @include('javascript.datepicker')
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({
@@ -228,18 +202,17 @@
         });
     </script>
 
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        $('#birthday').daterangepicker({
+    
+    <script type="text/javascript">
+     $('#single_cal3').daterangepicker({
           singleDatePicker: true,
-          calender_style: "picker_3"
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
-        });
       });
     </script>
-    <!-- /bootstrap-daterangepicker -->
 
     @endpush
 @endsection

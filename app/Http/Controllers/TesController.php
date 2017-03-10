@@ -30,10 +30,15 @@ class TesController extends Controller
     {
         $date = $request->reportdate;
         //split date;
-        $arr = explode('-', $date);
+        $arr = explode('/', $date);
         //concate string
-        //$date = $arr[1] ."/". $arr[0] ."/%";
-        $date = "%/" . $arr[0] ."/". $arr[1];
+    
+        //bulan-hari-tahun
+        $date = $arr[0]. "/%/" .$arr[1];
+        
+        //hari-bulan-tahun
+        $date = "%" . "/" . $arr[0] . "/" . $arr[1];
+
         //search query
         $model = DB::select("SELECT *
             FROM products

@@ -69,16 +69,16 @@ class OrderController extends Controller
 
             // Add Order Entry Table
             // Convert format date from MM/DD/YYYY to YYYY-MM-DD
-            $order = $request->get('order_date');
-            $time = strtotime($order);
-            $newformat = date('Y-m-d',$time);
+            // $order = $request->get('order_date');
+            // $time = strtotime($order);
+            // $newformat = date('Y-m-d',$time);
 
             $orders = new Order(array(
                 'customer_id'       => $request->get('customer_id'),
                 'shipping_id'       => $request->get('shipping_id'),
                 'order_detail_id'   => $lastOrder,
                 'order_no'          => $request->get('order_no'),
-                'order_date'        => $newformat,
+                'order_date'        => $request->get('order_date'),
                 'po_number'         => $request->get('po_number'),
                 'freight_charge'    => $request->get('freight_charge'),
                 'sales_tax_rate_po' => $request->get('sales_tax_rate_po')

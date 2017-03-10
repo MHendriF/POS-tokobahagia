@@ -1,31 +1,37 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Add Service Item
+    Toko Bahagia | Service Item
+@endsection
+@section('contentheader_title')
+    Add
+@endsection
+@section('contentheader_description')
+    Service Item
+@endsection
+@section('contentheader_sub')
+    Service Item
 @endsection
 
 @push('stylesheets')
+    <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">  
 @endpush
 
 @section('main_container')
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Add Service Item</h3>
-                </div>
+            
+            @include('includes.contentheader')
 
-                <div class="title_right">
-                   
-                </div>
-            </div>
         </div class="clearfix">
 
         <div class="row">
@@ -35,17 +41,7 @@
                       <h2>Form Add Service Item <small>sub title</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                         </ul>
                       <div class="clearfix"></div>
                     </div>
@@ -57,35 +53,35 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Service No <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="serv_item_no" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="serv_item_no" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Service Item <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="serv_item" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="serv_item" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Price <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="act_price" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="act_price" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Quantity In <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="quantity_in" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="quantity_in" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Quantity Out <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="quantity_out" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="text" name="quantity_out" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                               
@@ -111,22 +107,15 @@
 
     @push('scripts')
 
-    <!-- bootstrap-wysiwyg -->
-    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
-    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
-    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script>
-    <!-- Switchery -->
-    <script src="{{ asset("vendors/switchery/dist/switchery.min.js") }}"></script>
-    <!-- Parsley -->
-    <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-
-     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+     <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
-
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
     <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.validator')

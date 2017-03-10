@@ -21,10 +21,10 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedInteger('po_detail_id')->nullable();
             $table->integer('po_number');
             $table->string('po_description');
-            $table->date('order_date');
-            $table->date('order_required');
-            $table->date('order_promised');
-            $table->date('ship_date');
+            $table->string('order_date');
+            $table->string('order_required');
+            $table->string('order_promised');
+            $table->string('ship_date');
             $table->integer('freight_charge');
             $table->timestamps();
         });

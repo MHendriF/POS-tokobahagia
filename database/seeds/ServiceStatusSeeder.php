@@ -15,7 +15,7 @@ class ServiceStatusSeeder extends Seeder
 			array('status'=>'Selesai - Belum Diambil'),
 			array('status'=>'Selesai - Sudah Diambil'),
 			array('status'=>'Kembalikan'),
-			array('status'=>'Dikerjakan PABRIK'),
+			array('status'=>'Dikerjakan Pabrik'),
 			array('status'=>'Service Ulang'),
 		));
     }

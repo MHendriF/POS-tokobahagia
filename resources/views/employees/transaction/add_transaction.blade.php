@@ -4,10 +4,7 @@
     Toko Bahagia | Add Transaction
 @endsection
 @section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Transaction
+    Add Transaction
 @endsection
 @section('contentheader_sub')
     Transaction
@@ -43,20 +40,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Transaction <small>sub title</small></h2>
+                      <h2>Form Add Transaction</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                         </ul>
                       <div class="clearfix"></div>
                     </div>
@@ -71,7 +58,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Transaction Code <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="product_id" required="required" name="trans_desc_id" class="select2_single form-control" tabindex="-1">
+                                  <select id="product_id" name="trans_desc_id" class="select2_single form-control" tabindex="-1" required/>
                                       <option></option>
                                       @foreach($data2 as $code)
                                           <option value='{{ $code->id}}'> {{ $code->code }}</option>
@@ -84,7 +71,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Product <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select id="product_id" required="required" name="product_id" class="priceproduct select2_single form-control" tabindex="-1">
+                                  <select id="product_id" name="product_id" class="priceproduct select2_single form-control" tabindex="-1" required/>
                                       <option></option>
                                       @foreach($data as $product)
                                           <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
@@ -96,44 +83,44 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <textarea required="required" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
-                                    data-parsley-validation-threshold="10"></textarea>
+                                   <textarea class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                                    data-parsley-validation-threshold="10" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Date <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="single_cal3" type="text" name="transaction_date" required="required" class="form-control col-md-7 col-xs-12" placeholder="Date">
+                                  <input id="single_cal3" type="text" name="transaction_date" class="form-control col-md-7 col-xs-12" placeholder="Date" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Unit Order <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="unit_order" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="number" name="unit_order" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Quantity Out <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="quantity_out" required="required" class="form-control col-md-7 col-xs-12">
+                                  <input type="number" name="quantity_out" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Note <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea id="product_desc" required="required" class="form-control" name="note" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
-                                    data-parsley-validation-threshold="10"></textarea>
+                                  <textarea id="product_desc" class="form-control" name="note" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                                    data-parsley-validation-threshold="10" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Price <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="cost_price" required="required" class="form-control col-md-7 col-xs-12" placeholder="Rp">
+                                  <input type="number" name="cost_price" class="form-control col-md-7 col-xs-12" placeholder="Rp" required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -180,6 +167,7 @@
     <script src="{{ asset("js/jquery.upload_preview.min.js") }}"></script>
      <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
@@ -188,7 +176,7 @@
     <!-- Include Scripts -->
     @include('javascript.select2')
     @include('javascript.pnotify')
-    @include('javascript.datepicker')
+    {{-- @include('javascript.datepicker') --}}
 
     <script>
         $(document).ready(function(){
@@ -217,6 +205,17 @@
             });
 
         });
+    </script>
+
+    <script type="text/javascript">
+     $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
     </script>
     
     @endpush

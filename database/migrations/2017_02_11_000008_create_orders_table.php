@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('shipping_id')->nullable();
             $table->unsignedInteger('order_detail_id')->nullable();
             $table->string('order_no');
-            $table->date('order_date');
+            $table->string('order_date');
             $table->string('po_number');
             $table->integer('freight_charge');
             $table->integer('sales_tax_rate_po');

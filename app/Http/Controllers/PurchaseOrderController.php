@@ -73,21 +73,21 @@ class PurchaseOrderController extends Controller
 
 	        // Add Purchase Order Entry Table
 	        // Convert format date from MM/DD/YYYY to YYYY-MM-DD
-			$order_date     = $request->get('order_date');
-			$time           = strtotime($order_date);
-			$newformat1     = date('Y-m-d',$time);
+			// $order_date     = $request->get('order_date');
+			// $time           = strtotime($order_date);
+			// $newformat1     = date('Y-m-d',$time);
 			
-			$order_required = $request->get('order_required');
-			$time           = strtotime($order_required);
-			$newformat2     = date('Y-m-d',$time);
+			// $order_required = $request->get('order_required');
+			// $time           = strtotime($order_required);
+			// $newformat2     = date('Y-m-d',$time);
 			
-			$order_promised = $request->get('order_promised');
-			$time           = strtotime($order_promised);
-			$newformat3     = date('Y-m-d',$time);
+			// $order_promised = $request->get('order_promised');
+			// $time           = strtotime($order_promised);
+			// $newformat3     = date('Y-m-d',$time);
 			
-			$ship_date      = $request->get('ship_date');
-			$time           = strtotime($ship_date);
-			$newformat4     = date('Y-m-d',$time);
+			// $ship_date      = $request->get('ship_date');
+			// $time           = strtotime($ship_date);
+			// $newformat4     = date('Y-m-d',$time);
 
 	        $purchase = new Purchase_Order(array(
 	        	'user_id'		 => $request->get('user_id'),
@@ -96,10 +96,10 @@ class PurchaseOrderController extends Controller
 				'po_detail_id'   => $lastPurchase,
 				'po_number'      => $request->get('po_number'),
 				'po_description' => $request->get('po_description'),
-				'order_date'     => $newformat1,
-				'order_required' => $newformat2,
-				'order_promised' => $newformat3,
-				'ship_date'      => $newformat4,
+				'order_date'     => $request->get('order_date'),
+				'order_required' => $request->get('order_required'),
+				'order_promised' => $request->get('order_promised'),
+				'ship_date'      => $request->get('ship_date'),
 				'freight_charge' => $request->get('freight_charge')
 	        ));
 

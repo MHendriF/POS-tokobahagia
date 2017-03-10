@@ -43,9 +43,9 @@ class MainTransactionController extends Controller
                 'cost_price'       => 'required'
             ));
             
-            $transaction_date = $request->get('transaction_date');
-            $time             = strtotime($transaction_date);
-            $newformat        = date('Y-m-d',$time);
+            // $transaction_date = $request->get('transaction_date');
+            // $time             = strtotime($transaction_date);
+            // $newformat        = date('Y-m-d',$time);
             
             //'transaction_date' => $request->get('transaction_date'),
 
@@ -54,7 +54,7 @@ class MainTransactionController extends Controller
                 'trans_desc_id'    => $request->get('trans_desc_id'),
                 'product_id'       => $request->get('product_id'),
                 'description'      => $request->get('description'),
-                'transaction_date' => $newformat,
+                'transaction_date' => $request->get('transaction_date'),
                 'unit_order'       => $request->get('unit_order'),
                 'quantity_out'     => $request->get('quantity_out'),
                 'note'             => $request->get('note'),

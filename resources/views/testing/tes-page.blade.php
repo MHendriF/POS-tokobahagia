@@ -118,8 +118,8 @@
 	    <script src="{{asset("vendors/pnotify/dist/pnotify.nonblock.js")}}"></script>
         <!-- Custom Theme Scripts -->
 
-        <script src="{{ asset("js/newdaterangepicker/moment.min.js") }}"></script>
-        <script src=" {{ asset("build/datetimepicker/js/bootstrap-datetimepicker.min.js") }}"></script>
+      <script src="{{ asset("js/newdaterangepicker/moment.min.js") }}"></script>
+      <script src=" {{ asset("build/datetimepicker/js/bootstrap-datetimepicker.min.js") }}"></script>
         
         <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
@@ -146,7 +146,7 @@
         $(function () {
             $('#datetimepicker10').datetimepicker({
                 viewMode: 'years',
-                format: 'MM-YYYY'
+                format: 'MM/YYYY'
             });
         });
     </script>
