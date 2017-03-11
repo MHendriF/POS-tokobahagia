@@ -6,11 +6,11 @@
                             <i class="fa fa-home"></i>Home
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ url('/barang') }}">
                             <i class="fa fa-shopping-cart"></i>Inventory
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ url('/order') }}">
                             <i class="fa fa-shopping-cart"></i>Order

@@ -1,17 +1,9 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Service
+    Toko Bahagia | Edit Service
 @endsection
-@section('contentheader_title')
-    Edit
-@endsection
-@section('contentheader_description')
-    Service
-@endsection
-@section('contentheader_sub')
-    Service
-@endsection
+
 
 @push('stylesheets')
     <!-- Select2 -->
@@ -38,7 +30,22 @@
     <div class="right_col" role="main">
         <div class="">
             
-            @include('includes.contentheader')
+            <section class="page-title">
+            <div class="title_left">
+              <h3>Edit Service</h3>
+            </div>
+            <div class="title_right">
+              <div class="pull-right">
+                <section class="content-header">
+                  <ol class="breadcrumb">
+                  <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                  <li><a href="{{ url('service') }}">Service</a></li>
+                  <li class="active">Edit</li>
+                </ol>  
+                </section>
+              </div>
+            </div>
+          </section>
 
         </div class="clearfix">
 

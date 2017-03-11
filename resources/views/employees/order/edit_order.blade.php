@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Edit Order
 @endsection
-@section('contentheader_title')
-    Edit
-@endsection
-@section('contentheader_description')
-    Order
-@endsection
-@section('contentheader_sub')
-    Order
-@endsection
 
 @push('stylesheets')
     <!-- Animate -->
@@ -36,7 +27,22 @@
         <div class="right_col" role="main">
           <div class="">
             
-            @include('includes.contentheader')
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Edit Order</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('order') }}">Order</a></li>
+                      <li class="active">Edit</li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+            </section>
             
             <div class="clearfix"></div>
 
@@ -45,7 +51,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Wizards <small>Sessions</small></h2>
+                    <h2>Form Edit Order <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Gentellela Alela! | Edit User
+    Gentellela Alela! | Edit Service Status
 @endsection
 
 @push('stylesheets')
@@ -18,22 +18,31 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
+            
+            <section class="page-title">
                 <div class="title_left">
-                    <h3>Edit Location</h3>
+                  <h3>Edit Service Status</h3>
                 </div>
-
                 <div class="title_right">
-                   
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('service_status') }}">Service Status</a></li>
+                      <li class="active">Edit</li>
+                    </ol>  
+                    </section>
+                  </div>
                 </div>
-            </div>
+            </section>
+
         </div class="clearfix">
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Edit Location <small>sub title</small></h2>
+                      <h2>Form Edit Location</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>

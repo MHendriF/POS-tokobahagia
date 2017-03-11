@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Service
 @endsection
-@section('contentheader_title')
-    Service
-@endsection
-@section('contentheader_description')
-    List
-@endsection
-@section('contentheader_sub')
-    Service
-@endsection
 
 @push('stylesheets')
 
@@ -38,7 +29,21 @@
         <div class="right_col" role="main">
           <div class="">
             
-             @include('includes.contentheader')
+             <section class="page-title">
+              <div class="title_left">
+                <h3>Service List</h3>
+              </div>
+              <div class="title_right">
+                <div class="pull-right">
+                  <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">Service</li>
+                  </ol>  
+                  </section>
+                </div>
+              </div>
+            </section>
 
             <div class="clearfix"></div>
 

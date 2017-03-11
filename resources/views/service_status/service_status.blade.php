@@ -28,15 +28,22 @@
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
+            
+            <section class="page-title">
               <div class="title_left">
-                <h3>Service Status <small>List</small></h3>
+                <h3>Service Status List</h3>
               </div>
-
               <div class="title_right">
-              
+                <div class="pull-right">
+                  <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">Service Status</li>
+                  </ol>  
+                  </section>
+                </div>
               </div>
-            </div>
+            </section>
 
             <div class="clearfix"></div>
 

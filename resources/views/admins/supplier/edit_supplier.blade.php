@@ -3,12 +3,6 @@
 @section('title')
     Toko Bahagia | Edit Supplier
 @endsection
-@section('contentheader_title')
-    Edit Supplier
-@endsection
-@section('contentheader_sub')
-    Supplier
-@endsection
 
 @push('stylesheets')
         <!-- Animate -->
@@ -27,7 +21,22 @@
     <div class="right_col" role="main">
         <div class="">
         
-        @include('includes.contentheader')
+        <section class="page-title">
+            <div class="title_left">
+              <h3>Edit Supplier</h3>
+            </div>
+            <div class="title_right">
+              <div class="pull-right">
+                <section class="content-header">
+                  <ol class="breadcrumb">
+                  <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                  <li><a href="{{ url('supplier') }}">Supplier</a></li>
+                  <li class="active">Edit</li>
+                </ol>  
+                </section>
+              </div>
+            </div>
+          </section>
         
         </div class="clearfix">
 

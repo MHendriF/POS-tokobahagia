@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Add Purchase Order
 @endsection
-@section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Purchase Order
-@endsection
-@section('contentheader_sub')
-    Purchase Order
-@endsection
 
 @push('stylesheets')
     <!-- Animate -->
@@ -39,22 +30,24 @@
     <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Form Purchase Order</h3>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+            
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Add Purchase</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('purchase_order') }}">Purchase</a></li>
+                      <li class="active">Add</li>
+                    </ol>  
+                    </section>
                   </div>
                 </div>
-              </div>
-            </div>
+            </section>
+
             <div class="clearfix"></div>
 
             <div class="row">
@@ -64,7 +57,8 @@
                   <div class="x_title">
                     <h2>Form Purchase Order <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                      <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -83,7 +77,7 @@
                                 <div id="step-1">
                                     <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
-                                    <h2>Purchase Order</h2>
+                                    {{-- <h2>Purchase Order</h2> --}}
                                     <div id="form-step-0" role="form" data-toggle="validator">
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Supplier <span class="required">*</span>
@@ -182,7 +176,7 @@
                                 </div>
 
                                 <div id="step-2">
-                                    <h2>Purchase Order Detail</h2>
+                                    {{-- <h2>Purchase Order Detail</h2> --}}
                                     <div id="form-step-1" role="form" data-toggle="validator">
                                         
                                         <div class="form-group">

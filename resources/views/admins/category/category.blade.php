@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Category
 @endsection
-@section('contentheader_title')
-    Category
-@endsection
-@section('contentheader_description')
-    List
-@endsection
-@section('contentheader_sub')
-    Category
-@endsection
 
 @push('stylesheets')
       <!-- Datatables -->
@@ -37,7 +28,21 @@
         <div class="right_col" role="main">
           <div class="">
             
-            @include('includes.contentheader')
+            <section class="page-title">
+              <div class="title_left">
+                <h3>Category List</h3>
+              </div>
+              <div class="title_right">
+                <div class="pull-right">
+                  <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">Category</li>
+                  </ol>  
+                  </section>
+                </div>
+              </div>
+            </section>
 
             <div class="clearfix"></div>
 
@@ -46,7 +51,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Category List sasa <small>
+                    <h2>Category List <small>
                       <a href="{{ url('category/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Category
                       </a>

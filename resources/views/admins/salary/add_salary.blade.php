@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Add Salary User
 @endsection
-@section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Salary User
-@endsection
-@section('contentheader_sub')
-    Salary
-@endsection
 
 @push('stylesheets')
     <!-- Select2 -->
@@ -32,7 +23,22 @@
     <div class="right_col" role="main">
         <div class="">
         
-        @include('includes.contentheader')
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Add Salary</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('salary') }}">Salary</a></li>
+                      <li class="active">Add</li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+            </section>
 
         </div class="clearfix">
 

@@ -1,17 +1,9 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | New Order
+    Toko Bahagia | Add Order
 @endsection
-@section('contentheader_title')
-    New
-@endsection
-@section('contentheader_description')
-    Order
-@endsection
-@section('contentheader_sub')
-    Order
-@endsection
+
 
 @push('stylesheets')
     <!-- Animate -->
@@ -38,7 +30,22 @@
         <div class="right_col" role="main">
           <div class="">
             
-            @include('includes.contentheader')
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Add Order</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('order') }}">Order</a></li>
+                      <li class="active">Add</li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+            </section>
             
             <div class="clearfix"></div>
 

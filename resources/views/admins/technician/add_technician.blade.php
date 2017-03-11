@@ -3,15 +3,6 @@
 @section('title')
     Toko Bahagia | Add Technician
 @endsection
-@section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Technician
-@endsection
-@section('contentheader_sub')
-    Technician
-@endsection
 
 @push('stylesheets')
     <!-- Animate -->
@@ -30,7 +21,22 @@
     <div class="right_col" role="main">
         <div class="">
         
-        @include('includes.contentheader')
+         <section class="page-title">
+            <div class="title_left">
+              <h3>Add Technician</h3>
+            </div>
+            <div class="title_right">
+              <div class="pull-right">
+                <section class="content-header">
+                  <ol class="breadcrumb">
+                  <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                  <li><a href="{{ url('technician') }}">Technician</a></li>
+                  <li class="active">Add</li>
+                </ol>  
+                </section>
+              </div>
+            </div>
+          </section>
         
         </div class="clearfix">
 
@@ -38,7 +44,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Technician <small>sub title</small></h2>
+                      <h2>Form Add Technician</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>

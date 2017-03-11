@@ -3,13 +3,6 @@
 @section('title')
 	Toko Bahagia | Home
 @endsection
-@section('contentheader_title')
-  Home
-@endsection
-@section('contentheader_description')
-  Dasboard
-@endsection
-
 
 @push('stylesheets')
         <!-- Custom Theme Style -->
@@ -23,7 +16,20 @@
     <div class="right_col" role="main">
         <div class="">
       
-             @include('includes.contentheader')
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Home Dasboard</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li class="active"><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+          </section>
 
             <div class="x_content">
                 <div class="row">

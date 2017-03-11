@@ -3,12 +3,6 @@
 @section('title')
     Toko Bahagia | Salary User
 @endsection
-@section('contentheader_title')
-  Salary User
-@endsection
-@section('contentheader_sub')
-  Salary User
-@endsection
 
 @push('stylesheets')
 
@@ -35,7 +29,21 @@
         <div class="right_col" role="main">
           <div class="">
             
-            @include('includes.contentheader')
+             <section class="page-title">
+              <div class="title_left">
+                <h3>Salary List</h3>
+              </div>
+              <div class="title_right">
+                <div class="pull-right">
+                  <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">Salary</li>
+                  </ol>  
+                  </section>
+                </div>
+              </div>
+            </section>
 
             <div class="clearfix"></div>
 

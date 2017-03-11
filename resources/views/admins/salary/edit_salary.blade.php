@@ -1,16 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Add Salary User
-@endsection
-@section('contentheader_title')
-    Add
-@endsection
-@section('contentheader_description')
-    Salary User
-@endsection
-@section('contentheader_sub')
-    User
+    Toko Bahagia | Edit Salary User
 @endsection
 
 @push('stylesheets')
@@ -32,7 +23,22 @@
     <div class="right_col" role="main">
         <div class="">
         
-        @include('includes.contentheader')
+            <section class="page-title">
+                <div class="title_left">
+                  <h3>Edit Salary</h3>
+                </div>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                      <li><a href="{{ url('salary') }}">Salary</a></li>
+                      <li class="active">Edit</li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+            </section>
 
         </div class="clearfix">
 
@@ -56,7 +62,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Employee <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" value="{{$data->user->first_name}}" disabled="disabled" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" value="{{$data->user->first_name}}" readonly="readonly" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
