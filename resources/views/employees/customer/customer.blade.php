@@ -1,17 +1,18 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Product
+    Toko Bahagia | Customer
 @endsection
 
 @push('stylesheets')
+
       <!-- Datatables -->
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
-       <!-- Animate -->
+      <!-- Animate -->
       <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
-      <!-- PNotify -->
+      <!-- Pnotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
@@ -30,14 +31,14 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Product List</h3>
+                <h3>Customer List</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Product</li>
+                    <li class="active">Customer</li>
                   </ol>  
                   </section>
                 </div>
@@ -51,10 +52,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Product List <small>
-                      <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Product
-                      </a></small>
+                    <h2>Customer List <small>
+                      <a href="{{ url('customer/create') }}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>New Customer
+                      </a>
+                      </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -70,39 +72,38 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Category</th>
-                          <th>Location</th>
                           <th>Name</th>
-                          <th>Manufacturer</th>
-                          <th>Lead time</th>
-                          <th>Images</th>
+                          <th>Phone</th>
+                          <th>Fax</th>
+                          <th>Address</th>
+                          <th>Billing Address</th>
+                          {{-- <th>Additional Info</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $product)
+                        @foreach($data as $index => $customer)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $product->pilihcategory->category_name }}</td>
-                          <td>{{ $product->pilihlocation->location }}</td>
-                          <td>{{ $product->product_name }}</td>
-                          <td>{{ $product->manufacturer }}</td>
-                          <td>{{ $product->lead_time }}</td>
-                          <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td>
-                   
+                          <td>{{ $customer->contact_title }} {{ $customer->contact_name }}</td>
+                          <td>{{ $customer->phone }}</td>
+                          <td>{{ $customer->fax }}</td>
+                          <td>{{ $customer->address }}</td>
+                          <td>{{ $customer->billing_address }}</td>
+                          {{-- <td>{{ $customer->additional_info }}</td> --}}
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              <a href="{{ url('customer/'.$customer->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                             </div>
                             <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('customer/'.$customer->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
+                              <form action="{{ url('customer/'.$customer->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
                               </form>
                             </div>
                           </center>
@@ -125,7 +126,6 @@
     <!-- /footer content -->
 
     @push('scripts')
-
     <!-- Datatables -->
     <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>

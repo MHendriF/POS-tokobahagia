@@ -67,7 +67,7 @@
                         
                             <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Technician <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-xs-12">

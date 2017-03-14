@@ -2,12 +2,12 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('home') }}">
                             <i class="fa fa-home"></i> Home
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/salary') }}">
+                        <a href="{{ url('salary') }}">
                             <i class="fa fa-money"></i> Gaji Pegawai
                         </a>
                     </li>
@@ -17,13 +17,13 @@
                         </a>
                     </li> --}}
                     <li>
-                        <a href="{{ url('/expense') }}">
+                        <a href="{{ url('expense') }}">
                             <i class="fa fa-flash"></i> Expense 
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/pengeluaran') }}">
-                            <i class="fa fa-line-chart"></i> Pengeluaran 
+                        <a href="{{ url('income') }}">
+                            <i class="fa fa-line-chart"></i> Income 
                         </a>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Data <span class="fa fa-chevron-down"></span></a>
@@ -62,8 +62,8 @@
                         <a><i class="fa fa-table"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ url('') }}">Gaji Pegawai</a></li>
-                            <li><a href="{{ url('') }}">Pemasukan</a></li>
-                            <li><a href="{{ url('') }}">Pengeluaran</a></li>
+                            <li><a href="{{ url('income') }}">Pemasukan</a></li>
+                            <li><a href="{{ url('outcome') }}">Pengeluaran</a></li>
                             <li><a href="{{ url('') }}">Biaya Expense</a></li>
                         </ul>
                     </li>

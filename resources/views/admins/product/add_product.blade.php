@@ -3,13 +3,6 @@
 @section('title')
     Toko Bahagia | Add Product
 @endsection
-@section('contentheader_title')
-  Add Product
-@endsection
-
-@section('contentheader_sub')
-  Product
-@endsection
 
 @push('stylesheets')
 
@@ -35,12 +28,27 @@
         <div class="right_col" role="main">
           <div class="">
             
-            @include('includes.contentheader')
+            <section class="page-title">
+              <div class="title_left">
+                <h3>Add Product</h3>
+              </div>
+              <div class="title_right">
+                <div class="pull-right">
+                  <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li><a href="{{ url('product') }}">Product</a></li>
+                    <li class="active">Add</li>
+                  </ol>  
+                  </section>
+                </div>
+              </div>
+            </section>
 
             <div class="clearfix"></div>
 
             <div class="row">
-              <form id="demo-form" method="post" action="{{ url('product') }}" enctype="multipart/form-data" id="demo-form2" data-parsley-validate>
+              <form method="post" action="{{ url('product') }}" enctype="multipart/form-data" data-parsley-validate>
                 {!! csrf_field() !!}
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">

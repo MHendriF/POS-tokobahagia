@@ -34,6 +34,11 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::get('/home', 'VisitorsController@index');
 	Route::post('/logout', 'LoginController@logout');
 
+	//Transaksi
+	Route::resource('transaction', 'MainTransactionController');
+	Route::post('transaction/{id}', 'MainTransactionController@update');	
+	Route::get('/findPrice','MainTransactionController@findPrice');
+
 });
 
 Route::group(['middleware' => 'admin'], function() {
@@ -42,8 +47,12 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/transfer_barang', 'AdminController@transfer_barang');
 	//Route::get('/expense', 'AdminController@expense');
 	Route::get('/pengeluaran', 'AdminController@pengeluaran');
-
 	Route::post('findGaji', 'AdminController@FindGaji');	
+
+	//Finance
+	Route::get('income', 'FinanceController@income');
+	Route::get('outcome', 'FinanceController@outcome');
+	Route::post('findIncome', 'FinanceController@findIncome');
 
 	Route::resource('shipping', 'ShippingController');
 	Route::post('shipping/{id}', 'ShippingController@update');
@@ -75,9 +84,11 @@ Route::group(['middleware' => ['employee']], function() {
 	Route::get('/permission', 'EmployeeController@index');
 	Route::get('/transaksi', 'EmployeeController@transaksi');	
 	Route::get('/barang', 'EmployeeController@barang');
-
-	// Route::group(['middleware' => ['foo','bar']], function()
 	
+	//Customer
+	Route::resource('customer', 'CustomerController');
+	Route::post('customer/{id}', 'CustomerController@update');
+
 	//Order
 	Route::resource('order', 'OrderController');
 	Route::post('order/{id}', 'OrderController@update');
@@ -93,11 +104,6 @@ Route::group(['middleware' => ['employee']], function() {
 	//Service Status
 	Route::resource('service_status', 'ServiceStatusController');
 	Route::post('service_status/{id}', 'ServiceStatusController@update');
-
-	//Transaksi
-	Route::resource('transaction', 'MainTransactionController');
-	Route::post('transaction/{id}', 'MainTransactionController@update');	
-	Route::get('/findPrice','MainTransactionController@findPrice');	
 
 	//Purchase Order
 	Route::resource('purchase_order', 'PurchaseOrderController');

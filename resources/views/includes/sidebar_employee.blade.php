@@ -2,17 +2,17 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ url('/home') }}">
+                        <a href="{{ url('home') }}">
                             <i class="fa fa-home"></i>Home
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="{{ url('/barang') }}">
-                            <i class="fa fa-shopping-cart"></i>Inventory
-                        </a>
-                    </li> --}}
                     <li>
-                        <a href="{{ url('/order') }}">
+                        <a href="{{ url('customer') }}">
+                            <i class="fa fa-user"></i>Customer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('order') }}">
                             <i class="fa fa-shopping-cart"></i>Order
                         </a>
                     </li>
@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/transaction') }}">
+                        <a href="{{ url('transaction') }}">
                             <i class="fa fa-credit-card"></i>Transaksi
                         </a>
                     </li>
@@ -30,13 +30,13 @@
                         <a><i class="fa fa-table"></i> Services <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="{{ url('/service') }}">Service</a>
+                                <a href="{{ url('service') }}">Service</a>
                             </li>
                             <li>
-                                <a href="{{ url('/service_item') }}">Service Item</a>
+                                <a href="{{ url('service_item') }}">Service Item</a>
                             </li>
                             <li>
-                                <a href="{{ url('/service_status') }}">Service Status</a>
+                                <a href="{{ url('service_status') }}">Service Status</a>
                             </li>
                         </ul>
                     </li>
