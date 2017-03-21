@@ -32,9 +32,9 @@ class ServiceController extends Controller
     {
         try{
             $this->validate($request, array(
-                'user_id'       => 'required',
-                'technician_id' => 'required',
-                'serv_item_id'  => 'required',
+                'user_id'        => 'required',
+                'technician_id'  => 'required',
+                'serv_item_id'   => 'required',
                 'serv_status_id' => 'required',
                 'cust_name'      => 'required',
                 'cust_addr'      => 'required',
@@ -48,7 +48,8 @@ class ServiceController extends Controller
                 'collect_date'   => 'required',
                 'tech_fee'       => 'required',
                 'serv_fee'       => 'required',
-                'trans_fee'      => 'required'
+                'trans_fee'      => 'required',
+                'discount'       => 'required'
             ));
 
             $service = new Service(array(
@@ -67,7 +68,8 @@ class ServiceController extends Controller
                 'collect_date'   => $request->get('collect_date'),
                 'tech_fee'       => $request->get('tech_fee'),
                 'serv_fee'       => $request->get('serv_fee'),
-                'trans_fee'      => $request->get('trans_fee')
+                'trans_fee'      => $request->get('trans_fee'),
+                'discount'       => $request->get('discount')
             ));
 
 
@@ -98,7 +100,8 @@ class ServiceController extends Controller
 
     public function show($id)
     {
-        //
+        $data = Service::find($id);
+        return view('service.detail_service', compact('data'));
     }
 
     public function edit($id)
@@ -130,7 +133,8 @@ class ServiceController extends Controller
                 'collect_date'   => 'required',
                 'tech_fee'       => 'required',
                 'serv_fee'       => 'required',
-                'trans_fee'      => 'required'
+                'trans_fee'      => 'required',
+                'discount'       => 'required'
             ));
             
             if(Service::find($id)->update($request->all())){

@@ -16,12 +16,12 @@ Route::get('/', function () {
     return view('auth.authenticate');
 })->middleware('checklogin');
 
-Route::resource('tesorder', 'TesController');
-Route::get('tes', 'TesController@tes');
-Route::post('find', 'TesController@Find');
+// Route::resource('tesorder', 'TesController');
+// Route::get('tes', 'TesController@tes');
+// Route::post('find', 'TesController@Find');
 
-Route::get('tes2', 'TesController@tes2');
-Route::get('tes3', 'TesController@tes3');
+// Route::get('tes2', 'TesController@tes2');
+// Route::get('tes3', 'TesController@tes3');
 
 Route::group(['middleware'  => 'visitors'], function() {
 	Route::get('/register', 'RegisterController@register');
@@ -44,6 +44,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::post('service/{id}', 'ServiceController@update');
 	Route::get('service', 'ServiceController@index');
 	Route::get('service/create', 'ServiceController@create');
+	Route::get('service/{id}', 'ServiceController@show');
 	Route::get('service/{id}/edit', 'ServiceController@edit');
 	Route::post('service', 'ServiceController@store');
 
@@ -64,6 +65,18 @@ Route::group(['middleware' => 'authenticate'], function() {
 	//Product
 	Route::resource('product', 'ProductController');
 	Route::post('product/{id}', 'ProductController@update');
+
+	//Customer
+	Route::resource('customer', 'CustomerController');
+	Route::post('customer/{id}', 'CustomerController@update');
+
+	//Order
+	Route::resource('order', 'OrderController');
+	Route::post('order/{id}', 'OrderController@update');
+
+	//Purchase Order
+	Route::resource('purchase_order', 'PurchaseOrderController');
+	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
 
 });
 
@@ -119,12 +132,12 @@ Route::group(['middleware' => ['employee']], function() {
 	// Route::get('/barang', 'EmployeeController@barang');
 	
 	//Customer
-	Route::resource('customer', 'CustomerController');
-	Route::post('customer/{id}', 'CustomerController@update');
+	// Route::resource('customer', 'CustomerController');
+	// Route::post('customer/{id}', 'CustomerController@update');
 
 	//Order
-	Route::resource('order', 'OrderController');
-	Route::post('order/{id}', 'OrderController@update');
+	// Route::resource('order', 'OrderController');
+	// Route::post('order/{id}', 'OrderController@update');
 
 	//Service
 	// Route::resource('service', 'ServiceController');
@@ -138,8 +151,8 @@ Route::group(['middleware' => ['employee']], function() {
 	//Route::resource('service_status', 'ServiceStatusController');
 
 	//Purchase Order
-	Route::resource('purchase_order', 'PurchaseOrderController');
-	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+	// Route::resource('purchase_order', 'PurchaseOrderController');
+	// Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
 
 });
 

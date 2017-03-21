@@ -85,18 +85,6 @@
                                 </div>
                             </div>
 
-                             {{-- <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Service Item <span class="required">*</span>
-                                </label>
-                                <div class="col-md-9 col-xs-12">
-                                  <select name="serv_item_id" class="select2_single form-control" tabindex="-1" required>
-                                      <option></option>
-                                      @foreach($data3 as $code)
-                                          <option value='{{ $code->id}}'> {{ $code->id }}</option>
-                                      @endforeach
-                                </select>
-                                </div>
-                            </div> --}}
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" ">Service Status <span class="required">*</span>
                                 </label>
@@ -111,7 +99,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer name <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-xs-12">
                                   <input type="text" name="cust_name" value="{{$data->cust_name}}" class="form-control col-md-7 col-xs-12" required/>
@@ -119,7 +107,7 @@
                             </div>
                            
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Customer address <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Customer Address <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-xs-12">
                                    <textarea class="form-control" name="cust_addr" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
@@ -127,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer phone <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer Phone <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-xs-12">
                                   <input type="text" name="cust_phone" value="{{$data->cust_phone}}" class="form-control col-md-7 col-xs-12" required/>
@@ -175,17 +163,31 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Warranty <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-xs-12">
-                                  <div class="">
-                                    <label>
-                                      <input type="radio" class="flat" value="Yes" checked name="warranty"> Yes
-                                    </label>
+                                  @if($data->warranty == 'Yes')
+                                    <div class="">
+                                      <label>
+                                        <input type="radio" class="flat" value="Yes" checked name="warranty"> Yes
+                                      </label>
+                                    </div>
+                                    <div class="">
+                                      <label>
+                                        <input type="radio" class="flat" value="No" name="warranty"> No
+                                      </label>
+                                    </div>
                                   </div>
+                                @else
                                   <div class="">
-                                    <label>
-                                      <input type="radio" class="flat" value="No" checked name="warranty"> No
-                                    </label>
+                                      <label>
+                                        <input type="radio" class="flat" value="Yes" name="warranty"> Yes
+                                      </label>
+                                    </div>
+                                    <div class="">
+                                      <label>
+                                        <input type="radio" class="flat" value="No" checked name="warranty"> No
+                                      </label>
+                                    </div>
                                   </div>
-                                </div>
+                                @endif
                             </div>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Technician Fee <span class="required">*</span>
@@ -206,6 +208,13 @@
                                 </label>
                                 <div class="col-md-9 col-xs-12">
                                   <input type="number" name="trans_fee" value="{{$data->trans_fee}}" class="form-control col-md-7 col-xs-12" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-xs-12">
+                                  <input type="number" name="discount" value="{{$data->discount}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 

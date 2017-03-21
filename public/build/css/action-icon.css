@@ -30,13 +30,17 @@
 
 .bttn {
   margin-bottom: 5px;
-  margin-right: 5px;
-  width: 147px;
+  width: 150px;
   display: -webkit-inline-box;
   border-radius: 3px;
   border: 1px solid transparent;
   border-color: #ccc;
   font-size: 15px;
+}
+
+.bttn-lg {
+  padding: 10px 10px 10px 13px;
+  line-height: 1.333;
 }
 
 /**

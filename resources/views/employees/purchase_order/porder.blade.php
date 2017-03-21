@@ -74,13 +74,13 @@
                           <th>No</th>
                           <th>Suppier</th>
                           <th>Shipping method</th>
-                          <th>PO detail</th>
-                          <th>PO no</th>
+                         {{--  <th>PO detail</th>
+                          <th>PO no</th> --}}
                           <th>PO description</th>
                           <th>Order date</th>
                           <th>Order required</th>
-                          <th>Order promised</th>
-                          <th>Ship date</th>
+                          {{-- <th>Order promised</th>
+                          <th>Ship date</th> --}}
                           <th>Freight charge</th>
                           <th>Action</th>
                         </tr>
@@ -92,13 +92,13 @@
                           <td>{{ $index +1 }}</td>
                           <td>{{ $po->pilihsupplier->supplier_name }}</td>
                           <td>{{ $po->pilihshipping->method }}</td>
-                          <td>{{ $po->po_detail_id }}</td>
-                          <td>{{ $po->po_number }}</td>
+                          {{-- <td>{{ $po->po_detail_id }}</td>
+                          <td>{{ $po->po_number }}</td> --}}
                           <td>{{ $po->po_description }}</td>
                           <td>{{ $po->order_date }}</td>
                           <td>{{ $po->order_required }}</td>
-                          <td>{{ $po->order_promised }}</td>
-                          <td>{{ $po->ship_date }}</td>
+                          {{-- <td>{{ $po->order_promised }}</td>
+                          <td>{{ $po->ship_date }}</td> --}}
                           <td>Rp. {{ $po->freight_charge }}</td>
                           <td>
                             <center>

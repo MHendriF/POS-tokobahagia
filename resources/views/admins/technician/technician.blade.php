@@ -83,10 +83,6 @@
                           <td>{{ $technician->technician_name }}</td>
                           <td>
                           <center>
-                            
-                            <div class="btn-group">
-                              <a href="{{ url('technician/'.$technician->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                            </div>
                             <div class="btn-group">
                               <a href="{{ url('technician/'.$technician->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>

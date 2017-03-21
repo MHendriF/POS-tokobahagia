@@ -28,6 +28,7 @@ class CreateServicesTable extends Migration
             $table->integer('tech_fee');
             $table->integer('serv_fee');
             $table->integer('trans_fee');
+            $table->integer('discount');
             $table->timestamps();
         });
 

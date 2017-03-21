@@ -38,5 +38,6 @@ class Service extends Model
 		'tech_fee',
 		'serv_fee',
 		'trans_fee',
+		'discount',
     ];
 }
