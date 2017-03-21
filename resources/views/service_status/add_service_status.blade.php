@@ -5,12 +5,15 @@
 @endsection
 
 @push('stylesheets')
+    <!-- Animate -->
+    <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- PNotify -->
-    <link href="{{ asset("css/pnotify/pnotify.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.buttons.css") }}" rel="stylesheet">
-    <link href="{{ asset("css/pnotify/pnotify.nonblock.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="{{ asset("build/css/custom.min.css") }}" rel="stylesheet"> 
+    <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
+    <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">   
 @endpush
 
 @section('main_container')
@@ -82,21 +85,15 @@
 
     @push('scripts')
 
-    <!-- bootstrap-wysiwyg -->
-    <script src="{{ asset("vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js") }}"></script>
-    <script src="{{ asset("vendors/jquery.hotkeys/jquery.hotkeys.js") }}"></script>
-    <script src="{{ asset("vendors/google-code-prettify/src/prettify.js") }}"></script>
-    <!-- Switchery -->
-    <script src="{{ asset("vendors/switchery/dist/switchery.min.js") }}"></script>
-    <!-- Parsley -->
-    <script src="{{ asset("vendors/parsleyjs/dist/parsley.min2.js") }}"></script>
-
-     <!-- PNotify -->
-    <script src="{{ asset("js/pnotify/pnotify.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.buttons.js") }}"></script>
-    <script src="{{ asset("js/pnotify/pnotify.nonblock.js") }}"></script>
+   <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
+    <!-- PNotify -->
+    <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.buttons.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
+    <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset("build/js/custom.min.js") }}"></script>
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')

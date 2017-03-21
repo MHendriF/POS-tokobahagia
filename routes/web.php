@@ -30,6 +30,7 @@ Route::group(['middleware'  => 'visitors'], function() {
 	Route::post('/login', 'LoginController@postLogin');
 });
 
+
 Route::group(['middleware' => 'authenticate'], function() {
 	Route::get('/home', 'VisitorsController@index');
 	Route::post('/logout', 'LoginController@logout');
@@ -38,6 +39,31 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::resource('transaction', 'MainTransactionController');
 	Route::post('transaction/{id}', 'MainTransactionController@update');	
 	Route::get('/findPrice','MainTransactionController@findPrice');
+
+	//Service
+	Route::post('service/{id}', 'ServiceController@update');
+	Route::get('service', 'ServiceController@index');
+	Route::get('service/create', 'ServiceController@create');
+	Route::get('service/{id}/edit', 'ServiceController@edit');
+	Route::post('service', 'ServiceController@store');
+
+	//Service Status
+	Route::post('service_status/{id}', 'ServiceStatusController@update');
+	Route::get('service_status', 'ServiceStatusController@index');
+	Route::get('service_status/create', 'ServiceStatusController@create');
+	Route::get('service_status/{id}/edit', 'ServiceStatusController@edit');
+	Route::post('service_status', 'ServiceStatusController@store');
+
+	//Service Item
+	Route::post('service_item/{id}', 'ServiceItemController@update');
+	Route::get('service_item', 'ServiceItemController@index');
+	Route::get('service_item/create', 'ServiceItemController@create');
+	Route::get('service_item/{id}/edit', 'ServiceItemController@edit');
+	Route::post('service_item', 'ServiceItemController@store');
+
+	//Product
+	Route::resource('product', 'ProductController');
+	Route::post('product/{id}', 'ProductController@update');
 
 });
 
@@ -76,14 +102,21 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('expense/{id}', 'ExpenseController@update');
 
 	Route::resource('salary', 'SalaryController');
-	Route::post('salary/{id}', 'SalaryController@update');		
+	Route::post('salary/{id}', 'SalaryController@update');
+
+	//service
+	Route::delete('service/{id}', 'ServiceController@destroy');
+	//service status
+	Route::delete('service_status/{id}', 'ServiceStatusController@destroy');
+	//service item
+	Route::delete('service_item/{id}', 'ServiceItemController@destroy');		
 
 });
 
 Route::group(['middleware' => ['employee']], function() {
-	Route::get('/permission', 'EmployeeController@index');
-	Route::get('/transaksi', 'EmployeeController@transaksi');	
-	Route::get('/barang', 'EmployeeController@barang');
+	// Route::get('/permission', 'EmployeeController@index');
+	// Route::get('/transaksi', 'EmployeeController@transaksi');	
+	// Route::get('/barang', 'EmployeeController@barang');
 	
 	//Customer
 	Route::resource('customer', 'CustomerController');
@@ -94,26 +127,19 @@ Route::group(['middleware' => ['employee']], function() {
 	Route::post('order/{id}', 'OrderController@update');
 
 	//Service
-	Route::resource('service', 'ServiceController');
-	Route::post('service/{id}', 'ServiceController@update');
+	// Route::resource('service', 'ServiceController');
+	// Route::post('service/{id}', 'ServiceController@update');
 
 	//Service Item
-	Route::resource('service_item', 'ServiceItemController');
-	Route::post('service_item/{id}', 'ServiceItemController@update');
+	//Route::resource('service_item', 'ServiceItemController');
+	//Route::post('service_item/{id}', 'ServiceItemController@update');
 
 	//Service Status
-	Route::resource('service_status', 'ServiceStatusController');
-	Route::post('service_status/{id}', 'ServiceStatusController@update');
+	//Route::resource('service_status', 'ServiceStatusController');
 
 	//Purchase Order
 	Route::resource('purchase_order', 'PurchaseOrderController');
 	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
-
-	//Product
-	Route::resource('product', 'ProductController');
-	Route::get('productv2', 'ProductController@productv2');
-	Route::post('product/{id}', 'ProductController@update');
-	Route::post ( '/deleteItem', 'ProductController@deleteItem' );
 
 });
 

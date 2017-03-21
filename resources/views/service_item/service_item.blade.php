@@ -84,14 +84,11 @@
                         <tr>
                           <td>{{ $item->serv_item_no }}</td>
                           <td>{{ $item->serv_item }}</td>
-                          <td>{{ $item->act_price }}</td>
+                          <td>Rp {{ $item->act_price }}</td>
                           <td>{{ $item->quantity_in }}</td>
                           <td>{{ $item->quantity_in }}</td>
                           <td>
                           <center>
-                            <div class="btn-group">
-                              <a href="{{ url('service_item/'.$item->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                            </div>
                             <div class="btn-group">
                               <a href="{{ url('service_item/'.$item->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>

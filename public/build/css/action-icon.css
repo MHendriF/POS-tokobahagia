@@ -23,6 +23,21 @@
   content: '>\00a0';
 }
 
+.homewidget {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.bttn {
+  margin-bottom: 5px;
+  margin-right: 5px;
+  width: 147px;
+  display: -webkit-inline-box;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  border-color: #ccc;
+  font-size: 15px;
+}
 
 /**
  * Tooltip Styles

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Sentinel;
+use Session;
 
 class AdminMiddleware
 {
@@ -18,9 +19,10 @@ class AdminMiddleware
     {
         if(Sentinel::check() && Sentinel::getUser()->roles
             ()->first()->slug == 'admin')
-            
             return $next($request);
         else
-            return redirect('/home');
+            Session::flash('error', 'Access not permitted. Your are not authorized to perform this operation!');
+            //return redirect('/home');
+            return redirect()->back();
     }
 }

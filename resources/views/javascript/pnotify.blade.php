@@ -62,7 +62,7 @@
               title: "Error",
               type: "error",
               text: "{{ Session::get('error') }}",
-              delay: "2500",
+              delay: "3000",
               // nonblock: {
               //     nonblock: true,
               //     nonblock_opacity: .2

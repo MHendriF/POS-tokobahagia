@@ -113,7 +113,7 @@
 
     @push('scripts')
 
-     <!-- Parsley -->
+    <!-- Parsley -->
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
