@@ -172,12 +172,12 @@
                                 <div class="col-md-9 col-xs-12">
                                   <div class="">
                                     <label>
-                                      <input type="radio" class="flat" value="Yes" checked name="warranty"> Yes
+                                      <input type="radio" class="flat" value="Yes" name="warranty" required> Yes
                                     </label>
                                   </div>
                                   <div class="">
                                     <label>
-                                      <input type="radio" class="flat" value="No" name="warranty"> No
+                                      <input type="radio" class="flat" value="No" name="warranty" required> No
                                     </label>
                                   </div>
                                 </div>

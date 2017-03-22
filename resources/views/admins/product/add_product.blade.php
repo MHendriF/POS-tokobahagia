@@ -63,7 +63,7 @@
                     <div class="x_content">
 
                         <label for="category_id">Select Category * :</label>
-                        <select id="category_id" name="category_id" class="select2_single form-control" tabindex="-1" required>
+                        <select name="category_id" class="select2_single form-control" tabindex="-1" required>
                           <option></option>
                           @foreach($data as $category)
                               <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
@@ -71,7 +71,7 @@
                         </select>
 
                         <label for="location_id">Select Location * :</label>
-                        <select id="location_id" name="location_id" class="select2_single form-control" tabindex="-1" required>
+                        <select name="location_id" class="select2_single form-control" tabindex="-1" required>
                           <option></option>
                           @foreach($data2 as $location)
                               <option value='{{ $location->id}}'> {{ $location->location }}</option>
@@ -79,31 +79,31 @@
                         </select>
 
                         <label for="product_name">Product Name * :</label>
-                        <input type="text" id="product_name" class="form-control" name="product_name" required />
+                        <input type="text" class="form-control" name="product_name" required />
 
                         <label for="product_desc">Product Description (10 chars min, 100 max) :</label>
                             <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
                               data-parsley-validation-threshold="10" required></textarea>
 
                         <label for="manufacturer">Manufacturer * :</label>
-                        <input type="text" id="manufacturer" class="form-control" name="manufacturer" required />
+                        <input type="text" class="form-control" name="manufacturer" required />
 
                         <label for="item_use">Item Use * :</label>
-                        <input type="text" id="item_use" class="form-control" name="item_use" required />
+                        <input type="text" class="form-control" name="item_use" required />
 
                         <label for="unit_price">Unit Price * :</label>
-                        <input type="number" id="unit_price" class="form-control" name="unit_price" required="required" />
+                        <input type="number" class="form-control" name="unit_price" required="required" />
 
                         <label for="unit_price2">Unit Price 2 * :</label>
-                        <input type="number" id="unit_price2" class="form-control" name="unit_price2" required />
+                        <input type="number" class="form-control" name="unit_price2" required />
 
                         <label for="avg_cost">Average Cost * :</label>
-                        <input type="number" id="avg_cost" class="form-control" name="avg_cost" required/>
+                        <input type="number" class="form-control" name="avg_cost" required/>
 
                         <label>Discontinueted *:</label>
                         <p>
                           Yes:
-                          <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="Yes" checked="" required /> 
+                          <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="Yes" required /> 
                           No:
                           <input type="radio" class="flat" name="discontinueted" id="discontinueted" value="No" />
                         </p>
@@ -115,7 +115,7 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Upload Image <small>Product</small></h2>
+                      <h2>Form Add Product</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="x_content">
                      
-                      <p>Drag files to the box below for upload or click to select files.</p>
+                      <p>Drag files to the box below for upload image product or click to select files.</p>
                       <center>
                         <div class="anyName">
                           <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
@@ -132,22 +132,22 @@
                       </center>
 
                       <label for="reorder_lvl">Reorder Level * :</label>
-                      <input type="number" id="reorder_lvl" class="form-control" name="reorder_lvl" required />
+                      <input type="number" class="form-control" name="reorder_lvl" required />
 
                       <label for="lead_time">Lead Time * :</label>
                       <input type="text" id="single_cal3" placeholder="Date" class="form-control" name="lead_time" required />
 
                       <label for="pri_vendor">Primary Vendor * :</label>
-                      <input type="text" id="pri_vendor" class="form-control" name="pri_vendor" required />
+                      <input type="text" class="form-control" name="pri_vendor" required />
 
                       <label for="sec_vendor">Secondary Vendor * :</label>
-                      <input type="text" id="sec_vendor" class="form-control" name="sec_vendor" required />
+                      <input type="text"  class="form-control" name="sec_vendor" required />
 
                       <label for="unit_of_hand">Unit of Hand * :</label>
-                      <input type="number" id="unit_of_hand" class="form-control" name="unit_of_hand" required />
+                      <input type="number" class="form-control" name="unit_of_hand" required />
 
-                      <label for="unit_of_measure">Manufacturer * :</label>
-                      <input type="text" id="unit_of_measure" class="form-control" name="unit_of_measure" required />
+                      <label for="unit_of_measure">Unit of Measure * :</label>
+                      <input type="text" class="form-control" name="unit_of_measure" required />
 
                       <div class="ln_solid"></div>
                       <center>
