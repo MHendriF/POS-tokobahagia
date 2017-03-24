@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role_User;
 use Sentinel;
 use Session;
+use DB;
 
 class UserController extends Controller
 {
@@ -19,6 +21,16 @@ class UserController extends Controller
     {
         return view('admins.user.add_user');
     }
+
+    public function role_user()
+    {
+       $data = DB::select("SELECT id, first_name, last_name, user_id, role_id
+            FROM users, role_users
+            WHERE id = user_id");
+       //dd($model);
+        return view('admins.user.role_user', compact('data'));
+    }
+
 
     public function store(Request $request)
     {
@@ -103,6 +115,25 @@ class UserController extends Controller
         catch(\Exception $e){
             return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
         } 
+    }
+
+    public function update_role(Request $request, $id)
+    {
+        // try{
+        //     $this->validate($request, array(
+        //         'role_id'    => 'required'
+        //     ));
+
+        //     if(Role_User::find($id)->update($request->all())){
+        //         Session::flash('update', 'User data was successfully updated!');
+        //         return redirect('role_user');
+        //     }
+        // } 
+        // catch(\Exception $e){
+        //     return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        // }
+
+        dd($request->all()); 
     }
 
     public function destroy($id)

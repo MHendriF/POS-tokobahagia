@@ -10,7 +10,11 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img src="{{asset('/img/user.png')}}" {{-- src="{{ Gravatar::src(Auth::user()->email) }}" --}} alt="Avatar of {{ $getuser->first_name }}">
-                        {{ $getuser->first_name }} 
+                        @if(Sentinel::getUser()->roles()->first()->slug == 'admin')
+                            Admin : {{ $getuser->first_name }} 
+                        @else
+                            Employee : {{ $getuser->first_name }} 
+                        @endif
                         <span class=" fa fa-angle-down" style="margin-left: 1px;"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">

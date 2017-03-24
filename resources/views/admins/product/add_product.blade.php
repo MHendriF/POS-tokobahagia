@@ -202,8 +202,8 @@
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({
-            width: '250px',
-            height: '200px',
+            width: '300px',
+            height: '220px',
             backgroundSize: 'cover',
             fontSize: '16px',
             borderRadius: '10px',

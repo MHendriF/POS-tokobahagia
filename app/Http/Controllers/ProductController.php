@@ -73,7 +73,7 @@ class ProductController extends Controller
                 $image = $request->file('images');
                 $fileName = time() . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/images/products/' . $fileName);
-                Image::make($image)->resize(200, 200)->save($location);
+                Image::make($image)->resize(300, 220)->save($location);
 
                 $product->images = $fileName;
                 //$product->save();
@@ -93,7 +93,8 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        //
+        $data = Product::find($id);
+        return view('admins.product.detail_product', compact('data'));
     }
 
     public function edit($id)

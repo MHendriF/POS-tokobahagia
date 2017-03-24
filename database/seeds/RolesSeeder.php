@@ -21,10 +21,5 @@ class RolesSeeder extends Seeder
         	'slug'	=> 'employee',
         	'name' 	=> 'Employee',
         ] );
-
-        Role::create( [
-            'slug'  => 'customer',
-            'name'  => 'Customer',
-        ] );
     }
 }

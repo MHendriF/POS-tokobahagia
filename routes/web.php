@@ -101,7 +101,9 @@ Route::group(['middleware' => 'admin'], function() {
 
 	Route::resource('user', 'UserController');
 	Route::post('user/{id}', 'UserController@update');
-
+	Route::get('role_user', 'UserController@role_user');
+	Route::post('role_user/{id}', 'UserController@role_user');
+	
 	Route::resource('location', 'LocationController');
 	Route::post('location/{id}', 'LocationController@update');
 

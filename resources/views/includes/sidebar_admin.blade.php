@@ -8,14 +8,9 @@
                     </li>
                     <li>
                         <a href="{{ url('salary') }}">
-                            <i class="fa fa-money"></i> Gaji Pegawai
+                            <i class="fa fa-money"></i> Salary
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="{{ url('/transfer_barang') }}">
-                            <i class="fa fa-shopping-cart"></i> Transfer Barang
-                        </a>
-                    </li> --}}
                     <li>
                         <a href="{{ url('expense') }}">
                             <i class="fa fa-flash"></i> Expense 
@@ -61,10 +56,10 @@
                     <li>
                         <a><i class="fa fa-table"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ url('') }}">Gaji Pegawai</a></li>
+                            <li><a href="{{ url('') }}">Salary</a></li>
                             <li><a href="{{ url('income') }}">Pemasukan</a></li>
                             <li><a href="{{ url('outcome') }}">Pengeluaran</a></li>
-                            <li><a href="{{ url('') }}">Biaya Expense</a></li>
+                            <li><a href="{{ url('') }}">Expense</a></li>
                         </ul>
                     </li>
 
