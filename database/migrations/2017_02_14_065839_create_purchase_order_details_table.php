@@ -23,6 +23,15 @@ class CreatePurchaseOrderDetailsTable extends Migration
             $table->integer('line_total');
             $table->integer('discount');
             $table->timestamps();
+
+            //              $table->increments('id');
+            // $table->unsignedInteger('product_id')->nullable();
+            // $table->integer('po_item_number');
+            // $table->integer('quantity');
+            // $table->integer('price_per_unit');
+            // $table->integer('discount');
+            // $table->integer('price_total');
+            // $table->timestamps();
         });
 
         Schema::table('purchase_order_details', function($table) {

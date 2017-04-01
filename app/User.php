@@ -23,6 +23,35 @@ class User extends EloquentUser
     //     return $this->hasOne('App\Salary');
     // }
 
+    // public function roles()
+    // {
+    //     return $this->belongsToMany('App\Role_User', 'role_users', 'user_id', 'role_id');
+    // }
+
+    // public function hasAnyRole($roles)
+    // {
+    //     if (is_array($roles)){
+    //         foreach ($roles as $role) {
+    //             if($this->hasRole($role)){
+    //                 return true;
+    //             }
+    //         }
+    //     } else {
+    //         if ($this->hasRole($roles)) {
+    //             return true;
+    //         }
+    //     }
+    // }
+
+    // public function hasRole($role)
+    // {
+    //     if($this->roles()->where('name', $role)->first()){
+    //         return true;
+    //     }
+    //     else 
+    //         return false;
+    // }
+
     protected $fillable = [
         'username',
         'last_name',

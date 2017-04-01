@@ -202,9 +202,9 @@
                     data:{'id':prod_id},
                     dataType:'json',//return data will be json
                     success:function(data){
-                        console.log("unit_price");
-                        console.log(data.unit_price);
-                        $("#tes_price").val(data.unit_price); //parsing price to view
+                        console.log("unit_price_min");
+                        console.log(data.unit_price_min);
+                        $("#tes_price").val(data.unit_price_min); //parsing price to view
 
                     },
                     error:function(){

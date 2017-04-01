@@ -73,7 +73,7 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Suppier</th>
+                          <th>Supplier</th>
                           <th>Shipping method</th>
                          {{--  <th>PO detail</th>
                           <th>PO no</th> --}}

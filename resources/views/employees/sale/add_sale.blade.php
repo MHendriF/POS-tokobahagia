@@ -32,14 +32,14 @@
             
             <section class="page-title">
                 <div class="title_left">
-                  <h3>Add Order</h3>
+                  <h3>Add Sale</h3>
                 </div>
                 <div class="title_right">
                   <div class="pull-right">
                     <section class="content-header">
                       <ol class="breadcrumb">
                       <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                      <li><a href="{{ url('order') }}">Order</a></li>
+                      <li><a href="{{ url('sale') }}">Sale</a></li>
                       <li class="active">Add</li>
                     </ol>  
                     </section>
@@ -54,7 +54,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Order <small>Barang</small></h2>
+                    <h2>Form Sale <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -63,21 +63,21 @@
                   </div>
                   <div class="x_content">
 
-                     <form action="{{ url('/order') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                     <form action="{{ url('/sale') }}" id="myForm" class="calculate form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
                         <div id="smartwizard">
                             <ul>
-                                <li><a href="#step-1"><small>Order Entry</small></a></li>
-                                <li><a href="#step-2"><small>Order Detail</small></a></li>
+                                <li><a href="#step-1"><small>Sale</small></a></li>
+                                <li><a href="#step-2"><small>Sale Detail</small></a></li>
                             </ul>
                             
                             <div>
                                 <div id="step-1">
-                                    <h2>Order Entry</h2>
+                                    <h2>Sale</h2>
                                     <div id="form-step-0" role="form" data-toggle="validator">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Select Customer <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Customer <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                <select id="customer_id" required="required" name="customer_id" class="select2_single form-control" tabindex="-1">
@@ -90,10 +90,10 @@
                                         <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Shipping Method <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Method <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <select id="shipping_id" required="required" name="shipping_id" class="select2_single form-control" tabindex="-1">
+                                              <select id="shipping_id" required name="shipping_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 @foreach($data2 as $shipping)
                                                     <option value='{{ $shipping->id}}'> {{ $shipping->method }}</option>
@@ -103,121 +103,107 @@
                                         <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order No <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Sale No <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="order_no" name="order_no" required="required" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" name="sale_no" required class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="order_no">Order Date <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                              <input type="text" required="required" name="order_date" class="form-control" id="single_cal3" placeholder="Date">
+                                              <input type="text" required name="shipping_date" class="form-control" id="single_cal3" placeholder="Date">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="po_number">Po No <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">No Po Customer<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="po_number" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" name="no_po_customer" required class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="freight_charge">Freight Charge <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="freight_charge" name="freight_charge" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                             
+                                              <textarea name="description" class="form-control col-md-7 col-xs-12" required></textarea>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sales_tax_rate_po">Sales Tax Rate <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="sales_tax_rate_po" name="sales_tax_rate_po" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
                                     </div>  
                                 </div>
 
                                 <div id="step-2">
-                                    <h2>Order Detail</h2>
+                                    <h2>Sale Detail</h2>
                                     <div id="form-step-1" role="form" data-toggle="validator">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_id">Select Product <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Product <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                               <select id="product_id" required="required" name="product_id" class="select2_single form-control" tabindex="-1">
+                                               <select id="product_id" required name="product_id" class="priceproduct select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 @foreach($data3 as $product)
                                                     <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Reference <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="text" id="tes_price" placeholder="Read only input" class="form-control col-md-7 col-xs-12" readonly>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Per Unit <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" data-cell="A2" name="price_per_unit" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
                                        
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity_in">Quantity In <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="quantity_in" name="quantity_in" required="required" placeholder="Pieces" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A1" name="quantity" required placeholder="Pieces" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" data-cell="A3" name="discount" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Total <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" data-cell="A4" data-formula="(A1*A2)-A3" name="price_total" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity_out">Quantity Out <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="quantity_out" name="quantity_out" required="required" placeholder="Pieces" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="line_total">Line Total <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="line_total" name="line_total" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="discount">Discount <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="discount" name="discount" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="grand_total">Grand Total <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="grand_total" name="grand_total" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price_ref">Price Reference <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" id="price_ref" name="price_ref" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -240,6 +226,8 @@
     <!-- /footer content -->
 
     @push('scripts')
+
+    <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
 
     <!-- Select2 -->
     <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
@@ -267,6 +255,38 @@
     @include('javascript.datepicker')
     @include('javascript.smartwizard')
 
+     <script>
+        $(document).ready(function(){
+
+            $(document).on('change','.priceproduct',function () {
+                var prod_id=$(this).val();
+
+                var a=$(this).parent();
+                console.log(prod_id);
+                var op="";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findPrice')!!}',
+                    data:{'id':prod_id},
+                    dataType:'json',//return data will be json
+                    success:function(data){
+                        console.log("unit_price_min");
+                        console.log(data.unit_price_min);
+                        $("#tes_price").val(data.unit_price_min); //parsing price to view
+
+                    },
+                    error:function(){
+
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    <script>
+        $('.calculate').calx();
+    </script>
 
     @endpush
 @endsection

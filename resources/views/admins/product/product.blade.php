@@ -75,7 +75,6 @@
                           <th>Location</th>
                           <th>Name</th>
                           <th>Manufacturer</th>
-                          <th>Lead time</th>
                           <th>Images</th>
                           <th>Action</th>
                         </tr>
@@ -88,7 +87,6 @@
                           <td>{{ $product->pilihlocation->location }}</td>
                           <td>{{ $product->product_name }}</td>
                           <td>{{ $product->manufacturer }}</td>
-                          <td>{{ $product->lead_time }}</td>
                           <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td>
                    
                           <td>

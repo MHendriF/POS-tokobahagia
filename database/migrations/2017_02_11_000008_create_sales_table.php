@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,28 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
-            $table->unsignedInteger('order_detail_id')->nullable();
-            $table->string('order_no');
-            $table->string('order_date');
-            $table->string('po_number');
-            $table->integer('freight_charge');
-            $table->integer('sales_tax_rate_po');
+            $table->unsignedInteger('sale_detail_id')->nullable();
+            $table->string('sale_no');
+            $table->string('shipping_date');
+            $table->string('no_po_customer');
+            $table->string('description');
             $table->timestamps();
             
         });
 
-        Schema::table('orders', function($table) {
+        Schema::table('sales', function($table) {
             $table->foreign('customer_id')->references('id')->on('customers')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('shipping_id')->references('id')->on('shippings')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');    
-            $table->foreign('order_detail_id')->references('id')
-                    ->on('order_details')
+            $table->foreign('sale_detail_id')->references('id')
+                    ->on('sale_details')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
@@ -49,6 +48,6 @@ class CreateOrdersTable extends Migration
     public function down()
     {
         //Schema::dropForeign('orders_customer_id_foreign');
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('sales');
     }
 }

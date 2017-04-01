@@ -77,7 +77,15 @@
                                 <div id="step-1">
                                     <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
-                                    {{-- <h2>Purchase Order</h2> --}}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Number <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
                                     <div id="form-step-0" role="form" data-toggle="validator">
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Supplier <span class="required">*</span>
@@ -107,15 +115,6 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Number <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Date <span class="required">*</span>
                                             </label>

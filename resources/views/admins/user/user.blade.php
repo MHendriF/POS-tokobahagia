@@ -56,9 +56,10 @@
                       <a href="{{ url('user/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                       </a>
-                      <a href="{{ url('role_user') }}" class="btn btn-primary btn-xs">
+                      {{-- <a href="{{ url('role_user') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Role User
-                      </a></small>
+                      </a> --}}
+                      </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Order
+    Toko Bahagia | Sale
 @endsection
 
 @push('stylesheets')
@@ -32,14 +32,14 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Order List</h3>
+                <h3>Sale List</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Order</li>
+                    <li class="active">Sale</li>
                   </ol>  
                   </section>
                 </div>
@@ -53,61 +53,60 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Order List <small>
-                      <a href="{{ url('order/create') }}" class="btn btn-primary btn-xs">
+                    <h2>Sale List <small>
+                      <a href="{{ url('sale/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                       </a>
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('order') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('sale') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      Tabel Order adalah .....
+                      Tabel Sale adalah .....
                     </p>
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Customer</th>
-                          <th>Shipping method</th>
-                          <th>Order detail</th>
-                          <th>Order no</th>
-                          <th>Order date</th>
-                          <th>Po no</th>
-                          <th>Freight charge</th>
-                          <th>Sales tax</th>
+                          <th>Shipping Method</th>
+                          <th>Sale Detail</th>
+                          <th>Sale No</th>
+                          <th>Shipping Date</th>
+                          <th>Po no Customer</th>
+                          <th>Description</th>
                           <th>Action</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        @foreach($data as $index => $order)
+                        @foreach($data as $index => $sale)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $order->pilihcustomer->contact_name }}</td>
-                          <td>{{ $order->pilihshipping->method }}</td>
-                          <td>{{ $order->order_detail_id }}</td>
-                          <td>{{ $order->order_no }}</td>
-                          <td>{{ $order->order_date }}</td>
-                          <td>{{ $order->po_number }}</td>
-                          <td>Rp. {{ $order->freight_charge }}</td>
-                          <td>Rp. {{ $order->sales_tax_rate_po }}</td>
+                          <td>{{ $sale->pilihcustomer->contact_name }}</td>
+                          <td>{{ $sale->pilihshipping->method }}</td>
+                          <td>{{ $sale->sale_detail_id }}</td>
+                          <td>{{ $sale->sale_no }}</td>
+                          <td>{{ $sale->shipping_date }}</td>
+                          <td>{{ $sale->no_po_customer }}</td>
+                          <td>{{ $sale->description }}</td>
+                          
                           <td>
                             <center>
                               <div class="btn-group">
-                                <a href="{{ url('order/'.$order->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('sale/'.$sale->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                               </div>
                              {{--  <div class="btn-group">
                                 <a href="{{ url('order/'.$order->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                               </div> --}}
                               <div class="btn-group">
-                                <form action="{{ url('order/'.$order->id) }}" method="post">
+                                <form action="{{ url('sale/'.$sale->id) }}" method="post">
                                   {{ csrf_field() }}
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>

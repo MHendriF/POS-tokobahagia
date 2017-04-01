@@ -62,7 +62,7 @@
                     </div>
                     <div class="x_content">
                        
-                        <label for="category_id">Select Category * :</label>
+                        <label>Select Category * :</label>
                         <select required="required" name="category_id" class="select2_single form-control" tabindex="-1">
                           <option></option>
                           @foreach($data2 as $category)
@@ -70,7 +70,7 @@
                           @endforeach
                         </select>
 
-                        <label for="location_id">Select Location * :</label>
+                        <label>Select Location * :</label>
                         <select required="required" name="location_id" class="select2_single form-control" tabindex="-1">
                           <option></option>
                           @foreach($data3 as $location)
@@ -78,43 +78,26 @@
                           @endforeach
                         </select>
 
-                        <label for="product_name">Product Name * :</label>
+                        <label>Product Name * :</label>
                         <input type="text" class="form-control" name="product_name" value="{{$data->product_name}}" required />
 
-                         <label for="product_desc">Product Description (10 chars min, 100 max) :</label>
-                            <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
-                              data-parsley-validation-threshold="10" required>{{$data->product_desc}}</textarea>
+                        <label>Code Factory * :</label>
+                        <input type="text" class="form-control" name="code_factory" value="{{$data->code_factory}}" required />
 
-
-                        <label for="manufacturer">Manufacturer * :</label>
+                        <label>Manufacturer * :</label>
                         <input type="text" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" required />
 
-                        <label for="item_use">Item Use * :</label>
-                        <input type="text" class="form-control" name="item_use" value="{{$data->item_use}}" required />
+                        <label>Item Function * :</label>
+                        <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" required />
 
-                        <label for="unit_price">Unit Price * :</label>
-                        <input type="number" class="form-control" name="unit_price" value="{{$data->unit_price}}" required />
+                        <label>Unit Price Minimum * :</label>
+                        <input type="number" class="form-control" name="unit_price_min" value="{{$data->unit_price_min}}" required />
 
-                        <label for="unit_price2">Unit Price 2 * :</label>
-                        <input type="number" class="form-control" name="unit_price2" value="{{$data->unit_price2}}" required />
+                        <label>Unit Price Maximum * :</label>
+                        <input type="number" class="form-control" name="unit_price_max" value="{{$data->unit_price_max}}" required />
 
-                        <label for="avg_cost">Average Cost * :</label>
-                        <input type="number" class="form-control" name="avg_cost" value="{{$data->avg_cost}}" required />
-
-                        <label>Discontinueted *:</label>
-                        <p>
-                          @if($data->discontinueted == 'Yes')
-                            Yes:
-                            <input type="radio" class="flat" name="discontinueted" checked value="Yes" required /> 
-                            No:
-                            <input type="radio" class="flat" name="discontinueted" value="No" />
-                          @else
-                            Yes:
-                            <input type="radio" class="flat" name="discontinueted" value="Yes" /> 
-                            No:
-                            <input type="radio" class="flat" name="discontinueted" checked value="No" required />
-                          @endif
-                        </p>
+                        <label>Price Buy Average * :</label>
+                        <input type="number" class="form-control" name="price_buy_avg" value="{{$data->price_buy_avg}}" readonly />
 
                     </div>
                   </div>
@@ -135,28 +118,19 @@
                       <center>
                         <div class="anyName">
                           <input type="file" accept="image/gif, image/jpeg, image/png" name="item_images" disabled="disabled" name="images">
-                          {{-- <img src="{{ asset('/products/'.$data->images) }}"> --}}
                           <img src="{{ asset('/images/products/'.$data->images) }}">
                         </div>  
                       </center>
 
-                      <label for="reorder_lvl">Reorder Level * :</label>
-                      <input type="number" class="form-control" name="reorder_lvl" value="{{$data->reorder_lvl}}" required />
+                      <label>Stock * :</label>
+                      <input type="number" class="form-control" name="stock" value="{{$data->stock}}" readonly />
 
-                      <label for="lead_time">Lead Time * :</label>
-                      <input type="text" id="single_cal3" class="form-control" name="lead_time" value="{{$data->lead_time}}" required />
-
-                      <label for="pri_vendor">Primary Vendor * :</label>
-                      <input type="text" class="form-control" name="pri_vendor" value="{{$data->pri_vendor}}" required />
-
-                      <label for="sec_vendor">Secondary Vendor * :</label>
-                      <input type="text" class="form-control" name="sec_vendor" value="{{$data->sec_vendor}}" required />
-
-                      <label for="unit_of_hand">Unit of Hand * :</label>
-                      <input type="number" class="form-control" name="unit_of_hand" value="{{$data->unit_of_hand}}" required />
-
-                      <label for="unit_of_measure">Manufacturer * :</label>
+                      <label>Unit of Measure * :</label>
                       <input type="text" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" required />
+
+                      <label>Product Description (10 chars min, 100 max) :</label>
+                      <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                              data-parsley-validation-threshold="10" required>{{$data->product_desc}}</textarea>
 
                       <div class="ln_solid"></div>
                       <center>

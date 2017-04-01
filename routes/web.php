@@ -70,9 +70,9 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::resource('customer', 'CustomerController');
 	Route::post('customer/{id}', 'CustomerController@update');
 
-	//Order
-	Route::resource('order', 'OrderController');
-	Route::post('order/{id}', 'OrderController@update');
+	//Sale
+	Route::resource('sale', 'SaleController');
+	Route::post('sale/{id}', 'SaleController@update');
 
 	//Purchase Order
 	Route::resource('purchase_order', 'PurchaseOrderController');
@@ -101,8 +101,9 @@ Route::group(['middleware' => 'admin'], function() {
 
 	Route::resource('user', 'UserController');
 	Route::post('user/{id}', 'UserController@update');
+	
 	Route::get('role_user', 'UserController@role_user');
-	Route::post('role_user/{id}', 'UserController@role_user');
+	Route::post('role_user/{id}', 'UserController@update_role');
 	
 	Route::resource('location', 'LocationController');
 	Route::post('location/{id}', 'LocationController@update');

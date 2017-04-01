@@ -106,19 +106,19 @@
                           <center>
                             <div class="btn-group">
                                
-                              <form action="{{ url('user/'.$user->id) }}" method="post">
+                              <form action="{{ url('role_user/'.$user->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_methode" value="PUT">
                                 <button id="delete" type="submit" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Save"><i class="fa fa-pencil"></i></button>
                               </form>
                             </div>
-                            <div class="btn-group">
-                              <form action="{{ url('user/'.$user->id) }}" method="post">
+                            {{-- <div class="btn-group">
+                              <form action="{{ url('role_user/'.$user->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
                               </form>
-                            </div>
+                            </div> --}}
                           </center>
                           </td>
                         </tr>

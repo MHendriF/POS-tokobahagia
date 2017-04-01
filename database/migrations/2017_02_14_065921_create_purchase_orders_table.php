@@ -19,7 +19,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
             $table->unsignedInteger('po_detail_id')->nullable();
-            $table->integer('po_number');
+            $table->string('po_number');
             $table->string('po_description');
             $table->string('order_date');
             $table->string('order_required');
