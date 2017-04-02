@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Purchase Order
+    Toko Bahagia | Purchase
 @endsection
 
 @push('stylesheets')
@@ -31,14 +31,14 @@
            
              <section class="page-title">
               <div class="title_left">
-                <h3>Purchase Order List</h3>
+                <h3>Purchase List</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Purchase Order</li>
+                    <li class="active">Purchase</li>
                   </ol>  
                   </section>
                 </div>
@@ -52,37 +52,33 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                     <h2>Purchase Order List <small>
-                      <a href="{{ url('purchase_order/create') }}" class="btn btn-primary btn-xs">
+                     <h2>Purchase List <small>
+                      <a href="{{ url('purchase/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                       </a>
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('purchase_order') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('purchase') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                     Tabel Purchase Order adalah .....
+                     Tabel Purchase adalah .....
                     </p>
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Supplier</th>
-                          <th>Shipping method</th>
-                         {{--  <th>PO detail</th>
-                          <th>PO no</th> --}}
-                          <th>PO description</th>
-                          <th>Order date</th>
-                          <th>Order required</th>
-                          {{-- <th>Order promised</th>
-                          <th>Ship date</th> --}}
-                          <th>Freight charge</th>
+                          <th>Shipping Method</th>
+                          <th>PO Description</th>
+                          <th>Purchase Date</th>
+                          <th>Promised Date</th>
+                          <th>Freight Charge</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -93,21 +89,17 @@
                           <td>{{ $index +1 }}</td>
                           <td>{{ $po->pilihsupplier->supplier_name }}</td>
                           <td>{{ $po->pilihshipping->method }}</td>
-                          {{-- <td>{{ $po->po_detail_id }}</td>
-                          <td>{{ $po->po_number }}</td> --}}
                           <td>{{ $po->po_description }}</td>
-                          <td>{{ $po->order_date }}</td>
-                          <td>{{ $po->order_required }}</td>
-                          {{-- <td>{{ $po->order_promised }}</td>
-                          <td>{{ $po->ship_date }}</td> --}}
+                          <td>{{ $po->purchase_date }}</td>
+                          <td>{{ $po->promised_date }}</td>
                           <td>Rp. {{ $po->freight_charge }}</td>
                           <td>
                             <center>
                               <div class="btn-group">
-                                <a href="{{ url('purchase_order/'.$po->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('purchase/'.$po->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                               </div>
                               <div class="btn-group">
-                                <form action="{{ url('purchase_order/'.$po->id) }}" method="post">
+                                <form action="{{ url('purchase/'.$po->id) }}" method="post">
                                   {{ csrf_field() }}
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>

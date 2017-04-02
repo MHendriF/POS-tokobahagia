@@ -105,7 +105,7 @@ class MainTransactionController extends Controller
     public function findPrice(Request $request){
 
         //it will get price if its id match with product id
-        $p=Product::select('unit_price_min')->where('id',$request->id)->first();
+        $p=Product::select('unit_price_min','stock')->where('id',$request->id)->first();
         return response()->json($p);
     }
 }

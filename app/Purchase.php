@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase_Order extends Model
+class Purchase extends Model
 {
-    protected $table = 'purchase_orders';
+    protected $table = 'purchases';
 
     // public function pilihuser(){
     // 	return $this->belongsTo('App\User', 'supplier_id');
@@ -21,7 +21,7 @@ class Purchase_Order extends Model
     }
 
     public function podetail(){
-        return $this->hasOne('App\Purchase_Order_Detail');
+        return $this->hasOne('App\Purchase_Detail');
     }
 
     protected $fillable = [
@@ -31,10 +31,10 @@ class Purchase_Order extends Model
 		'po_detail_id',
 		'po_number',
 		'po_description',
-		'order_date',
-		'order_required',
-		'order_promised',
-		'ship_date',
+		'purchase_date',
+		'promised_date',
+		'shipping_date',
 		'freight_charge',
     ];
+
 }

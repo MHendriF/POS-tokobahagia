@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Add Purchase Order
+    Toko Bahagia | Add Purchase
 @endsection
 
 @push('stylesheets')
@@ -40,7 +40,7 @@
                     <section class="content-header">
                       <ol class="breadcrumb">
                       <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                      <li><a href="{{ url('purchase_order') }}">Purchase</a></li>
+                      <li><a href="{{ url('purchase') }}">Purchase</a></li>
                       <li class="active">Add</li>
                     </ol>  
                     </section>
@@ -55,7 +55,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Purchase Order <small>Barang</small></h2>
+                    <h2>Form Purchase <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>                      
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -64,13 +64,13 @@
                   </div>
                   <div class="x_content">
 
-                     <form action="{{ url('/purchase_order') }}" id="myForm" class="form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                     <form action="{{ url('purchase') }}" id="myForm" class="calculate form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
                         <div id="smartwizard">
                             <ul>
-                                <li><a href="#step-1"><small>Purchase Order</small></a></li>
-                                <li><a href="#step-2"><small>Purchase Order Detail</small></a></li>
+                                <li><a href="#step-1"><small>Purchase</small></a></li>
+                                <li><a href="#step-2"><small>Purchase Detail</small></a></li>
                             </ul>
                             
                             <div>
@@ -81,7 +81,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Number <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="po_number" required="required" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" name="po_number" required class="form-control col-md-7 col-xs-12">
                                         </div>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -91,10 +91,10 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Supplier <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                               <select required="required" name="supplier_id" class="select2_single form-control" tabindex="-1">
+                                               <select required name="supplier_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 @foreach($data as $supplier)
-                                                    <option value='{{ $supplier->id}}'> {{ $supplier->supplier_name }}</option>
+                                                    <option value='{{ $supplier->id }}'> {{ $supplier->supplier_name }}</option>
                                                 @endforeach
                                               </select>
                                             </div>
@@ -105,10 +105,10 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Method <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <select required="required" name="shipping_id" class="select2_single form-control" tabindex="-1">
+                                              <select required name="shipping_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 @foreach($data2 as $shipping)
-                                                    <option value='{{ $shipping->id}}'> {{ $shipping->method }}</option>
+                                                    <option value='{{ $shipping->id }}'> {{ $shipping->method }}</option>
                                                 @endforeach
                                               </select>
                                             </div>
@@ -116,37 +116,28 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Date <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                                <input type="text" required="required" name="order_date" class="form-control" id="single_cal1" placeholder="Date">
+                                                <input type="text" required name="purchase_date" class="form-control" id="single_cal1" placeholder="Date">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Required <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Promised Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                                <input type="text" required="required" name="order_required" class="form-control" id="single_cal2" placeholder="Date">
+                                                <input type="text" required name="promised_date" class="form-control" id="single_cal3" placeholder="Date">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Promised <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                                <input type="text" required="required" name="order_promised" class="form-control" id="single_cal3" placeholder="Date">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Ship Date <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                                                <input type="text" required="required" name="ship_date" class="form-control" id="single_cal4" placeholder="Date">
+                                                <input type="text" required name="shipping_date" class="form-control" id="single_cal4" placeholder="Date">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -155,7 +146,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Freight Charge <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="freight_charge" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" name="freight_charge" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -165,7 +156,7 @@
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                               
-                                              <textarea required="required" class="form-control" name="po_description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                              <textarea required class="form-control" name="po_description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
                                                 data-parsley-validation-threshold="10"></textarea>
                                             </div>
                                             <div class="help-block with-errors"></div>
@@ -182,7 +173,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Product <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                               <select id="product_id" required="required" name="product_id" class="select2_single form-control" tabindex="-1">
+                                               <select id="product_id" required name="product_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
                                                 @foreach($data3 as $product)
                                                     <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
@@ -196,43 +187,25 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Item Number <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="po_item_number" required="required"  class="form-control col-md-7 col-xs-12">
+                                              <input type="number" name="po_no" required class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity In <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="quantity_in" required="required" placeholder="Pieces" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A1" name="quantity" required placeholder="Pieces" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity Out <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Per Unit <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="quantity_out" required="required" placeholder="Pieces" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Unit Cost <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="unit_cost" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Line Total <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="line_total" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A2" name="price_per_unit" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -241,11 +214,20 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="discount" required="required" placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A3" name="discount" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                       
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Total <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" data-cell="A4" data-formula="(A1*A2)-A3" name="price_total" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -265,6 +247,9 @@
     <!-- /footer content -->
 
     @push('scripts')
+
+    <!-- Calculator -->
+    <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
 
     <!-- Select2 -->
     <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
@@ -326,6 +311,10 @@
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
       });
+    </script>
+
+    <script>
+        $('.calculate').calx();
     </script>
 
     @endpush

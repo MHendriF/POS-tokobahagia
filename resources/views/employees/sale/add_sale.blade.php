@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Add Order
+    Toko Bahagia | Add Sale
 @endsection
 
 
@@ -161,10 +161,19 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Stock Available <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="text" id="find_stock" placeholder="Read only input" class="form-control col-md-7 col-xs-12" readonly>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Reference <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="text" id="tes_price" placeholder="Read only input" class="form-control col-md-7 col-xs-12" readonly>
+                                              <input type="text" id="find_price" placeholder="Read only input" class="form-control col-md-7 col-xs-12" readonly>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -173,7 +182,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Per Unit <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" data-cell="A2" name="price_per_unit" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A1" name="price_per_unit" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -182,7 +191,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" data-cell="A1" name="quantity" required placeholder="Pieces" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A2" name="quantity" required placeholder="Pieces" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -227,6 +236,7 @@
 
     @push('scripts')
 
+    <!-- Calculator -->
     <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
 
     <!-- Select2 -->
@@ -255,7 +265,7 @@
     @include('javascript.datepicker')
     @include('javascript.smartwizard')
 
-     <script>
+    <script>
         $(document).ready(function(){
 
             $(document).on('change','.priceproduct',function () {
@@ -266,13 +276,16 @@
                 var op="";
                 $.ajax({
                     type:'get',
-                    url:'{!!URL::to('findPrice')!!}',
+                    url:'{!!URL::to('findProduct')!!}',
                     data:{'id':prod_id},
                     dataType:'json',//return data will be json
                     success:function(data){
                         console.log("unit_price_min");
                         console.log(data.unit_price_min);
-                        $("#tes_price").val(data.unit_price_min); //parsing price to view
+                        console.log("stock");
+                        console.log(data.stock);
+                        $("#find_price").val(data.unit_price_min); //parsing price to view
+                        $("#find_stock").val(data.stock);
 
                     },
                     error:function(){

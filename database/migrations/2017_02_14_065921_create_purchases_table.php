@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseOrdersTable extends Migration
+class CreatePurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('supplier_id')->nullable();
@@ -21,15 +21,14 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedInteger('po_detail_id')->nullable();
             $table->string('po_number');
             $table->string('po_description');
-            $table->string('order_date');
-            $table->string('order_required');
-            $table->string('order_promised');
-            $table->string('ship_date');
+            $table->string('purchase_date');
+            $table->string('promised_date');
+            $table->string('shipping_date');
             $table->integer('freight_charge');
             $table->timestamps();
         });
 
-        Schema::table('purchase_orders', function($table) {
+        Schema::table('purchases', function($table) {
              $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
@@ -39,7 +38,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->foreign('shipping_id')->references('id')->on('shippings')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');    
-            $table->foreign('po_detail_id')->references('id')->on('purchase_order_details')
+            $table->foreign('po_detail_id')->references('id')->on('purchase_details')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
@@ -52,6 +51,6 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('purchases');
     }
 }

@@ -39,7 +39,6 @@ class SaleController extends Controller
                 'price_per_unit' => 'required',
                 'discount'       => 'required',
                 'price_total'    => 'required',
-                //'price_ref'      => 'required',
                 
                 //Sale
                 'customer_id'    => 'required',
@@ -50,14 +49,21 @@ class SaleController extends Controller
                 'description'    => 'required'
             ));
 
-            // Add Order Detail Table First
+            //Checking Available Stock to Buy
+            $id_product = $request->get('product_id');
+            $data = Product::find($id_product);
+            $current_stock = $data->stock - $request->get('quantity');
+            if($current_stock < 0){
+                return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
+            }
+
+            //Add Order Detail Table First
             $sale_detail = new Sale_Detail(array(
                 'product_id'     => $request->get('product_id'),
                 'quantity'       => $request->get('quantity'),
                 'price_per_unit' => $request->get('price_per_unit'),
                 'discount'       => $request->get('discount'),
                 'price_total'    => $request->get('price_total')
-                //'price_ref'      => $request->get('price_ref')
             ));
 
             if($sale_detail->save())
@@ -88,7 +94,7 @@ class SaleController extends Controller
             
         }
         catch(\Exception $e){
-            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+            return redirect()->back()->with('error', ' Sorry something went wrong. Please try again.');
         }
             
     }
@@ -123,22 +129,20 @@ class SaleController extends Controller
     {
          try{
             $this->validate($request, array(
-                'product_id'        => 'required',
-                'quantity_in'       => 'required',
-                'quantity_out'      => 'required',
-                'line_total'        => 'required',
-                'discount'          => 'required',
-                'grand_total'       => 'required',
-                'price_ref'         => 'required',
-                ///
-                'customer_id'       => 'required',
-                'shipping_id'       => 'required',
-                'order_detail_id'   => 'required',
-                'order_no'          => 'required',
-                'order_date'        => 'required',
-                'po_number'         => 'required',
-                'freight_charge'    => 'required',
-                'sales_tax_rate_po' => 'required'
+                //Sale Detail
+                'product_id'     => 'required',
+                'quantity'       => 'required',
+                'price_per_unit' => 'required',
+                'discount'       => 'required',
+                'price_total'    => 'required',
+                
+                //Sale
+                'customer_id'    => 'required',
+                'shipping_id'    => 'required',
+                'sale_no'        => 'required',
+                'shipping_date'  => 'required',
+                'no_po_customer' => 'required',
+                'description'    => 'required'
             ));
             
             if(Sale::find($id)->update($request->all())){
@@ -147,7 +151,7 @@ class SaleController extends Controller
             }
         } 
         catch(\Exception $e){
-            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+            return redirect()->back()->with('error', ' Sorry something went wrong. Please try again.');
         } 
 
     }
@@ -160,4 +164,5 @@ class SaleController extends Controller
             return redirect('sale');
         }
     }
+
 }

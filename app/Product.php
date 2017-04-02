@@ -16,8 +16,8 @@ class Product extends Model
         return $this->belongsTo('App\Location', 'location_id');
     }
 
-    public function orderdetail(){
-    	return $this->hasMany('App\Order_Detail');
+    public function saledetail(){
+    	return $this->hasMany('App\Sale_Detail');
     }
 
     public function maintransaction(){

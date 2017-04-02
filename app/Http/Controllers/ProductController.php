@@ -136,4 +136,11 @@ class ProductController extends Controller
         }
     }
 
+    public function findProduct(Request $request){
+
+        //it will get price if its id match with product id
+        $p=Product::select('unit_price_min','stock')->where('id',$request->id)->first();
+        return response()->json($p);
+    }
+
 }

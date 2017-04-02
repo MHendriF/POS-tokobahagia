@@ -65,6 +65,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 	//Product
 	Route::resource('product', 'ProductController');
 	Route::post('product/{id}', 'ProductController@update');
+	Route::get('findProduct','ProductController@findProduct');
 
 	//Customer
 	Route::resource('customer', 'CustomerController');
@@ -75,8 +76,8 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::post('sale/{id}', 'SaleController@update');
 
 	//Purchase Order
-	Route::resource('purchase_order', 'PurchaseOrderController');
-	Route::post('purchase_order/{id}', 'PurchaseOrderController@update');
+	Route::resource('purchase', 'PurchaseController');
+	Route::post('purchase/{id}', 'PurchaseController@update');
 
 });
 

@@ -9,7 +9,7 @@ class ServiceTrigger2 extends Migration
 
     public function up()
     {
-        DB::unprepared('CREATE TRIGGER service_trigger2 AFTER INSERT ON `purchase_orders` FOR EACH ROW
+        DB::unprepared('CREATE TRIGGER service_trigger2 AFTER INSERT ON `purchases` FOR EACH ROW
             BEGIN
                 INSERT INTO service_of_employees (`employee_id`, `created_at`, `updated_at`) 
                 VALUES (NEW.user_id, now(), now());

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase_Order_Detail extends Model
+class Purchase_Detail extends Model
 {
-    protected $table = 'purchase_order_details';
+    protected $table = 'purchase_details';
 
 	public function pilihproduct(){
     	return $this->belongsTo('App\Product', 'product_id');
@@ -14,11 +14,10 @@ class Purchase_Order_Detail extends Model
 
     protected $fillable = [
      	'product_id',
-		'po_item_number',
-		'quantity_in',
-		'quantity_out',
-		'unit_cost',
-		'line_total',
+		'po_no',
+		'quantity',
+		'price_per_unit',
 		'discount',
+		'price_total',
     ];
 }
