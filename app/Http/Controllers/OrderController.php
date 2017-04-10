@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use Sentinel;
 use App\User;
 use App\Customer;
-use App\Sale;
+use App\Order;
+use App\Order_Detail;
 use App\Shipping;
 use App\Product;
-use App\Sale_Detail;
+
 use Session;
 use DB;
 
-class SaleController extends Controller
+class OrderController extends Controller
 {
 	public function index()
     {
-        $data = Sale::all();
-        return view('employees.sale.sale', compact('data'));
+        $data = Order::all();
+        return view('employees.order.order', compact('data'));
     }
 
     public function create()
@@ -26,7 +27,7 @@ class SaleController extends Controller
         $data = Customer::all();
         $data2 = Shipping::all();
         $data3 = Product::all();
-        return view('employees.sale.add_sale', compact('data', 'data2','data3'));
+        return view('employees.order.add_order', compact('data', 'data2','data3'));
     }
 
     public function store(Request $request)
@@ -35,6 +36,7 @@ class SaleController extends Controller
             $this->validate($request, array(
                 //Sale Detail
                 'product_id'     => 'required',
+                'number'       => 'required',
                 'quantity'       => 'required',
                 'price_per_unit' => 'required',
                 'discount'       => 'required',
@@ -43,7 +45,7 @@ class SaleController extends Controller
                 //Sale
                 'customer_id'    => 'required',
                 'shipping_id'    => 'required',
-                'sale_no'        => 'required',
+                'order_no'        => 'required',
                 'shipping_date'  => 'required',
                 'no_po_customer' => 'required',
                 'description'    => 'required'
@@ -58,17 +60,18 @@ class SaleController extends Controller
             }
 
             //Add Order Detail Table First
-            $sale_detail = new Sale_Detail(array(
+            $order_detail = new Order_Detail(array(
                 'product_id'     => $request->get('product_id'),
+                'number'       => $request->get('number'),
                 'quantity'       => $request->get('quantity'),
                 'price_per_unit' => $request->get('price_per_unit'),
                 'discount'       => $request->get('discount'),
                 'price_total'    => $request->get('price_total')
             ));
 
-            if($sale_detail->save())
+            if($order_detail->save())
             {
-                $lastSale = $sale_detail->id;
+                $lastOrder = $order_detail->id;
             }
 
             // Add Order Entry Table
@@ -77,19 +80,19 @@ class SaleController extends Controller
             // $time = strtotime($order);
             // $newformat = date('Y-m-d',$time);
 
-            $sales = new Sale(array(
+            $orders = new Order(array(
                 'customer_id'    => $request->get('customer_id'),
                 'shipping_id'    => $request->get('shipping_id'),
-                'sale_detail_id' => $lastSale,
-                'sale_no'        => $request->get('sale_no'),
+                'order_detail_id' => $lastOrder,
+                'order_no'        => $request->get('order_no'),
                 'shipping_date'  => $request->get('shipping_date'),
                 'no_po_customer' => $request->get('no_po_customer'),
                 'description'    => $request->get('description')
             ));
 
-            if($sales->save()){
-                Session::flash('new', 'New Sale was successfully added!');
-                return redirect('sale');
+            if($orders->save()){
+                Session::flash('new', 'New Order was successfully added!');
+                return redirect('order');
             }
             
         }
@@ -122,7 +125,7 @@ class SaleController extends Controller
         $data = Customer::all();
         $data2 = Shipping::all();
         $data3 = Product::all();
-        return view('employees.sale.edit_sale', compact('data', 'data2','data3'));
+        return view('employees.order.edit_order', compact('data', 'data2','data3'));
     }
 
     public function update(Request $request, $id)
@@ -145,9 +148,9 @@ class SaleController extends Controller
                 'description'    => 'required'
             ));
             
-            if(Sale::find($id)->update($request->all())){
+            if(Order::find($id)->update($request->all())){
                 Session::flash('new', 'Product was successfully updated!');
-                return redirect('sale');
+                return redirect('order');
             }
         } 
         catch(\Exception $e){
@@ -158,11 +161,19 @@ class SaleController extends Controller
 
     public function destroy($id)
     {
-        if(Sale::findOrFail($id)->delete())
+        if(Order::findOrFail($id)->delete())
         {
             Session::flash('delete', 'Order was successfully deleted!');
-            return redirect('sale');
+            return redirect('order');
         }
+    }
+
+    public function detailOrder($id)
+    {
+
+        $data = Order::find($id);
+        $data2 = Order_Detail::find($id);
+        return view('employees.order.detail_order_v2', compact('data','data2'));
     }
 
 }

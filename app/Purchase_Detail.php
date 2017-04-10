@@ -12,9 +12,13 @@ class Purchase_Detail extends Model
     	return $this->belongsTo('App\Product', 'product_id');
     }
 
+    public function purchase(){
+        return $this->belongsTo('App\Purchase');
+    }
+
     protected $fillable = [
      	'product_id',
-		'po_no',
+		'number',
 		'quantity',
 		'price_per_unit',
 		'discount',

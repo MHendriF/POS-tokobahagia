@@ -29,7 +29,7 @@ class Purchase extends Model
 		'supplier_id',
 		'shipping_id',
 		'po_detail_id',
-		'po_number',
+		'purchase_no',
 		'po_description',
 		'purchase_date',
 		'promised_date',

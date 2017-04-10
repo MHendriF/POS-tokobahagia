@@ -78,10 +78,10 @@
                                     <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Number <span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Number <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="po_number" required class="form-control col-md-7 col-xs-12">
+                                            <input type="text" name="purchase_no" required class="form-control col-md-7 col-xs-12">
                                         </div>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -146,13 +146,13 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Freight Charge <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="freight_charge" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A5" name="freight_charge" value="0" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Description <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Description <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                               
@@ -184,10 +184,10 @@
                                         </div>
                                        
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Po Item Number <span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nomor <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="po_no" required class="form-control col-md-7 col-xs-12">
+                                              <input type="number" name="number" required class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -214,7 +214,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" data-cell="A3" name="discount" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A3" value="0" name="discount" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -223,7 +223,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Price Total <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" data-cell="A4" data-formula="(A1*A2)-A3" name="price_total" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A4" data-formula="(A1*A2)-A3+A5" name="price_total" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>

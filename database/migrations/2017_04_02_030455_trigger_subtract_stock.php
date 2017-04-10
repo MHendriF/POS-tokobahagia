@@ -10,7 +10,7 @@ class TriggerSubtractStock extends Migration
     public function up()
     {
         DB::unprepared('CREATE TRIGGER trigger_subtract_stock 
-            AFTER INSERT ON `sale_details` FOR EACH ROW
+            AFTER INSERT ON `order_details` FOR EACH ROW
             BEGIN
                 UPDATE products s
                 SET s.stock = s.stock - new.quantity

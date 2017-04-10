@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
-            $table->unsignedInteger('sale_detail_id')->nullable();
-            $table->string('sale_no');
+            $table->unsignedInteger('order_detail_id')->nullable();
+            $table->string('order_no');
             $table->string('shipping_date');
             $table->string('no_po_customer');
             $table->string('description');
@@ -26,15 +26,15 @@ class CreateSalesTable extends Migration
             
         });
 
-        Schema::table('sales', function($table) {
+        Schema::table('orders', function($table) {
             $table->foreign('customer_id')->references('id')->on('customers')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('shipping_id')->references('id')->on('shippings')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');    
-            $table->foreign('sale_detail_id')->references('id')
-                    ->on('sale_details')
+            $table->foreign('order_detail_id')->references('id')
+                    ->on('order_details')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
@@ -48,6 +48,6 @@ class CreateSalesTable extends Migration
     public function down()
     {
         //Schema::dropForeign('orders_customer_id_foreign');
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('orders');
     }
 }

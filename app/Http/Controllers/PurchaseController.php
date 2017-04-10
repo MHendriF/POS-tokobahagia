@@ -37,7 +37,7 @@ class PurchaseController extends Controller
                 'supplier_id'    => 'required',
                 'shipping_id'    => 'required',
                 //'po_detail_id' => 'required',
-                'po_number'      => 'required',
+                'purchase_no'      => 'required',
                 'po_description' => 'required',
                 'purchase_date'  => 'required',
                 'promised_date'  => 'required',
@@ -46,7 +46,7 @@ class PurchaseController extends Controller
 
 				//Purchase Order Detail
                 'product_id'     => 'required',
-                'po_no'      => 'required',
+                'number'      => 'required',
                 'quantity'       => 'required',
                 'price_per_unit' => 'required',
                 'discount'       => 'required',
@@ -56,7 +56,7 @@ class PurchaseController extends Controller
             // Add Order Detail Table First
 	        $purchase_detail = new Purchase_Detail(array(
                 'product_id'     => $request->get('product_id'),
-                'po_no'      => $request->get('po_number'),
+                'number'      => $request->get('number'),
                 'quantity'       => $request->get('quantity'),
                 'price_per_unit' => $request->get('price_per_unit'),
                 'discount'       => $request->get('discount'),
@@ -74,7 +74,7 @@ class PurchaseController extends Controller
                 'supplier_id'    => $request->get('supplier_id'),
                 'shipping_id'    => $request->get('shipping_id'),
                 'po_detail_id'   => $lastPurchase,
-                'po_number'      => $request->get('po_number'),
+                'purchase_no'      => $request->get('purchase_no'),
                 'po_description' => $request->get('po_description'),
                 'purchase_date'  => $request->get('purchase_date'),
                 'promised_date'  => $request->get('promised_date'),
@@ -101,6 +101,9 @@ class PurchaseController extends Controller
         //     FROM order_details as od, orders as o, products as pro
         //     WHERE o.order_detail_id = '$id' and o.order_detail_id = od.id and pro.id = od.product_id");
         // return view('employees.order.detail_order', ['data' => $model]);
+        $data = Purchase::find($id);
+        $data2 = Purchase_Detail::find($id);
+        return view('employees.purchase.detail_purchase', compact('data','data2'));
     }
 
     public function edit($id)
@@ -151,6 +154,14 @@ class PurchaseController extends Controller
         //     Session::flash('delete', 'Order was successfully deleted!');
         //     return redirect('order');
         // }
+    }
+
+    public function detailPurchase($id)
+    {
+
+        $data = Purchase::find($id);
+        $data2 = Purchase_Detail::find($id);
+        return view('employees.purchase.detail_purchase_v2', compact('data','data2'));
     }
 
 }

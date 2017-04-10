@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Add Sale
+    Toko Bahagia | Add Order
 @endsection
 
 
@@ -32,14 +32,14 @@
             
             <section class="page-title">
                 <div class="title_left">
-                  <h3>Add Sale</h3>
+                  <h3>Add Order</h3>
                 </div>
                 <div class="title_right">
                   <div class="pull-right">
                     <section class="content-header">
                       <ol class="breadcrumb">
                       <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                      <li><a href="{{ url('sale') }}">Sale</a></li>
+                      <li><a href="{{ url('order') }}">Order</a></li>
                       <li class="active">Add</li>
                     </ol>  
                     </section>
@@ -54,7 +54,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Sale <small>Barang</small></h2>
+                    <h2>Form Order <small>Barang</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -63,19 +63,28 @@
                   </div>
                   <div class="x_content">
 
-                     <form action="{{ url('/sale') }}" id="myForm" class="calculate form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+                     <form action="{{ url('/order') }}" id="myForm" class="calculate form-horizontal form-label-left" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
                         {!! csrf_field() !!}
                         <!-- SmartWizard html -->
                         <div id="smartwizard">
                             <ul>
-                                <li><a href="#step-1"><small>Sale</small></a></li>
-                                <li><a href="#step-2"><small>Sale Detail</small></a></li>
+                                <li><a href="#step-1"><small>Order</small></a></li>
+                                <li><a href="#step-2"><small>Order Detail</small></a></li>
                             </ul>
                             
                             <div>
                                 <div id="step-1">
-                                    <h2>Sale</h2>
                                     <div id="form-step-0" role="form" data-toggle="validator">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Number <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="text" name="order_no" required class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Customer <span class="required">*</span>
                                             </label>
@@ -87,8 +96,9 @@
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
+
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Method <span class="required">*</span>
                                             </label>
@@ -100,16 +110,9 @@
                                                 @endforeach
                                               </select>
                                             </div>
-                                        <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Sale No <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" name="sale_no" required class="form-control col-md-7 col-xs-12">
-                                            </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
+                                        
 
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Date <span class="required">*</span>
@@ -144,8 +147,17 @@
                                 </div>
 
                                 <div id="step-2">
-                                    <h2>Sale Detail</h2>
                                     <div id="form-step-1" role="form" data-toggle="validator">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nomor <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="number" name="number" class="form-control col-md-7 col-xs-12" required>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Product <span class="required">*</span>
                                             </label>
@@ -200,7 +212,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Discount <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                              <input type="number" data-cell="A3" name="discount" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
+                                              <input type="number" data-cell="A3" name="discount" value="0" required placeholder="Rp" class="form-control col-md-7 col-xs-12">
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>

@@ -74,8 +74,8 @@
                                     </a>
                                 </div>
                                 <div class="animated homewidget col-md-2">
-                                    <a href="{{ url('sale') }}" class="bttn btn-default bttn-lg">
-                                        <i class="fa fa-inbox" style="margin-right: 6px;"></i>Sale
+                                    <a href="{{ url('order') }}" class="bttn btn-default bttn-lg">
+                                        <i class="fa fa-inbox" style="margin-right: 6px;"></i>Order
                                     </a>
                                 </div>
                                 <div class="animated homewidget col-md-2">

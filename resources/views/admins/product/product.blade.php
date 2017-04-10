@@ -64,9 +64,6 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      Tabel Product adalah .....
-                    </p>
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
@@ -92,10 +89,13 @@
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
                             </div>
                             <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="btn-group">
+                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
                               <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">

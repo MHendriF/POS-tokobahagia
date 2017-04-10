@@ -8,6 +8,7 @@ use App\Category;
 use App\Location;
 use Image;
 use Session;
+use DB;
 
 class ProductController extends Controller
 {
@@ -142,5 +143,22 @@ class ProductController extends Controller
         $p=Product::select('unit_price_min','stock')->where('id',$request->id)->first();
         return response()->json($p);
     }
+
+    public function detailTransaction($id)
+    {
+        
+        $data = DB::select("SELECT s.*, sa.order_no as order_no
+            FROM order_details s, orders sa 
+            WHERE s.product_id LIKE '$id' and s.id = sa.order_detail_id");
+
+        $data2 = DB::select("SELECT p.*, pu.purchase_no as purchase_no
+            FROM purchase_details p, purchases pu 
+            WHERE p.product_id LIKE '$id' and p.id = pu.po_detail_id");
+
+        return view('admins.product.detail_transaction', compact('data','data2'));
+        //dd($data);
+    }
+
+    
 
 }
