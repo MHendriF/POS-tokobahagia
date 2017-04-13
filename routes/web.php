@@ -18,6 +18,11 @@ Route::get('/', function () {
 
 // Route::resource('tesorder', 'TesController');
 // Route::get('tes', 'TesController@tes');
+Route::resource('tes', 'TesController');
+// Route::post('tes', 'TesController@store');
+Route::get('api/getproduct', 'TesController@listProduct');
+
+
 // Route::post('find', 'TesController@Find');
 
 // Route::get('tes2', 'TesController@tes2');
