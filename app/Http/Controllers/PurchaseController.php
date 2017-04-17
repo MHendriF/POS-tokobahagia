@@ -25,56 +25,41 @@ class PurchaseController extends Controller
         $data = Supplier::all();
         $data2 = Shipping::all();
         $data3 = Product::all();
-        return view('employees.purchase.add_purchase', compact('data', 'data2','data3'));
+        return view('employees.purchase.add_purchase_v2', compact('data', 'data2','data3'));
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         try{
             $this->validate($request, array(
                 //Purchase
                 'user_id'        => 'required',
                 'supplier_id'    => 'required',
                 'shipping_id'    => 'required',
-                //'po_detail_id' => 'required',
-                'purchase_no'      => 'required',
+                'purchase_no'    => 'required',
                 'po_description' => 'required',
                 'purchase_date'  => 'required',
                 'promised_date'  => 'required',
                 'shipping_date'  => 'required',
-                'freight_charge' => 'required',
+                'freight_charge' => 'required'
 
-				//Purchase Order Detail
-                'product_id'     => 'required',
-                'number'      => 'required',
-                'quantity'       => 'required',
-                'price_per_unit' => 'required',
-                'discount'       => 'required',
-                'price_total'    => 'required'
-            ));
+				// //Purchase Order Detail
+                // 'product_id'     => 'required',
+                // 'number'      => 'required',
+                // 'quantity'       => 'required',
+                // 'price_per_unit' => 'required',
+                // 'discount'       => 'required',
+                // 'price_total'    => 'required'
+             ));
 
-            // Add Order Detail Table First
-	        $purchase_detail = new Purchase_Detail(array(
-                'product_id'     => $request->get('product_id'),
-                'number'      => $request->get('number'),
-                'quantity'       => $request->get('quantity'),
-                'price_per_unit' => $request->get('price_per_unit'),
-                'discount'       => $request->get('discount'),
-                'price_total'    => $request->get('price_total')
-	        ));
-	        
-	        if($purchase_detail->save())
-	        {
-	            $lastPurchase = $purchase_detail->id;
-	        }
-
+            
 	        // Add Purchase  Table
 	        $purchase = new Purchase(array(
                 'user_id'        => $request->get('user_id'),
                 'supplier_id'    => $request->get('supplier_id'),
                 'shipping_id'    => $request->get('shipping_id'),
-                'po_detail_id'   => $lastPurchase,
-                'purchase_no'      => $request->get('purchase_no'),
+                'purchase_no'    => $request->get('purchase_no'),
                 'po_description' => $request->get('po_description'),
                 'purchase_date'  => $request->get('purchase_date'),
                 'promised_date'  => $request->get('promised_date'),
@@ -82,10 +67,62 @@ class PurchaseController extends Controller
                 'freight_charge' => $request->get('freight_charge')
 	        ));
 
-	       if($purchase->save()){
-	       		Session::flash('new', 'New Purchase was successfully added!');
-		        return redirect()->to('purchase');
-	       }
+            if($purchase->save())
+            {
+                $lastPurchase = $purchase->id;
+                //return "Success";
+            }
+
+            $number = $request->number;
+            $product_id = $request->product_id;
+            $quantity = $request->quantity;
+            $price_per_unit = $request->price_per_unit;
+            $discount = $request->discount;
+            $price_total = $request->price_total;
+
+            for($i=0; $i<count($number); $i++) {
+                $PD = new Purchase_Detail();
+                $PD->number = $number[$i];
+                $PD->product_id = $product_id[$i];
+                $PD->purchase_id = $lastPurchase;
+                $PD->quantity = $quantity[$i];
+                $PD->price_per_unit = $price_per_unit[$i];
+                $PD->discount = $discount[$i];
+                $PD->price_total = $price_total[$i];
+
+                if($number[$i] == null){
+                    //return "Success v2";
+                    Session::flash('new', 'New Purchase V1 was successfully added!');
+                    return redirect()->to('purchase');
+                }
+
+                else
+                {
+                    $PD->save();
+                    
+                }
+            }
+            Session::flash('new', 'New Purchase V2 was successfully added!');
+            return redirect()->to('purchase');
+
+            // return "Success";
+
+        //     // Add Order Detail Table First
+        //     $purchase_detail = new Purchase_Detail(array(
+        //         'product_id'     => $request->get('product_id'),
+        //         'number'      => $request->get('number'),
+        //         'quantity'       => $request->get('quantity'),
+        //         'price_per_unit' => $request->get('price_per_unit'),
+        //         'discount'       => $request->get('discount'),
+        //         'price_total'    => $request->get('price_total')
+        //     ));
+            
+            
+
+	       // if($purchase_detail->save()){
+	       // 		Session::flash('new', 'New Purchase was successfully added!');
+		      //   return redirect()->to('purchase');
+	       // }
 	            
         }
         catch(\Exception $e){

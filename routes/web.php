@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 // Route::resource('tesorder', 'TesController');
 // Route::get('tes', 'TesController@tes');
-Route::resource('tes', 'TesController');
+
 // Route::post('tes', 'TesController@store');
 Route::get('api/getproduct', 'TesController@listProduct');
 
@@ -37,6 +37,10 @@ Route::group(['middleware'  => 'visitors'], function() {
 
 
 Route::group(['middleware' => 'authenticate'], function() {
+
+	Route::resource('tes', 'TesController');
+
+	
 	Route::get('/home', 'VisitorsController@index');
 	Route::post('/logout', 'LoginController@logout');
 

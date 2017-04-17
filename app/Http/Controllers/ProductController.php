@@ -149,11 +149,11 @@ class ProductController extends Controller
         
         $data = DB::select("SELECT s.*, sa.order_no as order_no
             FROM order_details s, orders sa 
-            WHERE s.product_id LIKE '$id' and s.id = sa.order_detail_id");
+            WHERE s.product_id LIKE '$id' and sa.id = s.order_id");
 
         $data2 = DB::select("SELECT p.*, pu.purchase_no as purchase_no
             FROM purchase_details p, purchases pu 
-            WHERE p.product_id LIKE '$id' and p.id = pu.po_detail_id");
+            WHERE p.product_id LIKE '$id' and pu.id = p.purchase_id");
 
         return view('admins.product.detail_transaction', compact('data','data2'));
         //dd($data);

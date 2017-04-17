@@ -27,28 +27,33 @@ class OrderController extends Controller
         $data = Customer::all();
         $data2 = Shipping::all();
         $data3 = Product::all();
-        return view('employees.order.add_order', compact('data', 'data2','data3'));
+        return view('employees.order.add_order_v2', compact('data', 'data2','data3'));
     }
 
     public function store(Request $request)
     {
         try{
+            //dd($request->all());
             $this->validate($request, array(
-                //Sale Detail
-                'product_id'     => 'required',
-                'number'       => 'required',
-                'quantity'       => 'required',
-                'price_per_unit' => 'required',
-                'discount'       => 'required',
-                'price_total'    => 'required',
-                
-                //Sale
+
+                //Order
+                'user_id'        => 'required',
                 'customer_id'    => 'required',
                 'shipping_id'    => 'required',
                 'order_no'        => 'required',
                 'shipping_date'  => 'required',
                 'no_po_customer' => 'required',
                 'description'    => 'required'
+
+                //Order Detail
+                // 'product_id'     => 'required',
+                // 'number'       => 'required',
+                // 'quantity'       => 'required',
+                // 'price_per_unit' => 'required',
+                // 'discount'       => 'required',
+                // 'price_total'    => 'required'
+                
+                
             ));
 
             //Checking Available Stock to Buy
@@ -59,41 +64,68 @@ class OrderController extends Controller
                 return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
             }
 
-            //Add Order Detail Table First
-            $order_detail = new Order_Detail(array(
-                'product_id'     => $request->get('product_id'),
-                'number'       => $request->get('number'),
-                'quantity'       => $request->get('quantity'),
-                'price_per_unit' => $request->get('price_per_unit'),
-                'discount'       => $request->get('discount'),
-                'price_total'    => $request->get('price_total')
-            ));
-
-            if($order_detail->save())
-            {
-                $lastOrder = $order_detail->id;
-            }
-
-            // Add Order Entry Table
-            // Convert format date from MM/DD/YYYY to YYYY-MM-DD
-            // $order = $request->get('order_date');
-            // $time = strtotime($order);
-            // $newformat = date('Y-m-d',$time);
-
             $orders = new Order(array(
+                'user_id'        => $request->get('user_id'),
                 'customer_id'    => $request->get('customer_id'),
                 'shipping_id'    => $request->get('shipping_id'),
-                'order_detail_id' => $lastOrder,
-                'order_no'        => $request->get('order_no'),
+                'order_no'       => $request->get('order_no'),
                 'shipping_date'  => $request->get('shipping_date'),
                 'no_po_customer' => $request->get('no_po_customer'),
                 'description'    => $request->get('description')
             ));
 
-            if($orders->save()){
-                Session::flash('new', 'New Order was successfully added!');
-                return redirect('order');
+            if($orders->save())
+            {
+                $lastOrder = $orders->id;
             }
+
+            $number = $request->number;
+            $product_id = $request->product_id;
+            $quantity = $request->quantity;
+            $price_per_unit = $request->price_per_unit;
+            $discount = $request->discount;
+            $price_total = $request->price_total;
+
+            for($i=0; $i<count($number); $i++) {
+                $PD = new Order_Detail();
+                $PD->number = $number[$i];
+                $PD->order_id = $lastOrder;
+                $PD->product_id = $product_id[$i];
+                $PD->quantity = $quantity[$i];
+                $PD->price_per_unit = $price_per_unit[$i];
+                $PD->discount = $discount[$i];
+                $PD->price_total = $price_total[$i];
+
+                if($number[$i] == null){
+                    //return "Success v2";
+                    Session::flash('new', 'New Order V1 was successfully added!');
+                    return redirect()->to('order');
+                }
+
+                else
+                {
+                    $PD->save();
+                    
+                }
+            }
+            Session::flash('new', 'New Order V2 was successfully added!');
+            return redirect()->to('order');
+
+            //Add Order Detail Table First
+            // $order_detail = new Order_Detail(array(
+            //     'product_id'     => $request->get('product_id'),
+            //     'number'       => $request->get('number'),
+            //     'quantity'       => $request->get('quantity'),
+            //     'price_per_unit' => $request->get('price_per_unit'),
+            //     'discount'       => $request->get('discount'),
+            //     'price_total'    => $request->get('price_total')
+            // ));
+  
+
+            // if($orders->save()){
+            //     Session::flash('new', 'New Order was successfully added!');
+            //     return redirect('order');
+            // }
             
         }
         catch(\Exception $e){

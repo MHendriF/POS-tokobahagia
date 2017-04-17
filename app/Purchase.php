@@ -20,15 +20,10 @@ class Purchase extends Model
         return $this->belongsTo('App\Shipping', 'shipping_id');
     }
 
-    public function podetail(){
-        return $this->hasOne('App\Purchase_Detail');
-    }
-
     protected $fillable = [
         'user_id',
 		'supplier_id',
 		'shipping_id',
-		'po_detail_id',
 		'purchase_no',
 		'po_description',
 		'purchase_date',

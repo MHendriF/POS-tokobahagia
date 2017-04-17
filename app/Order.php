@@ -17,13 +17,13 @@ class Order extends Model
     }
 
     public function orderdetail(){
-        return $this->hasOne('App\Order_Detail');
+        return $this->hasMany('App\Order_Detail');
     }
 
     protected $fillable = [
+        'user_id',
         'customer_id',
         'shipping_id',
-        'order_detail_id',
 		'order_no',
         'shipping_date',
 		'no_po_customer',

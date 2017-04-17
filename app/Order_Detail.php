@@ -12,7 +12,12 @@ class Order_Detail extends Model
         return $this->belongsTo('App\Product', 'product_id');
     }
 
+    public function pilihorder(){
+        return $this->belongsTo('App\Order', 'order_id');
+    }
+
     protected $fillable = [
+        'order_id',
         'product_id',
         'number',
         'quantity',

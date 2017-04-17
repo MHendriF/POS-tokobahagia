@@ -56,12 +56,9 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Select Date : </h2>
-                    <form method="post" action="{{ url('find') }}">
+                    {{-- <form method="post" action="{{ url('find') }}">
                         {!! csrf_field() !!} 
-                        {{-- <div id="reportrange_right" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-left: 13px;">
-                          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                          <span></span> <b class="caret"></b>
-                        </div> --}}
+                        
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker10'>
@@ -74,7 +71,7 @@
                             </div>
                         </div>
                           <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
+                    </form> --}}
 
                     
                     <ul class="nav navbar-right panel_toolbox">
@@ -118,6 +115,38 @@
                         </form>
                     </div> --}}
 
+                      <div class="form-horizontal form-label-left">
+                        <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Code <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="purchase_no" class="form-control col-md-7 col-xs-12" required/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Salary <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select required name="supplier_id" class="select2_single form-control" tabindex="-1">
+                                <option></option>
+                                @foreach($data as $supplier)
+                                    <option value='{{ $supplier->id }}'> {{ $supplier->supplier_name }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Salary <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" name="salary" placeholder="Rp." class="form-control col-md-7 col-xs-12" required/>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                      </div>
+                      
 
                       <div class="form-group">  
                            <form  method="post" action="{{ url('tes') }}" name="add_name" id="add_name" class="calculate">  
@@ -137,26 +166,26 @@
                                         </thead>
                                         <tbody>
                                           <tr>  
-                                            <td><input type="text" name="no[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;"/></td>
+                                            <td><input type="text" name="no[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;" required/></td>
                                             <td>
-                                              <select id="product_id" required name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                              <select id="product_id" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;" required>
                                                 <option></option>
                                                 @foreach($data as $product)
                                                     <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
                                                 @endforeach
                                               </select>
                                             </td>
-                                            <td><input type="number" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" /></td>
-                                            <td><input type="number" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" /></td>
-                                            <td><input type="number" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                            <td><input type="number" name="price_total[]" data-cell="A4" data-formula="(A1*A2)-A3" placeholder="Rp" class="form-control name_list" /></td>
+                                            <td><input type="number" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" required/></td>
+                                            <td><input type="number" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" required/></td>
+                                            <td><input type="number" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" required/></td>
+                                            <td><input type="number" name="price_total[]" data-cell="A4" data-formula="(A1*A2)-A3" placeholder="Rp" class="form-control name_list" required/></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button></td> 
                                           </tr>
 
                                           <tr>  
-                                            <td><input type="text" name="no[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;"/></td>
+                                            <td><input type="text" name="no[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
                                             <td>
-                                              <select id="product_id" required name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                              <select id="product_id" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
                                                 <option></option>
                                                 @foreach($data as $product)
                                                     <option value='{{ $product->id}}'> {{ $product->product_name }}</option>

@@ -16,6 +16,7 @@ class CreatePurchaseDetailsTable extends Migration
         Schema::create('purchase_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('product_id')->nullable();
+            $table->unsignedInteger('purchase_id')->nullable();
             $table->integer('number');
             $table->integer('quantity');
             $table->integer('price_per_unit');
@@ -23,18 +24,13 @@ class CreatePurchaseDetailsTable extends Migration
             $table->integer('price_total');
             $table->timestamps();
 
-            //              $table->increments('id');
-            // $table->unsignedInteger('product_id')->nullable();
-            // $table->integer('po_item_number');
-            // $table->integer('quantity');
-            // $table->integer('price_per_unit');
-            // $table->integer('discount');
-            // $table->integer('price_total');
-            // $table->timestamps();
         });
 
         Schema::table('purchase_details', function($table) {
             $table->foreign('product_id')->references('id')->on('products')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('purchase_id')->references('id')->on('purchases')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });

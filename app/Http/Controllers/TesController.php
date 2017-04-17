@@ -115,7 +115,6 @@ class TesController extends Controller
         $discount = $request->discount;
         $price_total = $request->price_total;
 
-        
         for($i=0; $i<count($no); $i++) {
             $tes = new Test();
             $tes->no = $no[$i];
@@ -124,7 +123,13 @@ class TesController extends Controller
             $tes->price_per_unit = $price_per_unit[$i];
             $tes->discount = $discount[$i];
             $tes->price_total = $price_total[$i];
-            $tes->save();
+
+            if($no[$i] == null){
+                return "Success v2";
+            }
+
+            else 
+                $tes->save();
         }
 
         return "Success";
