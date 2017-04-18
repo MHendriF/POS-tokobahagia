@@ -71,7 +71,7 @@
                   <div class="x_content">
                     
                     <form  method="post" action="{{ url('order') }}" data-parsley-validate name="add_name" id="add_name" class="form-horizontal form-label-left calculate">  
-                    {!! csrf_field() !!}
+                      {!! csrf_field() !!}
 
                       
                         <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
@@ -132,114 +132,129 @@
 
                         <h2>Purchase Details</h2>
                         <div class="ln_solid"></div>
-                     
                       
-                      <div class="form-group">
-                        <div class="table-responsive">  
-                          <table class="table table-bordered" id="dynamic_field">
-                              <thead>  
-                                <tr>
-                                  <th>No</th>
-                                  <th>Product</th>
-                                  <th>Quantity</th>
-                                  <th>Price Per Unit</th>
-                                  <th>Discount</th>
-                                  <th>Price Total</th>
-                                  <th>Stock Available</th>
-                                  <th>Price Reference</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>  
-                                  <td><input type="text" name="number[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;" required/></td>
-                                  <td>
-                                    <select id="priceproduct" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;" required>
-                                      <option></option>
-                                      @foreach($data3 as $product)
-                                          <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                       @endforeach
-                                    </select>
-                                  </td>
-                                  <td><input type="number" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" required/></td>
-                                  <td><input type="number" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" required/></td>
-                                  <td><input type="number" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" required/></td>
-                                  <td><input type="number" name="price_total[]" data-cell="A4" data-formula="(A1*A2)-A3" placeholder="Rp" class="form-control name_list" required/></td>
-                                  <td><input type="number" id="find_stock" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  <td><input type="number" id="find_price" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                </tr>
+                        <div class="form-group">
+                          <div class="table-responsive">  
+                            <table class="table table-bordered" id="dynamic_field">
+                                <thead>  
+                                  <tr>
+                                    <th>No</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price Per Unit</th>
+                                    <th>Discount</th>
+                                    <th>Price Total</th>
+                                    <th>Stock Available</th>
+                                    <th>Price Reference</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>  
+                                    <td><input type="text" name="number[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;" required/></td>
+                                    <td>
+                                      <select id="priceproduct" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;" required>
+                                        <option></option>
+                                        @foreach($data3 as $product)
+                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                         @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" required/></td>
+                                    <td><input type="number" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" required/></td>
+                                    <td><input type="number" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" required/></td>
+                                    <td><input type="number" name="price[]" data-cell="A4" data-formula="(A1*A2)-A3" class="form-control name_list" required/></td>
+                                    <td><input type="number" id="find_stock" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                    <td><input type="number" id="find_price" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                  </tr>
 
-                                <tr>  
-                                  <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                  <td>
-                                    <select id="priceproduct2" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                      <option></option>
-                                      @foreach($data3 as $product)
-                                          <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                      @endforeach
-                                    </select>
-                                  </td>
-                                  <td><input type="number" name="quantity[]" data-cell="B1" placeholder="Piece" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_per_unit[]" data-cell="B2" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="discount[]" data-cell="B3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="B4" data-formula="(B1*B2)-B3" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" id="find_stock2" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  <td><input type="number" id="find_price2" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                </tr>
+                                  <tr>  
+                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
+                                    <td>
+                                      <select id="priceproduct2" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                        <option></option>
+                                        @foreach($data3 as $product)
+                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" data-cell="B1" placeholder="Piece" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price_per_unit[]" data-cell="B2" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="discount[]" data-cell="B3" value="0" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price[]" data-cell="B4" data-formula="(B1*B2)-B3" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" id="find_stock2" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                    <td><input type="number" id="find_price2" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                  </tr>
 
-                                <tr>  
-                                  <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                  <td>
-                                    <select id="priceproduct3" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                      <option></option>
-                                      @foreach($data3 as $product)
-                                          <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                      @endforeach
-                                    </select>
-                                  </td>
-                                  <td><input type="number" name="quantity[]" data-cell="C1" placeholder="Piece" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_per_unit[]" data-cell="C2" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="discount[]" data-cell="C3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="C4" data-formula="(C1*C2)-C3" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" id="find_stock3" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  <td><input type="number" id="find_price3" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                </tr>
+                                  <tr>  
+                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
+                                    <td>
+                                      <select id="priceproduct3" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                        <option></option>
+                                        @foreach($data3 as $product)
+                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" data-cell="C1" placeholder="Piece" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price_per_unit[]" data-cell="C2" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="discount[]" data-cell="C3" value="0" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price[]" data-cell="C4" data-formula="(C1*C2)-C3" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" id="find_stock3" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                    <td><input type="number" id="find_price3" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                  </tr>
 
-                                <tr>  
-                                  <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                  <td>
-                                    <select id="priceproduct4" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                      <option></option>
-                                      @foreach($data3 as $product)
-                                          <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                      @endforeach
-                                    </select>
-                                  </td>
-                                  <td><input type="number" name="quantity[]" data-cell="D1" placeholder="Piece" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_per_unit[]" data-cell="D2" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="discount[]" data-cell="D3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="D4" data-formula="(D1*D2)-D3" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" id="find_stock4" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  <td><input type="number" id="find_price4" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                </tr>
-                              </tbody>  
-                          </table>  
+                                  <tr>  
+                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
+                                    <td>
+                                      <select id="priceproduct4" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                        <option></option>
+                                        @foreach($data3 as $product)
+                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" data-cell="D1" placeholder="Piece" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price_per_unit[]" data-cell="D2" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="discount[]" data-cell="D3" value="0" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price[]" data-cell="D4" data-formula="(D1*D2)-D3" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" id="find_stock4" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                    <td><input type="number" id="find_price4" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                  </tr>
 
-                          <div class="form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Keseluruhan <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" data-cell="E4" data-formula="(A4+B4+C4+D4)" class="form-control col-md-7 col-xs-12" readonly />
-                              </div>
-                            </div>    
-                          </div>  
+                                  <tr>  
+                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
+                                    <td>
+                                      <select id="priceproduct5" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                        <option></option>
+                                        @foreach($data3 as $product)
+                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" data-cell="E1" placeholder="Piece" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price_per_unit[]" data-cell="E2" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="discount[]" data-cell="E3" value="0" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" name="price[]" data-cell="E4" data-formula="(E1*E2)-E3" placeholder="Rp" class="form-control name_list" /></td>
+                                    <td><input type="number" id="find_stock5" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                    <td><input type="number" id="find_price5" placeholder="Read only" class="form-control name_list" readonly /></td>
+                                  </tr>
 
-                          <button id="send" type="submit" class="pull-right btn btn-success">Submit</button> 
-                        </div>  
-                          
-                      </div>
+                                </tbody>  
+                            </table>  
 
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Keseluruhan <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" name="price_total" data-cell="F4" data-formula="(A4)" class="form-control col-md-7 col-xs-12" readonly />
+                                </div>
+                              </div>    
+                            </div>
+                            <button id="send" type="submit" class="pull-right btn btn-success">Submit</button> 
+                          </div>
+                        </div>
                         
-                     </form>  
+                    </form>  
                   </div>
 
                 </div>
@@ -326,6 +341,7 @@
     @include('javascript.findprice2')
     @include('javascript.findprice3')
     @include('javascript.findprice4')
+    @include('javascript.findprice5')
 
     <script>
         $('.calculate').calx();

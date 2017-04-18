@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_no');
             $table->string('shipping_date');
             $table->string('no_po_customer');
+            $table->integer('price_total');
             $table->string('description');
             $table->timestamps();
             

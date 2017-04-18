@@ -139,8 +139,7 @@
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Description <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                             <textarea required class="form-control" name="po_description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                                                data-parsley-validation-threshold="10"></textarea>
+                             <textarea required class="form-control" name="po_description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                           </div>
                         </div>
 
@@ -176,7 +175,7 @@
                                   <td><input type="number" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" required/></td>
                                   <td><input type="number" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" required/></td>
                                   <td><input type="number" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" required/></td>
-                                  <td><input type="number" name="price_total[]" data-cell="A4" data-formula="(A1*A2)-A3" placeholder="Rp" class="form-control name_list" required/></td>
+                                  <td><input type="number" name="price[]" data-cell="A4" data-formula="(A1*A2)-A3" placeholder="Rp" class="form-control name_list" required/></td>
                                   {{-- <td><button type="button" name="add" id="add" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button></td> --}} 
                                 </tr>
 
@@ -193,8 +192,7 @@
                                   <td><input type="number" name="quantity[]" data-cell="B1" placeholder="Piece" class="form-control name_list" /></td>
                                   <td><input type="number" name="price_per_unit[]" data-cell="B2" placeholder="Rp" class="form-control name_list" /></td>
                                   <td><input type="number" name="discount[]" data-cell="B3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="B4" data-formula="(B1*B2)-B3" placeholder="Rp" class="form-control name_list" /></td>
-                                  {{-- <td><button type="button" name="add" id="add" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button></td>  --}}
+                                  <td><input type="number" name="price[]" data-cell="B4" data-formula="(B1*B2)-B3" placeholder="Rp" class="form-control name_list" /></td>
                                 </tr>
 
                                 <tr>  
@@ -210,7 +208,7 @@
                                   <td><input type="number" name="quantity[]" data-cell="C1" placeholder="Piece" class="form-control name_list" /></td>
                                   <td><input type="number" name="price_per_unit[]" data-cell="C2" placeholder="Rp" class="form-control name_list" /></td>
                                   <td><input type="number" name="discount[]" data-cell="C3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="C4" data-formula="(C1*C2)-C3" placeholder="Rp" class="form-control name_list" /></td>
+                                  <td><input type="number" name="price[]" data-cell="C4" data-formula="(C1*C2)-C3" placeholder="Rp" class="form-control name_list" /></td>
                                 </tr>
 
                                 <tr>  
@@ -226,7 +224,23 @@
                                   <td><input type="number" name="quantity[]" data-cell="D1" placeholder="Piece" class="form-control name_list" /></td>
                                   <td><input type="number" name="price_per_unit[]" data-cell="D2" placeholder="Rp" class="form-control name_list" /></td>
                                   <td><input type="number" name="discount[]" data-cell="D3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                  <td><input type="number" name="price_total[]" data-cell="D4" data-formula="(D1*D2)-D3" placeholder="Rp" class="form-control name_list" /></td>
+                                  <td><input type="number" name="price[]" data-cell="D4" data-formula="(D1*D2)-D3" placeholder="Rp" class="form-control name_list" /></td>
+                                </tr>
+
+                                <tr>  
+                                  <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
+                                  <td>
+                                    <select id="product_id" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
+                                      <option></option>
+                                      @foreach($data3 as $product)
+                                          <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
+                                      @endforeach
+                                    </select>
+                                  </td>
+                                  <td><input type="number" name="quantity[]" data-cell="E1" placeholder="Piece" class="form-control name_list" /></td>
+                                  <td><input type="number" name="price_per_unit[]" data-cell="E2" placeholder="Rp" class="form-control name_list" /></td>
+                                  <td><input type="number" name="discount[]" data-cell="E3" value="0" placeholder="Rp" class="form-control name_list" /></td>
+                                  <td><input type="number" name="price[]" data-cell="E4" data-formula="(E1*E2)-E3" placeholder="Rp" class="form-control name_list" /></td>
                                 </tr>
                               </tbody>  
                           </table>  
@@ -235,7 +249,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Freight Charge <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" data-cell="E3" data-formula="A5" class="form-control col-md-7 col-xs-12" readonly />
+                                <input type="text" data-cell="A10" data-formula="A5" class="form-control col-md-7 col-xs-12" readonly />
                               </div>
                             </div>    
                           </div>  
@@ -243,7 +257,7 @@
                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Keseluruhan <span class="required">*</span>
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" data-cell="E4" data-formula="(A4+B4+C4+D4)+E3" class="form-control col-md-7 col-xs-12" readonly />
+                                <input type="text" name="price_total" data-cell="F4" data-formula="(A4+B4+C4+D4+E4)+A10" class="form-control col-md-7 col-xs-12" readonly />
                               </div>
                             </div>    
                           </div>  
@@ -335,7 +349,6 @@
     <script>
         $('.calculate').calx();
     </script>
-
     
     <script>  
        $(document).ready(function(){  

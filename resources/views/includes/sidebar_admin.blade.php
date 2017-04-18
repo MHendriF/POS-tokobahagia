@@ -16,11 +16,11 @@
                             <i class="fa fa-flash"></i> Expense 
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ url('income') }}">
                             <i class="fa fa-line-chart"></i> Income 
                         </a>
-                    </li>
+                    </li> --}}
                     <li><a><i class="fa fa-edit"></i> Data <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ url('user') }}">User account</a></li>

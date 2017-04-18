@@ -57,12 +57,12 @@ class OrderController extends Controller
             ));
 
             //Checking Available Stock to Buy
-            $id_product = $request->get('product_id');
-            $data = Product::find($id_product);
-            $current_stock = $data->stock - $request->get('quantity');
-            if($current_stock < 0){
-                return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
-            }
+            // $id_product = $request->get('product_id');
+            // $data = Product::find($id_product);
+            // $current_stock = $data->stock - $request->get('quantity');
+            // if($current_stock < 0){
+            //     return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
+            // }
 
             $orders = new Order(array(
                 'user_id'        => $request->get('user_id'),
@@ -71,6 +71,7 @@ class OrderController extends Controller
                 'order_no'       => $request->get('order_no'),
                 'shipping_date'  => $request->get('shipping_date'),
                 'no_po_customer' => $request->get('no_po_customer'),
+                'price_total' => $request->get('price_total'),
                 'description'    => $request->get('description')
             ));
 
@@ -84,7 +85,7 @@ class OrderController extends Controller
             $quantity = $request->quantity;
             $price_per_unit = $request->price_per_unit;
             $discount = $request->discount;
-            $price_total = $request->price_total;
+            $price = $request->price;
 
             for($i=0; $i<count($number); $i++) {
                 $PD = new Order_Detail();
@@ -94,12 +95,22 @@ class OrderController extends Controller
                 $PD->quantity = $quantity[$i];
                 $PD->price_per_unit = $price_per_unit[$i];
                 $PD->discount = $discount[$i];
-                $PD->price_total = $price_total[$i];
-
+                $PD->price = $price[$i];
+                
+                
                 if($number[$i] == null){
                     //return "Success v2";
                     Session::flash('new', 'New Order V1 was successfully added!');
                     return redirect()->to('order');
+                }
+
+                elseif ($number[$i] != null && $product_id[$i] != null) {
+                    //Checking Available Stock to Buy
+                    $data = Product::find($product_id[$i]);
+                    $current_stock = $data->stock -  $quantity[$i];
+                    if($current_stock < 0){
+                        return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
+                    }
                 }
 
                 else
@@ -110,22 +121,6 @@ class OrderController extends Controller
             }
             Session::flash('new', 'New Order V2 was successfully added!');
             return redirect()->to('order');
-
-            //Add Order Detail Table First
-            // $order_detail = new Order_Detail(array(
-            //     'product_id'     => $request->get('product_id'),
-            //     'number'       => $request->get('number'),
-            //     'quantity'       => $request->get('quantity'),
-            //     'price_per_unit' => $request->get('price_per_unit'),
-            //     'discount'       => $request->get('discount'),
-            //     'price_total'    => $request->get('price_total')
-            // ));
-  
-
-            // if($orders->save()){
-            //     Session::flash('new', 'New Order was successfully added!');
-            //     return redirect('order');
-            // }
             
         }
         catch(\Exception $e){
@@ -136,20 +131,9 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        //$data = Product::all();
-       // $data = Order_Detail::find($id);
-        //$data = Order_Detail::all();
-        //return view('employees.order.detail_order', compact('data'));
-       // return view('employees.order.detail_order', ['data' => $data]);
-
-        //select * from user where id = $id
-        //$model = User::find($id);
-        //return view('manage_edit_account')->with('data', $model);
-
-        // $model = DB::select("SELECT pro.product_name as pid, od.quantity_in as qin, od.quantity_out as qout, od.line_total as total, od.discount as dist, od.grand_total as grand, od.price_ref as price
-        //     FROM order_details as od, orders as o, products as pro
-        //     WHERE o.order_detail_id = '$id' and o.order_detail_id = od.id and pro.id = od.product_id");
-        // return view('employees.sale.detail_sale', ['data' => $model]);
+        $data = Order::find($id);
+        $data2 = Order_Detail::all()->where('order_id',$id);
+        return view('employees.order.detail_order', compact('data','data2'));
     }
 
     public function edit($id)
@@ -204,7 +188,7 @@ class OrderController extends Controller
     {
 
         $data = Order::find($id);
-        $data2 = Order_Detail::find($id);
+        $data2 = Order_Detail::all()->where('order_id',$id);
         return view('employees.order.detail_order_v2', compact('data','data2'));
     }
 

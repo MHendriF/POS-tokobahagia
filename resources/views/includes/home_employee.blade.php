@@ -3,11 +3,11 @@
                                         <i class="fa fa-home" style="margin-right: 5px;"></i>Home
                                     </a>
                                 </div>
-                                 <div class="animated homewidget col-md-2">
+                                {{-- <div class="animated homewidget col-md-2">
                                     <a href="{{ url('transaction') }}" class="bttn btn-default bttn-lg">
                                         <i class="fa fa-credit-card" style="margin-right: 5px;"></i>Transaction
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="animated homewidget col-md-2">
                                     <a href="{{ url('service') }}" class="bttn btn-default bttn-lg">
                                         <i class="fa fa-wrench" style="margin-right: 5px;"></i>Service
@@ -24,13 +24,13 @@
                                     </a>
                                 </div>
                                 <div class="animated homewidget col-md-2">
-                                    <a href="{{ url('order') }}" class="bttn btn-default bttn-lg">
-                                        <i class="fa fa-shopping-cart" style="margin-right: 5px;"></i>Order
+                                    <a href="{{ url('purchase') }}" class="bttn btn-default bttn-lg">
+                                        <i class="fa fa-credit-card" style="margin-right: 5px;"></i>Purchase
                                     </a>
                                 </div>
                                 <div class="animated homewidget col-md-2">
-                                    <a href="{{ url('purchase_order') }}" class="bttn btn-default bttn-lg">
-                                        <i class="fa fa-shopping-cart" style="margin-right: 5px;"></i>Purchase Order
+                                    <a href="{{ url('order') }}" class="bttn btn-default bttn-lg">
+                                        <i class="fa fa-shopping-cart" style="margin-right: 5px;"></i>Order
                                     </a>
                                 </div>
                                 <div class="animated homewidget col-md-2">

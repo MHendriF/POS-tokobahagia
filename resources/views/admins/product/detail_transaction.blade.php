@@ -56,7 +56,7 @@
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li>
+                      {{-- <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li> --}}
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -82,11 +82,11 @@
                           <td>{{ $detail->quantity }}</td>
                           <td>Rp. {{ $detail->price_per_unit }}</td>
                           <td>Rp. {{ $detail->discount }}</td>
-                          <td>Rp. {{ $detail->price_total }}</td>
+                          <td>Rp. {{ $detail->price }}</td>
                           <td>
                             <center>
                               <div class="btn-group">
-                                <a href="{{ url('detailOrder/'.$detail->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View Detail"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('detailOrder/'.$detail->order_id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View Detail"><i class="fa fa-eye"></i></a>
                               </div>                          
                             </center>
                           </td>       
@@ -110,7 +110,7 @@
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li>
+                      {{-- <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li> --}}
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -124,7 +124,7 @@
                           <th>Quantity</th>
                           <th>Price Per Unit</th>
                           <th>Discount</th>
-                          <th>Price Total</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -136,11 +136,11 @@
                           <td>{{ $detail->quantity }}</td>
                           <td>Rp. {{ $detail->price_per_unit }}</td>
                           <td>Rp. {{ $detail->discount }}</td>
-                          <td>Rp. {{ $detail->price_total }}</td>
+                          <td>Rp. {{ $detail->price }}</td>
                           <td>
                             <center>
                               <div class="btn-group">
-                                <a href="{{ url('detailPurchase/'.$detail->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View Detail"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('detailPurchase/'.$detail->purchase_id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View Detail"><i class="fa fa-eye"></i></a>
                               </div>                          
                             </center>
                           </td>                

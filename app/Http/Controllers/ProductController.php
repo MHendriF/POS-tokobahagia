@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Location;
+use App\Purchase_Detail;
 use Image;
 use Session;
 use DB;
@@ -156,7 +157,9 @@ class ProductController extends Controller
             WHERE p.product_id LIKE '$id' and pu.id = p.purchase_id");
 
         return view('admins.product.detail_transaction', compact('data','data2'));
-        //dd($data);
+
+        // $data = Purchase_Detail::all()->where('purchase_id',$id);
+        // dd($data);
     }
 
     

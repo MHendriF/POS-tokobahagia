@@ -23,6 +23,6 @@ class Purchase_Detail extends Model
 		'quantity',
 		'price_per_unit',
 		'discount',
-		'price_total',
+		'price',
     ];
 }

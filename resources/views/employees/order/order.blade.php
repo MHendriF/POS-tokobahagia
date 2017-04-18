@@ -71,12 +71,11 @@
                       <thead>
                         <tr>
                           <th>No</th>
+                          <th>Order Code</th>
                           <th>Customer</th>
                           <th>Shipping Method</th>
-                          <th>Order Detail</th>
-                          <th>Order No</th>
                           <th>Shipping Date</th>
-                          <th>Po no Customer</th>
+                          <th>Price Total</th>
                           <th>Description</th>
                           <th>Action</th>
                         </tr>
@@ -86,12 +85,11 @@
                         @foreach($data as $index => $order)
                         <tr>
                           <td>{{ $index +1 }}</td>
+                          <td>{{ $order->order_no }}</td>
                           <td>{{ $order->pilihcustomer->contact_name }}</td>
                           <td>{{ $order->pilihshipping->method }}</td>
-                          <td>{{ $order->order_detail_id }}</td>
-                          <td>{{ $order->order_no }}</td>
                           <td>{{ $order->shipping_date }}</td>
-                          <td>{{ $order->no_po_customer }}</td>
+                          <td>{{ $order->price_total }}</td>
                           <td>{{ $order->description }}</td>
                           
                           <td>

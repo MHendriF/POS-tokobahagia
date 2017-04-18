@@ -24,6 +24,7 @@ class CreatePurchasesTable extends Migration
             $table->string('promised_date');
             $table->string('shipping_date');
             $table->integer('freight_charge');
+            $table->integer('price_total');
             $table->timestamps();
         });
 

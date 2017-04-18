@@ -8,9 +8,9 @@ class Purchase extends Model
 {
     protected $table = 'purchases';
 
-    // public function pilihuser(){
-    // 	return $this->belongsTo('App\User', 'supplier_id');
-    // }
+    public function pilihuser(){
+    	return $this->belongsTo('App\User', 'user_id');
+    }
 
 	public function pilihsupplier(){
     	return $this->belongsTo('App\Supplier', 'supplier_id');
@@ -30,6 +30,7 @@ class Purchase extends Model
 		'promised_date',
 		'shipping_date',
 		'freight_charge',
+        'price_total',
     ];
 
 }

@@ -23,7 +23,7 @@ class Order_Detail extends Model
         'quantity',
 		'price_per_unit',
         'discount',
-		'price_total',
-		'price_ref',
+		'price',
+        'price_ref',
     ];
 }

@@ -8,6 +8,10 @@ class Order extends Model
 {
    	protected $table = 'orders';
 
+    public function pilihuser(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    
     public function pilihcustomer(){
     	return $this->belongsTo('App\Customer', 'customer_id');
     }
@@ -27,6 +31,7 @@ class Order extends Model
 		'order_no',
         'shipping_date',
 		'no_po_customer',
+        'price_total',
 		'description',
     ];
 

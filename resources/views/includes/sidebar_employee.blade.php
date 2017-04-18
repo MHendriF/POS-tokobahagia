@@ -12,20 +12,20 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('purchase') }}">
+                            <i class="fa fa-credit-card"></i>Purchase
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('order') }}">
                             <i class="fa fa-shopping-cart"></i>Order
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ url('purchase_order') }}">
-                            <i class="fa fa-table"></i>Purchase Order
-                        </a>
-                    </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ url('transaction') }}">
                             <i class="fa fa-credit-card"></i>Transaksi
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a><i class="fa fa-table"></i> Services <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

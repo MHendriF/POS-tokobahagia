@@ -21,7 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('quantity');
             $table->integer('price_per_unit');
             $table->integer('discount');
-            $table->integer('price_total');
+            $table->integer('price');
             $table->timestamps();
         });
 

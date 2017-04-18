@@ -11,6 +11,7 @@ use App\Purchase_Detail;
 use App\Shipping;
 use App\Product;
 use Session;
+use DB;
 
 class PurchaseController extends Controller
 {
@@ -64,7 +65,8 @@ class PurchaseController extends Controller
                 'purchase_date'  => $request->get('purchase_date'),
                 'promised_date'  => $request->get('promised_date'),
                 'shipping_date'  => $request->get('shipping_date'),
-                'freight_charge' => $request->get('freight_charge')
+                'freight_charge' => $request->get('freight_charge'),
+                'price_total' => $request->get('price_total')
 	        ));
 
             if($purchase->save())
@@ -78,7 +80,7 @@ class PurchaseController extends Controller
             $quantity = $request->quantity;
             $price_per_unit = $request->price_per_unit;
             $discount = $request->discount;
-            $price_total = $request->price_total;
+            $price = $request->price;
 
             for($i=0; $i<count($number); $i++) {
                 $PD = new Purchase_Detail();
@@ -88,7 +90,7 @@ class PurchaseController extends Controller
                 $PD->quantity = $quantity[$i];
                 $PD->price_per_unit = $price_per_unit[$i];
                 $PD->discount = $discount[$i];
-                $PD->price_total = $price_total[$i];
+                $PD->price = $price[$i];
 
                 if($number[$i] == null){
                     //return "Success v2";
@@ -106,24 +108,6 @@ class PurchaseController extends Controller
             return redirect()->to('purchase');
 
             // return "Success";
-
-        //     // Add Order Detail Table First
-        //     $purchase_detail = new Purchase_Detail(array(
-        //         'product_id'     => $request->get('product_id'),
-        //         'number'      => $request->get('number'),
-        //         'quantity'       => $request->get('quantity'),
-        //         'price_per_unit' => $request->get('price_per_unit'),
-        //         'discount'       => $request->get('discount'),
-        //         'price_total'    => $request->get('price_total')
-        //     ));
-            
-            
-
-	       // if($purchase_detail->save()){
-	       // 		Session::flash('new', 'New Purchase was successfully added!');
-		      //   return redirect()->to('purchase');
-	       // }
-	            
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
@@ -134,12 +118,9 @@ class PurchaseController extends Controller
     public function show($id)
     {
 
-        // $model = DB::select("SELECT pro.product_name as pid, od.quantity_in as qin, od.quantity_out as qout, od.line_total as total, od.discount as dist, od.grand_total as grand, od.price_ref as price
-        //     FROM order_details as od, orders as o, products as pro
-        //     WHERE o.order_detail_id = '$id' and o.order_detail_id = od.id and pro.id = od.product_id");
-        // return view('employees.order.detail_order', ['data' => $model]);
         $data = Purchase::find($id);
-        $data2 = Purchase_Detail::find($id);
+        $data2 = Purchase_Detail::all()->where('purchase_id',$id);
+        //dd($data3);
         return view('employees.purchase.detail_purchase', compact('data','data2'));
     }
 
@@ -179,7 +160,7 @@ class PurchaseController extends Controller
         //     }
         // } 
         // catch(\Exception $e){
-        //     return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        //     return redirect()->back()->with('error', ' Sorry something went wrong. Please try again.');
         // } 
 
     }
@@ -197,7 +178,7 @@ class PurchaseController extends Controller
     {
 
         $data = Purchase::find($id);
-        $data2 = Purchase_Detail::find($id);
+        $data2 = Purchase_Detail::all()->where('purchase_id',$id);
         return view('employees.purchase.detail_purchase_v2', compact('data','data2'));
     }
 

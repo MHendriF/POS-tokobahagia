@@ -76,6 +76,7 @@
                           <th>Purchase Date</th>
                           <th>Promised Date</th>
                           <th>Freight Charge</th>
+                          <th>Price Total</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -90,6 +91,7 @@
                           <td>{{ $po->purchase_date }}</td>
                           <td>{{ $po->promised_date }}</td>
                           <td>Rp. {{ $po->freight_charge }}</td>
+                          <td>Rp. {{ $po->price_total }}</td>
                           <td>
                             <center>
                               <div class="btn-group">
