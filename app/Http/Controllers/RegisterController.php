@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Sentinel;
 use App\User;
-
+use Input;
 
 class RegisterController extends Controller
 {
@@ -16,7 +16,9 @@ class RegisterController extends Controller
 
     public function postRegister(Request $request)
 	{
-		$this->validate($request, [
+		try
+		{
+			$this->validate($request, [
 			'username'            	=> 'required',
 			'first_name'            => 'required',
 			'last_name'             => 'required',
@@ -27,12 +29,28 @@ class RegisterController extends Controller
 			'password_confirmation' => 'required|min:5|max:10'
     		]);
 
-		$user = Sentinel::registerAndActivate($request->all());
+			// user found
+			if (User::where('username', '=', Input::get('username'))->exists()) {
+		   		return redirect()->back()->with('error', 'Username sudah terdaftar, silahkan menggunakan username yang lain.');
+			}
 
-		$role = Sentinel::findRoleBySlug('employee');
+	    	else
+	    	{
+	    		$user = Sentinel::registerAndActivate($request->all());
+	    		
+	    		$role = Sentinel::findRoleBySlug('employee');
+			
+				$role->users()->attach($user);
+
+				return redirect('/auth');
+	    	}
+
+		}
 		
-		$role->users()->attach($user);
+    	catch(\Exception $e){
+            return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
+        }
 
-		return redirect('/auth');
+
 	}
 }

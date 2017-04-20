@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Sentinel;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Sentinel;
+use Input;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -22,13 +24,23 @@ class LoginController extends Controller
             'password'  => 'required'
             ]);
 
-            if(Sentinel::authenticate($request->all())){
+            $user = User::where('username', '=', Input::get('username'))->first();
+            if ($user === null) {
+               return redirect()->back()->with('error', 'User belum terdaftar');
+            }
+
+            // if(!$exists){
+            //     return redirect()->back()->with('error', 'User Belum Terdaftar');
+            // }
+
+            elseif(Sentinel::authenticate($request->all())){
                 $slug = Sentinel::getUser()->roles()->first()->slug;
                 if($slug == 'admin')
                     return redirect('/home');
                 elseif($slug == 'employee')
                     return redirect('/home');    
-                }
+            }
+
             else {
                 return redirect()->back()->with(['error' => 'Username or password is wrong']);
             }
