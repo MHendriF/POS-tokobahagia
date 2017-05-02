@@ -71,11 +71,9 @@
                         <tr>
                           <th>No</th>
                           <th>Name</th>
-                          <th>Phone</th>
-                          <th>Fax</th>
                           <th>Address</th>
-                          <th>Billing Address</th>
-                          {{-- <th>Additional Info</th> --}}
+                          <th>Phone</th>
+                          <th>Email</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -84,11 +82,9 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $customer->contact_title }} {{ $customer->contact_name }}</td>
-                          <td>{{ $customer->phone }}</td>
-                          <td>{{ $customer->fax }}</td>
                           <td>{{ $customer->address }}</td>
-                          <td>{{ $customer->billing_address }}</td>
-                          {{-- <td>{{ $customer->additional_info }}</td> --}}
+                          <td>{{ $customer->phone }}</td>
+                          <td>{{ $customer->email }}</td>
                           <td>
                           <center>
                             <div class="btn-group">

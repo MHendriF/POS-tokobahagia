@@ -170,15 +170,37 @@ class ProductController extends Controller
         // dd($data);
     }
 
-    public function showByCategory($id)
+    public function showbycategory(Request $request)
     {
-        // $data2 = Category::all();
-         //$data = Product::all()->where('category_id',$id);
-        // return view('admins.product.product', compact('data','data2'));
-         //dd($data);
+        // if($request->ajax())
+        // {
+        //     $products=$this->data($request['search']);
+        //     if(!(empty($request['search'])))
+        //     {
+        //         $search = array('search'=>$request['search']);
+        //         $view=view('admins.product.product',compact('products','search'))->render();
+        //         return response($view);
+        //     }
+        // }
+        
 
-         return "tes";
+        $id_category = $request['search'];
+
+        $data3 = $id_category;
+        $data3 = Category::find($id_category);
+        $data2 = Category::all();
+        $data = Product::all()->where('category_id',$id_category);
+        return view('admins.product.product', compact('data','data2','data3'));
+        //dd($data3);
+        
     }
+
+    // public function data($search)
+    // {
+    //     $products = Product::all()->where('category_id',$search);
+    //     dd($products);
+ 
+    // }
 
     
 

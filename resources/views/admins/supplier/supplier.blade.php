@@ -70,14 +70,10 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Supplier name</th>
-                          <th>Contact</th>
-                          <th>Fax</th>
+                          <th>Name</th>
                           <th>Address</th>
-                          {{-- <th>Postal code</th> --}}
-                          <th>City</th>
-                          {{-- <th>Province</th> --}}
-                          {{-- <th>Country</th> --}}
+                          <th>Phone</th>
+                          <th>Email</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -86,14 +82,9 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $supplier->supplier_name }}</td>
-                          <td>{{ $supplier->contact_title }} {{ $supplier->contact_name }}</td>
-                          {{-- <td>{{ $supplier->contact_name }}</td> --}}
-                          <td>{{ $supplier->fax }}</td>
                           <td>{{ $supplier->address }}</td>
-                          {{-- <td>{{ $supplier->postal_code }}</td> --}}
-                          <td>{{ $supplier->city }}</td>
-                          {{-- <td>{{ $supplier->province }}</td> --}}
-                          {{-- <td>{{ $supplier->country }}</td> --}}
+                          <td>{{ $supplier->phone }}</td>
+                          <td>{{ $supplier->email }}</td>
                           <td>
                           <center>
                             <div class="btn-group">

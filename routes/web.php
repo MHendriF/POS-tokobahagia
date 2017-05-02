@@ -78,7 +78,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::get('detailTransaction/{id}', 'ProductController@detailTransaction');
 
 	Route::get('findCategory','ProductController@findCategory');
-	Route::get('showCategory/{id}', 'ProductController@showByCategory');
+	Route::get('showbycategory', 'ProductController@showbycategory');
 
 
 	//Customer

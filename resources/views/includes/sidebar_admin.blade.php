@@ -11,7 +11,7 @@
                     <li><a href="{{ url('income') }}"><i class="fa fa-home"></i> Income</a></li>
                     <li><a href="{{ url('outcome') }}"><i class="fa fa-home"></i> Outcome</a></li> --}}
 
-                    <li><a><i class="fa fa-home"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-home"></i> General Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ url('home') }}">Home</a></li>
                             <li><a href="{{ url('inventory') }}">Inventory</a></li>
@@ -34,7 +34,7 @@
                     <li><a href="{{ url('customer') }}"><i class="fa fa-home"></i> Customers</a></li>
                     <li><a href="{{ url('supplier') }}"><i class="fa fa-home"></i> Suppliers</a></li> --}}
 
-                     <li><a><i class="fa fa-edit"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-user-md"></i> Master Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ url('location') }}">Location</a></li>
                             <li><a href="{{ url('product') }}">Product</a></li>
@@ -50,14 +50,15 @@
                 <h3>Report</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a><i class="fa fa-table"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                        <a><i class="fa fa-table"></i> Report Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ url('user') }}">Report Inventory</a></li>
+                            <li><a href="{{ url('') }}">Report Inventory</a></li>
                             <li><a href="{{ url('purchase') }}">Report Purchase</a></li>
                             <li><a href="{{ url('order') }}">Report Order</a></li>
                             <li><a href="{{ url('service') }}">Report Service</a></li>
                             <li><a href="{{ url('transaction') }}">Report Transaction</a></li>
-                            <li><a href="{{ url('supplier') }}">Report Keuangan Bulanan</a></li>
+                            <li><a href="{{ url('') }}">Report Keuangan Bulanan</a></li>
+                            <li><a href="{{ url('') }}">Report Biaya Teknisi</a></li>
                         </ul>
                     </li>
                 </ul>

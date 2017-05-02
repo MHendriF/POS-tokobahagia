@@ -17,6 +17,7 @@ class Customer extends Model
 		'contact_name',
 		'phone',
 		'fax',
+		'email',
 		'address',
 		'postal_code',
 		'city',

@@ -64,88 +64,89 @@
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
 
-                    
-                    <div class="col-sm-3">
-                         <div class="form-group">
-                            <select id="showCategory" class="form-control input-sm" tabindex="-1">
-                              <option> Show By Category </option>
-                              @foreach($data2 as $category)
-                                <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
-                               @endforeach       
-                            </select>
+                    <form method="get" action="{{ url('showbycategory') }}" id="formsearch">
+                      {{-- {!! csrf_field() !!} --}}
+                       <div class="col-sm-3">
+                            <div class="form-group">
+                                <select id="showCategory" name="search" class="form-control input-sm" tabindex="-1">
+                                  <option> Choose One </option>
+                                  @foreach($data2 as $category)
+                                    <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
+                                   @endforeach       
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <button id="button_tes" class="btn btn-success btn-sm">Find</button>
-
-                    {{-- <a href="{{ url('showCategory/'.$category->id) }}" class="btn btn-success btn-sm">Find</a>
-                    --}}
-                    
-                   {{--  <div class="col-sm-3">
-                      <div class="form-group">
-                        <select class="form-control input-sm" tabindex="-1">
-                          <option> Choose Option </option>
-                          <option> All </option>
-                          @foreach($data2 as $category)
-                            <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
-                          @endforeach
-                                             
-                        </select>
-                        <button type="submit" class="btn btn-success btn-xs">Submit</button>
-                      </div> 
-
-                    </div>    --}}
+                        <button type="submit" class="btn btn-success btn-sm">Show By Category</button>
+                    </form>
 
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Category</th>
-                          <th>Location</th>
-                          <th>Name</th>
-                          <th>Manufacturer</th>
-                          <th>Images</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody id="find_category">
-                        @foreach($data as $index => $product)
-                        <tr>
-                          <td>{{ $index +1 }}</td>
-                          <td>{{ $product->pilihcategory->category_name }}</td>
-                          <td>{{ $product->pilihlocation->location }}</td>
-                          <td>{{ $product->product_name }}</td>
-                          <td>{{ $product->manufacturer }}</td>
-                          <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td>
-                   
-                          <td>
-                          <center>
-                            <div class="btn-group">
-                              <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                              </form>
-                            </div>
-                          </center>
-                          </td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
+
+                  @if(count($data)>0)
+
+                    <div class="x_content">
+                      <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Manufacturer</th>
+                            <th>Location</th>
+                            <th>Stock</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($data as $index => $product)
+                          <tr>
+                            <td>{{ $index +1 }}</td>
+                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->pilihcategory->category_name }}</td>
+                            <td>{{ $product->manufacturer }}</td>
+                            <td>{{ $product->pilihlocation->location }}</td>
+                            <td>{{ $product->stock }}</td>
+                            
+                            {{-- <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td> --}}
+                     
+                            <td>
+                            <center>
+                              <div class="btn-group">
+                                <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <a href="{{ url('product/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              </div>
+                              <div class="btn-group">
+                                <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                </form>
+                              </div>
+                            </center>
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+
+                  @else
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <h4>Product category <b>{{$data3->category_name}}</b> yang dicari tidak ditemukan.</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endif
+
                 </div>
               </div>
 
@@ -181,44 +182,23 @@
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 
-    <script>
-        $(document).ready(function(){
 
-            $(document).on('change','#showCategory',function () {
-                var prod_id=$(this).val();
-
-                var a=$(this).parent();
-                console.log(prod_id);
-                var op="";
-                $.ajax({
-                    type:'get',
-                    url:'{!!URL::to('findCategory')!!}',
-                    data:{'id':prod_id},
-                    dataType:'json',//return data will be json
-                    success:function(data){
-                         //console.log("unit_price_min");
-                         console.log(data.product_name);
-                         console.log(data.category_id);
-                    },
-                    error:function(){
-                    }
-                });
+   {{--  <script type="text/javascript">
+      $('#formsearch').on.('submit',function(e) {
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var data = $(this).seralizeArray();
+        var get = $(this).attr('method');
+          $.ajax({
+            type : get,
+            url : url,
+            data : data
+          }).done(function( data ) {
+              console.log( data );
+              console.log( "success" );
             });
-
-            //delete task and remove it from list
-            $('#button_tes').click(function() {
-                $.ajax({
-                    url: "showCategory/2",
-                    type: 'GET'
-                })
-                .done(function( data ) {
-                    console.log( data );
-                    console.log( "success" );
-                });
-            });  
-
-        });
-    </script>
+        });  
+    </script> --}}
 
     @endpush
 @endsection

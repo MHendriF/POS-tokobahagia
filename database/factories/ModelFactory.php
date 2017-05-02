@@ -33,6 +33,7 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
         'phone'           => $faker->e164PhoneNumber,
         'fax'             => $faker->tollFreePhoneNumber,
         'address'         => $faker->address,
+        'email'           => $faker->freeEmail,
         'postal_code'     => $faker->postcode,
         'city'            => $faker->city,
         'province'        => $faker->state,
