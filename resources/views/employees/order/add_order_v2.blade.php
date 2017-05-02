@@ -130,7 +130,7 @@
                           </div>
                         </div>
 
-                        <h2>Purchase Details</h2>
+                        <h2>Order Details</h2>
                         <div class="ln_solid"></div>
                       
                         <div class="form-group">

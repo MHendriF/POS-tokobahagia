@@ -17,7 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::all();
-        return view('admins.product.product', compact('data'));
+        $data2 = Category::all();
+        return view('admins.product.product', compact('data','data2'));
     }
 
     public function create()
@@ -145,6 +146,13 @@ class ProductController extends Controller
         return response()->json($p);
     }
 
+    public function findCategory(Request $request){
+
+        //it will get price if its id match with product id
+        $p=Product::all()->where('category_id',$request->id)->first();
+        return response()->json($p);
+    }
+
     public function detailTransaction($id)
     {
         
@@ -160,6 +168,16 @@ class ProductController extends Controller
 
         // $data = Purchase_Detail::all()->where('purchase_id',$id);
         // dd($data);
+    }
+
+    public function showByCategory($id)
+    {
+        // $data2 = Category::all();
+         //$data = Product::all()->where('category_id',$id);
+        // return view('admins.product.product', compact('data','data2'));
+         //dd($data);
+
+         return "tes";
     }
 
     

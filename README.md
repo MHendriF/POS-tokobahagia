@@ -3,12 +3,14 @@
 #### Have fun to learn this project.
 
 
-# Petunjuk
+# Petunjuk Untuk Menginstall Aplikasi
 1. Download project
 2. Jalankan perintah: php artisan migration
+3. Jalankan perintah: php artisan db:seed
 
-# Database Dummy
-Jalankan perintah: php artisan db:seed
+# Jika ingin menjalankan aplikasi melalui komputer lain
+Masuk ke file .env kemudian rubah APP_URL=http://localhost menjadi APP_URL=http://ipanda:portanda
+Kemudian jalankan php artisan serve melalui cmd.
 
 # Laravel PHP Framework
 

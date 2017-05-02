@@ -77,17 +77,20 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::get('findProduct','ProductController@findProduct');
 	Route::get('detailTransaction/{id}', 'ProductController@detailTransaction');
 
+	Route::get('findCategory','ProductController@findCategory');
+	Route::get('showCategory/{id}', 'ProductController@showByCategory');
+
 
 	//Customer
 	Route::resource('customer', 'CustomerController');
 	Route::post('customer/{id}', 'CustomerController@update');
 
-	//Sale
+	//Penjualan
 	Route::resource('order', 'OrderController');
 	Route::post('order/{id}', 'OrderController@update');	
 	Route::get('detailOrder/{id}', 'OrderController@detailOrder');
 
-	//Purchase Order
+	//Pembelian
 	Route::resource('purchase', 'PurchaseController');
 	Route::post('purchase/{id}', 'PurchaseController@update');
 	Route::get('detailPurchase/{id}', 'PurchaseController@detailPurchase');

@@ -51,16 +51,51 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Product List <small>
-                      <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
-                      </a></small>
+                    <h2>Product List 
+                      <small>
+                        <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
+                          <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
+                        </a>
+                      </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
+
+                    
+                    <div class="col-sm-3">
+                         <div class="form-group">
+                            <select id="showCategory" class="form-control input-sm" tabindex="-1">
+                              <option> Show By Category </option>
+                              @foreach($data2 as $category)
+                                <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
+                               @endforeach       
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="button_tes" class="btn btn-success btn-sm">Find</button>
+
+                    {{-- <a href="{{ url('showCategory/'.$category->id) }}" class="btn btn-success btn-sm">Find</a>
+                    --}}
+                    
+                   {{--  <div class="col-sm-3">
+                      <div class="form-group">
+                        <select class="form-control input-sm" tabindex="-1">
+                          <option> Choose Option </option>
+                          <option> All </option>
+                          @foreach($data2 as $category)
+                            <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
+                          @endforeach
+                                             
+                        </select>
+                        <button type="submit" class="btn btn-success btn-xs">Submit</button>
+                      </div> 
+
+                    </div>    --}}
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -76,7 +111,7 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="find_category">
                         @foreach($data as $index => $product)
                         <tr>
                           <td>{{ $index +1 }}</td>
@@ -145,6 +180,45 @@
     @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
+
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('change','#showCategory',function () {
+                var prod_id=$(this).val();
+
+                var a=$(this).parent();
+                console.log(prod_id);
+                var op="";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findCategory')!!}',
+                    data:{'id':prod_id},
+                    dataType:'json',//return data will be json
+                    success:function(data){
+                         //console.log("unit_price_min");
+                         console.log(data.product_name);
+                         console.log(data.category_id);
+                    },
+                    error:function(){
+                    }
+                });
+            });
+
+            //delete task and remove it from list
+            $('#button_tes').click(function() {
+                $.ajax({
+                    url: "showCategory/2",
+                    type: 'GET'
+                })
+                .done(function( data ) {
+                    console.log( data );
+                    console.log( "success" );
+                });
+            });  
+
+        });
+    </script>
 
     @endpush
 @endsection
