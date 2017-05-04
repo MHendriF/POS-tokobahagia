@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
-    protected $table = 'expenses';
+    protected $table = 'expense';
     
     protected $fillable = [
     	'listrik',
     	'air',
     	'makan',
     	'others',
+    	'expense_total',
     ];
 }

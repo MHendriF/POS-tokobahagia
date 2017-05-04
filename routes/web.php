@@ -41,7 +41,11 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::resource('tes', 'TesController');
 
 	
-	Route::get('/home', 'VisitorsController@index');
+	Route::get('home', 'VisitorsController@index');
+	Route::get('general', 'AdminController@general');
+	Route::get('master', 'AdminController@master');
+	Route::get('report', 'AdminController@report');
+
 	Route::post('/logout', 'LoginController@logout');
 
 	//Transaksi
@@ -106,6 +110,8 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('findGaji', 'AdminController@FindGaji');	
 
 	//Finance
+	Route::resource('finance', 'FinanceController');
+	Route::get('findFinance', 'FinanceController@findFinance');
 	Route::get('income', 'FinanceController@income');
 	Route::get('outcome', 'FinanceController@outcome');
 	Route::post('findIncome', 'FinanceController@findIncome');

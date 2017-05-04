@@ -52,14 +52,15 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('expense') }}" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <form method="post" action="{{ url('expense') }}" data-parsley-validate class="form-horizontal form-label-left calculate">
                             {!! csrf_field() !!}
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Listrik <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="listrik" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="number" name="listrik" data-cell="A1" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -67,7 +68,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Air <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="air" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="number" name="air" data-cell="A2" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -75,7 +76,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Uang Makan <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="makan" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="number" name="makan" data-cell="A3" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -83,9 +84,18 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Others <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" name="others" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="number" name="others" data-cell="A4" placeholder="Rp" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Total <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="number" name="expense_total" data-cell="A5" data-formula="A1+A2+A3+A4" class="form-control col-md-7 col-xs-12" readonly/>
+                                </div>
+                            </div>
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
@@ -107,6 +117,9 @@
 
     @push('scripts')
 
+    <!-- Calculator -->
+    <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
+
     <!-- Parsley -->
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
     <!-- PNotify -->
@@ -119,6 +132,10 @@
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')
+
+    <script>
+        $('.calculate').calx();
+    </script>
 
     @endpush
 @endsection

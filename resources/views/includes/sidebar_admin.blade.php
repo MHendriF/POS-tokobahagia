@@ -1,5 +1,5 @@
             <div class="menu_section">
-                <h3>General</h3>
+                <a href="{{ url('general') }}" ><h3>General</h3></a>
                 <ul class="nav side-menu">
 
                     {{-- <li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Home</a></li>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="menu_section">
-                <h3>Master</h3>
+                <a href="{{ url('master') }}" ><h3>Master</h3></a>
                 <ul class="nav side-menu">
                     {{-- <li><a href="{{ url('location') }}"><i class="fa fa-home"></i> Location</a></li>
                     <li><a href="{{ url('product') }}"><i class="fa fa-home"></i> Product</a></li>
@@ -47,7 +47,7 @@
                 </ul>
             </div>
             <div class="menu_section">
-                <h3>Report</h3>
+                <a href="{{ url('report') }}" ><h3>Report</h3></a>
                 <ul class="nav side-menu">
                     <li>
                         <a><i class="fa fa-table"></i> Report Menu <span class="fa fa-chevron-down"></span></a>

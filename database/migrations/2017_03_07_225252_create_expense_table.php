@@ -4,17 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExpensesTable extends Migration
+class CreateExpenseTable extends Migration
 {
     
     public function up()
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('expense', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('listrik');
             $table->integer('air');
             $table->integer('makan')->nullable();
             $table->integer('others')->nullable();
+            $table->integer('expense_total');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ class CreateExpensesTable extends Migration
  
     public function down()
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('expense');
     }
 }

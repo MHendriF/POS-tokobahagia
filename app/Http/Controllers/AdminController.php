@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Main_Transaction;
 use DB;
+use Auth;
+use App\User;
+use Sentinel;
 
 class AdminController extends Controller
 {
@@ -48,5 +51,23 @@ class AdminController extends Controller
     public function pengeluaran()
     {
         return view('admins.pengeluaran');
+    }
+
+    public function general()
+    {
+        $user = Auth::user();
+        return view('general', compact('user'));
+    }
+
+    public function master()
+    {
+        $user = Auth::user();
+        return view('master', compact('user'));
+    }
+
+    public function report()
+    {
+        $user = Auth::user();
+        return view('report', compact('user'));
     }
 }
