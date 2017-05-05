@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Detail Product
+    Toko Bahagia | Edit Inventory
 @endsection
 
 @push('stylesheets')
@@ -29,15 +29,15 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Detail Product</h3>
+                <h3>Edit Inventory</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li><a href="{{ url('product') }}">Product</a></li>
-                    <li class="active">Detail</li>
+                    <li><a href="{{ url('inventory') }}">Inventory</a></li>
+                    <li class="active">Edit</li>
                   </ol>  
                   </section>
                 </div>
@@ -47,11 +47,13 @@
             <div class="clearfix"></div>
 
             <div class="row">
-             
+              <form id="demo-form" method="post" action="{{ url('inventory/'.$data->id) }}" enctype="multipart/form-data" data-parsley-validate>
+                <input type="hidden" name="_methode" value="PUT">
+                {!! csrf_field() !!}
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Detail Product</h2>
+                      <h2>Form Edit Inventory</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -60,47 +62,42 @@
                     </div>
                     <div class="x_content">
                        
-                        <label>Category :</label>
-                        <input type="text" class="form-control" value="{{$data->pilihcategory->category_name}}" readonly="readonly" />
+                        <label>Select Category * :</label>
+                        <select required="required" name="category_id" class="select2_single form-control" tabindex="-1">
+                          <option></option>
+                          @foreach($data2 as $category)
+                              <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
+                          @endforeach
+                        </select>
 
-                        <label>Location :</label>
-                        <input type="text" class="form-control" value="{{$data->pilihlocation->location}}" readonly="readonly" />
+                        <label>Select Location * :</label>
+                        <select required="required" name="location_id" class="select2_single form-control" tabindex="-1">
+                          <option></option>
+                          @foreach($data3 as $location)
+                              <option value='{{ $location->id}}'> {{ $location->location }}</option>
+                          @endforeach
+                        </select>
 
-                        <label>Product Name :</label>
-                        <input type="text" class="form-control" value="{{$data->product_name}}" readonly="readonly" />
+                        <label>Product Name * :</label>
+                        <input type="text" class="form-control" name="product_name" value="{{$data->product_name}}" required />
 
-                        <label>Product Description :</label>
-                        <textarea id="product_desc" class="form-control" readonly="readonly">{{$data->product_desc}}</textarea>
+                        <label>Code Factory * :</label>
+                        <input type="text" class="form-control" name="code_factory" value="{{$data->code_factory}}" required />
 
+                        <label>Manufacturer * :</label>
+                        <input type="text" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" required />
 
-                        <label>Manufacturer :</label>
-                        <input type="text" class="form-control" value="{{$data->manufacturer}}" readonly="readonly" />
+                        <label>Item Function * :</label>
+                        <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" required />
 
-                        <label>Item Use :</label>
-                        <input type="text" class="form-control" value="{{$data->item_use}}" readonly="readonly" />
+                        <label>Unit Price Minimum * :</label>
+                        <input type="number" class="form-control" name="unit_price_min" value="{{$data->unit_price_min}}" required />
 
-                        <label>Unit Price :</label>
-                        <input type="number" class="form-control" value="{{$data->unit_price}}" readonly="readonly" />
+                        <label>Unit Price Maximum * :</label>
+                        <input type="number" class="form-control" name="unit_price_max" value="{{$data->unit_price_max}}" required />
 
-                        <label>Unit Price 2 :</label>
-                        <input type="number" class="form-control" value="{{$data->unit_price2}}" readonly="readonly" />
-
-                        <label>Average Cost * :</label>
-                        <input type="number" class="form-control" value="{{$data->avg_cost}}" readonly="readonly" />
-                        <label>Discontinueted *:</label>
-                        <p>
-                          @if($data->discontinueted == 'Yes')
-                            Yes:
-                            <input type="radio" class="flat"  disabled="disabled" checked="checked" /> 
-                            No:
-                            <input type="radio" class="flat"  disabled="disabled" />
-                          @else
-                            Yes:
-                            <input type="radio" class="flat"  disabled="disabled" /> 
-                            No:
-                            <input type="radio" class="flat"  disabled="disabled" checked="checked" />
-                          @endif
-                        </p>
+                        <label>Price Buy Average * :</label>
+                        <input type="number" class="form-control" name="price_buy_avg" value="{{$data->price_buy_avg}}" readonly />
 
                     </div>
                   </div>
@@ -109,7 +106,7 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Detail Product</h2>
+                      <h2>Form Edit Inventory</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -125,27 +122,26 @@
                         </div>  
                       </center>
 
-                      <label>Reorder Level :</label>
-                      <input type="number" class="form-control" value="{{$data->reorder_lvl}}" readonly="readonly" />
+                      <label>Stock * :</label>
+                      <input type="number" class="form-control" name="stock" value="{{$data->stock}}" readonly />
 
-                      <label>Lead Time :</label>
-                      <input type="text" class="form-control" value="{{$data->lead_time}}" readonly="readonly" />
+                      <label>Unit of Measure * :</label>
+                      <input type="text" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" required />
 
-                      <label>Primary Vendor :</label>
-                      <input type="text" class="form-control" value="{{$data->pri_vendor}}" readonly="readonly" />
+                      <label>Product Description (10 chars min, 100 max) :</label>
+                      <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
+                              data-parsley-validation-threshold="10" required>{{$data->product_desc}}</textarea>
 
-                      <label>Secondary Vendor :</label>
-                      <input type="text" class="form-control" value="{{$data->sec_vendor}}" readonly="readonly" />
-
-                      <label>Unit of Hand :</label>
-                      <input type="number" class="form-control" value="{{$data->unit_of_hand}}" readonly="readonly" />
-
-                      <label>Manufacturer :</label>
-                      <input type="text" class="form-control" value="{{$data->unit_of_measure}}" readonly="readonly" />
-
+                      <div class="ln_solid"></div>
+                      <center>
+                        <button class="btn btn-primary" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </center>
                     </div>
                   </div>
                 </div>
+              </form>
 
             </div>
 
@@ -186,14 +182,26 @@
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({
-            width: '300px',
-            height: '220px',
+            width: '200px',
+            height: '200px',
             backgroundSize: 'cover',
             fontSize: '16px',
             borderRadius: '20px',
             border: '2px solid #dedede',
             lang: 'en', //language
         });
+    </script>
+
+    
+    <script type="text/javascript">
+     $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
     </script>
 
     @endpush

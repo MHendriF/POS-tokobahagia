@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Product
+    Toko Bahagia | Inventory
 @endsection
 
 @push('stylesheets')
@@ -30,14 +30,14 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Product List</h3>
+                <h3>Inventory List</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li class="active">Product</li>
+                    <li class="active">Inventory</li>
                   </ol>  
                   </section>
                 </div>
@@ -51,16 +51,16 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Product List 
+                    <h2>Inventory List 
                       <small>
-                        <a href="{{ url('product/create') }}" class="btn btn-primary btn-xs">
+                        <a href="{{ url('inventory/create') }}" class="btn btn-primary btn-xs">
                           <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                         </a>
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('product') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('inventory') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
 
@@ -115,13 +115,13 @@
                                 <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
                               </div>
                               <div class="btn-group">
-                                <a href="{{ url('product/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('inventory/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
                               </div>
                               <div class="btn-group">
-                                <a href="{{ url('product/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ url('inventory/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                               </div>
                               <div class="btn-group">
-                                <form id="delete-currency" action="{{ url('product/'.$product->id) }}" method="post" title="Delete">
+                                <form id="delete-currency" action="{{ url('inventory/'.$product->id) }}" method="post" title="Delete">
                                   {{ csrf_field() }}
                                   <input type="hidden" name="_method" value="DELETE">
                                   <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>

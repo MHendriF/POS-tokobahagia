@@ -9,7 +9,7 @@ use App\Supplier;
 use App\Purchase;
 use App\Purchase_Detail;
 use App\Shipping;
-use App\Product;
+use App\Inventory;
 use Session;
 use DB;
 
@@ -25,7 +25,7 @@ class PurchaseController extends Controller
     {
         $data = Supplier::all();
         $data2 = Shipping::all();
-        $data3 = Product::all();
+        $data3 = Inventory::all();
         return view('employees.purchase.add_purchase_v2', compact('data', 'data2','data3'));
     }
 

@@ -9,7 +9,7 @@ class Customer extends Model
 	protected $table = 'customers';
 
     public function product(){
-    	return $this->hasMany('App\Product');
+    	return $this->hasMany('App\Inventory');
     }
 
     protected $fillable = [

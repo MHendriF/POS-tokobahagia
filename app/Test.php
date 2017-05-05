@@ -9,7 +9,7 @@ class Test extends Model
     protected $table = 'tests';
 
 	public function pilihproduct(){
-    	return $this->belongsTo('App\Product', 'product_id');
+    	return $this->belongsTo('App\Inventory', 'product_id');
     }
 
     protected $fillable = [

@@ -9,7 +9,7 @@ use App\Customer;
 use App\Order;
 use App\Order_Detail;
 use App\Shipping;
-use App\Product;
+use App\Inventory;
 
 use Session;
 use DB;
@@ -26,7 +26,7 @@ class OrderController extends Controller
     {
         $data = Customer::all();
         $data2 = Shipping::all();
-        $data3 = Product::all();
+        $data3 = Inventory::all();
         return view('employees.order.add_order_v2', compact('data', 'data2','data3'));
     }
 
@@ -106,7 +106,7 @@ class OrderController extends Controller
 
                 elseif ($number[$i] != null && $product_id[$i] != null) {
                     //Checking Available Stock to Buy
-                    $data = Product::find($product_id[$i]);
+                    $data = Inventory::find($product_id[$i]);
                     $current_stock = $data->stock -  $quantity[$i];
                     if($current_stock < 0){
                         return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
@@ -140,7 +140,7 @@ class OrderController extends Controller
     {
         $data = Customer::all();
         $data2 = Shipping::all();
-        $data3 = Product::all();
+        $data3 = Inventory::all();
         return view('employees.order.edit_order', compact('data', 'data2','data3'));
     }
 
@@ -165,7 +165,7 @@ class OrderController extends Controller
             ));
             
             if(Order::find($id)->update($request->all())){
-                Session::flash('new', 'Product was successfully updated!');
+                Session::flash('new', 'New order was successfully updated!');
                 return redirect('order');
             }
         } 

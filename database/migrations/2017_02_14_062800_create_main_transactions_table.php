@@ -31,7 +31,7 @@ class CreateMainTransactionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-            $table->foreign('product_id')->references('id')->on('products')
+            $table->foreign('product_id')->references('id')->on('inventory')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('trans_desc_id')->references('id')->on('transaction_descriptions')

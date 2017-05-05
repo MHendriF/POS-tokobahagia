@@ -36,7 +36,7 @@ class LoginController extends Controller
             elseif(Sentinel::authenticate($request->all())){
                 $slug = Sentinel::getUser()->roles()->first()->slug;
                 if($slug == 'admin')
-                    return redirect('/home');
+                    return redirect('general');
                 elseif($slug == 'employee')
                     return redirect('/home');    
             }

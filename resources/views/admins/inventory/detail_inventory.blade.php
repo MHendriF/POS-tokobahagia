@@ -1,11 +1,10 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Add Product
+    Toko Bahagia | Detail Inventory
 @endsection
 
 @push('stylesheets')
-
     <!-- iCheck -->
     <link href="{{ asset("assets/iCheck/skins/flat/green.css")}}" rel="stylesheet">
     <!-- Select2 -->
@@ -30,15 +29,15 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Add Product</h3>
+                <h3>Detail Inventory</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                    <li><a href="{{ url('product') }}">Product</a></li>
-                    <li class="active">Add</li>
+                    <li><a href="{{ url('inventory') }}">Inventory</a></li>
+                    <li class="active">Detail</li>
                   </ol>  
                   </section>
                 </div>
@@ -48,12 +47,11 @@
             <div class="clearfix"></div>
 
             <div class="row">
-              <form method="post" action="{{ url('product') }}" enctype="multipart/form-data" data-parsley-validate>
-                {!! csrf_field() !!}
+             
                 <div class="col-md-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Product</h2>
+                      <h2>Detail Inventory</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -61,44 +59,32 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                       
+                        <label>Category :</label>
+                        <input type="text" class="form-control" value="{{$data->pilihcategory->category_name}}" readonly="readonly" />
 
-                        <label>Select Category * :</label>
-                        <select name="category_id" class="select2_single form-control" tabindex="-1" required>
-                          <option></option>
-                          @foreach($data as $category)
-                              <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
-                          @endforeach
-                        </select>
+                        <label>Location :</label>
+                        <input type="text" class="form-control" value="{{$data->pilihlocation->location}}" readonly="readonly" />
 
-                        <label>Select Location * :</label>
-                        <select name="location_id" class="select2_single form-control" tabindex="-1" required>
-                          <option></option>
-                          @foreach($data2 as $location)
-                              <option value='{{ $location->id}}'> {{ $location->location }}</option>
-                          @endforeach
-                        </select>
+                        <label>Product Name :</label>
+                        <input type="text" class="form-control" value="{{$data->product_name}}" readonly="readonly" />
 
-                        <label>Product Name * :</label>
-                        <input type="text" class="form-control" name="product_name" required />
+                        <label>Manufacturer :</label>
+                        <input type="text" class="form-control" value="{{$data->manufacturer}}" readonly="readonly" />
 
-                        <label>Code Factory * :</label>
-                        <input type="text" class="form-control" name="code_factory" required />
+                        <label>Item Function :</label>
+                        <input type="text" class="form-control" value="{{$data->item_function}}" readonly="readonly" />
 
-                        <label>Manufacturer * :</label>
-                        <input type="text" class="form-control" name="manufacturer" required />
+                        <label>Unit Price Minimum :</label>
+                        <input type="number" class="form-control" value="{{$data->unit_price_min}}" readonly="readonly" />
 
-                        <label>Item Function * :</label>
-                        <input type="text" class="form-control" name="item_function" required />
-
-                        <label>Unit Price Minimum * :</label>
-                        <input type="number" class="form-control" placeholder="Rp" name="unit_price_min" required />
-
-                        <label>Unit Price Maximum * :</label>
-                        <input type="number" class="form-control" placeholder="Rp" name="unit_price_max" required />
+                        <label>Unit Price Maximum :</label>
+                        <input type="number" class="form-control" value="{{$data->unit_price_max}}" readonly="readonly" />
 
                         <label>Price Buy Average * :</label>
-                        <input type="number" class="form-control" name="price_buy_avg" value="0" readonly />
-                    
+                        <input type="number" class="form-control" value="{{$data->price_buy_avg}}" readonly="readonly" />
+                        
+
                     </div>
                   </div>
                 </div>
@@ -106,7 +92,7 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Add Product</h2>
+                      <h2>Detail Inventory</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -114,39 +100,31 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                     
-                      <p>Drag files to the box below for upload image product or click to select files.</p>
+                      <p>This image product show only</p>
                       <center>
                         <div class="anyName">
-                          <input type="file" accept="image/gif, image/jpeg, image/png" name="images">
+                          <input type="file" accept="image/gif, image/jpeg, image/png" name="item_images" disabled="disabled" name="images">
+                          <img src="{{ asset('/images/products/'.$data->images) }}">
                         </div>  
                       </center>
 
-                      <label>Stock * :</label>
-                      <input type="number" class="form-control" name="stock" value="0" readonly />
+                      <label>Stock :</label>
+                      <input type="number" class="form-control" value="{{$data->stock}}" readonly="readonly" />
 
-                      <label>Unit of Measure * :</label>
-                      <input type="text" class="form-control" name="unit_of_measure" required />
+                      <label>Unit of Measure :</label>
+                      <input type="text" class="form-control" value="{{$data->unit_of_measure}}" readonly="readonly" />
 
-                      <label>Product Description (10 chars min, 100 max) :</label>
-                            <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
-                              data-parsley-validation-threshold="10" required></textarea>
+                      <label>Product Description :</label>
+                        <textarea id="product_desc" class="form-control" readonly="readonly">{{$data->product_desc}}</textarea>
 
-                      <div class="ln_solid"></div>
-                      <center>
-                        <button class="btn btn-primary" type="button">Cancel</button>
-                        <button class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                      </center>
+
                     </div>
                   </div>
                 </div>
-              </form>
 
             </div>
 
             </div>
-
           </div>
         </div>
       <!-- /page content -->
@@ -160,9 +138,8 @@
     <!-- iCheck -->
     <script src="{{ asset("assets/iCheck/icheck.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>{{-- 
-    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script> --}}
-    <script src="{{ asset("assets/dangrossman/daterangepicker.js") }}"></script>
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
     <!-- Switchery -->
     <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
     <!-- Select2 -->
@@ -181,7 +158,6 @@
     <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.select2')
-    {{-- @include('javascript.datepicker') --}}
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({
@@ -189,21 +165,10 @@
             height: '220px',
             backgroundSize: 'cover',
             fontSize: '16px',
-            borderRadius: '10px',
+            borderRadius: '20px',
             border: '2px solid #dedede',
             lang: 'en', //language
         });
-    </script>
-
-    <script type="text/javascript">
-     $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          locale: {
-            format: 'DD/MM/YYYY'
-          }
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-      });
     </script>
 
     @endpush

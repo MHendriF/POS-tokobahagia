@@ -13,7 +13,7 @@ class Main_Transaction extends Model
     }
 
     public function pilihproduct(){
-        return $this->belongsTo('App\Product', 'product_id');
+        return $this->belongsTo('App\Inventory', 'product_id');
     }
 
     public function pilihtransaksi(){

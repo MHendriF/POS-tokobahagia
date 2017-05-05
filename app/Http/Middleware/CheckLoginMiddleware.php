@@ -10,8 +10,8 @@ class CheckLoginMiddleware
     public function handle($request, Closure $next)
     {
         if(Sentinel::check())
-            return redirect('/home');
+            return redirect('general');
         else
-            return redirect('/auth');
+            return redirect('auth');
     }
 }

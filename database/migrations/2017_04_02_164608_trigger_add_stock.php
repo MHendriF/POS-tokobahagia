@@ -11,7 +11,7 @@ class TriggerAddStock extends Migration
         DB::unprepared('CREATE TRIGGER trigger_add_stock 
             AFTER INSERT ON `purchase_details` FOR EACH ROW
             BEGIN
-                UPDATE products s
+                UPDATE inventory s
                 SET s.stock = s.stock + new.quantity
                 WHERE s.id = new.product_id;
             END');

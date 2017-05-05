@@ -27,7 +27,7 @@ class CreatePurchaseDetailsTable extends Migration
         });
 
         Schema::table('purchase_details', function($table) {
-            $table->foreign('product_id')->references('id')->on('products')
+            $table->foreign('product_id')->references('id')->on('inventory')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('purchase_id')->references('id')->on('purchases')

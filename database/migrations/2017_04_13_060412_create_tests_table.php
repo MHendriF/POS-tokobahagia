@@ -25,7 +25,7 @@ class CreateTestsTable extends Migration
         });
 
         Schema::table('tests', function($table) {
-            $table->foreign('product_id')->references('id')->on('products')
+            $table->foreign('product_id')->references('id')->on('inventory')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });

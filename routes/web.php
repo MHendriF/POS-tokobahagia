@@ -16,23 +16,14 @@ Route::get('/', function () {
     return view('auth.authenticate');
 })->middleware('checklogin');
 
-// Route::resource('tesorder', 'TesController');
-// Route::get('tes', 'TesController@tes');
-
-// Route::post('tes', 'TesController@store');
 Route::get('api/getproduct', 'TesController@listProduct');
 
 
-// Route::post('find', 'TesController@Find');
-
-// Route::get('tes2', 'TesController@tes2');
-// Route::get('tes3', 'TesController@tes3');
-
 Route::group(['middleware'  => 'visitors'], function() {
-	Route::get('/register', 'RegisterController@register');
-	Route::post('/register', 'RegisterController@postRegister');
-	Route::get('/auth', 'LoginController@login');
-	Route::post('/login', 'LoginController@postLogin');
+	Route::get('register', 'RegisterController@register');
+	Route::post('register', 'RegisterController@postRegister');
+	Route::get('auth', 'LoginController@login');
+	Route::post('login', 'LoginController@postLogin');
 });
 
 
@@ -76,13 +67,20 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::post('service_item', 'ServiceItemController@store');
 
 	//Product
-	Route::resource('product', 'ProductController');
-	Route::post('product/{id}', 'ProductController@update');
-	Route::get('findProduct','ProductController@findProduct');
-	Route::get('detailTransaction/{id}', 'ProductController@detailTransaction');
+	// Route::resource('product', 'ProductController');
+	// Route::post('product/{id}', 'ProductController@update');
+	// Route::get('findProduct','ProductController@findProduct');
+	// Route::get('detailTransaction/{id}', 'ProductController@detailTransaction');
 
-	Route::get('findCategory','ProductController@findCategory');
-	Route::get('showbycategory', 'ProductController@showbycategory');
+	// Route::get('findCategory','ProductController@findCategory');
+	// Route::get('showbycategory', 'ProductController@showbycategory');
+
+	Route::resource('inventory', 'InventoryController');
+	Route::post('inventory/{id}', 'InventoryController@update');
+	Route::get('findProduct','InventoryController@findProduct');
+	Route::get('detailTransaction/{id}', 'InventoryController@detailTransaction');
+	Route::get('findCategory','InventoryController@findCategory');
+	Route::get('showbycategory', 'InventoryController@showbycategory');
 
 
 	//Customer

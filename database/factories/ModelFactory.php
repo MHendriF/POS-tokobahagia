@@ -44,7 +44,7 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
 });
 
 // Modal Factory Product 
-$factory->define(App\Product::class, function (Faker\Generator $faker) {
+$factory->define(App\Inventory::class, function (Faker\Generator $faker) {
     return [
         'category_id'     => $faker->numberBetween($min = 1, $max = 62),
         'location_id'     => $faker->numberBetween($min = 1, $max = 4),

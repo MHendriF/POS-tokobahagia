@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Sentinel;
-use App\Product;
+use App\Inventory;
 use App\Main_Transaction;
 use App\Transaction_description;
 use Session;
@@ -20,7 +20,7 @@ class MainTransactionController extends Controller
 
     public function create()
     {
-        $data = Product::all();
+        $data = Inventory::all();
         $data2 = Transaction_description::all();
         return view('employees.transaction.add_transaction', compact('data','data2'));
     }
@@ -81,7 +81,7 @@ class MainTransactionController extends Controller
     public function edit($id)
     {
         $data = Main_Transaction::find($id);
-        $data2 = Product::all();
+        $data2 = Inventory::all();
         $data3 = Transaction_description::all();
         return view('employees.transaction.edit_transaction', compact('data','data2','data3'));
     }
@@ -105,7 +105,7 @@ class MainTransactionController extends Controller
     public function findPrice(Request $request){
 
         //it will get price if its id match with product id
-        $p=Product::select('unit_price_min','stock')->where('id',$request->id)->first();
+        $p=Inventory::select('unit_price_min','stock')->where('id',$request->id)->first();
         return response()->json($p);
     }
 }
