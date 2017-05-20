@@ -53,7 +53,7 @@
                                         <i class="fa fa-user" style="margin-right: 7px;"></i>Technician
                                     </a>
                                 </div>
-                                 <div class="animated homewidget col-md-2">
+                                <div class="animated homewidget col-md-2">
                                     <a href="{{ url('transaction') }}" class="bttn btn-default bttn-lg">
                                         <i class="fa fa-credit-card" style="margin-right: 7px;"></i>Transaction
                                     </a>

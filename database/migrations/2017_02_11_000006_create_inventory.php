@@ -14,12 +14,12 @@ class CreateInventory extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('location_id')->unsigned()->nullable();
             $table->string('product_name');
-            $table->string('code_factory');
-            $table->string('product_desc');
-            $table->string('manufacturer');
-            $table->string('item_function');
-            $table->integer('unit_price_min');
-            $table->integer('unit_price_max');
+            $table->string('code_factory')->nullable();
+            $table->string('product_desc')->nullable();
+            $table->string('manufacturer')->nullable();
+            $table->string('item_function')->nullable();
+            $table->integer('cost_min');
+            $table->integer('cost_max');
             $table->integer('price_buy_avg');
             $table->string('images')->nullable();
             $table->integer('stock');

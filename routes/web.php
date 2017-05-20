@@ -22,7 +22,8 @@ Route::get('api/getproduct', 'TesController@listProduct');
 Route::group(['middleware'  => 'visitors'], function() {
 	Route::get('register', 'RegisterController@register');
 	Route::post('register', 'RegisterController@postRegister');
-	Route::get('auth', 'LoginController@login');
+	Route::get('auth', 'LoginController@auth');
+	Route::get('login', 'LoginController@login');
 	Route::post('login', 'LoginController@postLogin');
 });
 

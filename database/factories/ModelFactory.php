@@ -53,11 +53,13 @@ $factory->define(App\Inventory::class, function (Faker\Generator $faker) {
         'product_desc'    => $faker->text($maxNbChars = 200),
         'manufacturer'    => $faker->randomElement($array = array ('Sony','Sanyo','Polytron','Aiwa','Samsung','')),
         'item_function'   => $faker->randomElement($array = array ('TV','Computer','Tape Mobil','Printer')),
-        'unit_price_min'  => $faker->numberBetween($min = 5000, $max = 20000),
-        'unit_price_max'  => $faker->numberBetween($min = 20000, $max = 30000),
+        // 'cost_min'  => $faker->numberBetween($min = 5000, $max = 20000),
+        // 'cost_max'  => $faker->numberBetween($min = 20000, $max = 30000),
+        'cost_min'  => '0',
+        'cost_max'  => '0',
         'price_buy_avg'   => '0',
         'images'          => 'default1.png',
         'stock'           => '0',
-        'unit_of_measure' => 'PC',
+        'unit_of_measure' => 'pcs',
     ];
 });

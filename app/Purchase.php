@@ -24,7 +24,7 @@ class Purchase extends Model
         'user_id',
 		'supplier_id',
 		'shipping_id',
-		'purchase_no',
+		'purchase_code',
 		'po_description',
 		'purchase_date',
 		'promised_date',

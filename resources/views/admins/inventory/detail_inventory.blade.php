@@ -75,11 +75,11 @@
                         <label>Item Function :</label>
                         <input type="text" class="form-control" value="{{$data->item_function}}" readonly="readonly" />
 
-                        <label>Unit Price Minimum :</label>
-                        <input type="number" class="form-control" value="{{$data->unit_price_min}}" readonly="readonly" />
+                        <label>Cost Minimum :</label>
+                        <input type="number" class="form-control" value="{{$data->cost_min}}" readonly="readonly" />
 
-                        <label>Unit Price Maximum :</label>
-                        <input type="number" class="form-control" value="{{$data->unit_price_max}}" readonly="readonly" />
+                        <label>Cost Maximum :</label>
+                        <input type="number" class="form-control" value="{{$data->cost_max}}" readonly="readonly" />
 
                         <label>Price Buy Average * :</label>
                         <input type="number" class="form-control" value="{{$data->price_buy_avg}}" readonly="readonly" />

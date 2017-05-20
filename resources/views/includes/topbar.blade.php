@@ -9,7 +9,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('/img/user.png')}}" {{-- src="{{ Gravatar::src(Auth::user()->email) }}" --}} alt="Avatar of {{ $getuser->first_name }}">
+                        <img src="{{asset('/img/user.png')}}" 
+                        alt="Avatar of {{ $getuser->first_name }}">
                         @if(Sentinel::getUser()->roles()->first()->slug == 'admin')
                             Admin : {{ $getuser->first_name }} 
                         @else

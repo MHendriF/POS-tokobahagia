@@ -81,23 +81,27 @@
                         <label>Product Name * :</label>
                         <input type="text" class="form-control" name="product_name" required />
 
-                        <label>Code Factory * :</label>
-                        <input type="text" class="form-control" name="code_factory" required />
+                        <label>Code Factory :</label>
+                        <input type="text" class="form-control" name="code_factory" />
 
-                        <label>Manufacturer * :</label>
-                        <input type="text" class="form-control" name="manufacturer" required />
+                        <label>Manufacturer :</label>
+                        <input type="text" class="form-control" name="manufacturer" />
 
-                        <label>Item Function * :</label>
-                        <input type="text" class="form-control" name="item_function" required />
+                        <label>Item Function :</label>
+                        <input type="text" class="form-control" name="item_function" />
 
-                        <label>Unit Price Minimum * :</label>
-                        <input type="number" class="form-control" data-cell="A1" placeholder="Rp" name="unit_price_min" required />
+                        <label>Unit of Measure * :</label>
+                        <input type="text" class="form-control" name="unit_of_measure" required />
+
+
+                       {{--  <label>Unit Price Minimum * :</label>
+                        <input type="text" class="form-control" data-cell="A1" placeholder="Rp" name="unit_price_min" data-parsley-type="number" required />
 
                         <label>Unit Price Maximum * :</label>
-                        <input type="number" class="form-control" data-cell="A2" placeholder="Rp" name="unit_price_max" required />
+                        <input type="text" class="form-control" data-cell="A2" placeholder="Rp" name="unit_price_max" data-parsley-type="number" required />
 
-                        <label>Price Buy Average * :</label>
-                        <input type="number" class="form-control" data-cell="A3" data-formula="(A1+A2)/2" name="price_buy_avg" value="0" readonly />
+                        <label>Price Buy Average :</label>
+                        <input type="number" class="form-control" name="price_buy_avg" value="0" readonly /> --}}
                     
                     </div>
                   </div>
@@ -122,15 +126,12 @@
                         </div>  
                       </center>
 
-                      <label>Stock * :</label>
-                      <input type="number" class="form-control" name="stock" value="0" readonly />
+                        {{-- <label>Stock :</label>
+                        <input type="number" class="form-control" name="stock" value="0" readonly /> --}}
 
-                      <label>Unit of Measure * :</label>
-                      <input type="text" class="form-control" name="unit_of_measure" required />
-
-                      <label>Product Description (10 chars min, 100 max) :</label>
+                      <label>Product Description :</label>
                             <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."
-                              data-parsley-validation-threshold="10" required></textarea>
+                              data-parsley-validation-threshold="10" ></textarea>
 
                       <div class="ln_solid"></div>
                       <center>

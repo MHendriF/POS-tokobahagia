@@ -13,7 +13,12 @@ class LoginController extends Controller
 {
     public function login()
     {
-    	return view('auth.authenticate');
+    	return view('auth.login');
+    }
+
+    public function auth()
+    {
+        return view('auth.authenticate');
     }
 
     public function postLogin(Request $request)

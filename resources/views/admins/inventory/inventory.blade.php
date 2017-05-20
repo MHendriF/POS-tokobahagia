@@ -94,6 +94,9 @@
                             <th>Manufacturer</th>
                             <th>Location</th>
                             <th>Stock</th>
+                            <th>Cost min</th>
+                            <th>Cost max</th>
+                            <th>Price buy avg</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -106,7 +109,9 @@
                             <td>{{ $product->manufacturer }}</td>
                             <td>{{ $product->pilihlocation->location }}</td>
                             <td>{{ $product->stock }}</td>
-                            
+                            <td>Rp. {{ $product->cost_min }}</td>
+                            <td>Rp. {{ $product->cost_max }}</td>
+                            <td>Rp. {{ $product->price_buy_avg }}</td>
                             {{-- <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td> --}}
                      
                             <td>

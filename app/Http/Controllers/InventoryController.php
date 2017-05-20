@@ -11,6 +11,7 @@ use Image;
 use Session;
 use DB;
 
+
 class InventoryController extends Controller
 {
     public function index()
@@ -38,11 +39,7 @@ class InventoryController extends Controller
                 'product_desc'    => 'required',
                 'manufacturer'    => 'required',
                 'item_function'   => 'required',
-                'unit_price_min'  => 'required',
-                'unit_price_max'  => 'required',
-                'price_buy_avg'   => 'required',
                 'images'          => 'required',
-                'stock'           => 'required',
                 'unit_of_measure' => 'required'
             ));
 
@@ -54,10 +51,10 @@ class InventoryController extends Controller
                 'product_desc'    => $request->get('product_desc'),
                 'manufacturer'    => $request->get('manufacturer'),
                 'item_function'   => $request->get('item_function'),
-                'unit_price_min'  => $request->get('unit_price_min'),
-                'unit_price_max'  => $request->get('unit_price_max'),
-                'price_buy_avg'   => $request->get('price_buy_avg'),
-                'stock'           => $request->get('stock'),
+                'cost_min'  => "0",
+                'cost_max'  => "0",
+                'price_buy_avg'   => "0",
+                'stock'           => "0",
                 'unit_of_measure' => $request->get('unit_of_measure')
             ));
 
@@ -110,8 +107,8 @@ class InventoryController extends Controller
                 'product_desc'    => 'required',
                 'manufacturer'    => 'required',
                 'item_function'   => 'required',
-                'unit_price_min'  => 'required',
-                'unit_price_max'  => 'required',
+                'cost_min'  => 'required',
+                'cost_max'  => 'required',
                 'price_buy_avg'   => 'required',
                 'stock'           => 'required',
                 'unit_of_measure' => 'required'
@@ -140,7 +137,7 @@ class InventoryController extends Controller
     public function findProduct(Request $request){
 
         //it will get price if its id match with product id
-        $p=Inventory::select('unit_price_min','stock')->where('id',$request->id)->first();
+        $p=Inventory::select('cost_min','stock')->where('id',$request->id)->first();
         return response()->json($p);
     }
 

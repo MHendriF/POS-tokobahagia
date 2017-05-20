@@ -27,7 +27,7 @@ class OrderController extends Controller
         $data = Customer::all();
         $data2 = Shipping::all();
         $data3 = Inventory::all();
-        return view('employees.order.add_order_v2', compact('data', 'data2','data3'));
+        return view('employees.order.add_order', compact('data', 'data2','data3'));
     }
 
     public function store(Request $request)
@@ -44,14 +44,6 @@ class OrderController extends Controller
                 'shipping_date'  => 'required',
                 'no_po_customer' => 'required',
                 'description'    => 'required'
-
-                //Order Detail
-                // 'product_id'     => 'required',
-                // 'number'       => 'required',
-                // 'quantity'       => 'required',
-                // 'price_per_unit' => 'required',
-                // 'discount'       => 'required',
-                // 'price_total'    => 'required'
                 
                 
             ));
@@ -100,7 +92,7 @@ class OrderController extends Controller
                 
                 if($number[$i] == null){
                     //return "Success v2";
-                    Session::flash('new', 'New Order V1 was successfully added!');
+                    Session::flash('new', 'New Order was successfully added!');
                     return redirect()->to('order');
                 }
 

@@ -33,5 +33,18 @@
 
     </div>
 
+    <!-- jQuery -->
+    <script src="{{ asset("assets/jquery/dist/jquery.min.js") }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset("assets/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset("assets/fastclick/lib/fastclick.js") }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset("assets/nprogress/nprogress.js") }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset("build/js/custom.min2.js") }}"></script>
+
 </body>
 </html>

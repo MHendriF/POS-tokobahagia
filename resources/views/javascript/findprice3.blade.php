@@ -13,7 +13,7 @@
                     data:{'id':prod_id},
                     dataType:'json',//return data will be json
                     success:function(data){
-                        $("#find_price3").val(data.unit_price_min); //parsing price to view
+                        $("#find_price3").val(data.cost_min); //parsing price to view
                         $("#find_stock3").val(data.stock);
                     },
                     error:function(){

@@ -1,3 +1,5 @@
+
+
 .floating-box {
   float: left;
 }
@@ -270,3 +272,8 @@
 
 
 /**/
+
+
+div.has-error ul.select2-choices {
+  border-color: rgb(185, 74, 72) !important;
+}

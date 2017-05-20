@@ -90,11 +90,11 @@
                         <label>Item Function * :</label>
                         <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" required />
 
-                        <label>Unit Price Minimum * :</label>
-                        <input type="number" class="form-control" name="unit_price_min" value="{{$data->unit_price_min}}" required />
+                        <label>Cost Minimum * :</label>
+                        <input type="number" class="form-control" name="cost_min" value="{{$data->cost_min}}" required />
 
-                        <label>Unit Price Maximum * :</label>
-                        <input type="number" class="form-control" name="unit_price_max" value="{{$data->unit_price_max}}" required />
+                        <label>Cost Maximum * :</label>
+                        <input type="number" class="form-control" name="cost_max" value="{{$data->cost_max}}" required />
 
                         <label>Price Buy Average * :</label>
                         <input type="number" class="form-control" name="price_buy_avg" value="{{$data->price_buy_avg}}" readonly />

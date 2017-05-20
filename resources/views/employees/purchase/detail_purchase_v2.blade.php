@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Code </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" value="{{$data->purchase_no}}" readonly class="form-control col-md-7 col-xs-12"/>
+                                  <input type="text" value="{{$data->purchase_code}}" readonly class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
 
