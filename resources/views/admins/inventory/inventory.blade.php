@@ -36,7 +36,7 @@
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
-                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
                     <li class="active">Inventory</li>
                   </ol>  
                   </section>
@@ -94,9 +94,9 @@
                             <th>Manufacturer</th>
                             <th>Location</th>
                             <th>Stock</th>
-                            <th>Cost min</th>
-                            <th>Cost max</th>
-                            <th>Price buy avg</th>
+                            <th>Cost Min</th>
+                            <th>Cost Max</th>
+                            <th>Price Buy Avg</th>
                             <th>Action</th>
                           </tr>
                         </thead>

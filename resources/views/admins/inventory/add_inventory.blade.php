@@ -36,7 +36,7 @@
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
-                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
                     <li><a href="{{ url('inventory') }}">Inventory</a></li>
                     <li class="active">Add</li>
                   </ol>  
@@ -90,17 +90,13 @@
                         <label>Item Function :</label>
                         <input type="text" class="form-control" name="item_function" />
 
-                        <label>Unit of Measure * :</label>
-                        <input type="text" class="form-control" name="unit_of_measure" required />
-
-
-                       {{--  <label>Unit Price Minimum * :</label>
-                        <input type="text" class="form-control" data-cell="A1" placeholder="Rp" name="unit_price_min" data-parsley-type="number" required />
+                        <label>Unit Price Minimum * :</label>
+                        <input type="text" class="form-control" placeholder="Rp" name="cost_min" data-parsley-type="number" required />
 
                         <label>Unit Price Maximum * :</label>
-                        <input type="text" class="form-control" data-cell="A2" placeholder="Rp" name="unit_price_max" data-parsley-type="number" required />
+                        <input type="text" class="form-control" placeholder="Rp" name="cost_max" data-parsley-type="number" required />
 
-                        <label>Price Buy Average :</label>
+                        {{-- <label>Price Buy Average :</label>
                         <input type="number" class="form-control" name="price_buy_avg" value="0" readonly /> --}}
                     
                     </div>
@@ -128,6 +124,9 @@
 
                         {{-- <label>Stock :</label>
                         <input type="number" class="form-control" name="stock" value="0" readonly /> --}}
+                      <label>Unit of Measure * :</label>
+                        <input type="text" class="form-control" name="unit_of_measure" required />
+
 
                       <label>Product Description :</label>
                             <textarea id="product_desc" class="form-control" name="product_desc" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.."

@@ -25,7 +25,7 @@ class ServiceController extends Controller
         $data = Technician::all();
         $data2 = Service_item::all();
         $data3 = ServiceStatus::all();
-        return view('service.add_service', compact('data','data2','data3'));
+        return view('service.add_service_v2', compact('data','data2','data3'));
     }
 
     public function store(Request $request)

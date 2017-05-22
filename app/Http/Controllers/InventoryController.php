@@ -25,7 +25,7 @@ class InventoryController extends Controller
     {
         $data = Category::all();
         $data2 = Location::all();
-        return view('admins.inventory.add_inventory', compact('data','data2'));
+        return view('admins.inventory.add_inventory_v2', compact('data','data2'));
     }
 
     public function store(Request $request)
@@ -39,6 +39,8 @@ class InventoryController extends Controller
                 'product_desc'    => 'required',
                 'manufacturer'    => 'required',
                 'item_function'   => 'required',
+                'cost_min'        => 'required',
+                'cost_max'        => 'required',
                 'images'          => 'required',
                 'unit_of_measure' => 'required'
             ));
@@ -51,8 +53,8 @@ class InventoryController extends Controller
                 'product_desc'    => $request->get('product_desc'),
                 'manufacturer'    => $request->get('manufacturer'),
                 'item_function'   => $request->get('item_function'),
-                'cost_min'  => "0",
-                'cost_max'  => "0",
+                'cost_min'        => $request->get('cost_min'),
+                'cost_max'        => $request->get('cost_max'),
                 'price_buy_avg'   => "0",
                 'stock'           => "0",
                 'unit_of_measure' => $request->get('unit_of_measure')
@@ -155,7 +157,7 @@ class InventoryController extends Controller
             FROM order_details s, orders sa 
             WHERE s.product_id LIKE '$id' and sa.id = s.order_id");
 
-        $data2 = DB::select("SELECT p.*, pu.purchase_no as purchase_no
+        $data2 = DB::select("SELECT p.*, pu.purchase_code as purchase_code
             FROM purchase_details p, purchases pu 
             WHERE p.product_id LIKE '$id' and pu.id = p.purchase_id");
 

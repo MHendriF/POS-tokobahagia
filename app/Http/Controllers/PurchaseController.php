@@ -127,45 +127,45 @@ class PurchaseController extends Controller
                 else
                 {
                     //cek jika apakah ada di tabel
-                    $cek = Purchase_Detail::where('product_id', '=', $product_id[$i])->first();
-                    if($cek === null) //jika tidak ada
-                    {
-                        $product = Inventory::where('id', '=', $product_id[$i])->first();
-                        //update status
-                        if($product)
-                        {
-                            $product->cost_min = $price_per_unit[$i];
-                            $product->cost_max = $price_per_unit[$i];
-                            $product->price_buy_avg = $price_per_unit[$i];
-                            $product->save();
-                        }
-                    }
+                    // $cek = Purchase_Detail::where('product_id', '=', $product_id[$i])->first();
+                    // if($cek === null) //jika tidak ada
+                    // {
+                    //     $product = Inventory::where('id', '=', $product_id[$i])->first();
+                    //     //update status
+                    //     if($product)
+                    //     {
+                    //         $product->cost_min = $price_per_unit[$i];
+                    //         $product->cost_max = $price_per_unit[$i];
+                    //         $product->price_buy_avg = $price_per_unit[$i];
+                    //         $product->save();
+                    //     }
+                    // }
 
                     $PD->save();
-                    if(Purchase_Detail::where('product_id', '=', $product_id[$i])->count() > 1)
-                    {
-                        $item_max = DB::table('purchase_details')
-                                    ->where('product_id', '=', $product_id[$i])
-                                    ->max('price_per_unit');
-                        $item_min = DB::table('purchase_details')
-                                    ->where('product_id', '=', $product_id[$i])
-                                    ->min('price_per_unit');
-                        $item_avg = DB::table('purchase_details')
-                                    ->where('product_id', '=', $product_id[$i])
-                                    ->avg('price_per_unit');
+                    // if(Purchase_Detail::where('product_id', '=', $product_id[$i])->count() > 1)
+                    // {
+                    //     $item_max = DB::table('purchase_details')
+                    //                 ->where('product_id', '=', $product_id[$i])
+                    //                 ->max('price_per_unit');
+                    //     $item_min = DB::table('purchase_details')
+                    //                 ->where('product_id', '=', $product_id[$i])
+                    //                 ->min('price_per_unit');
+                    //     $item_avg = DB::table('purchase_details')
+                    //                 ->where('product_id', '=', $product_id[$i])
+                    //                 ->avg('price_per_unit');
 
-                        //cari produk
-                        $product = Inventory::where('id', '=', $product_id[$i])->first();
-                        //update status
-                        if($product)
-                        {
-                            $product->cost_min = $item_min;
-                            $product->cost_max = $item_max;
-                            $product->price_buy_avg = $item_avg;
-                            $product->save();
-                        }
+                    //     //cari produk
+                    //     $product = Inventory::where('id', '=', $product_id[$i])->first();
+                    //     //update status
+                    //     if($product)
+                    //     {
+                    //         $product->cost_min = $item_min;
+                    //         $product->cost_max = $item_max;
+                    //         $product->price_buy_avg = $item_avg;
+                    //         $product->save();
+                    //     }
 
-                    }
+                    // }
                     
                 }
             }

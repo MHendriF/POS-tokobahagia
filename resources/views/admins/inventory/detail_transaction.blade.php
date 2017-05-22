@@ -36,7 +36,7 @@
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
-                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
                     <li><a href="{{ url('inventory') }}">Inventory</a></li>
                     <li class="active">Detail Transaction</li>
                   </ol>  
@@ -132,7 +132,7 @@
                         @foreach($data2 as $index => $detail)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $detail->purchase_no }}</td>
+                          <td>{{ $detail->purchase_code }}</td>
                           <td>{{ $detail->quantity }}</td>
                           <td>Rp. {{ $detail->price_per_unit }}</td>
                           <td>Rp. {{ $detail->discount }}</td>
