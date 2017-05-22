@@ -30,7 +30,7 @@
               <div class="pull-right">
                 <section class="content-header">
                   <ol class="breadcrumb">
-                  <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                  <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
                   <li><a href="{{ redirect()->back()->getTargetUrl() }}">Go Back</a></li>
                   <li class="active">Detail Order</li>
                 </ol>  

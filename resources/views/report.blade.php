@@ -32,7 +32,7 @@
                   <div class="pull-right">
                     <section class="content-header">
                       <ol class="breadcrumb">
-                      <li class="active"><a href="{{ url('report') }}"><i class="fa fa-dashboard"></i>Report</a></li>
+                      <li class="active"><a href="{{ url('report') }}"><i class="fa fa-home"></i>Report</a></li>
                     </ol>  
                     </section>
                   </div>
