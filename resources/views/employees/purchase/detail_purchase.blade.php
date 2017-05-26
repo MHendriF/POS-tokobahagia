@@ -127,6 +127,7 @@
                             </div>
 
                             <!-- Purchase Detail -->
+                            <br>
                             <h2>Purchase Details</h2>
                             <div class="ln_solid"></div>
                             
@@ -137,6 +138,7 @@
                                       <tr>
                                         <th>No</th>
                                         <th>Product</th>
+                                        <th>Category</th>
                                         <th>Quantity</th>
                                         <th>Price Per Unit</th>
                                         <th>Discount</th>
@@ -147,7 +149,9 @@
                                       @foreach($data2 as $index => $pd)
                                         <tr>  
                                           <td><input type="text" value="{{$pd->number}}" readonly class="form-control name_list" style="width: 60px;"/></td>
-                                          <td><input type="text" value="{{ $pd->pilihproduct->product_name }} " readonly class="form-control name_list"/></td>
+                                          {{-- <td><input type="text" value="{{ $pd->pilihproduct->product_name }} " readonly class="form-control name_list"/></td> --}}
+                                          <td><input type="text" value="{{ $pd->product_name }} " readonly class="form-control name_list"/></td>
+                                          <td><input type="text" value="{{ $pd->category_name }} " readonly class="form-control name_list"/></td>
                                           <td><input type="text" value="{{$pd->quantity}}" readonly class="form-control name_list"/></td>
                                           <td><input type="text" value="{{$pd->price_per_unit}}" readonly class="form-control name_list"/></td>
                                           <td><input type="text" value="{{$pd->discount}}" readonly class="form-control name_list"/></td>

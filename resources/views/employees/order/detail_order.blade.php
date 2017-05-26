@@ -99,6 +99,7 @@
                             </div>
 
                             <!-- Order Detail -->
+                            <br>
                             <h2>Order Details</h2>
                             <div class="ln_solid"></div>
 

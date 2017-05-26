@@ -10,6 +10,7 @@ use App\Purchase;
 use App\Purchase_Detail;
 use App\Shipping;
 use App\Inventory;
+use App\Category;
 use Session;
 use DB;
 use Carbon\Carbon;
@@ -184,9 +185,16 @@ class PurchaseController extends Controller
     {
 
         $data = Purchase::find($id);
-        $data2 = Purchase_Detail::all()->where('purchase_id',$id);
-        //dd($data3);
-        return view('employees.purchase.detail_purchase', compact('data','data2'));
+        // $data2 = Purchase_Detail::all()->where('purchase_id',$id);
+        // return view('employees.purchase.detail_purchase', compact('data','data2'));
+        $data2 = DB::table('purchase_details')
+            ->join('inventory', 'inventory.id', '=', 'purchase_details.purchase_id')
+            ->join('categories', 'categories.id', '=', 'inventory.category_id')
+            ->select('purchase_details.*', 'inventory.product_name', 'categories.category_name')
+            ->where('purchase_id', '=', $id)
+            ->get();
+        return view('employees.purchase.detail_purchase', compact('data', 'data2'));
+        //dd($data);
     }
 
     public function edit($id)
