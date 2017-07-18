@@ -45,9 +45,7 @@
             </section>
 
             <div class="clearfix"></div>
-
             <div class="row">
-             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -69,7 +67,7 @@
                        <div class="col-sm-3">
                             <div class="form-group">
                                 <select id="showCategory" name="search" class="form-control input-sm" tabindex="-1">
-                                  <option> Choose One </option>
+                                  <option value="0" selected="true" disabled="true"> Choose One </option>
                                   @foreach($data2 as $category)
                                     <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
                                    @endforeach       
@@ -139,7 +137,6 @@
                         </tbody>
                       </table>
                     </div>
-
                   @else
                     <div class="row">
                       <div class="col-md-12">
@@ -151,11 +148,38 @@
                       </div>
                     </div>
                   @endif
-
                 </div>
               </div>
-
             </div>
+
+            @if(count($data)>0)
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="x_panel">
+                    <div class="title_left">
+                        <h2>Keterangan</h2>
+                    </div>
+                    <div class="btn-group">
+                      <ul>
+                        <li class="btn btn-primary btn-xs" style="margin-bottom: 6px;"><i class="fa fa-credit-card" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melihat Detail Transaksi Pada Inventory</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-eye" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melihat Detail Data Inventory</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-warning btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Inventory</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Menghapus Data Inventory</strong>
+                          <div class="clearfix"></div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
+
           </div>
         </div>
         <!-- /page content -->

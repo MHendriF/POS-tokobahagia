@@ -46,9 +46,7 @@
             </section>
 
             <div class="clearfix"></div>
-
             <div class="row">
-             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -100,8 +98,30 @@
                   </div>
                 </div>
               </div>
-
             </div>
+
+            @if(count($data)>0)
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="x_panel">
+                    <div class="title_left">
+                        <h2>Keterangan</h2>
+                    </div>
+                    <div class="btn-group">
+                      <ul>
+                        <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Technician</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Menghapus Data Technician</strong>
+                          <div class="clearfix"></div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
+
           </div>
         </div>
         <!-- /page content -->

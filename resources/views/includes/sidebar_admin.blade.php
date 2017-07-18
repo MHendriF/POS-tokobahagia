@@ -43,13 +43,13 @@
                     <li>
                         <a><i class="fa fa-table"></i> Report Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ url('inventory') }}">Report Inventory</a></li>
+                            {{-- <li><a href="{{ url('inventory') }}">Report Inventory</a></li> --}}
                             <li><a href="{{ url('purchase') }}">Report Purchase</a></li>
                             <li><a href="{{ url('order') }}">Report Order</a></li>
                             <li><a href="{{ url('service') }}">Report Service</a></li>
-                            <li><a href="{{ url('transaction') }}">Report Transaction</a></li>
+                            {{-- <li><a href="{{ url('transaction') }}">Report Transaction</a></li> --}}
                             <li><a href="{{ url('finance') }}">Report Keuangan Bulanan</a></li>
-                            <li><a href="{{ url('') }}">Report Biaya Teknisi</a></li>
+                            <li><a href="{{ url('#') }}">Report Biaya Teknisi</a></li>
                         </ul>
                     </li>
                 </ul>
