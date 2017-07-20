@@ -28,7 +28,7 @@ class Order extends Model
         'user_id',
         'customer_id',
         'shipping_id',
-		'order_no',
+		'order_code',
         'shipping_date',
 		'no_po_customer',
         'price_total',

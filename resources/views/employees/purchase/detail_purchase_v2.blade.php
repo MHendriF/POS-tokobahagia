@@ -105,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Freight Charge</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="text" value="Rp. {{$data->freight_charge}}" readonly class="form-control col-md-7 col-xs-12" />
@@ -117,7 +117,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="text" value="Rp. {{$data->price_total}}" readonly class="form-control col-md-7 col-xs-12" />
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Purchase Description</label>
@@ -137,25 +137,46 @@
                                       <tr>
                                         <th>No</th>
                                         <th>Product</th>
+                                        <th>Category</th>
                                         <th>Quantity</th>
                                         <th>Price Per Unit</th>
                                         <th>Discount</th>
-                                        <th>Price Total</th>
+                                        <th>Amount</th>
                                       </tr>
                                     </thead>
                                     <tbody>
                                       @foreach($data2 as $index => $pd)
                                         <tr>  
                                           <td><input type="text" value="{{$pd->number}}" readonly class="form-control name_list" style="width: 60px;"/></td>
-                                          <td><input type="text" value="{{$pd->pilihproduct->product_name}} " readonly class="form-control name_list"/></td>
+                                          <td><input type="text" value="{{$pd->product_name}} " readonly class="form-control name_list"/></td>
+                                          <td><input type="text" value="{{$pd->category_name }} " readonly class="form-control"/></td>
                                           <td><input type="text" value="{{$pd->quantity}}" readonly class="form-control name_list"/></td>
                                           <td><input type="text" value="{{$pd->price_per_unit}}" readonly class="form-control name_list"/></td>
                                           <td><input type="text" value="{{$pd->discount}}" readonly class="form-control name_list"/></td>
                                           <td><input type="number" value="{{$pd->price}}" readonly class="form-control name_list"/></td>
                                         </tr>
                                       @endforeach
-                                      
-                                    </tbody>  
+                                    </tbody>
+                                    <tfoot>
+                                      <tr>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="background: #eee"><b>Total Freight Charge</b></td>
+                                           <td style="background: #eee"><b>Rp {{number_format($data->freight_charge, 2, ',', '.')}}</b></td>
+                                      </tr>
+                                      <tr>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>                        
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="background: #eee"><b>Total Keseluruhan</b></td>
+                                           <td style="background: #eee"><b>Rp {{number_format($data->price_total, 2, ',', '.')}}</b></td>
+                                      </tr>
+                                    </tfoot>    
                                 </table>  
                               </div>
                             </div>

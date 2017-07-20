@@ -107,30 +107,29 @@
                             <td>{{ $product->manufacturer }}</td>
                             <td>{{ $product->pilihlocation->location }}</td>
                             <td>{{ $product->stock }}</td>
-                            <td>Rp. {{ $product->cost_min }}</td>
-                            <td>Rp. {{ $product->cost_max }}</td>
-                            <td>Rp. {{ $product->price_buy_avg }}</td>
+                            <td>Rp {{number_format($product->cost_min, 0, ',', '.') }}</td>
+                            <td>Rp {{number_format($product->cost_max, 0, ',', '.') }}</td>
+                            <td>Rp {{number_format($product->price_buy_avg, 0, ',', '.') }}</td>
                             {{-- <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td> --}}
-                     
                             <td>
-                            <center>
-                              <div class="btn-group">
-                                <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
-                              </div>
-                              <div class="btn-group">
-                                <a href="{{ url('inventory/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                              </div>
-                              <div class="btn-group">
-                                <a href="{{ url('inventory/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                              </div>
-                              <div class="btn-group">
-                                <form id="delete-currency" action="{{ url('inventory/'.$product->id) }}" method="post" title="Delete">
-                                  {{ csrf_field() }}
-                                  <input type="hidden" name="_method" value="DELETE">
-                                  <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                                </form>
-                              </div>
-                            </center>
+                              <center>
+                                <div class="btn-group">
+                                  <a href="{{ url('detailTransaction/'.$product->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="Transaction"><i class="fa fa-credit-card"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                  <a href="{{ url('inventory/'.$product->id) }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                  <a href="{{ url('inventory/'.$product->id.'/edit') }}" class="btn btn-warning btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                </div>
+                                <div class="btn-group">
+                                  <form id="delete-currency" action="{{ url('inventory/'.$product->id) }}" method="post" title="Delete">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button id="delete" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                                  </form>
+                                </div>
+                              </center>
                             </td>
                           </tr>
                           @endforeach

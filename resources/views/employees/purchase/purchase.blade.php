@@ -70,7 +70,7 @@
                           <th>No</th>
                           <th>Supplier</th>
                           <th>Shipping Method</th>
-                          <th>PO Description</th>
+                          {{-- <th>PO Description</th> --}}
                           <th>Purchase Date</th>
                           <th>Promised Date</th>
                           <th>Freight Charge</th>
@@ -85,11 +85,11 @@
                           <td>{{ $index +1 }}</td>
                           <td>{{ $po->pilihsupplier->supplier_name }}</td>
                           <td>{{ $po->pilihshipping->method }}</td>
-                          <td>{{ $po->po_description }}</td>
+                          {{-- <td>{{ $po->po_description }}</td> --}}
                           <td>{{ $po->purchase_date }}</td>
                           <td>{{ $po->promised_date }}</td>
-                          <td>Rp. {{ $po->freight_charge }}</td>
-                          <td>Rp. {{ $po->price_total }}</td>
+                          <td>Rp {{number_format($po->freight_charge, 2, ',', '.') }}</td>
+                          <td>Rp {{number_format($po->price_total, 2, ',', '.') }}</td>
                           <td>
                             <center>
                               <div class="btn-group">
@@ -145,6 +145,8 @@
 
     @push('scripts')
 
+    <!-- Money -->
+    <script src="{{ asset("js/accounting.js") }}"></script>
     <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-buttons/js/dataTables.buttons.min.js") }}"></script>
@@ -160,6 +162,7 @@
     <script src="{{ asset("assets/jszip/dist/jszip.min.js") }}"></script>
     <script src="{{ asset("assets/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("assets/pdfmake/build/vfs_fonts.js") }}"></script>
+
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>

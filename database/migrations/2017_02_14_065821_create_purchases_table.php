@@ -19,7 +19,7 @@ class CreatePurchasesTable extends Migration
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
             $table->string('purchase_code');
-            $table->string('po_description');
+            $table->string('po_description')->nullable();
             $table->string('purchase_date');
             $table->string('promised_date');
             $table->string('shipping_date');

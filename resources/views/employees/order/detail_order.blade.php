@@ -59,7 +59,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Number </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" value="{{$data->order_no}}" readonly class="form-control col-md-7 col-xs-12"/>
+                                  <input type="text" value="{{$data->order_code}}" readonly class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Employee</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="text" value="{{$data->pilihuser->first_name}}" readonly class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
 
@@ -94,7 +101,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Order Description</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea type="text" readonly class="form-control col-md-7 col-xs-12">{{$data->description}}</textarea>
+                                  <textarea rows="4" type="text" readonly class="form-control col-md-7 col-xs-12">{{$data->description}}</textarea>
                                 </div>
                             </div>
 
@@ -113,7 +120,7 @@
                                         <th>Quantity</th>
                                         <th>Price Per Unit</th>
                                         <th>Discount</th>
-                                        <th>Price Total</th>
+                                        <th>Amount</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -127,8 +134,17 @@
                                           <td><input type="number" value="{{$pd->price}}" readonly class="form-control name_list"/></td>
                                         </tr>
                                       @endforeach
-                                      
-                                    </tbody>  
+                                    </tbody>
+                                    <tfoot>
+                                      <tr>
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="border: none;text-align: center;background: #eee"></td>     
+                                           <td style="border: none;text-align: center;background: #eee"></td>     
+                                           <td style="border: none;text-align: center;background: #eee"></td>
+                                           <td style="background: #eee"><b>Total Keseluruhan</b></td>
+                                           <td style="background: #eee"><b>Rp {{number_format($data->price_total, 2, ',', '.')}}</b></td>
+                                      </tr>
+                                  </tfoot>  
                                 </table>  
                               </div>
                             </div>

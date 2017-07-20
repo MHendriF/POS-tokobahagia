@@ -5,6 +5,7 @@
 @endsection
 
 @push('stylesheets')
+
     <!-- iCheck -->
     <link href="{{ asset("assets/iCheck/skins/flat/green.css")}}" rel="stylesheet">
     <!-- Select2 -->
@@ -26,104 +27,89 @@
       <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            
-            <section class="page-title">
-              <div class="title_left">
-                <h3>Detail Inventory</h3>
-              </div>
-              <div class="title_right">
-                <div class="pull-right">
-                  <section class="content-header">
-                    <ol class="breadcrumb">
-                    <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                    <li><a href="{{ url('inventory') }}">Inventory</a></li>
-                    <li class="active">Detail</li>
-                  </ol>  
-                  </section>
+              <section class="page-title">
+                <div class="title_left">
+                  <h3>Detail Inventory</h3>
                 </div>
-              </div>
-            </section>
+                <div class="title_right">
+                  <div class="pull-right">
+                    <section class="content-header">
+                      <ol class="breadcrumb">
+                      <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
+                      <li><a href="{{ url('inventory') }}">Inventory</a></li>
+                      <li class="active">Detail</li>
+                    </ol>  
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
 
             <div class="clearfix"></div>
 
             <div class="row">
-             
-                <div class="col-md-6 col-xs-12">
+              
+                <div class="col-md-12">
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Detail Inventory</h2>
                       <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
                       </ul>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                       
-                        <label>Category :</label>
-                        <input type="text" class="form-control" value="{{$data->pilihcategory->category_name}}" readonly="readonly" />
 
-                        <label>Location :</label>
-                        <input type="text" class="form-control" value="{{$data->pilihlocation->location}}" readonly="readonly" />
+                      <div class="col-md-6 col-lg-6 col-sm-4">
+                        <blockquote class="blockquote-reverse2">
+                          <label>Category :</label>
+                          <input type="text" class="form-control" name="product_name" value="{{$data->pilihcategory->category_name}}" readonly />
 
-                        <label>Product Name :</label>
-                        <input type="text" class="form-control" value="{{$data->product_name}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Location :</label>
+                          <input type="text" class="form-control" name="product_name" value="{{$data->pilihlocation->location}}" readonly />
 
-                        <label>Manufacturer :</label>
-                        <input type="text" class="form-control" value="{{$data->manufacturer}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Product Name :</label>
+                          <input type="text" class="form-control" name="product_name" value="{{$data->product_name}}" readonly />
 
-                        <label>Item Function :</label>
-                        <input type="text" class="form-control" value="{{$data->item_function}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Code Factory :</label>
+                          <input type="text" class="form-control" name="code_factory" value="{{$data->code_factory}}" readonly />
 
-                        <label>Cost Minimum :</label>
-                        <input type="number" class="form-control" value="{{$data->cost_min}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Manufacturer :</label>
+                          <input type="text" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" readonly />
 
-                        <label>Cost Maximum :</label>
-                        <input type="number" class="form-control" value="{{$data->cost_max}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Item Function :</label>
+                          <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" readonly />
 
-                        <label>Price Buy Average * :</label>
-                        <input type="number" class="form-control" value="{{$data->price_buy_avg}}" readonly="readonly" />
+                          <label style="margin-top: 10px;">Unit Price Minimum :</label>
+                          <input type="text" class="form-control" name="cost_min" value="Rp {{number_format($data->cost_min, 2, ',', '.')}}" readonly />
+
+                          <label style="margin-top: 10px;">Unit Price Maximum :</label>
+                          <input type="text" class="form-control" name="cost_max"  value="Rp {{number_format($data->cost_min, 2, ',', '.')}}" readonly />
+                        </blockquote>
+                      </div>
+                      <div class="col-md-4 col-lg-6 col-sm-5">
+                        <label>Picture :</label>
+                        <center>
+                          <div class="anyName">
+                            <input type="file" accept="image/gif, image/jpeg, image/png" disabled name="images">
+                            <img src="{{ asset('/images/products/'.$data->images) }}">
+                          </div>  
+                        </center>
                         
+                        <label style="margin-top: 37px;">Unit of Measure :</label>
+                        <input type="text" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" readonly />
 
+                        <label style="margin-top: 10px;">Product Description :</label>
+                        <textarea rows="6" id="product_desc" class="form-control" name="product_desc" readonly>{{$data->product_desc}}</textarea>
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Detail Inventory</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <p>This image product show only</p>
-                      <center>
-                        <div class="anyName">
-                          <input type="file" accept="image/gif, image/jpeg, image/png" name="item_images" disabled="disabled" name="images">
-                          <img src="{{ asset('/images/products/'.$data->images) }}">
-                        </div>  
-                      </center>
-
-                      <label>Stock :</label>
-                      <input type="number" class="form-control" value="{{$data->stock}}" readonly="readonly" />
-
-                      <label>Unit of Measure :</label>
-                      <input type="text" class="form-control" value="{{$data->unit_of_measure}}" readonly="readonly" />
-
-                      <label>Product Description :</label>
-                        <textarea id="product_desc" class="form-control" readonly="readonly">{{$data->product_desc}}</textarea>
-
-
-                    </div>
-                  </div>
-                </div>
-
-            </div>
-
+              
             </div>
           </div>
         </div>
@@ -135,11 +121,14 @@
 
     @push('scripts')
 
+    <!-- Calculator -->
+    <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
     <!-- iCheck -->
     <script src="{{ asset("assets/iCheck/icheck.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+    <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>{{-- 
+    <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script> --}}
+    <script src="{{ asset("assets/dangrossman/daterangepicker.js") }}"></script>
     <!-- Switchery -->
     <script src="{{ asset("assets/switchery/dist/switchery.min.js") }}"></script>
     <!-- Select2 -->
@@ -158,6 +147,7 @@
     <!-- Include Scripts -->
     @include('javascript.pnotify')
     @include('javascript.select2')
+    {{-- @include('javascript.datepicker') --}}
 
     <script type="text/javascript">
         $('.anyName').uploadPreview({
@@ -165,10 +155,25 @@
             height: '220px',
             backgroundSize: 'cover',
             fontSize: '16px',
-            borderRadius: '20px',
+            borderRadius: '10px',
             border: '2px solid #dedede',
             lang: 'en', //language
         });
+    </script>
+
+    <script type="text/javascript">
+     $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+      });
+    </script>
+
+     <script>
+        $('.calculate').calx();
     </script>
 
     @endpush

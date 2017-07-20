@@ -74,7 +74,7 @@
                           <th>Shipping Method</th>
                           <th>Shipping Date</th>
                           <th>Price Total</th>
-                          <th>Description</th>
+                          {{-- <th>Description</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -83,12 +83,12 @@
                         @foreach($data as $index => $order)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $order->order_no }}</td>
+                          <td>{{ $order->order_code }}</td>
                           <td>{{ $order->pilihcustomer->contact_name }}</td>
                           <td>{{ $order->pilihshipping->method }}</td>
                           <td>{{ $order->shipping_date }}</td>
-                          <td>{{ $order->price_total }}</td>
-                          <td>{{ $order->description }}</td>
+                          <td>Rp {{ number_format($order->price_total, 2, ',', '.') }}</td>
+                          {{-- <td>{{ $order->description }}</td> --}}
                           
                           <td>
                             <center>

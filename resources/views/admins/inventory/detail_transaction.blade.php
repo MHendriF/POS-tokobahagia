@@ -70,7 +70,7 @@
                           <th>Quantity</th>
                           <th>Price Per Unit</th>
                           <th>Discount</th>
-                          <th>Price Total</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -78,11 +78,11 @@
                         @foreach($data as $index => $detail)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $detail->order_no }}</td>
+                          <td>{{ $detail->order_code }}</td>
                           <td>{{ $detail->quantity }}</td>
-                          <td>Rp. {{ $detail->price_per_unit }}</td>
-                          <td>Rp. {{ $detail->discount }}</td>
-                          <td>Rp. {{ $detail->price }}</td>
+                          <td>Rp {{number_format($detail->price_per_unit, 0, ',', '.')}}</td>
+                          <td>Rp {{number_format($detail->discount, 0, ',', '.')}}</td>
+                          <td>Rp {{number_format($detail->price, 0, ',', '.')}}</td>
                           <td>
                             <center>
                               <div class="btn-group">
@@ -134,9 +134,9 @@
                           <td>{{ $index +1 }}</td>
                           <td>{{ $detail->purchase_code }}</td>
                           <td>{{ $detail->quantity }}</td>
-                          <td>Rp. {{ $detail->price_per_unit }}</td>
-                          <td>Rp. {{ $detail->discount }}</td>
-                          <td>Rp. {{ $detail->price }}</td>
+                          <td>Rp {{number_format($detail->price_per_unit, 0, ',', '.')}}</td>
+                          <td>Rp {{number_format($detail->discount, 0, ',', '.')}}</td>
+                          <td>Rp {{number_format($detail->price, 0, ',', '.')}}</td>
                           <td>
                             <center>
                               <div class="btn-group">

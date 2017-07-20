@@ -25,20 +25,17 @@ class InventoryController extends Controller
     {
         $data = Category::all();
         $data2 = Location::all();
-        return view('admins.inventory.add_inventory_v2', compact('data','data2'));
+        return view('admins.inventory.add_inventory', compact('data','data2'));
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         try{
             $this->validate($request, array(
                 'category_id'     => 'required',
                 'location_id'     => 'required',
                 'product_name'    => 'required',
-                'code_factory'    => 'required',
-                'product_desc'    => 'required',
-                'manufacturer'    => 'required',
-                'item_function'   => 'required',
                 'cost_min'        => 'required',
                 'cost_max'        => 'required',
                 'images'          => 'required',
@@ -100,15 +97,11 @@ class InventoryController extends Controller
 
     public function update(Request $request, $id)
     {
-         try{
+        try{
             $this->validate($request, array(
                 'category_id'     => 'required',
                 'location_id'     => 'required',
                 'product_name'    => 'required',
-                'code_factory'    => 'required',
-                'product_desc'    => 'required',
-                'manufacturer'    => 'required',
-                'item_function'   => 'required',
                 'cost_min'  => 'required',
                 'cost_max'  => 'required',
                 'price_buy_avg'   => 'required',
@@ -124,6 +117,7 @@ class InventoryController extends Controller
         catch(\Exception $e){
             return redirect()->back()->with('error', ' Sorry something went wrong. Please try again.');
         } 
+        //dd($request->all());
 
     }
 
@@ -153,7 +147,7 @@ class InventoryController extends Controller
     public function detailTransaction($id)
     {
         
-        $data = DB::select("SELECT s.*, sa.order_no as order_no
+        $data = DB::select("SELECT s.*, sa.order_code as order_code
             FROM order_details s, orders sa 
             WHERE s.product_id LIKE '$id' and sa.id = s.order_id");
 

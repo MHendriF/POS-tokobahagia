@@ -14,7 +14,6 @@
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
-
     <!-- Sweetalert -->
     <link href="{{ asset("js/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
@@ -73,9 +72,8 @@
 
                   <div class="x_content">
                     
-                    <form  method="post" action="{{ url('purchase') }}" data-parsley-validate name="add_name" id="add_name" class="form-horizontal form-label-left">  
+                    <form  method="post" action="{{ url('purchase') }}" data-parsley-validate class="form-horizontal form-label-left">  
                     {!! csrf_field() !!}
-
                       
                         <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
@@ -139,10 +137,9 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Description <span class="required">*</span>
-                          </label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Description</label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                             <textarea required class="form-control" name="po_description" data-parsley-trigger="keyup" data-parsley-minlength="5" data-parsley-maxlength="1000" data-parsley-minlength-message="Come on! You need to enter at least a 5 caracters long comment.." data-parsley-validation-threshold="5"></textarea>
+                             <textarea rows="4" class="form-control" name="po_description" data-parsley-trigger="keyup"  data-parsley-maxlength="2000"></textarea>
                           </div>
                         </div>
 
@@ -155,18 +152,16 @@
                           <table class="table table-bordered" id="dynamic_field">
                               <thead>  
                                 <tr>
-                                  <th>No</th>
                                   <th>Product</th>
                                   <th>Quantity</th>
                                   <th>Price Per Unit</th>
                                   <th>Discount</th>
-                                  <th>Price Total</th>
-                                  <th style="text-align: center;background: #eee"><a href="javascript:void(0);" class="btn btn-default btn-xs addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
+                                  <th>Amount</th>
+                                  <th style="text-align: center;background: #eee"><a href="javascript:void(0);" class="btn btn-primary btn-xs addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>  
-                                  <td><input type="number" name="number[]" class="form-control number" style="width: 60px;" required/></td>
+                                <tr>
                                   <td>
                                     <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
                                         <option value="0" selected="true" disabled="true">Pilih Produk</option>
@@ -175,10 +170,10 @@
                                         @endforeach
                                     </select>
                                   </td>
-                                  <td><input type="number" name="quantity[]" class="form-control quantity" required/></td>
-                                  <td><input type="number" name="price_per_unit[]" class="form-control price_per_unit" required/></td>
-                                  <td><input type="number" name="discount[]" class="form-control discount" required/></td>
-                                  <td><input type="number" name="price[]" class="form-control amount" readonly style="background: white;cursor: default;" /></td>
+                                  <td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" required/></td>
+                                  <td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" required/></td>
+                                  <td><input type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>
+                                  <td><input type="number" name="price[]" placeholder="Rp" class="form-control amount" readonly style="background: white;cursor: default;" /></td>
                                   <td style="text-align: center;background: #eee" >
                                       <a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>
                                   </td>
@@ -186,26 +181,24 @@
                               </tbody>
                               <tfoot>
                                   <tr>
-                                       <td style="border: none;"></td>
-                                       <td style="border: none;"></td>
-                                       <td style="border: none;"></td>                                       
-                                       <td style="border: none;"></td>
-                                       <td><b>Total Freight Charge</b></td>
-                                       <td><b id="freight"></b></td>
-                                       <td style="border: none;"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="background: #eee"><b>Total Freight Charge</b></td>
+                                       <td style="background: #eee"><b id="freight"></b></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
                                   </tr>
                                   <tr>
-                                       <td style="border: none;"></td>
-                                       <td style="border: none;"></td>
-                                       <td style="border: none;"></td>                                       
-                                       <td style="border: none;"></td>
-                                       <td><b>Total Keseluruhan</b></td>
-                                       <td><b class="total"></b></td>
-                                       <td><input type="hidden" id="total_keseluruhan" name="price_total" class="form-control"/></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>                                       
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="background: #eee"><b>Total Keseluruhan</b></td>
+                                       <td style="background: #eee"><b class="total"></b></td>
+                                       <td style="border: none;text-align: center;background: #eee"><input type="hidden" id="total_keseluruhan" name="price_total" class="form-control"/></td>
                                   </tr>
                               </tfoot>  
                           </table> 
-                          <button id="send" type="submit" class="pull-right btn btn-success">Submit</button> 
+                          <button id="send" type="submit" class="pull-right btn btn-lg btn-success">Submit</button> 
                         </div>  
                       </div>
                      </form>  
@@ -288,20 +281,6 @@
             biaya_pengiriman();
         });
         $('tbody').delegate('.product_id','change',function(){
-            var tr = $(this).parent().parent();
-            var id = tr.find('.product_id').val();
-            var dataId = {'id':id};
-            $.ajax({
-                type : 'GET',
-                url : '{!!URL::to('findPrice')!!}',
-                dataType : 'json',
-                data : dataId,
-                success:function(data){
-                    tr.find('.price_per_unit').val(data.cost_min);
-                }
-            });
-        });
-        $('tbody').delegate('.product_id','change',function(){
             var tr=$(this).parent().parent();
             tr.find('.quantity').focus().val(0);
             tr.find('.price_per_unit').val(0);
@@ -309,19 +288,6 @@
             tr.find('.amount').val(0);
             total();
             total_keseluruhan();
-            // var rows = document.getElementById("dynamic_field").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
-            // var rows = this.parentNode.parentNode;
-            // tr.find('.number').val(rows);
-
-            //if (!document.getElementsByTagName || !document.createTextNode) return;
-            // var rows = document.getElementById('dynamic_field').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-            // for (i = 0; i < rows.length; i++) {
-            //     rows[i].onclick = function() {
-            //         //alert(this.rowIndex + 1);
-            //         tr.find('.number').val(this.rowIndex);
-            //     }
-            // }
-
         });
         $('tbody').delegate('.quantity,.price_per_unit,.discount,.amount','keyup',function(){
             var tr =$(this).parent().parent();
@@ -346,26 +312,28 @@
         // ---- Harga Total yang akan diinputkan----//
         function total_keseluruhan(){
             var total_keseluruhan = 0;
+            var freight = parseInt($('#biaya_pengiriman').val());
             $('.amount').each(function(i,e){
                 var amount =  $(this).val()-0;
                 total_keseluruhan +=amount;
             })
+            total_keseluruhan = total_keseluruhan + freight;
             $('#total_keseluruhan').val(total_keseluruhan);
         }
         // ---- Harga Total yang di tampilkan ----//
         function total(){
             var total = 0;
-            var freight = $('#biaya_pengiriman').val();
+            var freight = parseInt($('#biaya_pengiriman').val());
             $('.amount').each(function(i,e){
                 var amount =  $(this).val()-0;
-                total +=amount-freight;
+                total +=amount;
             })
+            total = total + freight;
             $('.total').html(accounting.formatMoney(total, "Rp ", 2, ".", ","));
         }
         // ---- Add Row----//
         function addRow(){
-            var tr='<tr>'+  
-                      '<td><input type="number" name="number[]" class="form-control number" style="width: 60px;" required/></td>'+ 
+            var tr='<tr>'+ 
                       '<td>'+ 
                         '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
                             '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
@@ -374,13 +342,13 @@
                             '@endforeach'+ 
                         '</select>'+ 
                       '</td>'+ 
-                      '<td><input type="number" name="quantity[]" class="form-control quantity" required/></td>'+ 
-                      '<td><input type="number" name="price_per_unit[]" class="form-control price_per_unit" required/></td>'+ 
-                      '<td><input type="number" name="discount[]" class="form-control discount" required/></td>'+ 
-                      '<td><input type="number" name="price[]" class="form-control amount" readonly style="background: white;cursor: default;"/></td>'+ 
+                      '<td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" required/></td>'+ 
+                      '<td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" required/></td>'+ 
+                      '<td><input type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>'+ 
+                      '<td><input type="number" name="price[]" placeholder="Rp" class="form-control amount" readonly style="background: white;cursor: default;"/></td>'+ 
                       '<td style="text-align: center;background: #eee" >'+
-                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>'+
-                        '</td>'+
+                        '<a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>'+
+                      '</td>'+
                     '</tr>'; 
             $('tbody').append(tr);
         };

@@ -18,11 +18,11 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
-            $table->string('order_no');
+            $table->string('order_code');
             $table->string('shipping_date');
             $table->string('no_po_customer');
             $table->integer('price_total');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             
         });

@@ -14,6 +14,8 @@
     <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+    <!-- Sweetalert -->
+    <link href="{{ asset("js/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
     <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
@@ -70,17 +72,16 @@
 
                   <div class="x_content">
                     
-                    <form  method="post" action="{{ url('order') }}" data-parsley-validate name="add_name" id="add_name" class="form-horizontal form-label-left calculate">  
+                    <form  method="post" action="{{ url('order') }}" data-parsley-validate name="add_name" id="add_name" class="form-horizontal form-label-left">  
                       {!! csrf_field() !!}
 
-                      
                         <input type="hidden" name="user_id" class="form-control" value='{{ Sentinel::getUser()->id }}'>
 
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Code <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="order_no" class="form-control col-md-7 col-xs-12" required/>
+                            <input type="text" name="order_code" value="{{$codes}}{{$inc}}" class="form-control col-md-7 col-xs-12" readonly/>
                           </div>
                         </div>
                         <div class="form-group">
@@ -123,10 +124,9 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Description <span class="required">*</span>
-                          </label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Description</label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                             <textarea required class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+                             <textarea rows="4" class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-maxlength="1500" ></textarea>
                           </div>
                         </div>
 
@@ -138,122 +138,53 @@
                             <table class="table table-bordered" id="dynamic_field">
                                 <thead>  
                                   <tr>
-                                    <th>No</th>
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Price Per Unit</th>
                                     <th>Discount</th>
-                                    <th>Price Total</th>
+                                    <th>Amount</th>
                                     <th>Stock Available</th>
                                     <th>Price Reference</th>
+                                    <th style="text-align: center;background: #eee"><a href="javascript:void(0);" class="btn btn-primary btn-xs addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>  
-                                    <td><input type="text" name="number[]" placeholder="No" value="1" class="form-control name_list" style="width: 60px;" required/></td>
+                                  <tr>
                                     <td>
-                                      <select id="priceproduct" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;" required>
-                                        <option></option>
-                                        @foreach($data3 as $product)
+                                      <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
+                                        <option value="0" selected="true" disabled="true">Pilih Produk</option>
+                                        @foreach($data3 as $key => $product)
                                             <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
                                          @endforeach
                                       </select>
                                     </td>
-                                    <td><input type="text" name="quantity[]" data-cell="A1" placeholder="Piece" class="form-control name_list" data-parsley-type="number" required/></td>
-                                    <td><input type="text" name="price_per_unit[]" data-cell="A2" placeholder="Rp" class="form-control name_list" data-parsley-type="number" required/></td>
-                                    <td><input data-parsley-type="number" type="text" name="discount[]" data-cell="A3" value="0" placeholder="Rp" class="form-control name_list" required/></td>
-                                    <td><input data-parsley-type="number" type="text" name="price[]" data-cell="A4" data-formula="(A1*A2)-A3" class="form-control name_list" required/></td>
-                                    <td><input type="number" id="find_stock" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                    <td><input type="number" id="find_price" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  </tr>
-
-                                  <tr>  
-                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                    <td>
-                                      <select id="priceproduct2" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                        <option></option>
-                                        @foreach($data3 as $product)
-                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                        @endforeach
-                                      </select>
+                                    <td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" data-parsley-type="number" required/></td>
+                                    <td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" data-parsley-type="number" required/></td>
+                                    <td><input data-parsley-type="number" type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>
+                                    <td><input data-parsley-type="number" type="number" name="price[]" placeholder="Rp" class="form-control amount" required/></td>
+                                    <td><input type="number" id="find_stock" class="form-control stock" readonly /></td>
+                                    <td><input type="number" id="find_price" class="form-control price_ref" readonly /></td>
+                                    <td style="text-align: center;background: #eee" >
+                                      <a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>
                                     </td>
-                                    <td><input type="text" data-parsley-type="number" name="quantity[]" data-cell="B1" placeholder="Piece" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price_per_unit[]" data-cell="B2" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="discount[]" data-cell="B3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price[]" data-cell="B4" data-formula="(B1*B2)-B3" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="number" id="find_stock2" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                    <td><input type="number" id="find_price2" placeholder="Read only" class="form-control name_list" readonly /></td>
                                   </tr>
-
-                                  <tr>  
-                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                    <td>
-                                      <select id="priceproduct3" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                        <option></option>
-                                        @foreach($data3 as $product)
-                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                        @endforeach
-                                      </select>
-                                    </td>
-                                    <td><input type="text" data-parsley-type="number" name="quantity[]" data-cell="C1" placeholder="Piece" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price_per_unit[]" data-cell="C2" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="discount[]" data-cell="C3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price[]" data-cell="C4" data-formula="(C1*C2)-C3" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="number" id="find_stock3" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                    <td><input type="number" id="find_price3" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  </tr>
-
-                                  <tr>  
-                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                    <td>
-                                      <select id="priceproduct4" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                        <option></option>
-                                        @foreach($data3 as $product)
-                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                        @endforeach
-                                      </select>
-                                    </td>
-                                    <td><input type="text" data-parsley-type="number" name="quantity[]" data-cell="D1" placeholder="Piece" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price_per_unit[]" data-cell="D2" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="discount[]" data-cell="D3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price[]" data-cell="D4" data-formula="(D1*D2)-D3" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="number" id="find_stock4" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                    <td><input type="number" id="find_price4" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  </tr>
-
-                                  <tr>  
-                                    <td><input type="text" name="number[]" placeholder="No" class="form-control name_list" style="width: 60px;"/></td>
-                                    <td>
-                                      <select id="priceproduct5" name="product_id[]" class="select form-control" tabindex="-1" style="width: 147px;">
-                                        <option></option>
-                                        @foreach($data3 as $product)
-                                            <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
-                                        @endforeach
-                                      </select>
-                                    </td>
-                                    <td><input type="text" data-parsley-type="number" name="quantity[]" data-cell="E1" placeholder="Piece" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price_per_unit[]" data-cell="E2" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="discount[]" data-cell="E3" value="0" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="text" data-parsley-type="number" name="price[]" data-cell="E4" data-formula="(E1*E2)-E3" placeholder="Rp" class="form-control name_list" /></td>
-                                    <td><input type="number" id="find_stock5" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                    <td><input type="number" id="find_price5" placeholder="Read only" class="form-control name_list" readonly /></td>
-                                  </tr>
-
                                 </tbody>  
-                            </table>  
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Keseluruhan <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="price_total" data-cell="F4" data-formula="(A4)" class="form-control col-md-7 col-xs-12" readonly />
-                                </div>
-                              </div>    
-                            </div>
-                            <button id="send" type="submit" class="pull-right btn btn-success">Submit</button> 
+                                <tfoot>
+                                  <tr>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="border: none;text-align: center;background: #eee"></td>                                       
+                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                       <td style="background: #eee"><b>Total Keseluruhan</b></td>
+                                       <td style="background: #eee"><b class="total"></b></td>
+                                       <td style="border: none;text-align: center;background: #eee"><input type="hidden" id="total_keseluruhan" name="price_total" class="form-control"/></td>
+                                  </tr>
+                                </tfoot>  
+                            </table>
                           </div>
+                            <button id="send" type="submit" class="pull-right btn btn-success">Submit</button> 
                         </div>
-                        
                     </form>  
                   </div>
 
@@ -270,15 +201,13 @@
 
     @push('scripts')
 
-    <!-- Calculator -->
-    <script src="{{ asset("assets/calculator/jquery-calx-2.2.7.min.js") }}"></script>
-
+    <!-- Money -->
+    <script src="{{ asset("js/accounting.js") }}"></script>
     <!-- Select2 -->
     <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
     <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
-
     <!-- Parsley -->
     <script src="{{ asset("assets/parsleyjs/dist/parsley.min.js")}}"></script>
     <!-- PNotify -->
@@ -288,7 +217,6 @@
     <script src="{{ asset("assets/pnotify/dist/pnotify.nonblock.js") }}"></script>
     <!-- Sweetalert -->
     <script src="{{ asset("js/sweetalert2/sweetalert2.min.js") }}"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="{{ asset("build/js/custom.min2.js") }}"></script>
 
@@ -307,44 +235,106 @@
             console.log(start.toISOString(), end.toISOString(), label);
         });
     </script>
-
-    <script>
-        $(document).ready(function(){
-
-            $(document).on('change','#priceproduct',function () {
-                var prod_id=$(this).val();
-
-                var a=$(this).parent();
-                console.log(prod_id);
-                var op="";
-                $.ajax({
-                    type:'get',
-                    url:'{!!URL::to('findProduct')!!}',
-                    data:{'id':prod_id},
-                    dataType:'json',//return data will be json
-                    success:function(data){
-                        // console.log("unit_price_min");
-                        // console.log(data.unit_price_min);
-                        // console.log("stock");
-                        // console.log(data.stock);
-                        $("#find_price").val(data.cost_min); //parsing price to view
-                        $("#find_stock").val(data.stock);
-                    },
-                    error:function(){
-                    }
-                });
+  
+    <script type="text/javascript">
+        $('tbody').delegate('.product_id','change',function(){
+            var tr = $(this).parent().parent();
+            var id = tr.find('.product_id').val();
+            var dataId = {'id':id};
+            $.ajax({
+                type : 'GET',
+                url : '{!!URL::to('findPrice')!!}',
+                dataType : 'json',
+                data : dataId,
+                success:function(data){
+                    tr.find('.price_ref').val(data.cost_min);
+                    tr.find('.stock').val(data.stock);
+                    // console.log(data.cost_min);
+                    //console.log("cost_min");
+                    //console.log(data.stock)
+                }
             });
-
         });
-    </script>
+        $('tbody').delegate('.product_id','change',function(){
+            var tr=$(this).parent().parent();
+            tr.find('.quantity').focus().val(0);
+            tr.find('.price_per_unit').val(0);
+            tr.find('.discount').val(0);
+            tr.find('.amount').val(0);
+            total();
+            total_keseluruhan();
+        });
+        $('tbody').delegate('.quantity,.price_per_unit,.discount,.amount','keyup',function(){
+            var tr =$(this).parent().parent();
+            var quantity = tr.find('.quantity').val();
+            var price_per_unit = tr.find('.price_per_unit').val();
+            var discount = tr.find('.discount').val();
+            var amount = (quantity*price_per_unit)-discount;
+            tr.find('.amount').val(amount);
+            total();
+            total_keseluruhan();
+        });
 
-    @include('javascript.findprice2')
-    @include('javascript.findprice3')
-    @include('javascript.findprice4')
-    @include('javascript.findprice5')
-
-    <script>
-        $('.calculate').calx();
+        $('.addRow').on('click',function(){
+            addRow();
+        });
+        // ---- Harga Total yang akan diinputkan----//
+        function total_keseluruhan(){
+            var total_keseluruhan = 0;
+            $('.amount').each(function(i,e){
+                var amount =  $(this).val()-0;
+                total_keseluruhan +=amount;
+            })
+            $('#total_keseluruhan').val(total_keseluruhan);
+        }
+        // ---- Harga Total yang di tampilkan ----//
+        function total(){
+            var total = 0;
+            $('.amount').each(function(i,e){
+                var amount =  $(this).val()-0;
+                total +=amount;
+            })
+            $('.total').html(accounting.formatMoney(total, "Rp ", 2, ".", ","));
+        }
+        // ---- Add Row----//
+        function addRow(){
+            var tr='<tr>'+ 
+                      '<td>'+ 
+                        '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
+                          '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
+                          '@foreach($data3 as $key => $product)'+ 
+                              '<option value="{{ $product->id}}"> {{ $product->product_name }}</option>'+ 
+                           '@endforeach'+ 
+                        '</select>'+ 
+                      '</td>'+ 
+                      '<td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" data-parsley-type="number" required/></td>'+
+                      '<td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" data-parsley-type="number" required/></td>'+ 
+                      '<td><input data-parsley-type="number" type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>'+ 
+                      '<td><input data-parsley-type="number" type="number" placeholder="Rp" name="price[]" class="form-control amount" required/></td>'+ 
+                      '<td><input type="number" id="find_stock" class="form-control stock" readonly /></td>'+ 
+                      '<td><input type="number" id="find_price" class="form-control price_ref" readonly /></td>'+ 
+                      '<td style="text-align: center;background: #eee" >'+ 
+                        '<a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>'+
+                      '</td>'+ 
+                    '</tr>';
+            $('tbody').append(tr);
+        };
+        // ---- Remove Row----//
+        $('body').delegate('.removeRow','click',function(){
+            var l=$('tbody tr').length;
+            if(l==1){
+                //alert('You can not remove last one')
+                swal(
+                  'Warning',
+                  'You can not remove last one <strong>!</strong>',
+                  'info'
+                );
+            }else{
+                $(this).parent().parent().remove();
+                total();
+                total_keseluruhan();
+            }
+        });
     </script>
   
     @endpush

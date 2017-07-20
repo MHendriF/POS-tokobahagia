@@ -10,7 +10,7 @@ use App\Order;
 use App\Order_Detail;
 use App\Shipping;
 use App\Inventory;
-
+use Carbon\Carbon;
 use Session;
 use DB;
 
@@ -24,10 +24,38 @@ class OrderController extends Controller
 
     public function create()
     {
+        $last_record = DB::table('orders')->select('order_code')->orderBy('id', 'desc')->first();
+        //var_dump($last_record);
+
+        if($last_record == null)
+        {
+            //return "Masih Kosong";
+            $n = 0000;
+        }
+        else
+        {   
+             //convert to array
+             $array = json_decode(json_encode($last_record), true);
+             //array to string
+             $last_record = implode(" ",$array);
+             $n = substr($last_record, -4);
+
+        }
+
+        //increament
+        $inc = str_pad($n + 1, 4, 0, STR_PAD_LEFT);
+
+        $code = "ORD";
+        $date = Carbon::now();
+        $timestamp = strtotime($date);
+        $month = date("m", $timestamp);
+        $year = date("y", $timestamp);
+        $codes = $code."".$month."".$year;
+
         $data = Customer::all();
         $data2 = Shipping::all();
         $data3 = Inventory::all();
-        return view('employees.order.add_order', compact('data', 'data2','data3'));
+        return view('employees.order.add_order_v2', compact('data', 'data2','data3','codes','inc'));
     }
 
     public function store(Request $request)
@@ -35,83 +63,50 @@ class OrderController extends Controller
         try{
             //dd($request->all());
             $this->validate($request, array(
-
                 //Order
                 'user_id'        => 'required',
                 'customer_id'    => 'required',
                 'shipping_id'    => 'required',
-                'order_no'        => 'required',
+                'order_code'     => 'required',
                 'shipping_date'  => 'required',
-                'no_po_customer' => 'required',
-                'description'    => 'required'
-                
-                
+                'no_po_customer' => 'required'
             ));
-
-            //Checking Available Stock to Buy
-            // $id_product = $request->get('product_id');
-            // $data = Product::find($id_product);
-            // $current_stock = $data->stock - $request->get('quantity');
-            // if($current_stock < 0){
-            //     return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
-            // }
 
             $orders = new Order(array(
                 'user_id'        => $request->get('user_id'),
                 'customer_id'    => $request->get('customer_id'),
                 'shipping_id'    => $request->get('shipping_id'),
-                'order_no'       => $request->get('order_no'),
+                'order_code'     => $request->get('order_code'),
                 'shipping_date'  => $request->get('shipping_date'),
                 'no_po_customer' => $request->get('no_po_customer'),
-                'price_total' => $request->get('price_total'),
+                'price_total'    => $request->get('price_total'),
                 'description'    => $request->get('description')
             ));
 
             if($orders->save())
             {
                 $lastOrder = $orders->id;
-            }
-
-            $number = $request->number;
-            $product_id = $request->product_id;
-            $quantity = $request->quantity;
-            $price_per_unit = $request->price_per_unit;
-            $discount = $request->discount;
-            $price = $request->price;
-
-            for($i=0; $i<count($number); $i++) {
-                $PD = new Order_Detail();
-                $PD->number = $number[$i];
-                $PD->order_id = $lastOrder;
-                $PD->product_id = $product_id[$i];
-                $PD->quantity = $quantity[$i];
-                $PD->price_per_unit = $price_per_unit[$i];
-                $PD->discount = $discount[$i];
-                $PD->price = $price[$i];
-                
-                
-                if($number[$i] == null){
-                    //return "Success v2";
-                    Session::flash('new', 'New Order was successfully added!');
-                    return redirect()->to('order');
-                }
-
-                elseif ($number[$i] != null && $product_id[$i] != null) {
-                    //Checking Available Stock to Buy
-                    $data = Inventory::find($product_id[$i]);
-                    $current_stock = $data->stock -  $quantity[$i];
+                foreach ($request->product_id as $key => $val) {
+                    $data = array('order_id'=>$lastOrder,
+                                  'product_id'=>$val,
+                                  'number'=>$key+1,
+                                  'quantity'=>$request->quantity[$key],
+                                  'price_per_unit'=>$request->price_per_unit[$key],
+                                  'discount'=>$request->discount[$key],
+                                  'price'=>$request->price[$key]);
+                    
+                    // cek apakah stoknya mencukupi
+                    $inven = Inventory::find($val);
+                    $current_stock = $inven->stock - $request->quantity[$key];
                     if($current_stock < 0){
                         return redirect()->back()->with('error', 'The stock is not enough. Please try again.');
                     }
-                }
 
-                else
-                {
-                    $PD->save();
-                    
+                    Order_Detail::insert($data);
                 }
             }
-            Session::flash('new', 'New Order V2 was successfully added!');
+
+            Session::flash('new', 'New Order was successfully added!');
             return redirect()->to('order');
             
         }
@@ -182,6 +177,13 @@ class OrderController extends Controller
         $data = Order::find($id);
         $data2 = Order_Detail::all()->where('order_id',$id);
         return view('employees.order.detail_order_v2', compact('data','data2'));
+    }
+
+    public function findPrice(Request $request){
+
+        //it will get price if its id match with product id
+        $data =  Inventory::select('cost_min','stock')->where('id',$request->id)->first();
+        return response()->json($data);
     }
 
 }

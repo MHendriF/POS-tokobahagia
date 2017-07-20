@@ -43,7 +43,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 	//Transaksi
 	Route::resource('transaction', 'MainTransactionController');
 	Route::post('transaction/{id}', 'MainTransactionController@update');	
-	Route::get('/findPrice','MainTransactionController@findPrice');
+	// Route::get('/findPrice','MainTransactionController@findPrice');
 
 	//Service
 	Route::post('service/{id}', 'ServiceController@update');
@@ -92,6 +92,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 	Route::resource('order', 'OrderController');
 	Route::post('order/{id}', 'OrderController@update');	
 	Route::get('detailOrder/{id}', 'OrderController@detailOrder');
+	Route::get('/findPrice','OrderController@findPrice');
 
 	//Pembelian
 	Route::resource('purchase', 'PurchaseController');

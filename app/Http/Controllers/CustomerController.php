@@ -50,7 +50,8 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        //
+        $data = Customer::find($id);
+        return view('employees.customer.detail_customer', compact('data'));
     }
 
     public function edit($id)
