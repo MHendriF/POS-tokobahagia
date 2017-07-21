@@ -147,13 +147,13 @@ class InventoryController extends Controller
     public function detailTransaction($id)
     {
         
-        $data = DB::select("SELECT s.*, sa.order_code as order_code
-            FROM order_details s, orders sa 
-            WHERE s.product_id LIKE '$id' and sa.id = s.order_id");
+        $data = DB::select("SELECT s.*, sa.order_code as order_code, l.location as location
+            FROM order_details s, orders sa, locations l 
+            WHERE s.product_id LIKE '$id' and sa.id = s.order_id and sa.location_id = l.id");
 
-        $data2 = DB::select("SELECT p.*, pu.purchase_code as purchase_code
-            FROM purchase_details p, purchases pu 
-            WHERE p.product_id LIKE '$id' and pu.id = p.purchase_id");
+        $data2 = DB::select("SELECT p.*, pu.purchase_code as purchase_code, l.location as location
+            FROM purchase_details p, purchases pu, locations l 
+            WHERE p.product_id LIKE '$id' and pu.id = p.purchase_id and pu.location_id = l.id");
 
         return view('admins.inventory.detail_transaction', compact('data','data2'));
 

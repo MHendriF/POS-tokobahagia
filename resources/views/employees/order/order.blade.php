@@ -71,10 +71,10 @@
                           <th>No</th>
                           <th>Order Code</th>
                           <th>Customer</th>
+                          <th>Location</th>
                           <th>Shipping Method</th>
                           <th>Shipping Date</th>
                           <th>Price Total</th>
-                          {{-- <th>Description</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -85,10 +85,10 @@
                           <td>{{ $index +1 }}</td>
                           <td>{{ $order->order_code }}</td>
                           <td>{{ $order->pilihcustomer->contact_name }}</td>
+                          <td>{{ $order->pilihlocation->location }}</td>
                           <td>{{ $order->pilihshipping->method }}</td>
                           <td>{{ $order->shipping_date }}</td>
                           <td>Rp {{ number_format($order->price_total, 2, ',', '.') }}</td>
-                          {{-- <td>{{ $order->description }}</td> --}}
                           
                           <td>
                             <center>

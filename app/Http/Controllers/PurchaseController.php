@@ -11,6 +11,7 @@ use App\Purchase_Detail;
 use App\Shipping;
 use App\Inventory;
 use App\Category;
+use App\Location;
 use Session;
 use DB;
 use Carbon\Carbon;
@@ -56,9 +57,10 @@ class PurchaseController extends Controller
 
 
         $data = Supplier::all();
-        $data2 = Shipping::all();
-        $data3 = Inventory::all();
-        return view('employees.purchase.add_purchase_v2', compact('data', 'data2','data3','codes','inc'));
+        $data2 = Location::all();
+        $data3 = Shipping::all();
+        $data4 = Inventory::all();
+        return view('employees.purchase.add_purchase_v2', compact('data', 'data2','data3','data4','codes','inc'));
     }
 
     public function store(Request $request)
@@ -70,6 +72,7 @@ class PurchaseController extends Controller
                 //Purchase
                 'user_id'        => 'required',
                 'supplier_id'    => 'required',
+                'location_id'    => 'required',
                 'shipping_id'    => 'required',
                 'purchase_code'  => 'required',
                 'po_description' => 'required',
@@ -84,6 +87,7 @@ class PurchaseController extends Controller
 	        $purchase = new Purchase(array(
                 'user_id'        => $request->get('user_id'),
                 'supplier_id'    => $request->get('supplier_id'),
+                'location_id'    => $request->get('location_id'),
                 'shipping_id'    => $request->get('shipping_id'),
                 'purchase_code'  => $request->get('purchase_code'),
                 'po_description' => $request->get('po_description'),

@@ -69,8 +69,8 @@
                         <tr>
                           <th>No</th>
                           <th>Supplier</th>
+                          <th>Location</th>
                           <th>Shipping Method</th>
-                          {{-- <th>PO Description</th> --}}
                           <th>Purchase Date</th>
                           <th>Promised Date</th>
                           <th>Freight Charge</th>
@@ -84,8 +84,8 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $po->pilihsupplier->supplier_name }}</td>
+                          <td>{{ $po->pilihlocation->location }}</td>
                           <td>{{ $po->pilihshipping->method }}</td>
-                          {{-- <td>{{ $po->po_description }}</td> --}}
                           <td>{{ $po->purchase_date }}</td>
                           <td>{{ $po->promised_date }}</td>
                           <td>Rp {{number_format($po->freight_charge, 2, ',', '.') }}</td>

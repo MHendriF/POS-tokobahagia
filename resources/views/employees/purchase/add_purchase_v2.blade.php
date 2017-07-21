@@ -97,12 +97,24 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Location <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select name="location_id" class="select2_single form-control" tabindex="-1" required>
+                                <option></option>
+                                @foreach($data2 as $location)
+                                    <option value='{{ $location->id }}'> {{ $location->location }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Methode <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="shipping_id" class="select2_single form-control" tabindex="-1" required>
                                 <option></option>
-                                @foreach($data2 as $shipping)
+                                @foreach($data3 as $shipping)
                                     <option value='{{ $shipping->id }}'> {{ $shipping->method }}</option>
                                 @endforeach
                               </select>
@@ -112,21 +124,21 @@
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase Date <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                            <input type="text" name="purchase_date" class="form-control" id="single_cal1" placeholder="Date" required>
+                            <input type="text" name="purchase_date" class="form-control" id="single_cal1" required>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Promised Date <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                            <input type="text" name="promised_date" class="form-control" id="single_cal3" placeholder="Date" required>
+                            <input type="text" name="promised_date" class="form-control" id="single_cal3" required>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Date <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                            <input type="text" name="shipping_date" class="form-control" id="single_cal4" placeholder="Date" required>
+                            <input type="text" name="shipping_date" class="form-control" id="single_cal4" required>
                           </div>
                         </div>
                         <div class="form-group">
@@ -165,7 +177,7 @@
                                   <td>
                                     <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
                                         <option value="0" selected="true" disabled="true">Pilih Produk</option>
-                                        @foreach($data3 as $key => $product)
+                                        @foreach($data4 as $key => $product)
                                         <option value='{{ $key+1 }}'> {{ $product->product_name }}</option>
                                         @endforeach
                                     </select>
@@ -337,7 +349,7 @@
                       '<td>'+ 
                         '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
                             '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
-                            '@foreach($data3 as $key => $product)'+ 
+                            '@foreach($data4 as $key => $product)'+ 
                             '<option value="{{ $key+1 }}"> {{ $product->product_name }}</option>'+ 
                             '@endforeach'+ 
                         '</select>'+ 

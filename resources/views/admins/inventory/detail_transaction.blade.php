@@ -67,6 +67,7 @@
                         <tr>
                           <th>No</th>
                           <th>Transaction Origin</th>
+                          <th>Location</th>
                           <th>Quantity</th>
                           <th>Price Per Unit</th>
                           <th>Discount</th>
@@ -79,6 +80,7 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $detail->order_code }}</td>
+                          <td>{{ $detail->location }}</td>
                           <td>{{ $detail->quantity }}</td>
                           <td>Rp {{number_format($detail->price_per_unit, 0, ',', '.')}}</td>
                           <td>Rp {{number_format($detail->discount, 0, ',', '.')}}</td>
@@ -121,6 +123,7 @@
                         <tr>
                           <th>No</th>
                           <th>Transaction Origin</th>
+                          <th>Location</th>
                           <th>Quantity</th>
                           <th>Price Per Unit</th>
                           <th>Discount</th>
@@ -133,6 +136,7 @@
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $detail->purchase_code }}</td>
+                          <td>{{ $detail->location }}</td>
                           <td>{{ $detail->quantity }}</td>
                           <td>Rp {{number_format($detail->price_per_unit, 0, ',', '.')}}</td>
                           <td>Rp {{number_format($detail->discount, 0, ',', '.')}}</td>

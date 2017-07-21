@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
+            $table->unsignedInteger('location_id')->nullable();
             $table->string('order_code');
             $table->string('shipping_date');
             $table->string('no_po_customer');
@@ -35,6 +36,9 @@ class CreateOrdersTable extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('shipping_id')->references('id')->on('shippings')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });

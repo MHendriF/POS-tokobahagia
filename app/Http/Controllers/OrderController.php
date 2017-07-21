@@ -10,6 +10,7 @@ use App\Order;
 use App\Order_Detail;
 use App\Shipping;
 use App\Inventory;
+use App\Location;
 use Carbon\Carbon;
 use Session;
 use DB;
@@ -53,9 +54,10 @@ class OrderController extends Controller
         $codes = $code."".$month."".$year;
 
         $data = Customer::all();
-        $data2 = Shipping::all();
-        $data3 = Inventory::all();
-        return view('employees.order.add_order_v2', compact('data', 'data2','data3','codes','inc'));
+        $data2 = Location::all();
+        $data3 = Shipping::all();
+        $data4 = Inventory::all();
+        return view('employees.order.add_order_v2', compact('data', 'data2','data3','data4','codes','inc'));
     }
 
     public function store(Request $request)
@@ -66,6 +68,7 @@ class OrderController extends Controller
                 //Order
                 'user_id'        => 'required',
                 'customer_id'    => 'required',
+                'location_id'    => 'required',
                 'shipping_id'    => 'required',
                 'order_code'     => 'required',
                 'shipping_date'  => 'required',
@@ -75,6 +78,7 @@ class OrderController extends Controller
             $orders = new Order(array(
                 'user_id'        => $request->get('user_id'),
                 'customer_id'    => $request->get('customer_id'),
+                'location_id'    => $request->get('location_id'),
                 'shipping_id'    => $request->get('shipping_id'),
                 'order_code'     => $request->get('order_code'),
                 'shipping_date'  => $request->get('shipping_date'),

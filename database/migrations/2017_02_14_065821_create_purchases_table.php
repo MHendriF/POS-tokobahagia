@@ -18,6 +18,7 @@ class CreatePurchasesTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('shipping_id')->nullable();
+            $table->unsignedInteger('location_id')->nullable();
             $table->string('purchase_code');
             $table->string('po_description')->nullable();
             $table->string('purchase_date');
@@ -36,6 +37,9 @@ class CreatePurchasesTable extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->foreign('shipping_id')->references('id')->on('shippings')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });

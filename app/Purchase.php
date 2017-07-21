@@ -20,10 +20,15 @@ class Purchase extends Model
         return $this->belongsTo('App\Shipping', 'shipping_id');
     }
 
+    public function pilihlocation(){
+        return $this->belongsTo('App\Location', 'location_id');
+    }
+
     protected $fillable = [
         'user_id',
 		'supplier_id',
 		'shipping_id',
+        'location_id',
 		'purchase_code',
 		'po_description',
 		'purchase_date',

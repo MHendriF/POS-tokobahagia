@@ -20,6 +20,10 @@ class Order extends Model
         return $this->belongsTo('App\Shipping', 'shipping_id');
     }
 
+    public function pilihlocation(){
+        return $this->belongsTo('App\Location', 'location_id');
+    }
+
     public function orderdetail(){
         return $this->hasMany('App\Order_Detail');
     }
@@ -28,6 +32,7 @@ class Order extends Model
         'user_id',
         'customer_id',
         'shipping_id',
+        'location_id',
 		'order_code',
         'shipping_date',
 		'no_po_customer',
