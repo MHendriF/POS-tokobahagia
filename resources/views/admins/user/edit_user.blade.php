@@ -23,7 +23,7 @@
         
         <section class="page-title">
             <div class="title_left">
-              <h3>Edit User</h3>
+              <h3>User Management</h3>
             </div>
             <div class="title_right">
               <div class="pull-right">
@@ -100,13 +100,13 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Address <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea name="address" class="form-control col-md-7 col-xs-12" required>{{$data->address}}</textarea>
+                                  <textarea rows="4" name="address" class="form-control col-md-7 col-xs-12" required>{{$data->address}}</textarea>
                                 </div>
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
+                                <div class="col-md-6 col-md-offset-7">
                                   <button type="reset" class="btn btn-primary">Cancel</button>
                                   <button id="send" type="submit" class="btn btn-success">Submit</button>
                                   

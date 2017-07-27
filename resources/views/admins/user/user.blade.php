@@ -31,7 +31,7 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>User List</h3>
+                <h3>User Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">

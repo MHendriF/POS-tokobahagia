@@ -29,7 +29,7 @@
           <div class="">
               <section class="page-title">
                 <div class="title_left">
-                  <h3>Add Inventory</h3>
+                  <h3>Inventory Management</h3>
                 </div>
                 <div class="title_right">
                   <div class="pull-right">

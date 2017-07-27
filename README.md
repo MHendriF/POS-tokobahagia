@@ -9,10 +9,10 @@
 3. Jalankan perintah: php artisan db:seed
 
 # Jika ingin menjalankan aplikasi melalui komputer lain
-Masuk ke file .env kemudian rubah APP_URL=http://localhost menjadi APP_URL=http://ipanda:portanda
+Masuk ke file .env kemudian rubah APP_URL=http://localhost menjadi APP_URL=http://IP:PORT
 Kemudian jalankan php artisan serve melalui cmd.
 
-# Laravel PHP Framework
+# Laravel PHP Framework 5.3
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)

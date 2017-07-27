@@ -31,7 +31,7 @@
             
              <section class="page-title">
               <div class="title_left">
-                <h3>Salary List</h3>
+                <h3>Salary Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">

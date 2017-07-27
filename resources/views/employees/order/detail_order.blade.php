@@ -24,7 +24,7 @@
         
           <section class="page-title">
             <div class="title_left">
-              <h3>Detail Order</h3>
+              <h3>Order Management</h3>
             </div>
             <div class="title_right">
               <div class="pull-right">
