@@ -66,28 +66,28 @@
                       <div class="col-md-6 col-lg-6 col-sm-4">
                         <blockquote class="blockquote-reverse2">
                           <label>Category :</label>
-                          <input type="text" class="form-control" name="product_name" value="{{$data->pilihcategory->category_name}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->pilihcategory->category_name}}" readonly />
 
                           <label style="margin-top: 10px;">Location :</label>
-                          <input type="text" class="form-control" name="product_name" value="{{$data->pilihlocation->location}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->pilihlocation->location}}" readonly />
 
                           <label style="margin-top: 10px;">Product Name :</label>
-                          <input type="text" class="form-control" name="product_name" value="{{$data->product_name}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->product_name}}" readonly />
 
                           <label style="margin-top: 10px;">Code Factory :</label>
-                          <input type="text" class="form-control" name="code_factory" value="{{$data->code_factory}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->code_factory}}" readonly />
 
                           <label style="margin-top: 10px;">Manufacturer :</label>
-                          <input type="text" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->manufacturer}}" readonly />
 
                           <label style="margin-top: 10px;">Item Function :</label>
-                          <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" readonly />
+                          <input type="text" class="form-control" value="{{$inventories->item_function}}" readonly />
 
                           <label style="margin-top: 10px;">Unit Price Minimum :</label>
-                          <input type="text" class="form-control" name="cost_min" value="Rp {{number_format($data->cost_min, 2, ',', '.')}}" readonly />
+                          <input type="text" class="form-control" value="Rp {{number_format($inventories->cost_min, 2, ',', '.')}}" readonly />
 
                           <label style="margin-top: 10px;">Unit Price Maximum :</label>
-                          <input type="text" class="form-control" name="cost_max"  value="Rp {{number_format($data->cost_min, 2, ',', '.')}}" readonly />
+                          <input type="text" class="form-control" value="Rp {{number_format($inventories->cost_min, 2, ',', '.')}}" readonly />
                         </blockquote>
                       </div>
                       <div class="col-md-4 col-lg-6 col-sm-5">
@@ -95,15 +95,15 @@
                         <center>
                           <div class="anyName">
                             <input type="file" accept="image/gif, image/jpeg, image/png" disabled name="images">
-                            <img src="{{ asset('/images/products/'.$data->images) }}">
+                            <img src="{{ asset('/images/products/'.$inventories->images) }}">
                           </div>  
                         </center>
                         
                         <label style="margin-top: 37px;">Unit of Measure :</label>
-                        <input type="text" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" readonly />
+                        <input type="text" class="form-control" value="{{$inventories->unit_of_measure}}" readonly />
 
                         <label style="margin-top: 10px;">Product Description :</label>
-                        <textarea rows="6" id="product_desc" class="form-control" name="product_desc" readonly>{{$data->product_desc}}</textarea>
+                        <textarea rows="6" id="product_desc" class="form-control" readonly>{{$inventories->product_desc}}</textarea>
                         
                       </div>
                     </div>

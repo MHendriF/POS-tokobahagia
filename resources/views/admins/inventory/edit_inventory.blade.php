@@ -48,7 +48,7 @@
             <div class="clearfix"></div>
 
             <div class="row">
-              <form id="demo-form" method="post" action="{{ url('inventory/'.$data->id) }}" enctype="multipart/form-data" data-parsley-validate>
+              <form id="demo-form" method="post" action="{{ url('inventory/'.$inventories->id) }}" enctype="multipart/form-data" data-parsley-validate>
                 <input type="hidden" name="_methode" value="PUT">
                 {!! csrf_field() !!}
                 <div class="col-md-12">
@@ -69,40 +69,40 @@
                         <blockquote class="blockquote-reverse2">
                           <label>Select Category * :</label>
                           <select name="category_id" class="select2_single form-control" required>
-                            <option value='{{ $data->category_id}}'> {{ $data->pilihcategory->category_name }}</option>
-                            @foreach($data2 as $category)
+                            <option value='{{ $inventories->category_id}}'> {{ $inventories->pilihcategory->category_name }}</option>
+                            @foreach($categories as $category)
                                 <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
                             @endforeach
                           </select>
 
                           <label style="margin-top: 10px;">Select Location * :</label>
                           <select name="location_id" class="select2_single form-control" tabindex="-1" required>
-                            <option value='{{ $data->location_id}}'> {{$data->pilihlocation->location}}</option>
-                            @foreach($data3 as $location)
+                            <option value='{{ $inventories->location_id}}'> {{$inventories->pilihlocation->location}}</option>
+                            @foreach($locations as $location)
                                 <option value='{{ $location->id}}'> {{ $location->location }}</option>
                             @endforeach
                           </select>
 
                           <label style="margin-top: 10px;">Product Name * :</label>
-                          <input type="text" class="form-control" name="product_name" value="{{$data->product_name}}" required />
+                          <input type="text" class="form-control" name="product_name" value="{{$inventories->product_name}}" required />
 
                           <label style="margin-top: 10px;">Code Factory :</label>
-                          <input type="text" class="form-control" name="code_factory" value="{{$data->code_factory}}" />
+                          <input type="text" class="form-control" name="code_factory" value="{{$inventories->code_factory}}" />
 
                           <label style="margin-top: 10px;">Manufacturer :</label>
-                          <input type="text" class="form-control" name="manufacturer" value="{{$data->manufacturer}}" />
+                          <input type="text" class="form-control" name="manufacturer" value="{{$inventories->manufacturer}}" />
 
                           <label style="margin-top: 10px;">Item Function :</label>
-                          <input type="text" class="form-control" name="item_function" value="{{$data->item_function}}" />
+                          <input type="text" class="form-control" name="item_function" value="{{$inventories->item_function}}" />
 
                           <label style="margin-top: 10px;">Unit Price Minimum * :</label>
-                          <input type="number" class="form-control" name="cost_min" value="{{$data->cost_min}}" required />
+                          <input type="number" class="form-control" name="cost_min" value="{{$inventories->cost_min}}" required />
 
                           <label style="margin-top: 10px;">Unit Price Maximum * :</label>
-                          <input type="number" class="form-control" name="cost_max"  value="{{$data->cost_min}}" required />
+                          <input type="number" class="form-control" name="cost_max"  value="{{$inventories->cost_min}}" required />
 
                           <label style="margin-top: 10px;">Price Buy Average * :</label>
-                          <input type="number" class="form-control" name="price_buy_avg"  value="{{$data->price_buy_avg}}" readonly />
+                          <input type="number" class="form-control" name="price_buy_avg"  value="{{$inventories->price_buy_avg}}" readonly />
                         </blockquote>
                       </div>
                       <div class="col-md-4 col-lg-6 col-sm-5">
@@ -110,18 +110,18 @@
                         <center>
                           <div class="anyName">
                             <input type="file" accept="image/gif, image/jpeg, image/png" disabled name="images">
-                            <img src="{{ asset('/images/products/'.$data->images) }}">
+                            <img src="{{ asset('/images/products/'.$inventories->images) }}">
                           </div>  
                         </center>
 
                         <label style="margin-top: 37px;">Stock * :</label>
-                        <input type="text" class="form-control" name="stock" value="{{$data->stock}}" readonly />
+                        <input type="text" class="form-control" name="stock" value="{{$inventories->stock}}" readonly />
                         
                         <label style="margin-top: 10px;">Unit of Measure * :</label>
-                        <input type="text" class="form-control" name="unit_of_measure" value="{{$data->unit_of_measure}}" required/>
+                        <input type="text" class="form-control" name="unit_of_measure" value="{{$inventories->unit_of_measure}}" required/>
 
                         <label style="margin-top: 10px;">Product Description :</label>
-                        <textarea rows="6" id="product_desc" class="form-control" name="product_desc" >{{$data->product_desc}}</textarea>
+                        <textarea rows="6" id="product_desc" class="form-control" name="product_desc" >{{$inventories->product_desc}}</textarea>
                       </div>
 
                       <div class="clearfix"></div>

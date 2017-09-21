@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <select id="showCategory" name="search" class="form-control input-sm" tabindex="-1">
                                   <option value="0" selected="true" disabled="true"> Choose One </option>
-                                  @foreach($data2 as $category)
+                                  @foreach($categories as $category)
                                     <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
                                    @endforeach       
                                 </select>
@@ -80,7 +80,7 @@
                     <div class="clearfix"></div>
                   </div>
 
-                  @if(count($data)>0)
+                  @if(count($inventories)>0)
 
                     <div class="x_content">
                       <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -99,7 +99,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($data as $index => $product)
+                          @foreach($inventories as $index => $product)
                           <tr>
                             <td>{{ $index +1 }}</td>
                             <td>{{ $product->product_name }}</td>
@@ -141,17 +141,30 @@
                       <div class="col-md-12">
                         <div class="panel panel-default">
                           <div class="panel-body">
-                            <h4>Product category <b>{{$data3->category_name}}</b> yang dicari tidak ditemukan.</h4>
+                            <h4>Data inventory kosong.</h4>
                           </div>
                         </div>
                       </div>
                     </div>
                   @endif
+
+                  @if(!empty($find_category))
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <h4>Product category <b>{{$find_category->category_name}}</b> yang dicari tidak ditemukan.</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endif
+
                 </div>
               </div>
             </div>
 
-            @if(count($data)>0)
+            @if(count($inventories)>0)
               <div class="row">
                 <div class="col-xs-12">
                   <div class="x_panel">

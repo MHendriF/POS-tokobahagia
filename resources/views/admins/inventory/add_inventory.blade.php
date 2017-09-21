@@ -69,7 +69,7 @@
                           <label>Select Category * :</label>
                           <select name="category_id" class="select2_single form-control" tabindex="-1" required>
                             <option></option>
-                            @foreach($data as $category)
+                            @foreach($categories as $category)
                                 <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
                             @endforeach
                           </select>
@@ -77,7 +77,7 @@
                           <label style="margin-top: 10px;">Select Location * :</label>
                           <select name="location_id" class="select2_single form-control" tabindex="-1" required>
                             <option></option>
-                            @foreach($data2 as $location)
+                            @foreach($locations as $location)
                                 <option value='{{ $location->id}}'> {{ $location->location }}</option>
                             @endforeach
                           </select>

@@ -16,16 +16,16 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        $data = Inventory::all();
-        $data2 = Category::all();
-        return view('admins.inventory.inventory', compact('data','data2'));
+        $inventories = Inventory::all();
+        $categories = Category::all();
+        return view('admins.inventory.inventory', compact('inventories','categories'));
     }
 
     public function create()
     {
-        $data = Category::all();
-        $data2 = Location::all();
-        return view('admins.inventory.add_inventory', compact('data','data2'));
+        $categories = Category::all();
+        $locations = Location::all();
+        return view('admins.inventory.add_inventory', compact('categories','locations'));
     }
 
     public function store(Request $request)
@@ -83,16 +83,16 @@ class InventoryController extends Controller
 
     public function show($id)
     {
-        $data = Inventory::find($id);
-        return view('admins.inventory.detail_inventory', compact('data'));
+        $inventories = Inventory::find($id);
+        return view('admins.inventory.detail_inventory', compact('inventories'));
     }
 
     public function edit($id)
     {
-        $data = Inventory::find($id);
-        $data2 = Category::all();
-        $data3 = Location::all();
-        return view('admins.inventory.edit_inventory', compact('data','data2','data3'));
+        $inventories = Inventory::find($id);
+        $categories = Category::all();
+        $locations = Location::all();
+        return view('admins.inventory.edit_inventory', compact('inventories','categories','locations'));
     }
 
     public function update(Request $request, $id)
@@ -163,11 +163,10 @@ class InventoryController extends Controller
     {
         $id_category = $request['search'];
 
-        $data3 = $id_category;
-        $data3 = Category::find($id_category);
-        $data2 = Category::all();
-        $data = Inventory::all()->where('category_id',$id_category);
-        return view('admins.inventory.inventory', compact('data','data2','data3'));
+        $find_category = Category::find($id_category);
+        $categories = Category::all();
+        $inventories = Inventory::all()->where('category_id',$id_category);
+        return view('admins.inventory.inventory', compact('find_category','categories','inventories'));
         //dd($data3);
         
     }
