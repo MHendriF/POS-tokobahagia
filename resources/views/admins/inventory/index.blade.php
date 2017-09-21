@@ -63,7 +63,6 @@
                     </ul>
 
                     <form method="get" action="{{ url('showbycategory') }}" id="formsearch">
-                      {{-- {!! csrf_field() !!} --}}
                        <div class="col-sm-3">
                             <div class="form-group">
                                 <select id="showCategory" name="search" class="form-control input-sm" tabindex="-1">
@@ -110,7 +109,6 @@
                             <td>Rp {{number_format($product->cost_min, 0, ',', '.') }}</td>
                             <td>Rp {{number_format($product->cost_max, 0, ',', '.') }}</td>
                             <td>Rp {{number_format($product->price_buy_avg, 0, ',', '.') }}</td>
-                            {{-- <td><center><img src="{{ asset('/images/products/'.$product->images) }}" class="imageResize"></center></td> --}}
                             <td>
                               <center>
                                 <div class="btn-group">

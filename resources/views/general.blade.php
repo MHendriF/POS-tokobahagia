@@ -95,8 +95,7 @@
                                      <i class="fa fa-minus-square" style="margin-right: 7px;"></i>Outcome
                                  </a>
                             </div>
-                            
-                                
+                
                           </div>
                         </div>
                       </div>

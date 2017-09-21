@@ -56,7 +56,48 @@
                           <div class="x_content">
 
                                 @if(Sentinel::getUser()->roles()->first()->slug == 'admin')
-                                    @include('includes.home_admin')
+                                    {{-- @include('includes.home_admin') --}}
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('home') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-home" style="margin-right: 7px;"></i>Home
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('inventory') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-home" style="margin-right: 7px;"></i>Inventory
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('purchase/create') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-shopping-cart" style="margin-right: 7px;"></i>Purchase
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('order/create') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-inbox" style="margin-right: 7px;"></i>Order
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('service/create') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-wrench" style="margin-right: 7px;"></i>Service
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('transaction/create') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-credit-card" style="margin-right: 7px;"></i>Transaction
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('income') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-plus-square" style="margin-right: 7px;"></i>Income
+                                     </a>
+                                </div>
+                                <div class="animated homewidget col-md-2">
+                                     <a href="{{ url('outcome') }}" class="bttn btn-default bttn-lg">
+                                         <i class="fa fa-minus-square" style="margin-right: 7px;"></i>Outcome
+                                     </a>
+                                </div>
+
                                 @else
                                     @include('includes.home_employee')
                                 @endif
