@@ -34,7 +34,6 @@ class CustomerController extends Controller
 				'city'            => 'required',
 				'province'        => 'required',
 				'country'         => 'required',
-				'billing_address' => 'required',
 				'additional_info' => 'required'
             ));
             
@@ -74,7 +73,6 @@ class CustomerController extends Controller
 				'city'            => 'required',
 				'province'        => 'required',
 				'country'         => 'required',
-				'billing_address' => 'required',
 				'additional_info' => 'required'
             ));
 

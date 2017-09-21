@@ -123,10 +123,10 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Description <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Order Description <span class="required"></span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                             <textarea required class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+                             <textarea class="form-control" name="description" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 10 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                           </div>
                         </div>
 

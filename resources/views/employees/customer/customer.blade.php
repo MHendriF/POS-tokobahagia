@@ -71,7 +71,6 @@
                           <th>Name</th>
                           <th>Address</th>
                           <th>Phone</th>
-                          {{-- <th>Email</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -82,7 +81,6 @@
                           <td>{{ $customer->contact_title }} {{ $customer->contact_name }}</td>
                           <td>{{ $customer->address }}</td>
                           <td>{{ $customer->phone }}</td>
-                          {{-- <td>{{ $customer->email }}</td> --}}
                           <td>
                           <center>
                             <div class="btn-group">

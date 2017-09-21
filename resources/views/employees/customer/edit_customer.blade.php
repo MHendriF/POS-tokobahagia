@@ -57,10 +57,9 @@
                             {!! csrf_field() !!}
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Title <span class="required">*</span>
-                                </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Title</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="contact_title" value="{{$data->contact_title}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="contact_title" value="{{$data->contact_title}}" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
 
@@ -81,18 +80,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Fax <span class="required">*</span>
-                                </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Fax</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="fax" value="{{$data->fax}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="fax" value="{{$data->fax}}" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Email <span class="required">*</span>
-                                </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Email</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="email" name="email" value="{{$data->email}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="email" name="email" value="{{$data->email}}" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
 
@@ -133,14 +130,6 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="text" name="country" value="{{$data->country}}" class="form-control col-md-7 col-xs-12" required/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Billing Address <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea rows="3" name="billing_address" class="form-control col-md-7 col-xs-12" required>{{$data->billing_address}}</textarea>
                                 </div>
                             </div>
 

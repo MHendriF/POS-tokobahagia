@@ -38,7 +38,6 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
         'city'            => $faker->city,
         'province'        => $faker->state,
         'country'         => $faker->country,
-        'billing_address' => $faker->buildingNumber,
         'additional_info' => $faker->text,
     ];
 });
