@@ -136,24 +136,23 @@
                         </tbody>
                       </table>
                     </div>
+
+                  @elseif(!empty($find_category))
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <h4>Product category <b>{{$find_category->category_name}}</b> yang dicari tidak ditemukan.</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   @else
                     <div class="row">
                       <div class="col-md-12">
                         <div class="panel panel-default">
                           <div class="panel-body">
                             <h4>Data inventory kosong.</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  @endif
-
-                  @if(!empty($find_category))
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="panel panel-default">
-                          <div class="panel-body">
-                            <h4>Product category <b>{{$find_category->category_name}}</b> yang dicari tidak ditemukan.</h4>
                           </div>
                         </div>
                       </div>
