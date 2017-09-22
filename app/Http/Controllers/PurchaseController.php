@@ -21,8 +21,8 @@ class PurchaseController extends Controller
 {
     public function index()
 	{
-		$data = Purchase::all();
-    	return view('employees.purchase.purchase', compact('data'));
+		$purchases = Purchase::all();
+    	return view('employees.purchase.index', compact('purchases'));
 	}
 
 	public function create()
@@ -56,11 +56,11 @@ class PurchaseController extends Controller
         $codes = $code."".$month."".$year;
 
 
-        $data = Supplier::all();
-        $data2 = Location::all();
-        $data3 = Shipping::all();
-        $data4 = Inventory::all();
-        return view('employees.purchase.add_purchase_v2', compact('data', 'data2','data3','data4','codes','inc'));
+        $suppliers = Supplier::all();
+        $locations = Location::all();
+        $shippings = Shipping::all();
+        $inventories = Inventory::all();
+        return view('employees.purchase.create', compact('suppliers', 'locations','shippings','inventories','codes','inc'));
     }
 
     public function store(Request $request)
@@ -317,14 +317,14 @@ class PurchaseController extends Controller
     public function show($id)
     {
 
-        $data = Purchase::find($id);
-        $data2 = DB::table('purchase_details')
+        $purchases = Purchase::find($id);
+        $purchase_details = DB::table('purchase_details')
             ->join('inventory', 'inventory.id', '=', 'purchase_details.product_id')
             ->join('categories', 'categories.id', '=', 'inventory.category_id')
             ->select('purchase_details.*', 'inventory.product_name', 'categories.category_name')
             ->where('purchase_id', '=', $id)
             ->get();
-        return view('employees.purchase.detail_purchase', compact('data', 'data2'));
+        return view('employees.purchase.details', compact('purchases', 'purchase_details'));
         //dd($data2);
     }
 
@@ -380,8 +380,8 @@ class PurchaseController extends Controller
 
     public function detailPurchase($id)
     {
-        $data = Purchase::find($id);
-        $data2 = DB::table('purchase_details')
+        $purchases = Purchase::find($id);
+        $purchase_details = DB::table('purchase_details')
             ->join('inventory', 'inventory.id', '=', 'purchase_details.product_id')
             ->join('categories', 'categories.id', '=', 'inventory.category_id')
             ->select('purchase_details.*', 'inventory.product_name', 'categories.category_name')

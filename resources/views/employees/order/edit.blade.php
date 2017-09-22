@@ -80,7 +80,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                <select id="customer_id" required="required" name="customer_id" class="select2_single form-control" tabindex="-1">
                                                 <option></option>
-                                                @foreach($data as $customer)
+                                                @foreach($customers as $customer)
                                                     <option value='{{ $customer->id}}'> {{ $customer->contact_name }}</option>
                                                 @endforeach
                                               </select>

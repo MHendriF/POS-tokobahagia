@@ -75,7 +75,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $customer)
+                        @foreach($customers as $index => $customer)
                         <tr>
                           <td>{{ $index +1 }}</td>
                           <td>{{ $customer->contact_title }} {{ $customer->contact_name }}</td>
@@ -107,7 +107,7 @@
               </div>
             </div>
 
-            @if(count($data)>0)
+            @if(count($customers)>0)
               <div class="row">
                 <div class="col-xs-12">
                   <div class="x_panel">

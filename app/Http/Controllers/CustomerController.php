@@ -11,13 +11,13 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $data = Customer::all();
-        return view('employees.customer.customer', compact('data'));
+        $customers = Customer::all();
+        return view('employees.customer.index', compact('customers'));
     }
 
     public function create()
     {
-        return view('employees.customer.add_customer');
+        return view('employees.customer.create');
     }
 
     public function store(Request $request)
@@ -49,14 +49,14 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $data = Customer::find($id);
-        return view('employees.customer.detail_customer', compact('data'));
+        $customers = Customer::find($id);
+        return view('employees.customer.detail', compact('customers'));
     }
 
     public function edit($id)
     {
-        $data = Customer::find($id);
-        return view('employees.customer.edit_customer', compact('data'));
+        $customers = Customer::find($id);
+        return view('employees.customer.edit', compact('customers'));
     }
 
     public function update(Request $request, $id)

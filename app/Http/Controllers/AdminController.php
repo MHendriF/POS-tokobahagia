@@ -70,4 +70,10 @@ class AdminController extends Controller
         $user = Auth::user();
         return view('report', compact('user'));
     }
+
+    public function home()
+    {
+        $user = Auth::user();
+        return view('home', compact('user'));
+    }
 }

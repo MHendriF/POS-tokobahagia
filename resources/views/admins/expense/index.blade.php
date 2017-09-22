@@ -78,7 +78,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($data as $index => $expense)
+                                    @foreach($expenses as $index => $expense)
                                     <tr>
                                       <td>{{ $index +1 }}</td>
                                       <td>Rp. {{ $expense->listrik }}</td>
@@ -109,7 +109,31 @@
                 </div>
 
             </div>
-        </div></div>
+
+            @if(count($expenses)>0)
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="x_panel">
+                    <div class="title_left">
+                        <h2>Keterangan</h2>
+                    </div>
+                    <div class="btn-group">
+                      <ul>
+                        <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Expense</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Menghapus Data Expense</strong>
+                          <div class="clearfix"></div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
+
+        </div>
+      </div>
         <!-- /page content -->
 
     <!-- footer content -->

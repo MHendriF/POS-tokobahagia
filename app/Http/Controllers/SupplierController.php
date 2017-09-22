@@ -10,14 +10,14 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $data = Supplier::all();
-        return view('admins.supplier.supplier', compact('data'));
+        $suppliers = Supplier::all();
+        return view('admins.supplier.index', compact('suppliers'));
     }
 
  
     public function create()
     {
-        return view('admins.supplier.add_supplier');
+        return view('admins.supplier.create');
     }
 
     public function store(Request $request)
@@ -49,13 +49,14 @@ class SupplierController extends Controller
 
     public function show($id)
     {
-        //
+        $suppliers = Supplier::find($id);
+        return view('admins.supplier.detail', compact('suppliers'));
     }
 
     public function edit($id)
     {
-        $data = Supplier::find($id);
-        return view('admins.supplier.edit_supplier', compact('data'));
+        $suppliers = Supplier::find($id);
+        return view('admins.supplier.edit', compact('suppliers'));
     }
 
     public function update(Request $request, $id)

@@ -11,13 +11,13 @@ class ShippingController extends Controller
    
     public function index()
     {
-        $data = Shipping::all();
-        return view('admins.shipping.shipping', compact('data'));
+        $shippings = Shipping::all();
+        return view('admins.shipping.index', compact('shippings'));
     }
 
     public function create()
     {
-        return view('admins.shipping.add_shipping');
+        return view('admins.shipping.create');
     }
 
     public function store(Request $request)
@@ -37,15 +37,10 @@ class ShippingController extends Controller
         } 
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        $data = Shipping::find($id);
-        return view('admins.shipping.edit_shipping', compact('data'));
+        $shippings = Shipping::find($id);
+        return view('admins.shipping.edit', compact('shippings'));
     }
 
     public function update(Request $request, $id)

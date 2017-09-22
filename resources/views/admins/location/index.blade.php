@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Technician
+    Toko Bahagia | Location
 @endsection
 
 @push('stylesheets')
@@ -10,8 +10,8 @@
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
-      <!-- NProgress -->
-      <link href="{{ asset("assets/nprogress/nprogress.css") }}" rel="stylesheet">
+      <!-- Animate -->
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
       <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -21,7 +21,7 @@
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
       <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
-      
+
 @endpush
 
 @section('main_container')
@@ -29,16 +29,16 @@
         <div class="right_col" role="main">
           <div class="">
             
-             <section class="page-title">
+            <section class="page-title">
               <div class="title_left">
-                <h3>Technician Management</h3>
+                <h3>Location Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">Technician</li>
+                    <li class="active">Location</li>
                   </ol>  
                   </section>
                 </div>
@@ -50,15 +50,15 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Technician List <small>
-                      <a href="{{ url('technician/create') }}" class="btn btn-primary btn-xs">
+                    <h2>Location List <small>
+                      <a href="{{ url('location/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                       </a>
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('technician') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('location') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -68,22 +68,22 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Technician name</th>
+                          <th>Location</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $technician)
+                        @foreach($locations as $index => $location)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $technician->technician_name }}</td>
+                          <td>{{ $location->location }}</td>
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('technician/'.$technician->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('location/'.$location->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form id="delete-currency" action="{{ url('technician/'.$technician->id) }}" method="post">
+                              <form id="delete-currency" action="{{ url('location/'.$location->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
@@ -100,7 +100,7 @@
               </div>
             </div>
 
-            @if(count($data)>0)
+            @if(count($locations)>0)
               <div class="row">
                 <div class="col-xs-12">
                   <div class="x_panel">
@@ -110,10 +110,10 @@
                     <div class="btn-group">
                       <ul>
                         <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Melakukan Edit Data Technician</strong>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Location</strong>
                           <div class="clearfix"></div>
                         <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Menghapus Data Technician</strong>
+                          <strong style="margin-left: 6px"> : Menghapus Data Location</strong>
                           <div class="clearfix"></div>
                       </ul>
                     </div>
@@ -132,13 +132,12 @@
 
     @push('scripts')
 
-     <!-- Datatables -->
+    <!-- Datatables -->
     <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-scroller/js/datatables.scroller.min.js") }}"></script>
-
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>

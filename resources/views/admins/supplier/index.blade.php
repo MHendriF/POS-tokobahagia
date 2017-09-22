@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Order
+    Toko Bahagia | Supplier
 @endsection
 
 @push('stylesheets')
@@ -12,7 +12,7 @@
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
       <!-- Animate -->
-      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet">
       <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
@@ -32,14 +32,14 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>Order Management</h3>
+                <h3>Supplier Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">Order</li>
+                    <li class="active">Supplier</li>
                   </ol>  
                   </section>
                 </div>
@@ -47,19 +47,20 @@
             </section>
 
             <div class="clearfix"></div>
+
             <div class="row">
+             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Order List <small>
-                      <a href="{{ url('order/create') }}" class="btn btn-primary btn-xs">
+                    <h2>Supplier List <small>
+                      <a href="{{ url('supplier/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
-                      </a>
-                      </small>
+                      </a></small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('order') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('supplier') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -69,43 +70,37 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Order Code</th>
-                          <th>Customer</th>
-                          <th>Location</th>
-                          <th>Shipping Method</th>
-                          <th>Shipping Date</th>
-                          <th>Price Total</th>
+                          <th>Name</th>
+                          <th>Address</th>
+                          <th>Phone</th>
+                          <th>Email</th>
                           <th>Action</th>
                         </tr>
                       </thead>
-
                       <tbody>
-                        @foreach($data as $index => $order)
+                        @foreach($suppliers as $index => $supplier)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $order->order_code }}</td>
-                          <td>{{ $order->pilihcustomer->contact_name }}</td>
-                          <td>{{ $order->pilihlocation->location }}</td>
-                          <td>{{ $order->pilihshipping->method }}</td>
-                          <td>{{ $order->shipping_date }}</td>
-                          <td>Rp {{ number_format($order->price_total, 2, ',', '.') }}</td>
-                          
+                          <td>{{ $supplier->supplier_name }}</td>
+                          <td>{{ $supplier->address }}</td>
+                          <td>{{ $supplier->phone }}</td>
+                          <td>{{ $supplier->email }}</td>
                           <td>
-                            <center>
-                              <div class="btn-group">
-                                <a href="{{ url('order/'.$order->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
-                              </div>
-                             {{--  <div class="btn-group">
-                                <a href="{{ url('order/'.$order->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                              </div> --}}
-                              <div class="btn-group">
-                                <form action="{{ url('order/'.$order->id) }}" method="post">
-                                  {{ csrf_field() }}
-                                  <input type="hidden" name="_method" value="DELETE">
-                                  <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
-                                </form>
-                              </div>
-                            </center>
+                          <center>
+                            <div class="btn-group">
+                              <a href="{{ url('supplier/'.$supplier->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <div class="btn-group">
+                              <a href="{{ url('supplier/'.$supplier->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="btn-group">
+                              <form id="delete-currency" action="{{ url('supplier/'.$supplier->id) }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
+                              </form>
+                            </div>
+                          </center>
                           </td>
                         </tr>
                         @endforeach
@@ -116,7 +111,7 @@
               </div>
             </div>
 
-            @if(count($data)>0)
+            @if(count($suppliers)>0)
               <div class="row">
                 <div class="col-xs-12">
                   <div class="x_panel">
@@ -126,10 +121,13 @@
                     <div class="btn-group">
                       <ul>
                         <li class="btn btn-primary btn-xs" style="margin-bottom: 6px;"><i class="fa fa-eye" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Melihat Detail Data Order</strong>
+                          <strong style="margin-left: 6px"> : Melihat Detail Data Supplier</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
+                          <strong style="margin-left: 8px"> : Melakukan Edit Data Supplier</strong>
                           <div class="clearfix"></div>
                         <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Menghapus Data Order</strong>
+                          <strong style="margin-left: 8px"> : Menghapus Data Supplier</strong>
                           <div class="clearfix"></div>
                       </ul>
                     </div>
@@ -178,6 +176,6 @@
     @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
-
+    
     @endpush
 @endsection

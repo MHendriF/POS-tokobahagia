@@ -13,13 +13,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::all();
-        return view('admins.user.user', compact('data'));
+        $users = User::all();
+        return view('admins.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('admins.user.add_user');
+        return view('admins.user.create');
     }
 
     public function role_user()
@@ -27,15 +27,12 @@ class UserController extends Controller
        $data = DB::select("SELECT id, first_name, last_name, user_id, role_id
             FROM users, role_users
             WHERE id = user_id");
-       //dd($model);
         return view('admins.user.role_user', compact('data'));
     }
 
 
     public function store(Request $request)
     {
-        //User::create($request->all());
-        //return redirect('user');
 
         try{
             $this->validate($request, array(
@@ -46,16 +43,6 @@ class UserController extends Controller
                 'jabatan'    => 'required',
                 'address'    => 'required'
             ));
-            
-            // $users = new User(array(
-            //     'username'   => $request->get('username'),
-            //     'last_name'  => $request->get('last_name'),
-            //     'first_name' => $request->get('first_name'),
-            //     'phone'      => $request->get('phone'),
-            //     'jabatan'    => $request->get('jabatan'),
-            //     'address'    => $request->get('address'),
-            //     'password'   => 'secret'
-            // ));
 
             $users = [
                 'username'   => $request->get('username'),
@@ -86,13 +73,14 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
+        $users = User::find($id);
+        return view('admins.user.detail', compact('users'));
     }
 
     public function edit($id)
     {
-        $data = User::find($id);
-        return view('admins.user.edit_user', compact('data'));
+        $users = User::find($id);
+        return view('admins.user.edit', compact('users'));
     }
 
     public function update(Request $request, $id)

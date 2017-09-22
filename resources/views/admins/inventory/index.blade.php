@@ -220,23 +220,5 @@
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
 
-
-   {{--  <script type="text/javascript">
-      $('#formsearch').on.('submit',function(e) {
-        e.preventDefault();
-        var url = $(this).attr('action');
-        var data = $(this).seralizeArray();
-        var get = $(this).attr('method');
-          $.ajax({
-            type : get,
-            url : url,
-            data : data
-          }).done(function( data ) {
-              console.log( data );
-              console.log( "success" );
-            });
-        });  
-    </script> --}}
-
     @endpush
 @endsection

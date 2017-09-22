@@ -32,8 +32,7 @@ Route::group(['middleware' => 'authenticate'], function() {
 
 	Route::resource('tes', 'TesController');
 
-	
-	Route::get('home', 'VisitorsController@index');
+	Route::get('home', 'AdminController@home');
 	Route::get('general', 'AdminController@general');
 	Route::get('master', 'AdminController@master');
 	Route::get('report', 'AdminController@report');

@@ -19,8 +19,8 @@ class OrderController extends Controller
 {
 	public function index()
     {
-        $data = Order::all();
-        return view('employees.order.order', compact('data'));
+        $orders = Order::all();
+        return view('employees.order.index', compact('orders'));
     }
 
     public function create()
@@ -53,11 +53,11 @@ class OrderController extends Controller
         $year = date("y", $timestamp);
         $codes = $code."".$month."".$year;
 
-        $data = Customer::all();
-        $data2 = Location::all();
-        $data3 = Shipping::all();
-        $data4 = Inventory::all();
-        return view('employees.order.add_order_v2', compact('data', 'data2','data3','data4','codes','inc'));
+        $customers = Customer::all();
+        $locations = Location::all();
+        $shippings = Shipping::all();
+        $inventories = Inventory::all();
+        return view('employees.order.create', compact('customers', 'locations','shippings','inventories','codes','inc'));
     }
 
     public function store(Request $request)
@@ -122,17 +122,17 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $data = Order::find($id);
-        $data2 = Order_Detail::all()->where('order_id',$id);
-        return view('employees.order.detail_order', compact('data','data2'));
+        $orders = Order::find($id);
+        $order_details = Order_Detail::all()->where('order_id',$id);
+        return view('employees.order.details', compact('orders','order_details'));
     }
 
     public function edit($id)
     {
-        $data = Customer::all();
-        $data2 = Shipping::all();
-        $data3 = Inventory::all();
-        return view('employees.order.edit_order', compact('data', 'data2','data3'));
+        $customers = Customer::all();
+        $shippings = Shipping::all();
+        $inventories = Inventory::all();
+        return view('employees.order.edit', compact('customers', 'shippings','inventories'));
     }
 
     public function update(Request $request, $id)
@@ -178,9 +178,9 @@ class OrderController extends Controller
     public function detailOrder($id)
     {
 
-        $data = Order::find($id);
-        $data2 = Order_Detail::all()->where('order_id',$id);
-        return view('employees.order.detail_order_v2', compact('data','data2'));
+        $orders = Order::find($id);
+        $order_details = Order_Detail::all()->where('order_id',$id);
+        return view('employees.order.detail_order_v2', compact('orders','order_details'));
     }
 
     public function findPrice(Request $request){

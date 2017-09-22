@@ -10,13 +10,13 @@ class TechnicianController extends Controller
 {
     public function index()
     {
-        $data = Technician::all();
-        return view('admins.technician.technician', compact('data'));
+        $technicians = Technician::all();
+        return view('admins.technician.index', compact('technicians'));
     }
 
     public function create()
     {
-        return view('admins.technician.add_technician');
+        return view('admins.technician.create');
     }
 
     public function store(Request $request)
@@ -39,15 +39,10 @@ class TechnicianController extends Controller
 
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        $data = Technician::find($id);
-        return view('admins.technician.edit_technician', compact('data'));
+        $technicians = Technician::find($id);
+        return view('admins.technician.edit', compact('technicians'));
     }
 
     public function update(Request $request, $id)

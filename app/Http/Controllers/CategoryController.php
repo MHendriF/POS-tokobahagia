@@ -10,13 +10,13 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::all();
-        return view('admins.category.category', compact('data'));
+        $categories = Category::all();
+        return view('admins.category.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admins.category.add_category');
+        return view('admins.category.create');
     }
 
     public function store(Request $request)
@@ -36,15 +36,10 @@ class CategoryController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        $data = Category::find($id);
-        return view('admins.category.edit_category', compact('data'));
+        $categories = Category::find($id);
+        return view('admins.category.edit', compact('categories'));
     }
 
     public function update(Request $request, $id)

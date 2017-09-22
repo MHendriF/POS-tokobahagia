@@ -63,7 +63,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <select name="user_id" class="select2_single form-control" tabindex="-1" required>
                                       <option></option>
-                                      @foreach($data as $code)
+                                      @foreach($users as $code)
                                           <option value='{{ $code->id}}'> {{ $code->first_name }}</option>
                                       @endforeach
                                 </select>

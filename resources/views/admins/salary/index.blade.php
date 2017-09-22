@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Location
+    Toko Bahagia | Salary User
 @endsection
 
 @push('stylesheets')
@@ -12,7 +12,7 @@
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
       <!-- Animate -->
       <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
-      <!-- PNotify -->
+      <!-- Pnotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
@@ -20,7 +20,7 @@
       <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
+      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">
 
 @endpush
 
@@ -29,16 +29,16 @@
         <div class="right_col" role="main">
           <div class="">
             
-            <section class="page-title">
+             <section class="page-title">
               <div class="title_left">
-                <h3>Location Management</h3>
+                <h3>Salary Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">Location</li>
+                    <li class="active">Salary</li>
                   </ol>  
                   </section>
                 </div>
@@ -46,19 +46,20 @@
             </section>
 
             <div class="clearfix"></div>
+
             <div class="row">
+             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Location List <small>
-                      <a href="{{ url('location/create') }}" class="btn btn-primary btn-xs">
+                    <h2>Salary User List <small>
+                      <a href="{{ url('salary/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
-                      </a>
-                      </small>
+                      </a></small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('location') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('salary') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -68,22 +69,24 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Location</th>
+                          <th>Employee</th>
+                          <th>Salary</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $location)
+                        @foreach($salaries as $index => $salary)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          <td>{{ $location->location }}</td>
+                          <td>{{ $salary->user->first_name }}</td>
+                          <td>Rp. {{ $salary->salary }}</td>
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('location/'.$location->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ url('salary/'.$salary->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <form id="delete-currency" action="{{ url('location/'.$location->id) }}" method="post">
+                              <form action="{{ url('salary/'.$salary->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
@@ -100,7 +103,7 @@
               </div>
             </div>
 
-            @if(count($data)>0)
+            @if(count($salaries)>0)
               <div class="row">
                 <div class="col-xs-12">
                   <div class="x_panel">
@@ -110,10 +113,10 @@
                     <div class="btn-group">
                       <ul>
                         <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Melakukan Edit Data Location</strong>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Salary</strong>
                           <div class="clearfix"></div>
                         <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
-                          <strong style="margin-left: 6px"> : Menghapus Data Location</strong>
+                          <strong style="margin-left: 6px"> : Menghapus Data Salary</strong>
                           <div class="clearfix"></div>
                       </ul>
                     </div>
@@ -131,7 +134,6 @@
     <!-- /footer content -->
 
     @push('scripts')
-
     <!-- Datatables -->
     <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>

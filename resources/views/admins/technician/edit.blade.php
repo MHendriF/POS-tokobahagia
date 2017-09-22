@@ -51,7 +51,7 @@
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form method="post" action="{{ url('technician/'.$data->id) }}" class="form-horizontal form-label-left" data-parsley-validate>
+                                <form method="post" action="{{ url('technician/'.$technicians->id) }}" class="form-horizontal form-label-left" data-parsley-validate>
                                     <input type="hidden" name="_methode" value="PUT">
                                     {!! csrf_field() !!}
 
@@ -59,7 +59,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Technician Name <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                          <input type="text" name="technician_name" value="{{$data->technician_name}}" required="required" class="form-control col-md-7 col-xs-12">
+                                          <input type="text" name="technician_name" value="{{$technicians->technician_name}}" required="required" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
 

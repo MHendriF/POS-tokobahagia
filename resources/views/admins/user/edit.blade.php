@@ -52,7 +52,7 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('user/'.$data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="post" action="{{ url('user/'.$users->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             <input type="hidden" name="_methode" value="PUT">
                             {!! csrf_field() !!}
 
@@ -60,7 +60,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Username <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="username" value="{{$data->username}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="username" value="{{$users->username}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -68,7 +68,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >First name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="first_name" value="{{$data->first_name}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="first_name" value="{{$users->first_name}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -76,7 +76,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Last name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="last_name" value="{{$data->last_name}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="last_name" value="{{$users->last_name}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -84,7 +84,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Phone <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="phone" value="{{$data->phone}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="phone" value="{{$users->phone}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -92,7 +92,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Jabatan <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="jabatan" value="{{$data->jabatan}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="text" name="jabatan" value="{{$users->jabatan}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
@@ -100,7 +100,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Address <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea rows="4" name="address" class="form-control col-md-7 col-xs-12" required>{{$data->address}}</textarea>
+                                  <textarea rows="4" name="address" class="form-control col-md-7 col-xs-12" required>{{$users->address}}</textarea>
                                 </div>
                             </div>
 

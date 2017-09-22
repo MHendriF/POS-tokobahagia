@@ -31,7 +31,6 @@ class InventoryController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
         try{
             $this->validate($request, array(
                 'category_id'     => 'required',
@@ -168,8 +167,6 @@ class InventoryController extends Controller
         $categories = Category::all();
         $inventories = Inventory::all()->where('category_id',$id_category);
         return view('admins.inventory.index', compact('categories','inventories','find_category'));
-        //dd($data3);
-        
     }
 
 }

@@ -10,13 +10,13 @@ class LocationController extends Controller
 {
     public function index()
     {
-        $data = Location::all();
-        return view('admins.location.location', compact('data'));
+        $locations = Location::all();
+        return view('admins.location.index', compact('locations'));
     }
 
     public function create()
     {
-        return view('admins.location.add_location');
+        return view('admins.location.create');
     }
 
     public function store(Request $request)
@@ -36,15 +36,10 @@ class LocationController extends Controller
         } 
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        $data = Location::find($id);
-        return view('admins.location.edit_location', compact('data'));
+        $locations = Location::find($id);
+        return view('admins.location.edit', compact('locations'));
     }
 
     public function update(Request $request, $id)

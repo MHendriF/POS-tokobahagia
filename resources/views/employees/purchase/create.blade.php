@@ -90,7 +90,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="supplier_id" class="select2_single form-control" tabindex="-1" required>
                                 <option></option>
-                                @foreach($data as $supplier)
+                                @foreach($suppliers as $supplier)
                                     <option value='{{ $supplier->id }}'> {{ $supplier->supplier_name }}</option>
                                 @endforeach
                               </select>
@@ -102,7 +102,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="location_id" class="select2_single form-control" tabindex="-1" required>
                                 <option></option>
-                                @foreach($data2 as $location)
+                                @foreach($locations as $location)
                                     <option value='{{ $location->id }}'> {{ $location->location }}</option>
                                 @endforeach
                               </select>
@@ -114,7 +114,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="shipping_id" class="select2_single form-control" tabindex="-1" required>
                                 <option></option>
-                                @foreach($data3 as $shipping)
+                                @foreach($shippings as $shipping)
                                     <option value='{{ $shipping->id }}'> {{ $shipping->method }}</option>
                                 @endforeach
                               </select>
@@ -177,7 +177,7 @@
                                   <td>
                                     <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
                                         <option value="0" selected="true" disabled="true">Pilih Produk</option>
-                                        @foreach($data4 as $key => $product)
+                                        @foreach($inventories as $key => $product)
                                         <option value='{{ $key+1 }}'> {{ $product->product_name }}</option>
                                         @endforeach
                                     </select>
@@ -349,7 +349,7 @@
                       '<td>'+ 
                         '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
                             '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
-                            '@foreach($data4 as $key => $product)'+ 
+                            '@foreach($inventories as $key => $product)'+ 
                             '<option value="{{ $key+1 }}"> {{ $product->product_name }}</option>'+ 
                             '@endforeach'+ 
                         '</select>'+ 

@@ -1,18 +1,17 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | User Account
+    Toko Bahagia | Category
 @endsection
 
 @push('stylesheets')
-
       <!-- Datatables -->
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
       <!-- Animate -->
       <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
-      <!-- Pnotify -->
+      <!-- PNotify -->
       <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
@@ -20,8 +19,8 @@
       <link href="{{ asset("css/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet">
       <!-- Custom Theme Style -->
       <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet"> 
-      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet">
-
+      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
+      
 @endpush
 
 @section('main_container')
@@ -31,14 +30,14 @@
             
             <section class="page-title">
               <div class="title_left">
-                <h3>User Management</h3>
+                <h3>Category Management</h3>
               </div>
               <div class="title_right">
                 <div class="pull-right">
                   <section class="content-header">
                     <ol class="breadcrumb">
-                    <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                    <li class="active">User</li>
+                    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">Category</li>
                   </ol>  
                   </section>
                 </div>
@@ -46,24 +45,19 @@
             </section>
 
             <div class="clearfix"></div>
-
             <div class="row">
-             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>User List <small>
-                      <a href="{{ url('user/create') }}" class="btn btn-primary btn-xs">
+                    <h2>Category List <small>
+                      <a href="{{ url('category/create') }}" class="btn btn-primary btn-xs">
                         <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Create New
                       </a>
-                      {{-- <a href="{{ url('role_user') }}" class="btn btn-primary btn-xs">
-                        <i class="fa fa-plus-square" style="margin-right: 6px;"></i>Role User
-                      </a> --}}
                       </small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      <li><a href="{{ url('user') }}"><i class="fa fa-repeat"></i></a></li>
+                      <li><a href="{{ url('category') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -73,35 +67,22 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          {{-- <th>Username</th> --}}
-                          <th>First name</th>
-                          <th>Last name</th>
-                          <th>Phone</th>
-                          <th>Jabatan</th>
-                          <th>Address</th>
+                          <th>Category Name</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($data as $index => $user)
+                        @foreach($categories as $index => $category)
                         <tr>
                           <td>{{ $index +1 }}</td>
-                          {{-- <td>{{ $user->username }}</td> --}}
-                          <td>{{ $user->first_name }}</td>
-                          <td>{{ $user->last_name }}</td>
-                          <td>{{ $user->phone }}</td>
-                          <td>{{ $user->jabatan }}</td>
-                          <td>{{ $user->address }}</td>
+                          <td>{{ $category->category_name }}</td>
                           <td>
                           <center>
                             <div class="btn-group">
-                              <a href="{{ url('user/'.$user->id) }}" class="btn btn-primary btn-xs" class="tooltip-top" title="" data-tooltip="View detail"><i class="fa fa-eye"></i></a>
+                              <a href="{{ url('category/'.$category->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                             </div>
                             <div class="btn-group">
-                              <a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-success btn-xs" class="tooltip-top" title="" data-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <form action="{{ url('user/'.$user->id) }}" method="post">
+                              <form id="delete-currency" action="{{ url('category/'.$category->id) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button id="delete" type="submit" class="btn btn-danger btn-xs" class="tooltip-top" title="" data-tooltip="Delete"><i class="fa fa-trash"></i></button>
@@ -116,8 +97,30 @@
                   </div>
                 </div>
               </div>
-
             </div>
+
+            @if(count($categories)>0)
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="x_panel">
+                    <div class="title_left">
+                      <h2>Keterangan</h2>
+                    </div>
+                    <div class="btn-group">
+                      <ul>
+                        <li class="btn btn-success btn-xs" style="margin-bottom: 6px;"><i class="fa fa-pencil" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Melakukan Edit Data Category</strong>
+                          <div class="clearfix"></div>
+                        <li class="btn btn-danger btn-xs" style="margin-bottom: 6px;"><i class="fa fa-trash" style="width: 13px"></i></li>
+                          <strong style="margin-left: 6px"> : Menghapus Data Category</strong>
+                          <div class="clearfix"></div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
+
           </div>
         </div>
         <!-- /page content -->
@@ -127,12 +130,14 @@
     <!-- /footer content -->
 
     @push('scripts')
+
     <!-- Datatables -->
     <script src="{{ asset("assets/datatables.net/js/jquery.dataTables.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-scroller/js/datatables.scroller.min.js") }}"></script>
+
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>

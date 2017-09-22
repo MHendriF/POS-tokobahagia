@@ -12,14 +12,14 @@ class SalaryController extends Controller
 {
     public function index()
     {
-        $data = Salary::all();
-        return view('admins.salary.salary', compact('data'));
+        $salaries = Salary::all();
+        return view('admins.salary.index', compact('salaries'));
     }
 
     public function create()
     {
-    	$data = User::all();
-        return view('admins.salary.add_salary', compact('data'));
+    	$users = User::all();
+        return view('admins.salary.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -50,8 +50,8 @@ class SalaryController extends Controller
 
     public function edit($id)
     {
-        $data = Salary::find($id);
-        return view('admins.salary.edit_salary', compact('data'));
+        $salaries = Salary::find($id);
+        return view('admins.salary.edit', compact('salaries'));
     }
 
     public function update(Request $request, $id)

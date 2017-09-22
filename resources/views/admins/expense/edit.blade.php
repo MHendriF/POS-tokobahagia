@@ -1,19 +1,19 @@
 @extends('layouts.blank')
 
 @section('title')
-    Toko Bahagia | Edit Shipping
+    Toko Bahagia | Edit Expense
 @endsection
 
 @push('stylesheets')
-        <!-- Animate -->
-        <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
-        <!-- PNotify -->
-        <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
-        <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
-        <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
-        <!-- Custom Theme Style -->
-        <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
-        <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
+      <!-- Animate -->
+      <link href="{{ asset("assets/animate.css/animate.min.css")}}" rel="stylesheet" type="text/css"/>
+      <!-- Pnotify -->
+      <link href="{{ asset("assets/pnotify/dist/pnotify.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.buttons.css") }}" rel="stylesheet">
+      <link href="{{ asset("assets/pnotify/dist/pnotify.nonblock.css") }}" rel="stylesheet">
+      <!-- Custom Theme Style -->
+      <link href="{{ asset("build/css/action-icon.css") }}" rel="stylesheet">
+      <link href="{{ asset("build/css/custom.min2.css") }}" rel="stylesheet"> 
 @endpush
 
 @section('main_container')
@@ -23,14 +23,14 @@
         
         <section class="page-title">
             <div class="title_left">
-              <h3>Shipping Management</h3>
+              <h3>Expense Management</h3>
             </div>
             <div class="title_right">
               <div class="pull-right">
                 <section class="content-header">
                   <ol class="breadcrumb">
                   <li><a href="{{ url('home') }}"><i class="fa fa-home"></i>Home</a></li>
-                  <li><a href="{{ url('shipping') }}">Shipping</a></li>
+                  <li><a href="{{ url('expense') }}">Expense</a></li>
                   <li class="active">Edit</li>
                 </ol>  
                 </section>
@@ -44,7 +44,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                      <h2>Form Edit Shipping</h2>
+                      <h2>Form Add Expense</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -52,21 +52,43 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form method="post" action="{{ url('shipping/'.$data->id) }}" class="form-horizontal form-label-left" data-parsley-validate>
-                            <input type="hidden" name="_methode" value="PUT">
+                        <form method="post" action="{{ url('expense') }}" data-parsley-validate class="form-horizontal form-label-left">
                             {!! csrf_field() !!}
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">Shipping method <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Listrik <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="method" value="{{$data->method}}" class="form-control col-md-7 col-xs-12" required/>
+                                  <input type="number" name="listrik" value="{{$expenses->listrik}}" class="form-control col-md-7 col-xs-12" required/>
                                 </div>
                             </div>
 
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Air <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="number" name="air" value="{{$expenses->air}}" class="form-control col-md-7 col-xs-12" required/>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Uang Makan <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="number" name="makan" value="{{$expenses->makan}}" class="form-control col-md-7 col-xs-12" required/>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Others <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <input type="number" name="others" value="{{$expenses->others}}" class="form-control col-md-7 col-xs-12" required/>
+                                </div>
+                            </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-7">
+                                <div class="col-md-6 col-md-offset-3">
                                   <button type="reset" class="btn btn-primary">Cancel</button>
                                   <button id="send" type="submit" class="btn btn-success">Submit</button>
                                 </div>
@@ -97,6 +119,6 @@
 
     <!-- Include Scripts -->
     @include('javascript.pnotify')
-    
+
     @endpush
 @endsection

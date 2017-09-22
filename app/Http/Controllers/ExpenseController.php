@@ -10,13 +10,13 @@ class ExpenseController extends Controller
 {
     public function index()
     {
-        $data = Expense::all();
-        return view('admins.expense.expense', compact('data'));
+        $expenses = Expense::all();
+        return view('admins.expense.index', compact('expenses'));
     }
 
     public function create()
     {
-        return view('admins.expense.add_expense');
+        return view('admins.expense.create');
     }
 
     public function store(Request $request)
@@ -35,13 +35,14 @@ class ExpenseController extends Controller
         catch(\Exception $e){
             return redirect()->back()->with('error', ' Sorry something went worng. Please try again.');
         } 
+        //dd($request->all());
     }
 
 
     public function edit($id)
     {
-        $data = Expense::find($id);
-        return view('admins.expense.edit_expense', compact('data'));
+        $expenses = Expense::find($id);
+        return view('admins.expense.edit', compact('expenses'));
     }
 
     public function update(Request $request, $id)
