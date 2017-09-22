@@ -53,17 +53,8 @@
                     <h2>Purchase </h2>
                     
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                      <li><a href="{{ url('purchase') }}"><i class="fa fa-repeat"></i></a></li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -159,61 +150,73 @@
                         <div class="ln_solid"></div>
                      
                       
-                      <div class="form-group">
-                        <div class="table-responsive">  
-                          <table class="table table-bordered" id="dynamic_field">
-                              <thead>  
-                                <tr>
-                                  <th>Product</th>
-                                  <th>Quantity</th>
-                                  <th>Price Per Unit</th>
-                                  <th>Discount</th>
-                                  <th>Amount</th>
-                                  <th style="text-align: center;background: #eee"><a href="javascript:void(0);" class="btn btn-primary btn-xs addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
-                                        <option value="0" selected="true" disabled="true">Pilih Produk</option>
-                                        @foreach($inventories as $key => $product)
-                                        <option value='{{ $key+1 }}'> {{ $product->product_name }}</option>
-                                        @endforeach
-                                    </select>
-                                  </td>
-                                  <td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" required/></td>
-                                  <td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" required/></td>
-                                  <td><input type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>
-                                  <td><input type="number" name="price[]" placeholder="Rp" class="form-control amount" readonly style="background: white;cursor: default;" /></td>
-                                  <td style="text-align: center;background: #eee" >
-                                      <a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                              <tfoot>
+                        <div class="form-group">
+                          <div class="table-responsive">  
+                            <table class="table table-bordered" id="dynamic_field">
+                                <thead>  
                                   <tr>
-                                       <td style="border: none;text-align: center;background: #eee"></td>
-                                       <td style="border: none;text-align: center;background: #eee"></td>
-                                       <td style="border: none;text-align: center;background: #eee"></td>
-                                       <td style="background: #eee"><b>Total Freight Charge</b></td>
-                                       <td style="background: #eee"><b id="freight"></b></td>
-                                       <td style="border: none;text-align: center;background: #eee"></td>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price Per Unit</th>
+                                    <th>Discount</th>
+                                    <th>Amount</th>
+                                    <th style="text-align: center;background: #eee"><a href="javascript:void(0);" class="btn btn-primary btn-xs addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
                                   </tr>
+                                </thead>
+                                <tbody>
                                   <tr>
-                                       <td style="border: none;text-align: center;background: #eee"></td>
-                                       <td style="border: none;text-align: center;background: #eee"></td>                                       
-                                       <td style="border: none;text-align: center;background: #eee"></td>
-                                       <td style="background: #eee"><b>Total Keseluruhan</b></td>
-                                       <td style="background: #eee"><b class="total"></b></td>
-                                       <td style="border: none;text-align: center;background: #eee"><input type="hidden" id="total_keseluruhan" name="price_total" class="form-control"/></td>
+                                    <td>
+                                      <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
+                                          <option value="0" selected="true" disabled="true">Pilih Produk</option>
+                                          @foreach($inventories as $key => $product)
+                                          <option value='{{ $key+1 }}'> {{ $product->product_name }}</option>
+                                          @endforeach
+                                      </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" required/></td>
+                                    <td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" required/></td>
+                                    <td><input type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>
+                                    <td><input type="number" name="price[]" placeholder="Rp" class="form-control amount" readonly style="background: white;cursor: default;" /></td>
+                                    <td style="text-align: center;background: #eee" >
+                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm removeRow"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </td>
                                   </tr>
-                              </tfoot>  
-                          </table> 
-                          <button id="send" type="submit" class="pull-right btn btn-lg btn-success">Submit</button> 
-                        </div>  
-                      </div>
-                     </form>  
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                         <td style="background: #eee"><b>Total Freight Charge</b></td>
+                                         <td style="background: #eee"><b id="freight"></b></td>
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                    </tr>
+                                    <tr>
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                         <td style="border: none;text-align: center;background: #eee"></td>                                       
+                                         <td style="border: none;text-align: center;background: #eee"></td>
+                                         <td style="background: #eee"><b>Total Keseluruhan</b></td>
+                                         <td style="background: #eee"><b class="total"></b></td>
+                                         <td style="border: none;text-align: center;background: #eee"><input type="hidden" id="total_keseluruhan" name="price_total" class="form-control"/></td>
+                                    </tr>
+                                </tfoot>  
+                            </table> 
+                            <button id="send" type="submit" class="pull-right btn btn-lg btn-success">Submit</button> 
+                          </div>  
+                        </div>
+                     </form>
+
+                     @if(count($errors))
+                        <div class="form-group">
+                          <div class="alert alert-danger">
+                            <ul>
+                              @foreach($errors->all()  as $error)
+                              <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          </div>
+                        </div>
+                      @endif
                   </div>
 
                 </div>

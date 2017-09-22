@@ -22,7 +22,6 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('price_per_unit');
             $table->integer('discount');
             $table->integer('price');
-            $table->timestamps();
         });
 
          Schema::table('order_details', function($table) {

@@ -22,7 +22,6 @@ class CreatePurchaseDetailsTable extends Migration
             $table->integer('price_per_unit');
             $table->integer('discount');
             $table->integer('price');
-            $table->timestamps();
 
         });
 
