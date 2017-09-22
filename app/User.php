@@ -11,13 +11,21 @@ class User extends EloquentUser
 {
     use Notifiable;
 
-    public function purchaseorder(){
-        return $this->hasMany('App\Purchase_Order');
-    }
 
     public function maintransaction(){
         return $this->hasMany('App\Main_Transaction');
     }
+
+    public function purchases()
+    {
+        return $this->hasMany('App\Purchase');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
 
     // public function salary(){
     //     return $this->hasOne('App\Salary');
@@ -58,7 +66,6 @@ class User extends EloquentUser
         'first_name',
         'phone',
         'address',
-        //'email',
         'password',
         'jabatan',
         'permissions',

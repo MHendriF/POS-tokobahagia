@@ -24,18 +24,30 @@ class Purchase extends Model
         return $this->belongsTo('App\Location', 'location_id');
     }
 
-    protected $fillable = [
-        'user_id',
-		'supplier_id',
-		'shipping_id',
-        'location_id',
-		'purchase_code',
-		'po_description',
-		'purchase_date',
-		'promised_date',
-		'shipping_date',
-		'freight_charge',
-        'price_total',
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function purchase_details()
+    {
+        return $this->hasMany(Purchase_Detail::class);
+    }
+
+    protected $guarded = [''];
+
+  //   protected $fillable = [
+  //       'user_id',
+		// 'supplier_id',
+		// 'shipping_id',
+  //       'location_id',
+		// 'purchase_code',
+		// 'po_description',
+		// 'purchase_date',
+		// 'promised_date',
+		// 'shipping_date',
+		// 'freight_charge',
+  //       'price_total',
+  //   ];
 
 }

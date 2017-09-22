@@ -12,17 +12,31 @@ class Purchase_Detail extends Model
     	return $this->belongsTo('App\Inventory', 'product_id');
     }
 
-    public function purchase(){
-        return $this->belongsTo('App\Purchase', 'purchase_id');
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
-    protected $fillable = [
-     	'product_id',
-        'purchase_id',
-		'number',
-		'quantity',
-		'price_per_unit',
-		'discount',
-		'price',
-    ];
+    public function purchase()
+    {
+        return $this->belongsTo('App\Purchase');
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo('App\Inventory');
+    }
+
+    protected $guarded = [''];
+
+  //   protected $fillable = [
+  //    	'product_id',
+  //       'purchase_id',
+		// 'number',
+		// 'quantity',
+		// 'price_per_unit',
+		// 'discount',
+		// 'price',
+  //   ];
 }

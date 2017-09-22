@@ -102,7 +102,8 @@ class PurchaseController extends Controller
             {
                 $lastPurchase = $purchase->id;
 
-                foreach ($request->product_id as $key => $val) {
+                foreach ($request->product_id as $key => $val) 
+                {
                     $data = array('product_id'=>$val,
                                   'purchase_id'=>$lastPurchase,
                                   'number'=>$key+1,
@@ -110,6 +111,7 @@ class PurchaseController extends Controller
                                   'price_per_unit'=>$request->price_per_unit[$key],
                                   'discount'=>$request->discount[$key],
                                   'price'=>$request->price[$key]);
+
                     Purchase_Detail::insert($data);
 
                     //cek apakah inventori sudah memiliki harga atau belum
@@ -121,9 +123,11 @@ class PurchaseController extends Controller
                         $cek->price_buy_avg = $request->price_per_unit[$key];
                         $cek->save();
                     }
-                    else{ //jika sudah memiliki harga
+                    else
+                    { //jika sudah memiliki harga
                         if($cek->price_buy_avg == 0) //untuk inventory baru
                         {
+                            $product = Inventory::where('id', '=', $val)->first();
                             $item_max = DB::table('purchase_details')->where('product_id', '=', $val) 
                                     ->max('price_per_unit');
                             $item_min = DB::table('purchase_details')->where('product_id', '=', $val)
@@ -192,117 +196,9 @@ class PurchaseController extends Controller
                             }
                         }
                     }
-                    ###################################################################
-                    //cek apakah pernah beli 1x
-                    // if(Purchase_Detail::where('product_id', '=', $val)->count() == 1)
-                    // { //jika tidak costnya == price yang diinputkan
-                    //     $product = Inventory::where('id', '=', $val)->first();
-                    //     if($product){
-                    //         $product->cost_min = $request->price_per_unit[$key];
-                    //         $product->cost_max = $request->price_per_unit[$key];
-                    //         $product->price_buy_avg = $request->price_per_unit[$key];
-                    //         $product->save();
-                    //     }
-                    // }
-                    // //jika sudah pernah beli lebih dari 1x
-                    // elseif(Purchase_Detail::where('product_id', '=', $val)->count() > 1) 
-                    // {   
-                    //     $item_max = DB::table('purchase_details')
-                    //                 ->where('product_id', '=', $val) 
-                    //                 ->max('price_per_unit');
-                    //     $item_min = DB::table('purchase_details')
-                    //                 ->where('product_id', '=', $val)
-                    //                 ->min('price_per_unit');
-                    //     $item_avg = DB::table('purchase_details')
-                    //                 ->where('product_id', '=', $val)
-                    //                 ->avg('price_per_unit');
-
-                    //     //cari produk
-                    //     $product = Inventory::where('id', '=', $val)->first();
-                    //     //update status
-                    //     if($product)
-                    //     {
-                    //         $product->cost_min = $item_min;
-                    //         $product->cost_max = $item_max;
-                    //         $product->price_buy_avg = $item_avg;
-                    //         $product->save();
-                    //     }
-                    // }
-
                 }
             }
 
-
-
-            //$number = $request->number;
-            // $product_id = $request->product_id;
-            // $quantity = $request->quantity;
-            // $price_per_unit = $request->price_per_unit;
-            // $discount = $request->discount;
-            // $price = $request->price;
-
-            // for($i=0; $i<count($number); $i++) 
-            // {
-            //     $PD = new Purchase_Detail();
-            //     $PD->number = $i+1;
-            //     $PD->product_id = $product_id[$i];
-            //     $PD->purchase_id = $lastPurchase;
-            //     $PD->quantity = $quantity[$i];
-            //     $PD->price_per_unit = $price_per_unit[$i];
-            //     $PD->discount = $discount[$i];
-            //     $PD->price = $price[$i];
-
-            //     //return jika tidak memasukkan produk lain
-            //     // if($number[$i] == null){
-            //     //     //return "Success v2";
-            //     //     Session::flash('new', 'New Purchase was successfully added!');
-            //     //     return redirect()->to('purchase');
-            //     // }
-
-            //     // if
-            //     // {
-            //         //cek jika apakah ada di tabel
-            //         $cek = Purchase_Detail::where('product_id', '=', $product_id[$i])->first();
-            //         if($cek === null) //jika tidak ada
-            //         {
-            //             $product = Inventory::where('id', '=', $product_id[$i])->first();
-            //             //update status
-            //             if($product)
-            //             {
-            //                 $product->cost_min = $price_per_unit[$i];
-            //                 $product->cost_max = $price_per_unit[$i];
-            //                 $product->price_buy_avg = $price_per_unit[$i];
-            //                 $product->save();
-            //             }
-            //         }
-
-            //         $PD->save();
-            //         if(Purchase_Detail::where('product_id', '=', $product_id[$i])->count() > 1)
-            //         {
-            //             $item_max = DB::table('purchase_details')
-            //                         ->where('product_id', '=', $product_id[$i])
-            //                         ->max('price_per_unit');
-            //             $item_min = DB::table('purchase_details')
-            //                         ->where('product_id', '=', $product_id[$i])
-            //                         ->min('price_per_unit');
-            //             $item_avg = DB::table('purchase_details')
-            //                         ->where('product_id', '=', $product_id[$i])
-            //                         ->avg('price_per_unit');
-
-            //             //cari produk
-            //             $product = Inventory::where('id', '=', $product_id[$i])->first();
-            //             //update status
-            //             if($product)
-            //             {
-            //                 $product->cost_min = $item_min;
-            //                 $product->cost_max = $item_max;
-            //                 $product->price_buy_avg = $item_avg;
-            //                 $product->save();
-            //             }
-            //         }
-                    
-            //     // /}
-            // }
             Session::flash('new', 'New Purchase was successfully added!');
             return redirect()->to('purchase');
 

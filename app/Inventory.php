@@ -24,19 +24,26 @@ class Inventory extends Model
     	return $this->hasMany('App\Main_Transaction');
     }
 
-    protected $fillable = [
-     	'category_id',
-		'location_id',
-		'product_name',
-		'code_factory',
-		'product_desc',
-		'manufacturer',
-		'item_function',
-		'cost_min',
-		'cost_max',
-		'price_buy_avg',
-		'images',
-		'stock',
-		'unit_of_measure',
-     ];
+    public function purchase_details()
+    {
+        return $this->hasMany(Purchase_Detail::class);
+    }
+
+    protected $guarded = [''];
+    
+  //   protected $fillable = [
+  //    	'category_id',
+		// 'location_id',
+		// 'product_name',
+		// 'code_factory',
+		// 'product_desc',
+		// 'manufacturer',
+		// 'item_function',
+		// 'cost_min',
+		// 'cost_max',
+		// 'price_buy_avg',
+		// 'images',
+		// 'stock',
+		// 'unit_of_measure',
+  //    ];
 }

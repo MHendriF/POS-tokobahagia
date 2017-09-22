@@ -46,20 +46,20 @@ class DatabaseSeeder extends Seeder
         //this message shown in your terminal after running db:seed command
         $this->command->info("Shipping method table seeded is completed :)");
         
-        factory(App\Inventory::class, 20)->create();
-        $this->command->info("Inventory table seeded is completed :)");
+        // factory(App\Inventory::class, 1)->create();
+        // $this->command->info("Inventory table seeded is completed :)");
 
         $this->call('SuppliersSeeder');
         //this message shown in your terminal after running db:seed command
         $this->command->info("Supplier table seeded is completed :)");
 
-        $this->call('TransDescriptionSeeder');
-        //this message shown in your terminal after running db:seed command
-        $this->command->info("TransDescription table seeded is completed :)");
+        // $this->call('TransDescriptionSeeder');
+        // //this message shown in your terminal after running db:seed command
+        // $this->command->info("TransDescription table seeded is completed :)");
 
-        $this->call('TransactionSeeder');
-        //this message shown in your terminal after running db:seed command
-        $this->command->info("Transaction table seeded is completed :)");
+        // $this->call('TransactionSeeder');
+        // //this message shown in your terminal after running db:seed command
+        // $this->command->info("Transaction table seeded is completed :)");
 
         $this->call('TechnicianSeeder');
         //this message shown in your terminal after running db:seed command

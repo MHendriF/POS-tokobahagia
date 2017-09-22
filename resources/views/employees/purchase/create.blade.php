@@ -169,7 +169,7 @@
                                       <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
                                           <option value="0" selected="true" disabled="true">Pilih Produk</option>
                                           @foreach($inventories as $key => $product)
-                                          <option value='{{ $key+1 }}'> {{ $product->product_name }}</option>
+                                          <option value='{{ $product->id }}'> {{ $product->product_name }}</option>
                                           @endforeach
                                       </select>
                                     </td>
@@ -353,7 +353,7 @@
                         '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
                             '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
                             '@foreach($inventories as $key => $product)'+ 
-                            '<option value="{{ $key+1 }}"> {{ $product->product_name }}</option>'+ 
+                            '<option value="{{ $product->id }}"> {{ $product->product_name }}</option>'+ 
                             '@endforeach'+ 
                         '</select>'+ 
                       '</td>'+ 

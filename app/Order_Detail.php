@@ -24,6 +24,5 @@ class Order_Detail extends Model
 		'price_per_unit',
         'discount',
 		'price',
-        // 'price_ref',
     ];
 }
