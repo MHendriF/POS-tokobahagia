@@ -89,7 +89,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select id="gyr_ind" name="customer_id" class="select2_single form-control" required data-parsley-required-message="You must select at least one customer.">
-                                <option></option>
+                                <option value="0" selected="true" disabled="true">Select a customer</option>
                                 @foreach($customers as $customer)
                                     <option value='{{ $customer->id }}'> {{ $customer->contact_name }}</option>
                                 @endforeach
@@ -102,7 +102,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select id="gyr_ind" name="location_id" class="select2_single form-control" required data-parsley-required-message="You must select at least one customer.">
-                                <option></option>
+                                <option value="0" selected="true" disabled="true">Select a location</option>
                                 @foreach($locations as $location)
                                     <option value='{{ $location->id }}'> {{ $location->location }}</option>
                                 @endforeach
@@ -115,7 +115,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="shipping_id" class="select2_single form-control" required data-parsley-required-message="You must select at least one shipping methode.">
-                                <option></option>
+                                <option value="0" selected="true" disabled="true">Select a shipping methode</option>
                                 @foreach($shippings as $shipping)
                                     <option value='{{ $shipping->id }}'> {{ $shipping->method }}</option>
                                 @endforeach
@@ -165,14 +165,14 @@
                                 <tbody>
                                   <tr>
                                     <td>
-                                      <select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>
-                                        <option value="0" selected="true" disabled="true">Pilih Produk</option>
+                                      <select name="product_id[]" class="select2_single product_id form-control" style="width: 160px" required>
+                                        <option value="0" selected="true" disabled="true">Select a product</option>
                                         @foreach($inventories as $key => $product)
                                             <option value='{{ $product->id}}'> {{ $product->product_name }}</option>
                                          @endforeach
                                       </select>
                                     </td>
-                                    <td><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" data-parsley-type="number" required/></td>
+                                    <td style="width: 120px" ><input type="number" name="quantity[]" placeholder="Piece" class="form-control quantity" data-parsley-type="number" required/></td>
                                     <td><input type="number" name="price_per_unit[]" placeholder="Rp" class="form-control price_per_unit" data-parsley-type="number" required/></td>
                                     <td><input data-parsley-type="number" type="number" name="discount[]" placeholder="Rp" class="form-control discount" required/></td>
                                     <td><input data-parsley-type="number" type="number" name="price[]" placeholder="Rp" class="form-control amount" required/></td>
@@ -314,8 +314,8 @@
         function addRow(){
             var tr='<tr>'+ 
                       '<td>'+ 
-                        '<select name="product_id[]" class="select product_id form-control" style="width: 147px;" required>'+ 
-                          '<option value="0" selected="true" disabled="true">Pilih Produk</option>'+ 
+                        '<select name="product_id[]" class="select2_single product_id form-control" style="width: 160px" required>'+ 
+                          '<option value="0" selected="true" disabled="true">Select a product</option>'+ 
                           '@foreach($inventories as $key => $product)'+ 
                               '<option value="{{ $product->id}}"> {{ $product->product_name }}</option>'+ 
                            '@endforeach'+ 
@@ -332,6 +332,7 @@
                       '</td>'+ 
                     '</tr>';
             $('tbody').append(tr);
+            $('.select2_single').select2();
         };
         // ---- Remove Row----//
         $('body').delegate('.removeRow','click',function(){
