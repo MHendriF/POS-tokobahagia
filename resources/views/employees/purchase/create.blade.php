@@ -118,13 +118,7 @@
                             <input type="text" name="purchase_date" class="form-control" id="single_cal1" required>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Promised Date <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx">
-                            <input type="text" name="promised_date" class="form-control" id="single_cal3" required>
-                          </div>
-                        </div>
+                       
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Date <span class="required">*</span>
                           </label>

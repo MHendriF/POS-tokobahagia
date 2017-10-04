@@ -22,7 +22,7 @@ class CreatePurchasesTable extends Migration
             $table->string('purchase_code');
             $table->string('po_description')->nullable();
             $table->string('purchase_date');
-            $table->string('promised_date');
+            //$table->string('promised_date');
             $table->string('shipping_date');
             $table->integer('freight_charge');
             $table->integer('price_total');

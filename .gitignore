@@ -2,6 +2,9 @@
 /bower_components
 /public/storage
 /public/vendors
+/public/images
+#/public/images/products/default1.png
+#/public/images/products/default2.png
 /vendor
 /.idea
 Homestead.json

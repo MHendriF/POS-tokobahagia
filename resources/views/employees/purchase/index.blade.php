@@ -72,7 +72,6 @@
                           <th>Location</th>
                           <th>Shipping Method</th>
                           <th>Purchase Date</th>
-                          <th>Promised Date</th>
                           <th>Freight Charge</th>
                           <th>Price Total</th>
                           <th>Action</th>
@@ -87,7 +86,6 @@
                           <td>{{ $po->pilihlocation->location }}</td>
                           <td>{{ $po->pilihshipping->method }}</td>
                           <td>{{ $po->purchase_date }}</td>
-                          <td>{{ $po->promised_date }}</td>
                           <td>Rp {{number_format($po->freight_charge, 2, ',', '.') }}</td>
                           <td>Rp {{number_format($po->price_total, 2, ',', '.') }}</td>
                           <td>
