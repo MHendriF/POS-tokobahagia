@@ -229,9 +229,7 @@
     <!-- Money -->
     <script src="{{ asset("js/accounting.js") }}"></script>
     <!-- Select2 -->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-    {{-- <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script> --}}
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset("assets/moment/min/moment.min.js") }}"></script>
     <script src="{{ asset("assets/bootstrap-daterangepicker/daterangepicker.js") }}"></script>

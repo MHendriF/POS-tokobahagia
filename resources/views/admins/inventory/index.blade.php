@@ -5,6 +5,8 @@
 @endsection
 
 @push('stylesheets')
+      <!-- Select2 -->
+      <link href="{{ asset("assets/select2/dist/css/select2.min.css") }}" rel="stylesheet">
       <!-- Datatables -->
       <link href="{{ asset("assets/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
       <link href="{{ asset("assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
@@ -65,8 +67,8 @@
                     <form method="get" action="{{ url('showbycategory') }}" id="formsearch">
                        <div class="col-sm-3">
                             <div class="form-group">
-                                <select id="showCategory" name="search" class="form-control input-sm" tabindex="-1">
-                                  <option value="0" selected="true" disabled="true"> Choose One </option>
+                                <select id="showCategory" name="search" class="select2_single form-control input-sm" tabindex="-1">
+                                   <option value="0" selected="true" disabled="true">Select a category</option>
                                   @foreach($categories as $category)
                                     <option value='{{ $category->id}}'> {{ $category->category_name }}</option>
                                    @endforeach       
@@ -205,6 +207,8 @@
     <script src="{{ asset("assets/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
     <script src="{{ asset("assets/datatables.net-scroller/js/datatables.scroller.min.js") }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset("assets/select2/dist/js/select2.full.min.js") }}"></script>
     <!-- PNotify -->
     <script src="{{ asset("assets/pnotify/dist/pnotify.js") }}"></script>
     <script src="{{ asset("assets/pnotify/dist/pnotify.animate.js") }}"></script>
@@ -219,6 +223,7 @@
     @include('javascript.datatables')
     @include('javascript.pnotify')
     @include('javascript.sweetalert')
+     @include('javascript.select2')
 
     @endpush
 @endsection
